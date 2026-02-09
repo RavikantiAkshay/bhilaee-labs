@@ -1,0 +1,155 @@
+/* Shared styles for Lab Components */
+
+/* Lab Header */
+.header {
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.labName {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+}
+
+.subtext {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.labCode {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+.separator {
+    color: var(--border-color);
+}
+
+/* Lab Metadata */
+.metadata {
+    display: flex;
+    flex-wrap: wrap;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    margin-bottom: 3rem;
+    align-items: center;
+}
+
+.metaItem {
+    flex: 1;
+    min-width: 200px;
+    padding: 0 1rem;
+}
+
+.metaLabel {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.25rem;
+}
+
+.metaValue {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+}
+
+.metaDivider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-color);
+    display: none;
+}
+
+/* Experiment Grid */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Experiment Card */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.expNumber {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--border-color);
+    /* Subtle number */
+    line-height: 1;
+}
+
+.statusTag {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+    background: #f1f3f5;
+    color: var(--text-muted);
+}
+
+/* Status colors */
+.status_Simulation_Available {
+    background: #e7f5ff;
+    color: #1c7ed6;
+}
+
+.status_Hardware_Oriented {
+    background: #fff4e6;
+    color: #fd7e14;
+}
+
+.status_Guide_Only {
+    background: #f8f9fa;
+    color: #868e96;
+}
+
+.expTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-top: auto;
+}
+
+@media (min-width: 768px) {
+    .metaDivider {
+        display: block;
+    }
+}

@@ -1,6 +1,9 @@
 import { getLabBySlug, getAllLabSlugs } from '@/data/labs';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import LabHeader from '@/components/LabHeader';
+import LabMetadata from '@/components/LabMetadata';
+import ExperimentList from '@/components/ExperimentList';
 
 /**
  * Generate static paths for all labs
@@ -25,7 +28,7 @@ export async function generateMetadata({ params }) {
 
     return {
         title: `${lab.name} | Basic Labs Guide`,
-        description: lab.description,
+        description: lab.focus,
     };
 }
 
@@ -47,15 +50,20 @@ export default async function LabPage({ params }) {
                 <span> / {lab.name}</span>
             </nav>
 
-            <header className="lab-header">
-                <h1>{lab.name}</h1>
-                <p className="lab-code">{lab.code}</p>
-                <p className="lab-description">{lab.description}</p>
-            </header>
+            <LabHeader
+                name={lab.name}
+                code={lab.code}
+                focus={lab.focus}
+            />
+
+            <LabMetadata
+                nature={lab.nature}
+                prerequisites={lab.prerequisites}
+                totalExperiments={lab.totalExperiments}
+            />
 
             <section className="experiments-section">
-                <h2>Experiments</h2>
-                <p className="placeholder">Experiments coming soon...</p>
+                <ExperimentList experiments={lab.experiments} labSlug={lab.id} />
             </section>
         </main>
     );
