@@ -1,0 +1,345 @@
+/* Component Container Styles */
+.contentBlock {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Rich Text */
+.richText {
+    font-size: 1.05rem;
+}
+
+.richText p {
+    margin-bottom: 1rem;
+}
+
+.richText strong {
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+/* Lists */
+.list {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+}
+
+.list.ordered {
+    list-style-type: decimal;
+}
+
+.list.unordered {
+    list-style-type: disc;
+}
+
+.listItem {
+    margin-bottom: 0.5rem;
+}
+
+/* Images */
+.imageContainer {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.imageWrapper {
+    max-width: 100%;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.5rem;
+    background: white;
+    display: inline-block;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.caption {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Tables */
+.tableWrapper {
+    overflow-x: auto;
+    margin: 2rem 0;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    background: white;
+}
+
+.table th, .table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.table th {
+    background: var(--bg-secondary, #f8f9fa);
+    font-weight: 600;
+    color: var(--primary-color);
+    white-space: nowrap;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+/* Code Blocks */
+.codeBlock {
+    margin: 1.5rem 0;
+    background: #1e1e1e; /* Dark theme default */
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: 'Fira Code', 'Consolas', monospace;
+}
+
+.codeHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+    background: #2d2d2d;
+    color: #a0a0a0;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.codeContent {
+    padding: 1rem;
+    overflow-x: auto;
+    color: #d4d4d4;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Equations */
+.equation {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 4px;
+    text-align: center;
+    font-family: 'Times New Roman', serif;
+    font-size: 1.2rem;
+    overflow-x: auto;
+}
+
+
+/* Layout Container */
+.layoutContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.mobileNav {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 60px; /* Below global header */
+    z-index: 10;
+}
+
+.mobileTitle {
+    font-weight: 600;
+    color: var(--primary-color);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.sidebar {
+    display: none; /* Hidden on mobile by default for now */
+    width: 280px;
+    background: var(--bg-secondary, #f8f9fa);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    top: 60px; /* Below global header */
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+}
+
+.sidebarContent {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.sidebarHeader {
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.sidebarTitle {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+.toc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.tocLink {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.tocLink:hover {
+    background: rgba(0,0,0,0.05);
+    color: var(--primary-color);
+}
+
+.sidebarFooter {
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+.backLink {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 2rem 1.5rem;
+    max-width: 800px; /* Optimal reading width */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.experimentHeader {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.headerMeta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.experimentCode {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.experimentTitle {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1.2;
+    margin: 0;
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+    .layoutContainer {
+        flex-direction: row;
+        padding-top: 60px; /* Global header offset */
+    }
+
+    .mobileNav {
+        display: none;
+    }
+
+    .sidebar {
+        display: block;
+        z-index: 1; /* Ensure proper stacking */
+    }
+
+    .mainContent {
+        margin-left: 280px; /* Sidebar width */
+        padding: 3rem 4rem;
+    }
+}
+
+/* Status Tags */
+.statusTag {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.status_Simulation_Available { background: #e7f5ff; color: #1c7ed6; }
+.status_Guide_Only { background: #f8f9fa; color: #868e96; }
+.status_Hardware_Oriented { background: #fff4e6; color: #fd7e14; }
+
+
+
+/* Sections */
+.sectionContainer {
+    margin-bottom: 3rem;
+    scroll-margin-top: 100px; /* Offset for sticky header */
+}
+
+.sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.notApplicableBadge {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+.notApplicableText {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 1rem;
+    background: var(--bg-secondary, #f8f9fa);
+    border-radius: 4px;
+}
+
+.emptyPlaceholder {
+    color: var(--text-muted);
+    padding: 1.5rem;
+    border: 1px dashed var(--border-color);
+    border-radius: 4px;
+    text-align: center;
+}
+
