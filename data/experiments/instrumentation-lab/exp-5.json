@@ -1,0 +1,209 @@
+{
+    "id": "exp-5",
+    "title": "Detection of moisture levels in (1) Air, (2) Dry Soil, and (3) Wet Soil using a moisture sensor interfaced with ESP32",
+    "labId": "instrumentation-lab",
+    "status": "Guide Only",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "guide-only",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a moisture detection system using a moisture sensor interfaced with an ESP32 microcontroller to measure moisture levels in air, dry soil, and wet soil, and to log the measured data along with timestamps to Google Sheets for analysis using Wi-Fi connectivity."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Hardware Components:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "ESP32 Microcontroller",
+                        "Soil Moisture Sensor Module",
+                        "USB Cable, Jumper Wires",
+                        "Breadboard"
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Software and Tools:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Computer or Laptop",
+                        "Arduino IDE with ESP32 Board Support Package",
+                        "Google Sheets",
+                        "Active Internet Connection (Wi-Fi)"
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": false,
+            "content": []
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the ESP32 and the soil moisture sensor module on a breadboard.",
+                        "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
+                        "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
+                        "Upload the program to the ESP32 and open the Serial Monitor to observe the moisture values obtained from the sensor.",
+                        "Place the moisture sensor in different conditions, namely air, dry soil, and wet soil, and note the corresponding sensor readings.",
+                        "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
+                        "Execute the required function and deploy it as a web application.",
+                        "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": null,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Arduino IDE Code:"
+                },
+                {
+                    "type": "image",
+                    "assetId": "arduino-code-part1",
+                    "caption": "Arduino IDE Code (Part 1)",
+                    "role": "code-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "arduino-code-part2",
+                    "caption": "Arduino IDE Code (Part 2)",
+                    "role": "code-screenshot"
+                },
+                {
+                    "type": "text",
+                    "content": "Google Apps Script Code:"
+                },
+                {
+                    "type": "image",
+                    "assetId": "google-apps-script",
+                    "caption": "Google Apps Script Code",
+                    "role": "code-screenshot"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The Serial Monitor displayed real-time moisture sensor readings obtained from the soil moisture sensor interfaced with the ESP32.",
+                        "Distinct variations in sensor readings were observed when the sensor was exposed to air, dry soil, and wet soil, indicating different moisture levels.",
+                        "The moisture sensor exhibited lower readings in air, moderate readings in dry soil, and higher readings in wet soil, demonstrating its sensitivity to moisture content.",
+                        "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the moisture sensor data to Google Sheets.",
+                        "Each moisture sensor reading corresponding to air, dry soil, and wet soil was logged in Google Sheets along with the appropriate timestamp for further analysis.",
+                        "The Google Sheets link containing the logged moisture sensor data is attached here for reference: [Google Sheets Data](https://docs.google.com/spreadsheets/d/1Hr9bQLohFNkT8QguZMfDgVIg36KYZ9Vdf3UeNVoZe0w/edit?usp=sharing)"
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "serial-monitor-output",
+                    "caption": "Serial Monitor Output Showing Analog and Digital Rain Sensor Values",
+                    "role": "output-screenshot"
+                },
+                {
+                    "type": "image",
+                    "assetId": "google-sheets-log",
+                    "caption": "Google Sheets Showing Logged Data with Timestamp",
+                    "role": "output-screenshot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": false,
+            "content": []
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The IoT-based moisture detection system using a soil moisture sensor interfaced with an ESP32 microcontroller was successfully designed and implemented. The moisture sensor provided real-time readings corresponding to different environmental conditions, namely air, dry soil, and wet soil."
+                },
+                {
+                    "type": "text",
+                    "content": "Distinct variations in sensor values were observed for each condition, and these readings were displayed in real time on the Serial Monitor, confirming correct sensor operation, interfacing, and data acquisition by the ESP32."
+                },
+                {
+                    "type": "text",
+                    "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the moisture sensor data to Google Sheets using the Google Apps Script. Each moisture reading corresponding to air, dry soil, and wet soil was logged along with the appropriate timestamp and updated automatically in the Google Sheet."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": false,
+            "content": []
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment effectively demonstrated real-time moisture monitoring and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, data processing, and wireless communication using an IoT-based approach."
+                }
+            ]
+        }
+    }
+}

@@ -3,7 +3,7 @@ import styles from './Experiment.module.css';
 /**
  * Switcher component to render different content types based on the 'type' field.
  */
-export default function ContentBlock({ block }) {
+export default function ContentBlock({ block, assets }) {
     if (!block || !block.type) return null;
 
     switch (block.type) {
@@ -12,7 +12,7 @@ export default function ContentBlock({ block }) {
         case 'list':
             return <ListBlock block={block} />;
         case 'image':
-            return <ImageBlock block={block} />;
+            return <ImageBlock block={block} assets={assets} />;
         case 'table':
             return <TableBlock block={block} />;
         case 'code':
@@ -69,12 +69,29 @@ function ListBlock({ block }) {
     );
 }
 
-function ImageBlock({ block }) {
+function ImageBlock({ block, assets }) {
+    let src = block.src;
+    let alt = block.caption || 'Experiment Image';
+
+    // Asset System Logic
+    if (block.assetId) {
+        if (assets && assets[block.assetId]) {
+            src = assets[block.assetId].path;
+            const assetDesc = assets[block.assetId].description;
+            if (assetDesc) alt = assetDesc; // Use registry description for ALT if available
+        } else {
+            console.warn(`Missing asset definition for ID: ${block.assetId}`);
+            src = '/images/placeholder-missing.png'; // Fallback
+        }
+    }
+
+    if (!src) return null; // Don't render broken image block
+
     return (
         <div className={`${styles.contentBlock} ${styles.imageContainer}`}>
             <div className={styles.imageWrapper}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={block.src} alt={block.caption || 'Experiment Image'} className={styles.image} />
+                <img src={src} alt={alt} className={styles.image} />
                 {block.caption && <p className={styles.caption}>{block.caption}</p>}
             </div>
         </div>

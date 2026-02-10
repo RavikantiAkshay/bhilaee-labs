@@ -559,10 +559,10 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Detection of moisture levels in (1) Air, (2) Dry Soil, and (3) Wet Soil using a moisture sensor interfaced with ESP32",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "6",

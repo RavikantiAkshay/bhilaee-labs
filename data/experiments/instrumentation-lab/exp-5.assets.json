@@ -1,0 +1,32 @@
+{
+    "arduino-code-part1": {
+        "path": "/assets/labs/instrumentation-lab/exp-5/arduino-code-part1.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Arduino IDE Code (Part 1)"
+    },
+    "arduino-code-part2": {
+        "path": "/assets/labs/instrumentation-lab/exp-5/arduino-code-part2.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Arduino IDE Code (Part 2)"
+    },
+    "google-apps-script": {
+        "path": "/assets/labs/instrumentation-lab/exp-5/google-apps-script.png",
+        "type": "image",
+        "role": "code-screenshot",
+        "description": "Google Apps Script Code"
+    },
+    "serial-monitor-output": {
+        "path": "/assets/labs/instrumentation-lab/exp-5/serial-monitor-output.png",
+        "type": "image",
+        "role": "output-screenshot",
+        "description": "Serial Monitor Output Showing Analog and Digital Rain Sensor Values"
+    },
+    "google-sheets-log": {
+        "path": "/assets/labs/instrumentation-lab/exp-5/google-sheets-log.png",
+        "type": "image",
+        "role": "output-screenshot",
+        "description": "Google Sheets Showing Logged Data with Timestamp"
+    }
+}

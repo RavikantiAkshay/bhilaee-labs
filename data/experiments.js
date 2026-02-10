@@ -38,6 +38,18 @@ export async function getExperiment(labSlug, experimentId) {
         } else {
             experiment = { ...experiment, ...content };
         }
+
+        // Try to load asset registry if available (sidecar file)
+        try {
+            // Assuming fileName is like 'exp-1.json', we want 'exp-1.assets.json'
+            const assetFileName = experimentMeta.fileName.replace('.json', '.assets.json');
+            const assets = await import(`./experiments/${labSlug}/${assetFileName}`);
+            experiment.assets = assets.default || assets;
+        } catch (assetError) {
+            // No assets file found, ignore
+            experiment.assets = {};
+        }
+
     } catch (error) {
         console.warn(`Could not load content for ${labSlug}/${experimentId}: ${error.message}`);
         // Fallback to skeleton (already created)

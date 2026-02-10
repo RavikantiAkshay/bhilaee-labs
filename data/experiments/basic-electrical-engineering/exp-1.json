@@ -59,8 +59,9 @@
                 },
                 {
                     "type": "image",
-                    "src": "/placeholder-circuit.png",
-                    "caption": "Figure 1: Series Circuit for KVL"
+                    "assetId": "kvl-series-circuit",
+                    "caption": "Figure 1: Series Circuit for KVL",
+                    "role": "circuit-diagram"
                 }
             ]
         },

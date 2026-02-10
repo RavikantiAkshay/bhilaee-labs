@@ -1,0 +1,8 @@
+{
+    "kvl-series-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-1/kvl-series-circuit.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Circuit diagram showing a series DC circuit with three resistors for KVL verification"
+    }
+}
