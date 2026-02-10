@@ -11,7 +11,7 @@ import styles from '@/components/experiment/Experiment.module.css';
  */
 export default async function ExperimentPage({ params }) {
     const { slug, experimentId } = await params;
-    const experiment = getExperiment(slug, experimentId);
+    const experiment = await getExperiment(slug, experimentId);
 
     if (!experiment) {
         notFound();

@@ -1,0 +1,680 @@
+{
+  "updatedAt": "2026-02-10T17:28:52.812Z",
+  "labs": {
+    "basic-electrical-engineering": {
+      "name": "Basic Electrical Engineering",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Verification of Kirchhoff Laws",
+          "fileName": "exp-1.json",
+          "status": "Hardware-Oriented",
+          "completeness": 1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "digital-electronics": {
+      "name": "Digital Electronics",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "devices-and-circuits": {
+      "name": "Devices and Circuits",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "power-system-lab": {
+      "name": "Power System Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "sensor-lab": {
+      "name": "Sensor Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "control-system-lab": {
+      "name": "Control System Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Transient Response of R-L-C Network",
+          "fileName": "exp-1.json",
+          "status": "Simulation Available",
+          "completeness": 1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "power-electronics-lab": {
+      "name": "Power Electronics Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "instrumentation-lab": {
+      "name": "Instrumentation Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    },
+    "machines-lab": {
+      "name": "Machines Lab",
+      "experiments": [
+        {
+          "id": "1",
+          "title": "Experiment 1",
+          "fileName": "exp-1.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "2",
+          "title": "Experiment 2",
+          "fileName": "exp-2.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "3",
+          "title": "Experiment 3",
+          "fileName": "exp-3.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "4",
+          "title": "Experiment 4",
+          "fileName": "exp-4.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "5",
+          "title": "Experiment 5",
+          "fileName": "exp-5.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "6",
+          "title": "Experiment 6",
+          "fileName": "exp-6.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "7",
+          "title": "Experiment 7",
+          "fileName": "exp-7.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "8",
+          "title": "Experiment 8",
+          "fileName": "exp-8.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "9",
+          "title": "Experiment 9",
+          "fileName": "exp-9.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        },
+        {
+          "id": "10",
+          "title": "Experiment 10",
+          "fileName": "exp-10.json",
+          "status": "Guide Only",
+          "completeness": 0.1
+        }
+      ]
+    }
+  }
+}

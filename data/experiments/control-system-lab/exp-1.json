@@ -1,0 +1,148 @@
+{
+    "id": "exp-1",
+    "title": "Transient Response of R-L-C Network",
+    "labId": "control-system-lab",
+    "status": "Simulation Available",
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the transient response of a series R-L-C circuit for a step input."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "MATLAB software",
+                        "Control System Toolbox"
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The transient response of a control system exhibits damped oscillations before reaching steady state."
+                },
+                {
+                    "type": "equation",
+                    "latex": "G(s) = \\frac{\\omega_n^2}{s^2 + 2\\zeta\\omega_n s + \\omega_n^2}"
+                },
+                {
+                    "type": "text",
+                    "content": "Where $\\zeta$ is the damping ratio and $\\omega_n$ is the natural frequency."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Launch MATLAB.",
+                        "Define the transfer function using `tf` command.",
+                        "Apply a step input using `step` command.",
+                        "Observe the rise time, peak time, and settling time."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Use the following MATLAB code to simulate the system:"
+                },
+                {
+                    "type": "code",
+                    "language": "matlab",
+                    "code": "wn = 5;\nzeta = 0.5;\nnum = [wn^2];\nden = [1 2*zeta*wn wn^2];\nsys = tf(num, den);\nstep(sys);\ntitle('Step Response of Underdamped System');"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Value"
+                    ],
+                    "rows": [
+                        [
+                            "Rise Time (tr)",
+                            "0.5 s"
+                        ],
+                        [
+                            "Peak Time (tp)",
+                            "0.8 s"
+                        ],
+                        [
+                            "Settling Time (ts)",
+                            "1.2 s"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": []
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The step response was plotted and time domain specifications were verified."
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The system behaves as an underdamped second-order system."
+                }
+            ]
+        }
+    }
+}

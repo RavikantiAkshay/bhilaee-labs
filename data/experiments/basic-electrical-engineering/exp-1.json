@@ -1,0 +1,151 @@
+{
+    "id": "exp-1",
+    "title": "Verification of Kirchhoff Laws",
+    "labId": "basic-electrical-engineering",
+    "status": "Hardware-Oriented",
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To verify Kirchhoff's Current Law (KCL) and Voltage Law (KVL)."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "DC Power Supply (0-30V)",
+                        "Resistors (1k, 2.2k, 4.7k)",
+                        "Breadboard",
+                        "Multimeter",
+                        "Connecting Wires"
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": []
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Circuit Diagram for KVL:"
+                },
+                {
+                    "type": "image",
+                    "src": "/placeholder-circuit.png",
+                    "caption": "Figure 1: Series Circuit for KVL"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Figure 1.",
+                        "Set the DC source voltage to 10V.",
+                        "Measure the voltage drop across each resistor.",
+                        "Verify that the sum of voltage drops equals the source voltage."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Resistor",
+                        "Measured Voltage(V)",
+                        "Calculated Voltage(V)"
+                    ],
+                    "rows": [
+                        [
+                            "R1 (1k)",
+                            "2.1V",
+                            "2.12V"
+                        ],
+                        [
+                            "R2 (2.2k)",
+                            "4.6V",
+                            "4.65V"
+                        ],
+                        [
+                            "R3 (1.5k)",
+                            "3.2V",
+                            "3.23V"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Theoretical Voltage Calculation using Voltage Divider Rule:"
+                },
+                {
+                    "type": "equation",
+                    "latex": "V_x = V_{source} \\times \\frac{R_x}{R_{total}}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The algebraic sum of voltages in the loop was found to be zero."
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Kirchhoff's Voltage Law is verified within experimental error limits."
+                }
+            ]
+        }
+    }
+}
