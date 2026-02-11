@@ -1,17 +1,18 @@
+import registry from './experiments/registry.json';
+
 /**
  * Status constants for experiments
  */
 export const EXPERIMENT_STATUS = {
-    SIMULATION: "Simulation Available",
-    GUIDE: "Guide Only",
-    HARDWARE: "Hardware-Oriented"
+  SIMULATION: "Simulation Available",
+  GUIDE: "Guide Only",
+  HARDWARE: "Hardware-Oriented"
 };
 
 /**
- * Labs data for Basic Labs Guide
- * Each lab contains: id (slug), name, code, focus, nature, prerequisites, totalExperiments, and experiments list
+ * Lab Metadata - Static details about the labs
  */
-export const labs = [
+const labMetadata = [
   {
     id: "basic-electrical-engineering",
     name: "Basic Electrical Engineering",
@@ -20,12 +21,7 @@ export const labs = [
     focus: "Fundamental circuit laws and theorems",
     nature: "Circuit-based",
     prerequisites: "12th Grade Physics, Calculus",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "digital-electronics",
@@ -35,12 +31,7 @@ export const labs = [
     focus: "Digital logic and system design",
     nature: "Design & Simulation",
     prerequisites: "Basic Electronics",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "devices-and-circuits",
@@ -50,12 +41,7 @@ export const labs = [
     focus: "Semiconductor devices and amplifiers",
     nature: "Component Analysis",
     prerequisites: "Network Analysis",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "power-system-lab",
@@ -65,12 +51,7 @@ export const labs = [
     focus: "Grid analysis and protection",
     nature: "System Analysis",
     prerequisites: "Electric Machines",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "sensor-lab",
@@ -80,12 +61,7 @@ export const labs = [
     focus: "Transducers and measurements",
     nature: "Measurement-based",
     prerequisites: "Basic Electronics",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "control-system-lab",
@@ -95,12 +71,7 @@ export const labs = [
     focus: "Stability and controller design",
     nature: "Design & Analysis",
     prerequisites: "Signals and Systems",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "power-electronics-lab",
@@ -110,12 +81,7 @@ export const labs = [
     focus: "Power conversion and drives",
     nature: "Hardware & Simulation",
     prerequisites: "Power Systems",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "instrumentation-lab",
@@ -125,12 +91,7 @@ export const labs = [
     focus: "Data acquisition and conditioning",
     nature: "Measurement-based",
     prerequisites: "Sensors & Transducers",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   },
   {
     id: "machines-lab",
@@ -140,14 +101,37 @@ export const labs = [
     focus: "Electromechanical conversion",
     nature: "Hardware-Oriented",
     prerequisites: "Basic Electrical Engg",
-    totalExperiments: 10,
-    experiments: Array.from({ length: 10 }, (_, i) => ({
-        id: i + 1,
-        name: `Experiment ${i + 1}`,
-        status: EXPERIMENT_STATUS.GUIDE
-    }))
+    totalExperiments: 10
   }
 ];
+
+/**
+ * Labs data, merged with Registry for live experiment status and titles
+ */
+export const labs = labMetadata.map(meta => {
+  const registryLab = registry.labs[meta.id];
+  let experiments = [];
+
+  if (registryLab && registryLab.experiments) {
+    experiments = registryLab.experiments.map(exp => ({
+      id: exp.id,
+      name: exp.title, // Map registry 'title' to UI 'name'
+      status: exp.status || EXPERIMENT_STATUS.GUIDE
+    }));
+  } else {
+    // Fallback if no registry data (shouldn't happen if registry is compliant)
+    experiments = Array.from({ length: meta.totalExperiments }, (_, i) => ({
+      id: i + 1,
+      name: `Experiment ${i + 1}`,
+      status: EXPERIMENT_STATUS.GUIDE
+    }));
+  }
+
+  return {
+    ...meta,
+    experiments
+  };
+});
 
 /**
  * Helper function to get a lab by its slug
