@@ -531,35 +531,35 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Object Detection using an IR sensor and ESP32",
+          "title": "IR Object Detection",
           "fileName": "exp-1.json",
           "status": "Hardware-Oriented",
           "completeness": 1
         },
         {
           "id": "2",
-          "title": "Distance Measurement Using an Ultrasonic Sensor Interfaced with ESP32",
+          "title": "Ultrasonic Distance Measurement",
           "fileName": "exp-2.json",
           "status": "Hardware-Oriented",
           "completeness": 1
         },
         {
           "id": "3",
-          "title": "Speed Measurement using Ultrasonic Sensor interfaced with ESP32",
+          "title": "Ultrasonic Speed Measurement",
           "fileName": "exp-3.json",
           "status": "Hardware-Oriented",
           "completeness": 1
         },
         {
           "id": "4",
-          "title": "Detection of rain intensity through Analog and Digital rain sensors interfaced with ESP32",
+          "title": "Rain Intensity Detection",
           "fileName": "exp-4.json",
           "status": "Hardware-Oriented",
           "completeness": 1
         },
         {
           "id": "5",
-          "title": "Detection of moisture levels in (1) Air, (2) Dry Soil, and (3) Wet Soil using a moisture sensor interfaced with ESP32",
+          "title": "Moisture Level Detection",
           "fileName": "exp-5.json",
           "status": "Hardware-Oriented",
           "completeness": 1

@@ -1,208 +1,208 @@
 {
-    "id": "exp-2",
-    "title": "Distance Measurement Using an Ultrasonic Sensor Interfaced with ESP32",
-    "labId": "instrumentation-lab",
-    "status": "Guide Only",
-    "meta": {
-        "experimentType": "hardware",
-        "status": "guide-only",
-        "difficulty": "intermediate",
-        "estimatedTimeMinutes": 120,
-        "version": "1.0.0",
-        "contentState": "complete",
-        "reviewStatus": "unreviewed"
-    },
-    "sections": {
-        "aim": {
-            "id": "aim",
-            "title": "Aim",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "To design and implement a distance measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller and logging the detected events with timestamp to Google Sheets for analysis via Wi-Fi."
-                }
-            ]
-        },
-        "apparatus": {
-            "id": "apparatus",
-            "title": "Apparatus & Software",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "**Hardware Components:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "ESP32",
-                        "Ultrasonic Sensor",
-                        "USB Cable, Jumper Wires",
-                        "Breadboard",
-                        "Test Object (for proximity detection)"
-                    ]
-                },
-                {
-                    "type": "text",
-                    "content": "**Software and Tools:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "Computer or Laptop",
-                        "Arduino IDE with ESP32 Board Support Package",
-                        "Google Sheets",
-                        "Active Internet Connection (Wi-Fi)"
-                    ]
-                }
-            ]
-        },
-        "theory": {
-            "id": "theory",
-            "title": "Theory",
-            "isApplicable": false,
-            "content": []
-        },
-        "preLab": {
-            "id": "preLab",
-            "title": "Pre-Lab / Circuit Diagram",
-            "isApplicable": false,
-            "content": []
-        },
-        "procedure": {
-            "id": "procedure",
-            "title": "Procedure",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "ordered",
-                    "items": [
-                        "Connect the ESP32 and ultrasonic sensor (HC-SR04) on a breadboard using jumper wires.",
-                        "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
-                        "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
-                        "Upload the program to the ESP32 and open the Serial Monitor to observe real-time distance values by placing objects at different positions in front of the ultrasonic sensor.",
-                        "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
-                        "Execute the required function and deploy it as a web application.",
-                        "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
-                        "Verify that the distance values along with timestamps are logged in Google Sheets, while real-time distance readings are displayed on the Serial Monitor."
-                    ]
-                }
-            ]
-        },
-        "simulation": {
-            "id": "simulation",
-            "title": "Simulation / Execution",
-            "isApplicable": true,
-            "route": null,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Arduino IDE Code:"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part1",
-                    "caption": "Arduino IDE Code (Part 1)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part2",
-                    "caption": "Arduino IDE Code (Part 2)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "text",
-                    "content": "Google Apps Script Code:"
-                },
-                {
-                    "type": "image",
-                    "assetId": "google-apps-script",
-                    "caption": "Google Apps Script Code",
-                    "role": "code-screenshot"
-                }
-            ]
-        },
-        "observation": {
-            "id": "observation",
-            "title": "Observations",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "The Serial Monitor displayed real-time distance values measured by the ultrasonic sensor whenever an object was placed in front of it.",
-                        "As the distance between the object and the ultrasonic sensor changed, the corresponding distance values were updated continuously on the Serial Monitor.",
-                        "When an object was moved closer to or farther from the ultrasonic sensor, a noticeable variation in the measured distance was observed.",
-                        "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the distance measurement data to Google Sheets.",
-                        "Each distance measurement was logged in Google Sheets along with the corresponding timestamp.",
-                        "Upon successful HTTP request transmission, a confirmation message indicating successful data logging was displayed on the Serial Monitor.",
-                        "The screenshots of both the Serial Monitor and the Google Sheet showing the logged distance values are attached.",
-                        "The Google Sheets link: [Google Sheets Data](https://docs.google.com/spreadsheets/d/13MNRsVUOMQxkKPaXj8YdkTsIe_v420vNU9BV92nOPv4/edit?usp=sharing)"
-                    ]
-                },
-                {
-                    "type": "image",
-                    "assetId": "serial-monitor-output",
-                    "caption": "Serial Monitor Output Showing Proximity Detection",
-                    "role": "output-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "google-sheets-log",
-                    "caption": "Google Sheets Showing Logged Data with Timestamp",
-                    "role": "output-screenshot"
-                }
-            ]
-        },
-        "calculation": {
-            "id": "calculation",
-            "title": "Calculations",
-            "isApplicable": false,
-            "content": []
-        },
-        "result": {
-            "id": "result",
-            "title": "Results & Analysis",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The IoT-based ultrasonic distance measurement system using an ESP32 microcontroller was successfully designed and implemented. The ultrasonic sensor accurately measured the distance of objects placed at varying positions in front of the sensor. The measured distance values were displayed in real time on the Serial Monitor, confirming proper sensor operation, signal processing, and interfacing with the ESP32."
-                },
-                {
-                    "type": "text",
-                    "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the data to Google Sheets using a deployed Google Apps Script web application. Each reading was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated reliable distance measurement along with cloud-based data logging, fulfilling the objective of integrating sensing, wireless communication using an IoT-based approach."
-                }
-            ]
-        },
-        "postLab": {
-            "id": "postLab",
-            "title": "Post-Lab / Viva Voce",
-            "isApplicable": false,
-            "content": []
-        },
-        "resources": {
-            "id": "resources",
-            "title": "References & Resources",
-            "isApplicable": false,
-            "content": []
-        },
-        "conclusion": {
-            "id": "conclusion",
-            "title": "Conclusion",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The experiment successfully demonstrated reliable distance measurement along with cloud-based data logging, fulfilling the objective of integrating sensing, wireless communication using an IoT-based approach."
-                }
-            ]
+  "id": "exp-2",
+  "title": "Ultrasonic Distance Measurement",
+  "labId": "instrumentation-lab",
+  "status": "Guide Only",
+  "meta": {
+    "experimentType": "hardware",
+    "status": "guide-only",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To design and implement a distance measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller and logging the detected events with timestamp to Google Sheets for analysis via Wi-Fi."
         }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Hardware Components:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "ESP32",
+            "Ultrasonic Sensor",
+            "USB Cable, Jumper Wires",
+            "Breadboard",
+            "Test Object (for proximity detection)"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Software and Tools:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Computer or Laptop",
+            "Arduino IDE with ESP32 Board Support Package",
+            "Google Sheets",
+            "Active Internet Connection (Wi-Fi)"
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": false,
+      "content": []
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the ESP32 and ultrasonic sensor (HC-SR04) on a breadboard using jumper wires.",
+            "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
+            "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
+            "Upload the program to the ESP32 and open the Serial Monitor to observe real-time distance values by placing objects at different positions in front of the ultrasonic sensor.",
+            "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
+            "Execute the required function and deploy it as a web application.",
+            "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
+            "Verify that the distance values along with timestamps are logged in Google Sheets, while real-time distance readings are displayed on the Serial Monitor."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "route": null,
+      "content": [
+        {
+          "type": "text",
+          "content": "Arduino IDE Code:"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part1",
+          "caption": "Arduino IDE Code (Part 1)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part2",
+          "caption": "Arduino IDE Code (Part 2)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "text",
+          "content": "Google Apps Script Code:"
+        },
+        {
+          "type": "image",
+          "assetId": "google-apps-script",
+          "caption": "Google Apps Script Code",
+          "role": "code-screenshot"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The Serial Monitor displayed real-time distance values measured by the ultrasonic sensor whenever an object was placed in front of it.",
+            "As the distance between the object and the ultrasonic sensor changed, the corresponding distance values were updated continuously on the Serial Monitor.",
+            "When an object was moved closer to or farther from the ultrasonic sensor, a noticeable variation in the measured distance was observed.",
+            "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the distance measurement data to Google Sheets.",
+            "Each distance measurement was logged in Google Sheets along with the corresponding timestamp.",
+            "Upon successful HTTP request transmission, a confirmation message indicating successful data logging was displayed on the Serial Monitor.",
+            "The screenshots of both the Serial Monitor and the Google Sheet showing the logged distance values are attached.",
+            "The Google Sheets link: [Google Sheets Data](https://docs.google.com/spreadsheets/d/13MNRsVUOMQxkKPaXj8YdkTsIe_v420vNU9BV92nOPv4/edit?usp=sharing)"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "serial-monitor-output",
+          "caption": "Serial Monitor Output Showing Proximity Detection",
+          "role": "output-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "google-sheets-log",
+          "caption": "Google Sheets Showing Logged Data with Timestamp",
+          "role": "output-screenshot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": false,
+      "content": []
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The IoT-based ultrasonic distance measurement system using an ESP32 microcontroller was successfully designed and implemented. The ultrasonic sensor accurately measured the distance of objects placed at varying positions in front of the sensor. The measured distance values were displayed in real time on the Serial Monitor, confirming proper sensor operation, signal processing, and interfacing with the ESP32."
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the data to Google Sheets using a deployed Google Apps Script web application. Each reading was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated reliable distance measurement along with cloud-based data logging, fulfilling the objective of integrating sensing, wireless communication using an IoT-based approach."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": false,
+      "content": []
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The experiment successfully demonstrated reliable distance measurement along with cloud-based data logging, fulfilling the objective of integrating sensing, wireless communication using an IoT-based approach."
+        }
+      ]
     }
+  }
 }

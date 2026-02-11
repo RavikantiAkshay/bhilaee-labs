@@ -1,222 +1,222 @@
 {
-    "id": "exp-1",
-    "title": "Object Detection using an IR sensor and ESP32",
-    "labId": "instrumentation-lab",
-    "status": "Guide Only",
-    "meta": {
-        "experimentType": "hardware",
-        "status": "guide-only",
-        "difficulty": "beginner",
-        "estimatedTimeMinutes": 60,
-        "version": "1.0.0",
-        "contentState": "complete",
-        "reviewStatus": "unreviewed"
-    },
-    "sections": {
-        "aim": {
-            "id": "aim",
-            "title": "Aim",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The objective to design and implement an IoT-based proximity detection system using an IR sensor and ESP32, capable of identifying objects within a predefined 5 cm threshold and logging the detected events with timestamp to Google Sheets for analysis via Wi-Fi."
-                }
-            ]
-        },
-        "apparatus": {
-            "id": "apparatus",
-            "title": "Apparatus & Software",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "**Hardware Components:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "ESP32",
-                        "IR Proximity Sensor",
-                        "Jumper Wires (Male–Male / Male–Female)",
-                        "USB Cable",
-                        "Breadboard",
-                        "Test Object (for proximity detection)",
-                        "Measuring Scale or Ruler",
-                        "Screwdriver (optional, to adjust the sensor detection range)"
-                    ]
-                },
-                {
-                    "type": "text",
-                    "content": "**Software and Tools:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "Computer or Laptop",
-                        "Arduino IDE",
-                        "ESP32 Board Support Package",
-                        "Google Sheets",
-                        "Active Internet Connection (Wi-Fi)"
-                    ]
-                }
-            ]
-        },
-        "theory": {
-            "id": "theory",
-            "title": "Theory",
-            "isApplicable": false,
-            "content": []
-        },
-        "preLab": {
-            "id": "preLab",
-            "title": "Pre-Lab / Circuit Diagram",
-            "isApplicable": false,
-            "content": []
-        },
-        "procedure": {
-            "id": "procedure",
-            "title": "Procedure",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "ordered",
-                    "items": [
-                        "Connect the ESP32 and ultrasonic sensor (HC-SR04) on a breadboard using jumper wires.",
-                        "Verify the power, ground, Trigger, and Echo pin connections between the ESP32 and the ultrasonic sensor.",
-                        "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
-                        "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
-                        "Upload the program and open the Serial Monitor to observe real-time distance measurements by placing objects at different distances from the sensor.",
-                        "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
-                        "Execute the required function and deploy it as a web application.",
-                        "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
-                        "Verify that the measured distance values along with timestamps are logged correctly in Google Sheets and displayed on the Serial Monitor."
-                    ]
-                }
-            ]
-        },
-        "simulation": {
-            "id": "simulation",
-            "title": "Simulation / Execution",
-            "isApplicable": true,
-            "route": null,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Arduino IDE Code:"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part1",
-                    "caption": "Arduino IDE Code (Part 1: Setup)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part2",
-                    "caption": "Arduino IDE Code (Part 2: Loop)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part3",
-                    "caption": "Arduino IDE Code (Part 3: Send Function)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "text",
-                    "content": "Google Apps Script Code:"
-                },
-                {
-                    "type": "text",
-                    "content": "*Note: Google Apps Script screenshot was not provided.*",
-                    "role": "note"
-                }
-            ]
-        },
-        "observation": {
-            "id": "observation",
-            "title": "Observations",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "The Serial Monitor displayed real-time proximity detection status whenever an object is either placed or removed from in front of the IR sensor.",
-                        "When the object is within the predefined 5 cm range, the text \"Object Detected\" is observed on the Serial Monitor.",
-                        "When an object is removed from the 5cm range, the text \"Object Removed\" is observed on the Serial Monitor.",
-                        "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the detection data to Google Sheets.",
-                        "Each event is logged in Google Sheets along with the corresponding timestamp and detection message.",
-                        "If the HTTP request succeeds, a message is displayed on the Serial Monitor describing the successful logging of the data.",
-                        "The screenshots of both Serial Monitor and Google sheet are attached.",
-                        "The Google Sheets link: [Google Sheets Data](https://docs.google.com/spreadsheets/d/1T-dneSJHGrvGuLi90zeXTrg84fZbJEPNCf2k8_36I1A/edit?usp=sharing)"
-                    ]
-                },
-                {
-                    "type": "image",
-                    "assetId": "serial-monitor-output",
-                    "caption": "Serial Monitor Output Showing Proximity Detection",
-                    "role": "output-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "google-sheets-log",
-                    "caption": "Google Sheets Showing Logged Data with Timestamp",
-                    "role": "output-screenshot"
-                }
-            ]
-        },
-        "calculation": {
-            "id": "calculation",
-            "title": "Calculations",
-            "isApplicable": false,
-            "content": []
-        },
-        "result": {
-            "id": "result",
-            "title": "Results & Analysis",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The IoT-based proximity detection system using an IR sensor and ESP32 was successfully designed and implemented. The IR sensor reliably detected objects placed within the predefined threshold distance of 5 cm. The detection response was observed in real time through the Serial Monitor, confirming correct sensor operation and microcontroller interfacing."
-                },
-                {
-                    "type": "text",
-                    "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted proximity detection data to Google Sheets using a deployed Google Apps Script web application. Each event was logged accurately along with the corresponding timestamp and detection message. The data was updated automatically in the Google Sheet without manual intervention, demonstrating cloud-based data logging."
-                },
-                {
-                    "type": "text",
-                    "content": "Overall, the experiment achieved its objective of detecting nearby objects within a specified range and logging the detection events to an online platform for analysis. The results confirm the effective integration of hardware sensing, wireless communication, and cloud data storage using an IoT-based approach."
-                }
-            ]
-        },
-        "postLab": {
-            "id": "postLab",
-            "title": "Post-Lab / Viva Voce",
-            "isApplicable": false,
-            "content": []
-        },
-        "resources": {
-            "id": "resources",
-            "title": "References & Resources",
-            "isApplicable": false,
-            "content": []
-        },
-        "conclusion": {
-            "id": "conclusion",
-            "title": "Conclusion",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The experiment successfully demonstrated the design and implementation of an IoT-based proximity detection system using an IR sensor and ESP32. The system reliably detected objects within the 5 cm threshold and logged detection events with timestamps to Google Sheets via Wi-Fi. The integration of hardware sensing, wireless communication, and cloud data storage was effectively achieved, validating the IoT-based approach for real-time proximity monitoring and data logging applications."
-                }
-            ]
+  "id": "exp-1",
+  "title": "IR Object Detection",
+  "labId": "instrumentation-lab",
+  "status": "Guide Only",
+  "meta": {
+    "experimentType": "hardware",
+    "status": "guide-only",
+    "difficulty": "beginner",
+    "estimatedTimeMinutes": 60,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The objective to design and implement an IoT-based proximity detection system using an IR sensor and ESP32, capable of identifying objects within a predefined 5 cm threshold and logging the detected events with timestamp to Google Sheets for analysis via Wi-Fi."
         }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Hardware Components:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "ESP32",
+            "IR Proximity Sensor",
+            "Jumper Wires (Male–Male / Male–Female)",
+            "USB Cable",
+            "Breadboard",
+            "Test Object (for proximity detection)",
+            "Measuring Scale or Ruler",
+            "Screwdriver (optional, to adjust the sensor detection range)"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Software and Tools:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Computer or Laptop",
+            "Arduino IDE",
+            "ESP32 Board Support Package",
+            "Google Sheets",
+            "Active Internet Connection (Wi-Fi)"
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": false,
+      "content": []
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the ESP32 and ultrasonic sensor (HC-SR04) on a breadboard using jumper wires.",
+            "Verify the power, ground, Trigger, and Echo pin connections between the ESP32 and the ultrasonic sensor.",
+            "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
+            "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
+            "Upload the program and open the Serial Monitor to observe real-time distance measurements by placing objects at different distances from the sensor.",
+            "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
+            "Execute the required function and deploy it as a web application.",
+            "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
+            "Verify that the measured distance values along with timestamps are logged correctly in Google Sheets and displayed on the Serial Monitor."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "route": null,
+      "content": [
+        {
+          "type": "text",
+          "content": "Arduino IDE Code:"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part1",
+          "caption": "Arduino IDE Code (Part 1: Setup)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part2",
+          "caption": "Arduino IDE Code (Part 2: Loop)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part3",
+          "caption": "Arduino IDE Code (Part 3: Send Function)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "text",
+          "content": "Google Apps Script Code:"
+        },
+        {
+          "type": "text",
+          "content": "*Note: Google Apps Script screenshot was not provided.*",
+          "role": "note"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The Serial Monitor displayed real-time proximity detection status whenever an object is either placed or removed from in front of the IR sensor.",
+            "When the object is within the predefined 5 cm range, the text \"Object Detected\" is observed on the Serial Monitor.",
+            "When an object is removed from the 5cm range, the text \"Object Removed\" is observed on the Serial Monitor.",
+            "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the detection data to Google Sheets.",
+            "Each event is logged in Google Sheets along with the corresponding timestamp and detection message.",
+            "If the HTTP request succeeds, a message is displayed on the Serial Monitor describing the successful logging of the data.",
+            "The screenshots of both Serial Monitor and Google sheet are attached.",
+            "The Google Sheets link: [Google Sheets Data](https://docs.google.com/spreadsheets/d/1T-dneSJHGrvGuLi90zeXTrg84fZbJEPNCf2k8_36I1A/edit?usp=sharing)"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "serial-monitor-output",
+          "caption": "Serial Monitor Output Showing Proximity Detection",
+          "role": "output-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "google-sheets-log",
+          "caption": "Google Sheets Showing Logged Data with Timestamp",
+          "role": "output-screenshot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": false,
+      "content": []
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The IoT-based proximity detection system using an IR sensor and ESP32 was successfully designed and implemented. The IR sensor reliably detected objects placed within the predefined threshold distance of 5 cm. The detection response was observed in real time through the Serial Monitor, confirming correct sensor operation and microcontroller interfacing."
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted proximity detection data to Google Sheets using a deployed Google Apps Script web application. Each event was logged accurately along with the corresponding timestamp and detection message. The data was updated automatically in the Google Sheet without manual intervention, demonstrating cloud-based data logging."
+        },
+        {
+          "type": "text",
+          "content": "Overall, the experiment achieved its objective of detecting nearby objects within a specified range and logging the detection events to an online platform for analysis. The results confirm the effective integration of hardware sensing, wireless communication, and cloud data storage using an IoT-based approach."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": false,
+      "content": []
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The experiment successfully demonstrated the design and implementation of an IoT-based proximity detection system using an IR sensor and ESP32. The system reliably detected objects within the 5 cm threshold and logged detection events with timestamps to Google Sheets via Wi-Fi. The integration of hardware sensing, wireless communication, and cloud data storage was effectively achieved, validating the IoT-based approach for real-time proximity monitoring and data logging applications."
+        }
+      ]
     }
+  }
 }

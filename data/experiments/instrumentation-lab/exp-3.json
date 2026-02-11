@@ -1,206 +1,206 @@
 {
-    "id": "exp-3",
-    "title": "Speed Measurement using Ultrasonic Sensor interfaced with ESP32",
-    "labId": "instrumentation-lab",
-    "status": "Guide Only",
-    "meta": {
-        "experimentType": "hardware",
-        "status": "guide-only",
-        "difficulty": "intermediate",
-        "estimatedTimeMinutes": 120,
-        "version": "1.0.0",
-        "contentState": "complete",
-        "reviewStatus": "unreviewed"
-    },
-    "sections": {
-        "aim": {
-            "id": "aim",
-            "title": "Aim",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "To design and implement a speed measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller, and to log the measured speed data along with timestamps to Google Sheets for analysis using Wi-Fi connectivity."
-                }
-            ]
-        },
-        "apparatus": {
-            "id": "apparatus",
-            "title": "Apparatus & Software",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "**Hardware Components:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "ESP32 Microcontroller",
-                        "Ultrasonic Sensor (HC-SR04 or equivalent)",
-                        "USB Cable, Jumper Wires",
-                        "Breadboard",
-                        "Moving Object (for speed measurement)"
-                    ]
-                },
-                {
-                    "type": "text",
-                    "content": "**Software and Tools:**"
-                },
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "Computer or Laptop",
-                        "Arduino IDE with ESP32 Board Support Package",
-                        "Google Sheets",
-                        "Active Internet Connection (Wi-Fi)"
-                    ]
-                }
-            ]
-        },
-        "theory": {
-            "id": "theory",
-            "title": "Theory",
-            "isApplicable": false,
-            "content": []
-        },
-        "preLab": {
-            "id": "preLab",
-            "title": "Pre-Lab / Circuit Diagram",
-            "isApplicable": false,
-            "content": []
-        },
-        "procedure": {
-            "id": "procedure",
-            "title": "Procedure",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "ordered",
-                    "items": [
-                        "Connect the ESP32 and ultrasonic sensor on a breadboard using jumper wires.",
-                        "Connect the ESP32 to a computer using a USB cable and open Arduino IDE.",
-                        "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
-                        "Upload the program to the ESP32 and open the Serial Monitor to observe real-time distance and speed values by moving an object in front of the ultrasonic sensor.",
-                        "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
-                        "Execute the required function and deploy it as a web application.",
-                        "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
-                        "Verify that the speed values along with timestamps are logged in Google Sheets, while distance and speed are displayed on the Serial Monitor."
-                    ]
-                }
-            ]
-        },
-        "simulation": {
-            "id": "simulation",
-            "title": "Simulation / Execution",
-            "isApplicable": true,
-            "route": null,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "Arduino IDE Code:"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part1",
-                    "caption": "Arduino IDE Code (Part 1)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "arduino-code-part2",
-                    "caption": "Arduino IDE Code (Part 2)",
-                    "role": "code-screenshot"
-                },
-                {
-                    "type": "text",
-                    "content": "Google Apps Script Code:"
-                },
-                {
-                    "type": "image",
-                    "assetId": "google-apps-script",
-                    "caption": "Google Apps Script Code",
-                    "role": "code-screenshot"
-                }
-            ]
-        },
-        "observation": {
-            "id": "observation",
-            "title": "Observations",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "list",
-                    "style": "unordered",
-                    "items": [
-                        "The Serial Monitor displayed real-time distance and corresponding speed values measured using the ultrasonic sensor and ESP32.",
-                        "As the object moved relative to the ultrasonic sensor, continuous updates in distance readings were observed, resulting in corresponding changes in the calculated speed values.",
-                        "When the object was moved closer to or farther from the ultrasonic sensor at different rates, noticeable variations in the computed speed values were observed on the Serial Monitor.",
-                        "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the calculated speed data to Google Sheets.",
-                        "Each speed measurement was logged in Google Sheets along with the corresponding timestamp for further analysis.",
-                        "The Google Sheets link containing the logged speed data: [Google Sheets Data](https://docs.google.com/spreadsheets/d/1J_pnVrLbgSGTUo02BsIEQYmSvJ-klSyf-KTdVtzPwiM/edit?usp=sharing)"
-                    ]
-                },
-                {
-                    "type": "image",
-                    "assetId": "serial-monitor-output",
-                    "caption": "Serial Monitor Output showing Distance and Speed Values",
-                    "role": "output-screenshot"
-                },
-                {
-                    "type": "image",
-                    "assetId": "google-sheets-log",
-                    "caption": "Google Sheets Showing Logged Data with Timestamp",
-                    "role": "output-screenshot"
-                }
-            ]
-        },
-        "calculation": {
-            "id": "calculation",
-            "title": "Calculations",
-            "isApplicable": false,
-            "content": []
-        },
-        "result": {
-            "id": "result",
-            "title": "Results & Analysis",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The IoT-based speed measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller was successfully designed and implemented. The ultrasonic sensor was used to obtain successive distance measurements, from which the speed of a moving object was calculated. The distance and corresponding speed values were displayed in real time on the Serial Monitor, confirming correct sensor operation, signal processing, and speed computation by the ESP32."
-                },
-                {
-                    "type": "text",
-                    "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the calculated speed data to Google Sheets using a deployed Google Apps Script web application. Each speed value was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated real-time speed measurement and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, computation, and wireless communication using an IoT-based approach."
-                }
-            ]
-        },
-        "postLab": {
-            "id": "postLab",
-            "title": "Post-Lab / Viva Voce",
-            "isApplicable": false,
-            "content": []
-        },
-        "resources": {
-            "id": "resources",
-            "title": "References & Resources",
-            "isApplicable": false,
-            "content": []
-        },
-        "conclusion": {
-            "id": "conclusion",
-            "title": "Conclusion",
-            "isApplicable": true,
-            "content": [
-                {
-                    "type": "text",
-                    "content": "The experiment successfully demonstrated real-time speed measurement and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, computation, and wireless communication using an IoT-based approach."
-                }
-            ]
+  "id": "exp-3",
+  "title": "Ultrasonic Speed Measurement",
+  "labId": "instrumentation-lab",
+  "status": "Guide Only",
+  "meta": {
+    "experimentType": "hardware",
+    "status": "guide-only",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To design and implement a speed measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller, and to log the measured speed data along with timestamps to Google Sheets for analysis using Wi-Fi connectivity."
         }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Hardware Components:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "ESP32 Microcontroller",
+            "Ultrasonic Sensor (HC-SR04 or equivalent)",
+            "USB Cable, Jumper Wires",
+            "Breadboard",
+            "Moving Object (for speed measurement)"
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Software and Tools:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "Computer or Laptop",
+            "Arduino IDE with ESP32 Board Support Package",
+            "Google Sheets",
+            "Active Internet Connection (Wi-Fi)"
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": false,
+      "content": []
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": false,
+      "content": []
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the ESP32 and ultrasonic sensor on a breadboard using jumper wires.",
+            "Connect the ESP32 to a computer using a USB cable and open Arduino IDE.",
+            "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
+            "Upload the program to the ESP32 and open the Serial Monitor to observe real-time distance and speed values by moving an object in front of the ultrasonic sensor.",
+            "Create a Google Sheet and open the Apps Script editor from the Extensions menu.",
+            "Execute the required function and deploy it as a web application.",
+            "Enter the generated web application URL and Wi-Fi credentials in the ESP32 program and upload the updated code.",
+            "Verify that the speed values along with timestamps are logged in Google Sheets, while distance and speed are displayed on the Serial Monitor."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": true,
+      "route": null,
+      "content": [
+        {
+          "type": "text",
+          "content": "Arduino IDE Code:"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part1",
+          "caption": "Arduino IDE Code (Part 1)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "arduino-code-part2",
+          "caption": "Arduino IDE Code (Part 2)",
+          "role": "code-screenshot"
+        },
+        {
+          "type": "text",
+          "content": "Google Apps Script Code:"
+        },
+        {
+          "type": "image",
+          "assetId": "google-apps-script",
+          "caption": "Google Apps Script Code",
+          "role": "code-screenshot"
+        }
+      ]
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The Serial Monitor displayed real-time distance and corresponding speed values measured using the ultrasonic sensor and ESP32.",
+            "As the object moved relative to the ultrasonic sensor, continuous updates in distance readings were observed, resulting in corresponding changes in the calculated speed values.",
+            "When the object was moved closer to or farther from the ultrasonic sensor at different rates, noticeable variations in the computed speed values were observed on the Serial Monitor.",
+            "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the calculated speed data to Google Sheets.",
+            "Each speed measurement was logged in Google Sheets along with the corresponding timestamp for further analysis.",
+            "The Google Sheets link containing the logged speed data: [Google Sheets Data](https://docs.google.com/spreadsheets/d/1J_pnVrLbgSGTUo02BsIEQYmSvJ-klSyf-KTdVtzPwiM/edit?usp=sharing)"
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "serial-monitor-output",
+          "caption": "Serial Monitor Output showing Distance and Speed Values",
+          "role": "output-screenshot"
+        },
+        {
+          "type": "image",
+          "assetId": "google-sheets-log",
+          "caption": "Google Sheets Showing Logged Data with Timestamp",
+          "role": "output-screenshot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": false,
+      "content": []
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The IoT-based speed measurement system using an ultrasonic sensor interfaced with an ESP32 microcontroller was successfully designed and implemented. The ultrasonic sensor was used to obtain successive distance measurements, from which the speed of a moving object was calculated. The distance and corresponding speed values were displayed in real time on the Serial Monitor, confirming correct sensor operation, signal processing, and speed computation by the ESP32."
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the calculated speed data to Google Sheets using a deployed Google Apps Script web application. Each speed value was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated real-time speed measurement and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, computation, and wireless communication using an IoT-based approach."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": false,
+      "content": []
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "The experiment successfully demonstrated real-time speed measurement and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, computation, and wireless communication using an IoT-based approach."
+        }
+      ]
     }
+  }
 }

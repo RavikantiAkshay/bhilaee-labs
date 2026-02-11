@@ -2,6 +2,8 @@
     background: #ffffff;
     border-top: 1px solid var(--border-color);
     margin-top: auto;
+    position: relative;
+    z-index: 10;
 }
 
 .container {
