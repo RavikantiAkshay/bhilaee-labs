@@ -538,10 +538,10 @@
         },
         {
           "id": "2",
-          "title": "Experiment 2",
+          "title": "Distance Measurement Using an Ultrasonic Sensor Interfaced with ESP32",
           "fileName": "exp-2.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "3",
