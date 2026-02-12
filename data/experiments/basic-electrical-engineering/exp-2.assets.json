@@ -1,0 +1,20 @@
+{
+    "circuit-diagram-both": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-both.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Circuit 1: Both sources RPS1 and RPS2 are active"
+    },
+    "circuit-diagram-source1": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-source1.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Circuit 2: Only RPS1 active, RPS2 short-circuited"
+    },
+    "circuit-diagram-source2": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-source2.png",
+        "type": "image",
+        "role": "circuit-diagram",
+        "description": "Circuit 3: Only RPS2 active, RPS1 short-circuited"
+    }
+}

@@ -1,0 +1,434 @@
+{
+    "id": "exp-2",
+    "title": "Verification of Superposition Theorem",
+    "labId": "basic-electrical-engineering",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "hardware-oriented",
+        "difficulty": "beginner",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To verify the superposition theorem for a given circuit."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Instrument",
+                        "Range",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Bread board",
+                            "-",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Resistors",
+                            "1kΩ, 330Ω, 220Ω",
+                            "1 each"
+                        ],
+                        [
+                            "3",
+                            "Digital Multimeter / Ammeter",
+                            "0–10 mA",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Connecting wires",
+                            "-",
+                            "As per need"
+                        ],
+                        [
+                            "5",
+                            "DC Power Supply, RPS (Regulated Power Supply)",
+                            "0–30 V",
+                            "2"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Superposition theorem states that in a linear bilateral network containing more than one source, the current flowing through any branch is the algebraic sum of the current flowing through that branch when sources are considered one at a time and replacing other sources by their respective internal resistances."
+                },
+                {
+                    "type": "text",
+                    "content": "In other words, to find the response (current or voltage) in any branch of a multi-source linear circuit, each independent source is activated one at a time while all other independent voltage sources are replaced by short circuits (zero resistance) and all other independent current sources are replaced by open circuits (infinite resistance). The total response is then the algebraic sum of individual responses."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Circuit 1 (Fig. 4): Both sources RPS1 and RPS2 are active. R1 = 330Ω is connected in series from RPS1, R2 = 220Ω in series toward RPS2, and R3 = 1kΩ is connected as the shunt (middle branch). An ammeter (0–10 mA) measures the total current I through R3."
+                },
+                {
+                    "type": "image",
+                    "assetId": "circuit-diagram-both",
+                    "caption": "Figure 4: Circuit-1 – Both RPS1 and RPS2 active; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I_total",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "Circuit 2 (Fig. 5): Only RPS1 is active. RPS2 is disconnected and its terminals are short-circuited. The ammeter measures the current component I₁ through R3 due to RPS1 alone."
+                },
+                {
+                    "type": "image",
+                    "assetId": "circuit-diagram-source1",
+                    "caption": "Figure 5: Circuit-2 – Only RPS1 active, RPS2 short-circuited; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I₁",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "Circuit 3 (Fig. 6): Only RPS2 is active. RPS1 is disconnected and its terminals are short-circuited. The ammeter measures the current component I₂ through R3 due to RPS2 alone."
+                },
+                {
+                    "type": "image",
+                    "assetId": "circuit-diagram-source2",
+                    "caption": "Figure 6: Circuit-3 – Only RPS2 active, RPS1 short-circuited; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I₂",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "Precautions before connecting the circuit:"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Voltage control knob of RPS should be kept at the minimum position before switching on.",
+                        "Current control knob of RPS should be kept at the maximum position before switching on."
+                    ]
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Gather all required components: bread board, resistors (330Ω, 220Ω, 1kΩ), digital multimeter/ammeter, two DC regulated power supplies (RPS1 and RPS2), and connecting wires.",
+                        "Connect the circuit as per Circuit-1 (Fig. 4) with both RPS1 and RPS2 active, R1 = 330Ω, R2 = 220Ω, and R3 = 1kΩ as the shunt branch with the ammeter in series.",
+                        "Set desired voltage values on RPS1 and RPS2. Record the ammeter reading as I_total (measured).",
+                        "Keeping RPS1 at the same voltage, disconnect RPS2 and short-circuit its terminals to form Circuit-2 (Fig. 5). Record the ammeter reading as I₁.",
+                        "Reconnect RPS2 at the same voltage, disconnect RPS1 and short-circuit its terminals to form Circuit-3 (Fig. 6). Record the ammeter reading as I₂.",
+                        "Verify the superposition theorem by checking whether the condition I_total = I₁ + I₂ holds.",
+                        "Calculate I_total, I₁, and I₂ theoretically using the resistor values and applied voltages, then compare with the measured values.",
+                        "Repeat steps 3 to 7 for 10 different pairs of RPS1 and RPS2 voltage values and record all readings in the observation table."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Record the DC source voltages and corresponding measured and calculated current values for each trial. Verify that the algebraic sum of I₁ and I₂ equals I_total in each case."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "RPS1 (V)",
+                        "RPS2 (V)",
+                        "I_total – Measured (mA)",
+                        "I₁ – Measured (mA)",
+                        "I₂ – Measured (mA)",
+                        "ΣIk – Measured (mA)",
+                        "I_total – Calculated (mA)",
+                        "I₁ – Calculated (mA)",
+                        "I₂ – Calculated (mA)",
+                        "ΣIk – Calculated (mA)",
+                        "% Error"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "2",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "3",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "4",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "5",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "6",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "7",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "8",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "9",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ],
+                        [
+                            "10",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Step 1: Theoretical calculation of I_total, I₁, and I₂ in terms of general variables V1, V2, R1, R2, and R3."
+                },
+                {
+                    "type": "text",
+                    "content": "For Circuit-2 (V1 active, V2 short-circuited): R2 and R3 are in parallel, giving equivalent resistance R_eq1 = (R2 × R3) / (R2 + R3). Total resistance seen by V1 is R_T1 = R1 + R_eq1. Current through R3 due to V1 alone:"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_1 = \\frac{V_1}{R_1 + \\dfrac{R_2 R_3}{R_2 + R_3}} \\times \\frac{R_2}{R_2 + R_3}"
+                },
+                {
+                    "type": "text",
+                    "content": "For Circuit-3 (V2 active, V1 short-circuited): R1 and R3 are in parallel, giving equivalent resistance R_eq2 = (R1 × R3) / (R1 + R3). Total resistance seen by V2 is R_T2 = R2 + R_eq2. Current through R3 due to V2 alone:"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_2 = \\frac{V_2}{R_2 + \\dfrac{R_1 R_3}{R_1 + R_3}} \\times \\frac{R_1}{R_1 + R_3}"
+                },
+                {
+                    "type": "text",
+                    "content": "By superposition theorem, the total current through R3 with both sources active:"
+                },
+                {
+                    "type": "equation",
+                    "content": "I_{\\text{total}} = I_1 + I_2"
+                },
+                {
+                    "type": "text",
+                    "content": "Step 2: Percentage error between the measured I_total and the algebraic sum ΣIk = I₁ + I₂ (measured)."
+                },
+                {
+                    "type": "equation",
+                    "content": "\\text{Absolute Error} = |v_A - v_E|"
+                },
+                {
+                    "type": "equation",
+                    "content": "\\text{Percentage Error} = \\left| \\frac{v_A - v_E}{v_E} \\right| \\times 100\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "Where v_A = approximate (measured) value and v_E = exact value. In this experiment, substitute I_total (measured) as v_A and ΣIk (measured sum I₁ + I₂) as v_E, or vice versa as directed."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The measured total current I_total through R3 (with both sources active) was compared against the algebraic sum ΣIk = I₁ + I₂ obtained by superposition for all 10 trial readings. The percentage error between the measured I_total and ΣIk was computed for each trial. The results confirm that the superposition principle holds within acceptable experimental error margins for the linear resistive network."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Using superposition theorem, predict the voltage across the load resistor for the experiment conducted.",
+                        "When analyzing circuits, when is it better to use Superposition Theorem?",
+                        "What is the internal resistance of an ideal voltage source?",
+                        "Draw the circuit diagram of a practical voltage source with internal resistance."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The Superposition theorem has been verified both theoretically and practically. The total current through R3 measured with both sources active was found to be equal (within experimental error) to the algebraic sum of the individual currents measured when each source was active one at a time, confirming the validity of the superposition theorem for linear bilateral networks."
+                }
+            ]
+        }
+    }
+}
