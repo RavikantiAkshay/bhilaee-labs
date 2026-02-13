@@ -160,8 +160,8 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
+            "isApplicable": true,
+            "route": "default",
             "content": []
         },
         "observation": {

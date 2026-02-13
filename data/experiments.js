@@ -47,11 +47,11 @@ export async function getExperiment(labSlug, experimentId) {
             experiment.assets = assets.default || assets;
         } catch (assetError) {
             // No assets file found, ignore
-            experiment.assets = {};
         }
 
     } catch (error) {
-        console.warn(`Could not load content for ${labSlug}/${experimentId}: ${error.message}`);
+        console.error(`ERROR loading content for ${labSlug}/${experimentId}:`, error);
+        console.error(`Current working directory: ${process.cwd()}`);
         // Fallback to skeleton (already created)
     }
 
