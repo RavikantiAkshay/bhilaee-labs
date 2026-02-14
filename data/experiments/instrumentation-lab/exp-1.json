@@ -75,8 +75,89 @@
     "theory": {
       "id": "theory",
       "title": "Theory",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1.1 Infrared Sensing Principle**"
+        },
+        {
+          "type": "text",
+          "content": "An IR proximity sensor operates by emitting infrared light through an IR LED and detecting the reflected light using a photodiode or phototransistor. When an object is present within the detection range, the emitted IR light reflects off its surface and is received by the detector. The sensor produces a digital output signal that changes state based on whether the reflected intensity crosses a preset threshold."
+        },
+        {
+          "type": "text",
+          "content": "The intensity of the reflected IR signal follows an inverse-square relationship with distance:"
+        },
+        {
+          "type": "equation",
+          "value": "I_r = \\frac{I_0 \\cdot \\rho}{4\\pi d^2}"
+        },
+        {
+          "type": "text",
+          "content": "where $I_0$ is the emitted IR intensity, $\\rho$ is the reflectivity of the object surface, and $d$ is the distance between the sensor and the object. As $d$ increases, $I_r$ decreases rapidly, which defines the effective detection range of the sensor."
+        },
+        {
+          "type": "text",
+          "content": "**1.2 IR Sensor Output and Detection Threshold**"
+        },
+        {
+          "type": "text",
+          "content": "A typical digital IR proximity sensor includes an onboard comparator circuit and a trimmer potentiometer. The potentiometer sets the reference voltage against which the photodetector output is compared. When the received IR intensity corresponds to a voltage exceeding this reference, the digital output pin is driven LOW (object detected). When no object is present or the object is beyond the range, the output remains HIGH. This active-low behavior is a common convention in digital IR sensor modules."
+        },
+        {
+          "type": "text",
+          "content": "The detection threshold distance $d_{th}$ can be adjusted by varying the potentiometer, which effectively changes the comparator reference voltage $V_{ref}$:"
+        },
+        {
+          "type": "equation",
+          "value": "d_{th} \\propto \\sqrt{\\frac{I_0 \\cdot \\rho}{V_{ref}}}"
+        },
+        {
+          "type": "text",
+          "content": "In this experiment, the threshold is configured to approximately 5 cm to define the proximity detection boundary."
+        },
+        {
+          "type": "text",
+          "content": "**1.3 ESP32 GPIO and Digital Input Reading**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 is a dual-core 32-bit microcontroller operating at up to 240 MHz, equipped with integrated Wi-Fi (IEEE 802.11 b/g/n) and Bluetooth peripherals. Its General Purpose Input/Output (GPIO) pins can be configured in firmware as digital inputs with optional internal pull-up or pull-down resistors. In this experiment, the digital output of the IR sensor is connected to a GPIO pin configured as an input. The ESP32 reads the pin state in each loop iteration to determine the current detection status."
+        },
+        {
+          "type": "text",
+          "content": "The firmware uses edge detection logic to identify state transitions. A change from HIGH to LOW indicates an object has entered the detection zone, while a LOW to HIGH transition indicates the object has moved away. This event-driven approach minimises redundant HTTP transmissions by logging only on state changes rather than on every polling cycle."
+        },
+        {
+          "type": "text",
+          "content": "**1.4 Wi-Fi Communication and Cloud Logging**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 connects to a local Wi-Fi access point in Station (STA) mode and obtains a dynamic IP address via DHCP. Upon detecting a state change, the ESP32 constructs an HTTP GET request containing the detection event and transmits it to a Google Apps Script web application endpoint. The Apps Script function parses the incoming request, appends a new row to a designated Google Sheet, and assigns a server-generated timestamp to each logged entry."
+        },
+        {
+          "type": "text",
+          "content": "The end-to-end latency for a single log operation can be expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "T_{log} = T_{DNS} + T_{TCP} + T_{TLS} + T_{HTTP} + T_{script}"
+        },
+        {
+          "type": "text",
+          "content": "Under typical network conditions, $T_{log}$ lies in the range of 300 ms to 2 s. Since logging is triggered only on detection events rather than at a fixed sampling rate, the impact of this latency on system responsiveness is minimal for slow-moving objects."
+        },
+        {
+          "type": "text",
+          "content": "**1.5 System Data Flow**"
+        },
+        {
+          "type": "text",
+          "content": "The complete data pipeline in this experiment proceeds as follows: the IR sensor continuously monitors the region in front of it and asserts its digital output pin when an object enters the 5 cm threshold. The ESP32 GPIO detects this logic-level change, identifies the event type (Object Detected or Object Removed), and prints the status to the Serial Monitor over UART. Simultaneously, the event string is embedded into an HTTP GET request and transmitted over Wi-Fi to the Google Apps Script endpoint, which records the event and a server-side timestamp into Google Sheets for persistent cloud storage and subsequent analysis."
+        }
+      ]
     },
     "preLab": {
       "id": "preLab",
@@ -232,8 +313,27 @@
     "postLab": {
       "id": "postLab",
       "title": "Post-Lab / Viva Voce",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are intended to evaluate conceptual understanding and practical reasoning arising from the experiment."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** Explain the working principle of a digital IR proximity sensor. How does the onboard potentiometer influence the detection range?\n\n**A:** The sensor emits IR light via an LED and a photodetector measures the reflected intensity from nearby objects. An onboard comparator compares the photodetector voltage against a reference set by the potentiometer. Increasing the reference voltage raises the threshold intensity required to trigger detection, effectively reducing the detection range. Decreasing the reference voltage lowers this threshold, allowing detection at greater distances. The potentiometer thus provides a hardware-level mechanism to tune the 5 cm detection boundary used in this experiment.",
+            "**Q:** Why does the firmware log only on state transitions rather than continuously in every loop iteration?\n\n**A:** Logging on every iteration would generate a large volume of redundant HTTP requests for the same steady state, rapidly consuming Wi-Fi bandwidth and Google Sheets API quota. Since the detection state changes only when an object enters or exits the threshold zone, event-driven logging captures every meaningful change with minimal traffic. This approach also reduces the likelihood of overlapping HTTP requests and lowers overall power consumption of the ESP32.",
+            "**Q:** The IR sensor output is active-low. A student reads the GPIO pin and finds it continuously LOW even with no object present. List three possible causes and the corresponding diagnostic steps.\n\n**A:** First, the sensor may be receiving excessive ambient IR radiation such as direct sunlight or incandescent lighting, which can saturate the photodetector and hold the output LOW — the student should shield the sensor from ambient light sources and retest. Second, the potentiometer may be adjusted to maximum sensitivity, causing the comparator threshold to be too low and triggering on background reflections — the student should turn the potentiometer to reduce sensitivity until the output returns HIGH in open air. Third, the signal wire between the sensor output pin and the ESP32 GPIO may be shorted to ground — the student should verify continuity with a multimeter and reseat the jumper connections.",
+            "**Q:** Why is the timestamp for each logged event generated on the Google Apps Script server rather than on the ESP32 itself?\n\n**A:** The ESP32 does not carry a battery-backed real-time clock module and loses its time reference whenever it is powered off or reset. Without an NTP synchronisation step, any timestamp generated on the ESP32 would be unreliable and inconsistent across sessions. The Google Apps Script server always has access to an accurate system clock, ensuring that timestamps are correct and consistent. A consequence of this design is that the logged timestamp reflects the moment the HTTP request is processed on the server rather than the exact instant of detection, introducing a small latency offset equal to $T_{log}$.",
+            "**Q:** If the ESP32 reports correct detection events on the Serial Monitor but no rows appear in Google Sheets, what are the most likely causes?\n\n**A:** The most probable causes are: the Apps Script has not been deployed as a publicly accessible web application, meaning external HTTP requests are rejected — the deployment settings should be reviewed and access set to 'Anyone'; the web application URL in the ESP32 firmware is incorrect or corresponds to an outdated deployment — the current deployment URL should be copied and the firmware re-uploaded; or the ESP32 has lost its Wi-Fi connection after the initial handshake, causing HTTP requests to silently fail — the Serial Monitor should be checked for Wi-Fi reconnection messages and the connection reliability verified.",
+            "**Q:** How does the surface reflectivity of an object affect IR proximity detection, and is this error systematic or random?\n\n**A:** The intensity of the reflected IR signal is directly proportional to the surface reflectivity $\\rho$. A highly reflective surface such as white paper reflects more IR energy back to the photodetector, causing the sensor to trigger at distances greater than the calibrated 5 cm threshold. A dark or matte surface absorbs more IR energy, causing the effective detection range to be shorter than intended. This is a systematic error because its direction depends on a fixed material property of the object; all measurements with that object will be consistently biased in the same direction.",
+            "**Q:** What hardware addition and firmware modification would be required to measure the speed at which an object approaches the sensor?\n\n**A:** Speed measurement using a single digital IR sensor is not directly possible since the sensor only provides a binary present/absent output at a fixed threshold. To estimate approach speed, a second IR sensor or an analog-output distance sensor such as the HC-SR04 ultrasonic module would need to be added. With two spatially separated binary sensors, the firmware could record the timestamps $t_1$ and $t_2$ at which each sensor triggers and compute the approach speed as $v = D / (t_2 - t_1)$, where $D$ is the known separation between the two sensor detection planes. The firmware would need to store the first trigger timestamp and transmit the computed speed alongside the event string in the HTTP GET request.",
+            "**Q:** Describe the effect on system behaviour if the firmware sampling delay is set shorter than $T_{log}$.\n\n**A:** If a new state-check and potential HTTP request is initiated before the previous HTTP transaction has completed, the ESP32 TCP stack may attempt to open a new connection while the prior one is still active. In the default single-core Arduino environment this can cause the earlier request to be abandoned mid-transmission, resulting in missing rows in Google Sheets. Repeated occurrences can exhaust available TCP sockets, leading to Wi-Fi disconnection or watchdog timer resets. The firmware delay between successive log attempts should always exceed the worst-case $T_{log}$ to ensure each HTTP transaction fully completes before the next detection cycle begins."
+          ]
+        }
+      ]
     },
     "resources": {
       "id": "resources",
