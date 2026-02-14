@@ -68,8 +68,27 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Circuit Connections:**"
+        },
+        {
+          "type": "text",
+          "content": "*Note: A circuit diagram is not available for this experiment. Please follow the connection details below.*"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**VCC** → ESP32 3.3V or 5V",
+            "**GND** → ESP32 GND",
+            "**AO (Analog Output)** → ESP32 ADC Pin (e.g., VP/36)",
+            "**DO (Digital Output)** → Optional / Not Used"
+          ]
+        }
+      ]
     },
     "procedure": {
       "id": "procedure",
@@ -179,6 +198,19 @@
         {
           "type": "text",
           "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the moisture sensor data to Google Sheets using the Google Apps Script. Each moisture reading corresponding to air, dry soil, and wet soil was logged along with the appropriate timestamp and updated automatically in the Google Sheet."
+        },
+        {
+          "type": "text",
+          "content": "**Limitations:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Electrolysis:** DC current flow degrades the probe electrodes used in resistive sensors over time.",
+            "**Soil Contact:** Inconsistent contact between soil and probe can lead to fluctuating readings.",
+            "**Salt Content:** High salinity in soil increases conductivity, which may be misinterpreted as higher moisture."
+          ]
         }
       ]
     },

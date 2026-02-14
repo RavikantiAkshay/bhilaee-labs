@@ -69,8 +69,27 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Circuit Connections:**"
+        },
+        {
+          "type": "text",
+          "content": "*Note: A circuit diagram is not available for this experiment. Please follow the connection details below.*"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**VCC** → ESP32 WIN/5V",
+            "**GND** → ESP32 GND",
+            "**Trig** → ESP32 GPIO Pin (e.g., D5)",
+            "**Echo** → ESP32 GPIO Pin (e.g., D18)"
+          ]
+        }
+      ]
     },
     "procedure": {
       "id": "procedure",
@@ -176,6 +195,19 @@
         {
           "type": "text",
           "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the calculated speed data to Google Sheets using a deployed Google Apps Script web application. Each speed value was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated real-time speed measurement and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, computation, and wireless communication using an IoT-based approach."
+        },
+        {
+          "type": "text",
+          "content": "**Limitations:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Calculation Delay:** Rapid speed changes might be missed depending on the sampling interval.",
+            "**Object Size:** Small or narrow objects may not reflect enough sound for reliable detection.",
+            "**Network Latency:** Wi-Fi transmission delays can cause a lag between actual measurement and cloud logging."
+          ]
         }
       ]
     },

@@ -68,8 +68,27 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Circuit Connections:**"
+        },
+        {
+          "type": "text",
+          "content": "*Note: A circuit diagram is not available for this experiment. Please follow the connection details below.*"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**VCC** → ESP32 3.3V or 5V",
+            "**GND** → ESP32 GND",
+            "**AO (Analog Output)** → ESP32 ADC Pin (e.g., VP/36)",
+            "**DO (Digital Output)** → ESP32 GPIO Pin (e.g., D23)"
+          ]
+        }
+      ]
     },
     "procedure": {
       "id": "procedure",
@@ -175,6 +194,19 @@
         {
           "type": "text",
           "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the rain sensor data to Google Sheets using a deployed Google Apps Script web application. Each set of analog and digital readings was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated real-time rain intensity monitoring and reliable cloud-based data logging, thereby fulfilling the objective of integrating sensing, data processing, and wireless communication using an IoT-based approach."
+        },
+        {
+          "type": "text",
+          "content": "**Limitations:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Corrosion:** Continuous exposure to water causes electrolysis, degrading the sensor tracks over time.",
+            "**Water Purity:** Pure rainwater has lower conductivity than tap water, potentially affecting sensitivity.",
+            "**Surface Residue:** Dirt or oxidation on the sensor surface can alter resistance readings."
+          ]
         }
       ]
     },

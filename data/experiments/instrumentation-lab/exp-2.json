@@ -69,8 +69,27 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Circuit Connections:**"
+        },
+        {
+          "type": "text",
+          "content": "*Note: A circuit diagram is not available for this experiment. Please follow the connection details below.*"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**VCC** → ESP32 WIN/5V",
+            "**GND** → ESP32 GND",
+            "**Trig** → ESP32 GPIO Pin (e.g., D5)",
+            "**Echo** → ESP32 GPIO Pin (e.g., D18)"
+          ]
+        }
+      ]
     },
     "procedure": {
       "id": "procedure",
@@ -178,6 +197,19 @@
         {
           "type": "text",
           "content": "The ESP32 successfully connected to the configured Wi-Fi network and transmitted the data to Google Sheets using a deployed Google Apps Script web application. Each reading was logged along with the corresponding timestamp and updated automatically in the Google Sheet. The experiment successfully demonstrated reliable distance measurement along with cloud-based data logging, fulfilling the objective of integrating sensing, wireless communication using an IoT-based approach."
+        },
+        {
+          "type": "text",
+          "content": "**Limitations:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Angle of Incidence:** Objects positioned at sharp angles may deflect sound waves away from the sensor.",
+            "**Soft Materials:** Soft fabrics or foam can absorb ultrasonic waves, leading to inaccurate readings.",
+            "**Temperature:** Sound speed varies with temperature, which can introduce slight errors in distance calculation."
+          ]
         }
       ]
     },

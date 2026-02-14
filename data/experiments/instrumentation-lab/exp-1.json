@@ -20,7 +20,7 @@
       "content": [
         {
           "type": "text",
-          "content": "The objective to design and implement an IoT-based proximity detection system using an IR sensor and ESP32, capable of identifying objects within a predefined 5 cm threshold and logging the detected events with timestamp to Google Sheets for analysis via Wi-Fi."
+          "content": "To design and implement an IoT-based proximity detection system using an IR sensor and ESP32 to detect objects within a 5 cm threshold and log events to Google Sheets."
         }
       ]
     },
@@ -61,6 +61,14 @@
             "Google Sheets",
             "Active Internet Connection (Wi-Fi)"
           ]
+        },
+        {
+          "type": "text",
+          "content": "**System Block Diagram:**"
+        },
+        {
+          "type": "text",
+          "content": "IR Sensor → ESP32 → Wi-Fi → Google Apps Script → Google Sheets"
         }
       ]
     },
@@ -73,8 +81,26 @@
     "preLab": {
       "id": "preLab",
       "title": "Pre-Lab / Circuit Diagram",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Circuit Connections:**"
+        },
+        {
+          "type": "text",
+          "content": "*Note: A circuit diagram is not available for this experiment. Please follow the connection details below.*"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**IR Sensor VCC** → ESP32 VIN (or 3.3V/5V as per sensor spec)",
+            "**IR Sensor GND** → ESP32 GND",
+            "**IR Sensor OUT** → ESP32 GPIO Pin (e.g., D2 or as defined in code)"
+          ]
+        }
+      ]
     },
     "procedure": {
       "id": "procedure",
@@ -85,8 +111,8 @@
           "type": "list",
           "style": "ordered",
           "items": [
-            "Connect the ESP32 and ultrasonic sensor (HC-SR04) on a breadboard using jumper wires.",
-            "Verify the power, ground, Trigger, and Echo pin connections between the ESP32 and the ultrasonic sensor.",
+            "Connect the ESP32 and IR Proximity Sensor on a breadboard using jumper wires.",
+            "Verify the VCC, GND, and OUT pin connections between the ESP32 and the IR sensor.",
             "Connect the ESP32 to a computer using a USB cable and open the Arduino IDE.",
             "Select the appropriate ESP32 board and COM port, then execute the ESP32 program code.",
             "Upload the program and open the Serial Monitor to observe real-time distance measurements by placing objects at different distances from the sensor.",
@@ -186,6 +212,19 @@
         },
         {
           "type": "text",
+          "content": "**Limitations:**"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "**Ambient Light Sensitivity:** The IR sensor may give false readings in direct sunlight or strong ambient light.",
+            "**Surface Reflectivity:** Detection range varies based on the color and material of the object (dark objects absorb IR, reducing range).",
+            "**Network Latency:** There may be a slight delay in logging data to Google Sheets depends on Wi-Fi signal strength."
+          ]
+        },
+        {
+          "type": "text",
           "content": "Overall, the experiment achieved its objective of detecting nearby objects within a specified range and logging the detection events to an online platform for analysis. The results confirm the effective integration of hardware sensing, wireless communication, and cloud data storage using an IoT-based approach."
         }
       ]
@@ -209,7 +248,7 @@
       "content": [
         {
           "type": "text",
-          "content": "The experiment successfully demonstrated the design and implementation of an IoT-based proximity detection system using an IR sensor and ESP32. The system reliably detected objects within the 5 cm threshold and logged detection events with timestamps to Google Sheets via Wi-Fi. The integration of hardware sensing, wireless communication, and cloud data storage was effectively achieved, validating the IoT-based approach for real-time proximity monitoring and data logging applications."
+          "content": "The experiment successfully demonstrated an IoT-based system for proximity detection and cloud logging. The IR sensor interfaced with ESP32 accurately detected objects within the 5 cm range, and data was reliably transmitted to Google Sheets via Wi-Fi, verifying the practical application of IoT integration."
         }
       ]
     }
