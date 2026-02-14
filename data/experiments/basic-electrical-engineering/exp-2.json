@@ -2,10 +2,11 @@
     "id": "exp-2",
     "title": "Verification of Superposition Theorem",
     "labId": "basic-electrical-engineering",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-2",
         "experimentType": "hardware",
-        "status": "hardware-oriented",
+        "status": "simulation-available",
         "difficulty": "beginner",
         "estimatedTimeMinutes": 90,
         "version": "1.0.0",

@@ -25,29 +25,52 @@ export default function ContentBlock({ block, assets }) {
     }
 }
 
-function RichText({ block }) {
-    // Simple improved text rendering with limited Markdown support
-    // (Bolding: **text**, Italic: *text*, Newlines)
-    const processText = (text) => {
-        if (!text) return null;
-        return text.split('\n').map((line, i) => (
-            <p key={i}>
-                {line.split(/(\*\*.*?\*\*|\*.*?\*)/g).map((part, j) => {
-                    if (part.startsWith('**') && part.endsWith('**')) {
-                        return <strong key={j}>{part.slice(2, -2)}</strong>;
-                    }
-                    if (part.startsWith('*') && part.endsWith('*')) {
-                        return <em key={j}>{part.slice(1, -1)}</em>;
-                    }
-                    return part;
-                })}
-            </p>
-        ));
-    };
+const processRichText = (text) => {
+    if (!text) return null;
+    // Split by newlines first
+    return text.split('\n').map((line, i) => (
+        <span key={i}>
+            {/* 
+               Regex explanation:
+               1. \[([^\]]+)\]\(([^)]+)\) -> Matches [text](url)
+               2. (\*\*.*?\*\*) -> Matches **bold**
+               3. (\*.*?\*) -> Matches *italic*
+            */}
+            {line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*)/g).map((part, j) => {
+                // Link: [text](url)
+                const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+                if (linkMatch) {
+                    return (
+                        <a
+                            key={j}
+                            href={linkMatch[2]}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{ color: '#228be6', textDecoration: 'underline' }}
+                        >
+                            {linkMatch[1]}
+                        </a>
+                    );
+                }
+                // Bold: **text**
+                if (part.startsWith('**') && part.endsWith('**')) {
+                    return <strong key={j}>{part.slice(2, -2)}</strong>;
+                }
+                // Italic: *text*
+                if (part.startsWith('*') && part.endsWith('*')) {
+                    return <em key={j}>{part.slice(1, -1)}</em>;
+                }
+                return part;
+            })}
+            {i < text.split('\n').length - 1 && <br />}
+        </span>
+    ));
+};
 
+function RichText({ block }) {
     return (
         <div className={`${styles.contentBlock} ${styles.richText}`}>
-            {processText(block.content)}
+            {processRichText(block.content)}
         </div>
     );
 }
@@ -58,11 +81,11 @@ function ListBlock({ block }) {
         <div className={styles.contentBlock}>
             {block.style === 'ordered' ? (
                 <ol className={`${styles.list} ${listClass}`}>
-                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{item}</li>)}
+                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{processRichText(item)}</li>)}
                 </ol>
             ) : (
                 <ul className={`${styles.list} ${listClass}`}>
-                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{item}</li>)}
+                    {block.items.map((item, i) => <li key={i} className={styles.listItem}>{processRichText(item)}</li>)}
                 </ul>
             )}
         </div>
