@@ -1,0 +1,14 @@
+{
+    "fig1-original-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-3/fig1-original-circuit.png",
+        "description": "Original Circuit Diagram"
+    },
+    "fig2-vth-measurement": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-3/fig2-vth-measurement.png",
+        "description": "Measurement of Vth"
+    },
+    "fig4-thevenin-equivalent": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-3/fig4-thevenin-equivalent.png",
+        "description": "Thevenin Equivalent Circuit"
+    }
+}
