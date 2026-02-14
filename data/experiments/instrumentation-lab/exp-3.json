@@ -63,8 +63,97 @@
     "theory": {
       "id": "theory",
       "title": "Theory",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1.1 Ultrasonic Sensor Working Principle**"
+        },
+        {
+          "type": "text",
+          "content": "An ultrasonic sensor such as the HC-SR04 operates by emitting a short burst of ultrasonic waves at 40 kHz from its transmitter and detecting the reflected echo at its receiver. The sensor measures the time elapsed between transmission and reception of the echo pulse. Since sound travels at a known speed in air, the distance to the reflecting object can be determined from this time-of-flight measurement."
+        },
+        {
+          "type": "text",
+          "content": "The distance to the object is calculated as:"
+        },
+        {
+          "type": "equation",
+          "value": "d = \\frac{v_s \\times t_{echo}}{2}"
+        },
+        {
+          "type": "text",
+          "content": "where $v_s \\approx 343$ m/s is the speed of sound in air at room temperature and $t_{echo}$ is the total round-trip time of the ultrasonic pulse. The division by 2 accounts for the pulse travelling to the object and back."
+        },
+        {
+          "type": "text",
+          "content": "**1.2 Speed Computation from Successive Distance Measurements**"
+        },
+        {
+          "type": "text",
+          "content": "Speed cannot be measured directly by a single ultrasonic pulse. Instead, the ESP32 takes two successive distance measurements separated by a known time interval $\\Delta t$. The instantaneous speed of the moving object is then computed as the magnitude of the displacement between the two measurements divided by the time interval:"
+        },
+        {
+          "type": "equation",
+          "value": "v = \\frac{|d_2 - d_1|}{\\Delta t}"
+        },
+        {
+          "type": "text",
+          "content": "where $d_1$ and $d_2$ are the distances recorded at times $t_1$ and $t_2$ respectively, and $\\Delta t = t_2 - t_1$. A smaller $\\Delta t$ improves temporal resolution but increases sensitivity to measurement noise, while a larger $\\Delta t$ smooths noise but reduces the ability to track rapid speed changes."
+        },
+        {
+          "type": "text",
+          "content": "**1.3 HC-SR04 Sensor Timing and Signal Interface**"
+        },
+        {
+          "type": "text",
+          "content": "The HC-SR04 sensor is triggered by applying a HIGH pulse of at least 10 µs to its TRIG pin. In response, it emits eight ultrasonic bursts and then raises the ECHO pin HIGH for a duration proportional to the round-trip time. The ESP32 measures this ECHO pulse width using its internal timer to derive $t_{echo}$. The TRIG and ECHO pins interface directly with the ESP32 GPIO at 3.3 V logic levels, making no level-shifting circuitry necessary."
+        },
+        {
+          "type": "text",
+          "content": "The usable measurement range of the HC-SR04 is approximately 2 cm to 400 cm, with a stated accuracy of ±3 mm under ideal conditions. Objects outside this range or at oblique angles may produce weak or absent echoes, resulting in timeout readings that must be filtered out in firmware."
+        },
+        {
+          "type": "text",
+          "content": "**1.4 ESP32 Microcontroller and Timer Resolution**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 is a dual-core 32-bit microcontroller operating at up to 240 MHz, featuring built-in Wi-Fi (IEEE 802.11 b/g/n) and Bluetooth capabilities. For this experiment, the ESP32 uses its microsecond-resolution hardware timer via the pulseIn() function in the Arduino framework to capture the ECHO pulse width accurately. The minimum resolvable time difference between two distance samples is determined by the sensor's measurement cycle time, which is approximately 60 ms including echo timeout."
+        },
+        {
+          "type": "text",
+          "content": "The speed measurement uncertainty due to timer quantisation is:"
+        },
+        {
+          "type": "equation",
+          "value": "\\delta v = \\frac{v_s \\times \\delta t_{echo}}{2 \\times \\Delta t}"
+        },
+        {
+          "type": "text",
+          "content": "where $\\delta t_{echo}$ is the timer resolution (1 µs for the ESP32). For a sampling interval $\\Delta t$ of 100 ms, this gives an uncertainty of approximately 0.17 cm/s, which is negligible for most practical speed measurements."
+        },
+        {
+          "type": "text",
+          "content": "**1.5 Wi-Fi Connectivity and Cloud Data Logging**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 connects to a local Wi-Fi network in Station (STA) mode and obtains an IP address via DHCP. Measured speed values are transmitted to a Google Apps Script web application using HTTP GET requests, with the speed value encoded as a URL query parameter. The Apps Script function receives each request, extracts the speed value, and appends it as a new row in a Google Sheet along with a server-generated timestamp."
+        },
+        {
+          "type": "text",
+          "content": "The total latency for each cloud log entry is:"
+        },
+        {
+          "type": "equation",
+          "value": "T_{log} = T_{DNS} + T_{TCP} + T_{TLS} + T_{HTTP} + T_{script}"
+        },
+        {
+          "type": "text",
+          "content": "Under typical network conditions, $T_{log}$ ranges from 300 ms to 2 s. The firmware sampling interval must be set greater than $T_{log}$ to prevent request collisions and ensure every measurement is individually logged. The complete data pipeline is: HC-SR04 → ESP32 GPIO/Timer → Speed Calculation → Wi-Fi → Internet → Google Apps Script → Google Sheets."
+        }
+      ]
     },
     "preLab": {
       "id": "preLab",
@@ -214,8 +303,29 @@
     "postLab": {
       "id": "postLab",
       "title": "Post-Lab / Viva Voce",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are concept- and application-based, ranging from medium to hard difficulty."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The ultrasonic sensor measures distance, yet the experiment reports speed. Describe the complete signal processing chain from a single ECHO pulse to a final speed value displayed on the Serial Monitor.\n\n**A:** The ESP32 asserts the TRIG pin HIGH for 10 µs, prompting the HC-SR04 to emit an ultrasonic burst. The ECHO pin is held HIGH for a duration $t_{echo}$ proportional to the round-trip travel time of the reflected pulse. The ESP32 captures this duration using pulseIn() and computes distance as $d = v_s \\times t_{echo} / 2$. Two consecutive distance samples $d_1$ and $d_2$ separated by a firmware-controlled interval $\\Delta t$ are then used to compute speed as $v = |d_2 - d_1| / \\Delta t$. This value is formatted as a string and printed to the Serial Monitor via UART.",
+            "**Q:** Why is it necessary to divide the echo time by 2 when computing distance, and what would happen to all subsequent speed calculations if this factor were omitted?\n\n**A:** The echo time represents the total round-trip travel time of the ultrasonic pulse — from the sensor to the object and back. The actual one-way distance is therefore half the product of sound speed and echo time. If the division by 2 were omitted, every computed distance would be exactly twice the true value. Since speed is derived from the difference of two distances divided by time, the computed speed would also be twice the actual value, introducing a systematic factor-of-2 error in all readings. This error is constant and does not cancel in the subtraction because both $d_1$ and $d_2$ are scaled equally.",
+            "**Q:** A student observes that the measured speed fluctuates significantly even when the object is moving at a constant velocity. Identify two sources of this fluctuation and propose a firmware-level mitigation for each.\n\n**A:** First, acoustic noise and multipath reflections cause occasional spurious ECHO pulse widths that do not correspond to the actual object. This produces outlier distance values and consequently large instantaneous speed spikes. Mitigation: implement a median filter over three to five consecutive distance readings before computing speed, so that isolated outlier values are suppressed. Second, the pulseIn() function has a 1 µs timer resolution, meaning the quantisation error in $t_{echo}$ propagates into both $d_1$ and $d_2$, and their difference amplifies this error when $\\Delta t$ is small. Mitigation: increase the sampling interval $\\Delta t$ to reduce the relative contribution of quantisation noise to the computed speed.",
+            "**Q:** The HC-SR04 datasheet specifies a maximum measurement range of 400 cm. What physical and electrical factors determine this upper limit, and what happens in firmware when an object is beyond this range?\n\n**A:** The upper range limit is set by ultrasonic beam divergence and signal attenuation — at long distances, the reflected echo is too weak to trigger the receiver threshold reliably. Additionally, the sensor's internal timeout is approximately 38 ms corresponding to a 650 cm round trip, beyond which no ECHO pulse is generated. In firmware, pulseIn() returns 0 when no pulse is received within its timeout window. If this 0 value is used directly in the distance formula, it produces $d = 0$, and if a previous valid reading existed, an erroneous large speed value is computed. Robust firmware must check for a 0 return value and discard that sample rather than using it in the speed calculation.",
+            "**Q:** Explain why the speed computed from two closely-spaced distance samples is more sensitive to noise than speed computed from two samples taken further apart in time, using the error propagation formula.\n\n**A:** Let each distance measurement have an uncertainty $\\delta d$ due to sensor noise. The computed speed is $v = |d_2 - d_1| / \\Delta t$. By error propagation, the uncertainty in speed is $\\delta v = \\sqrt{2} \\cdot \\delta d / \\Delta t$. As $\\Delta t$ decreases, $\\delta v$ increases inversely — halving $\\Delta t$ doubles the speed uncertainty. Conversely, a larger $\\Delta t$ divides the fixed measurement noise over a longer time window, reducing its effect on the speed estimate. The trade-off is temporal resolution: a large $\\Delta t$ may miss rapid speed changes occurring within the interval.",
+            "**Q:** The Google Sheets timestamps are generated when the Apps Script receives the HTTP request, not when the ESP32 takes the measurement. Under what experimental conditions does this distinction matter, and how would you modify the system to eliminate this ambiguity?\n\n**A:** The distinction matters whenever the network round-trip time is variable or the ESP32 experiences Wi-Fi reconnection delays, causing the logged timestamp to differ from the actual measurement time by up to several seconds. This is significant when correlating speed profiles with external events or when computing acceleration from consecutive logged speed values. To eliminate the ambiguity, synchronise the ESP32 RTC with an NTP server at boot using configTime() and pool.ntp.org. At the moment each speed sample is computed, record the local time using time() and include it as an additional query parameter in the HTTP GET request, so the sheet stores the acquisition time independently of server processing latency.",
+            "**Q:** If the object moves at an angle to the sensor axis rather than directly toward or away from it, how does this affect the measured speed, and is the error systematic or random?\n\n**A:** The HC-SR04 measures only the component of the object's displacement along the sensor's acoustic axis — the radial distance. If the object moves at an angle $\\theta$ relative to the axis, the rate of change of radial distance is $v \\cos\\theta$, so the sensor underestimates the true speed by a factor of $\\cos\\theta$. This is a systematic error: it consistently reports a lower speed than actual, and the magnitude of underestimation grows as $\\theta$ increases. At $\\theta = 90°$ (purely lateral motion), the sensor detects no change in distance and reports zero speed regardless of actual velocity. The error is not random because $\\theta$ is determined by the physical geometry of the setup.",
+            "**Q:** The ESP32 uses a single-core execution model in Arduino framework by default. How does the blocking nature of pulseIn() affect Wi-Fi transmission timing, and how can this be resolved in a production implementation?\n\n**A:** pulseIn() blocks the main execution thread for the entire duration of the ECHO pulse, which can be up to 38 ms for out-of-range readings. During this blocking period, the ESP32 Wi-Fi stack cannot process incoming acknowledgements or maintain the TCP connection, potentially causing packet loss or connection drops during transmission. In a production implementation, this is resolved by using hardware interrupt-based echo capture: configure the ECHO pin as an interrupt source, record the rising-edge timestamp in an ISR, record the falling-edge timestamp in a second ISR, and compute $t_{echo}$ as their difference in the main loop without blocking. This frees the CPU to service the Wi-Fi stack during the measurement window.",
+            "**Q:** Two students run the same experiment with identical hardware but different firmware sampling intervals — one uses 100 ms and the other uses 1000 ms. Compare their results in terms of speed accuracy, data resolution, and Google Sheets quota consumption.\n\n**A:** The student using 100 ms intervals captures ten times more speed samples per second, providing higher temporal resolution and the ability to observe rapid acceleration or deceleration events. However, speed uncertainty is higher due to the smaller $\\Delta t$ amplifying distance noise, and ten times as many HTTP requests are sent to Google Apps Script, consuming the daily execution quota approximately ten times faster. The student using 1000 ms intervals has lower temporal resolution and may miss transient speed changes, but benefits from lower noise in each speed estimate, more stable Wi-Fi transmission without request overlap, and significantly lower quota usage — making it more appropriate for long-duration unattended logging sessions.",
+            "**Q:** Describe how you would extend this system to measure not just speed but also acceleration, and identify any additional hardware or firmware changes required.\n\n**A:** Acceleration can be computed from three consecutive speed values: $a = (v_3 - v_1) / (2\\Delta t)$ using a central difference approximation, which is more accurate than a forward difference. No additional hardware is required since the HC-SR04 and ESP32 are already in place. Firmware changes needed are: maintain a rolling buffer of at least three consecutive speed values; compute acceleration from the oldest and newest values after each new sample is added; include the acceleration value as an additional parameter in the HTTP GET request to Apps Script; and modify the Apps Script to write acceleration into a dedicated column in the Google Sheet. Care must be taken to handle the startup transient where the buffer is not yet fully populated."
+          ]
+        }
+      ]
     },
     "resources": {
       "id": "resources",
