@@ -1,4 +1,6 @@
 import styles from './Experiment.module.css';
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 /**
  * Switcher component to render different content types based on the 'type' field.
@@ -35,8 +37,9 @@ const processRichText = (text) => {
                1. \[([^\]]+)\]\(([^)]+)\) -> Matches [text](url)
                2. (\*\*.*?\*\*) -> Matches **bold**
                3. (\*.*?\*) -> Matches *italic*
+               4. (\$[^\$]+\$) -> Matches $inline math$
             */}
-            {line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*)/g).map((part, j) => {
+            {line.split(/(\[[^\]]+\]\([^)]+\)|\*\*.*?\*\*|\*.*?\*|\$[^\$]+\$)/g).map((part, j) => {
                 // Link: [text](url)
                 const linkMatch = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
                 if (linkMatch) {
@@ -59,6 +62,10 @@ const processRichText = (text) => {
                 // Italic: *text*
                 if (part.startsWith('*') && part.endsWith('*')) {
                     return <em key={j}>{part.slice(1, -1)}</em>;
+                }
+                // Inline Math: $latex$
+                if (part.startsWith('$') && part.endsWith('$')) {
+                    return <InlineMath key={j} math={part.slice(1, -1)} />;
                 }
                 return part;
             })}
@@ -156,11 +163,13 @@ function CodeBlock({ block }) {
 }
 
 function EquationBlock({ block }) {
+    const latex = block.value || block.content || block.latex || '';
+    // Strip $$ if present, though BlockMath handles it usually
+    const cleanLatex = latex.replace(/^\$\$|\$\$$/g, '');
+
     return (
         <div className={`${styles.contentBlock} ${styles.equation}`}>
-            <pre style={{ whiteSpace: 'pre-wrap', fontFamily: 'monospace', background: '#f5f5f5', padding: '1rem', borderRadius: '4px' }}>
-                {block.content || block.latex}
-            </pre>
+            <BlockMath math={cleanLatex} />
         </div>
     );
 }

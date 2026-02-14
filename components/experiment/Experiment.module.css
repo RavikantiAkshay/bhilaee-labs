@@ -136,8 +136,7 @@
     background: var(--bg-secondary, #f8f9fa);
     border-radius: 4px;
     text-align: center;
-    font-family: 'Times New Roman', serif;
-    font-size: 1.2rem;
+    font-size: 1.05rem;
     overflow-x: auto;
 }
 

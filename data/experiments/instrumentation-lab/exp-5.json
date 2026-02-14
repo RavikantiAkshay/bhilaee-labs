@@ -62,8 +62,117 @@
     "theory": {
       "id": "theory",
       "title": "Theory",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1.1 Principle of Soil Moisture Sensing**"
+        },
+        {
+          "type": "text",
+          "content": "Soil moisture sensors measure the volumetric water content (VWC) of a medium by exploiting the change in electrical properties caused by the presence of water. The most common low-cost modules operate on the resistive sensing principle: two exposed conductive probes are inserted into the medium, and the sensor measures the electrical resistance between them. Pure water is a poor conductor, but soil water contains dissolved ions (electrolytes) that make it significantly conductive. As moisture increases, ionic concentration rises and inter-probe resistance $R_{soil}$ falls."
+        },
+        {
+          "type": "text",
+          "content": "The relationship between volumetric water content $\\theta$ and bulk electrical conductivity $\\sigma_b$ is empirically approximated by the linear mixing model:"
+        },
+        {
+          "type": "equation",
+          "value": "\\sigma_b = \\sigma_w \\cdot \\theta + \\sigma_s \\cdot (1 - \\theta - \\phi) + \\sigma_a \\cdot \\phi"
+        },
+        {
+          "type": "text",
+          "content": "where $\\sigma_w$ is the conductivity of soil water, $\\sigma_s$ is the conductivity of solid particles, $\\sigma_a$ is the conductivity of air ($\\approx$ 0), $\\theta$ is the volumetric water content, and $\\phi$ is the air-filled porosity. For the resistive probe sensor this simplifies to the empirical observation: $R_{soil} \\propto 1/\\theta$ for a fixed soil composition."
+        },
+        {
+          "type": "text",
+          "content": "The sensor module includes a voltage divider in which $R_{soil}$ acts as one resistive element. The output voltage $V_{out}$ at the analog output pin is:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{out} = V_{cc} \\cdot \\frac{R_{fixed}}{R_{fixed} + R_{soil}}"
+        },
+        {
+          "type": "text",
+          "content": "As moisture increases, $R_{soil}$ decreases and $V_{out}$ rises. The onboard LM393 comparator compares $V_{out}$ against a threshold $V_{ref}$ set by the potentiometer, generating the binary digital output (DO):"
+        },
+        {
+          "type": "equation",
+          "value": "V_{DO} = \\begin{cases} \\text{LOW (Moisture Detected)} & \\text{if } V_{out} \\geq V_{ref} \\\\ \\text{HIGH (No Detection)} & \\text{if } V_{out} < V_{ref} \\end{cases}"
+        },
+        {
+          "type": "text",
+          "content": "**1.2 ESP32 ADC Interfacing and Signal Acquisition**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 reads the sensor's analog output via its built-in 12-bit SAR ADC, mapping the input range 0–3.3 V to digital codes 0–4095:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{ADC\\_code} = \\left\\lfloor \\frac{V_{in} \\times 4095}{3.3} \\right\\rfloor"
+        },
+        {
+          "type": "text",
+          "content": "The theoretical voltage resolution per LSB is:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{LSB} = \\frac{V_{ref\\_adc}}{2^N - 1} = \\frac{3.3}{4095} \\approx 0.806 \\text{ mV}"
+        },
+        {
+          "type": "text",
+          "content": "A two-point calibration maps raw ADC readings to a normalized moisture percentage:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{Moisture (\\%)} = \\frac{ADC_{dry} - ADC_{measured}}{ADC_{dry} - ADC_{wet}} \\times 100"
+        },
+        {
+          "type": "text",
+          "content": "where $ADC_{dry}$ is the code in air (minimum moisture reference) and $ADC_{wet}$ is the code in fully saturated soil (maximum moisture reference)."
+        },
+        {
+          "type": "text",
+          "content": "**1.3 Probe Degradation and Measurement Artefacts**"
+        },
+        {
+          "type": "text",
+          "content": "A fundamental limitation of resistive moisture sensors is electrolytic corrosion of the probe electrodes. When DC voltage is applied continuously across the probes in a conductive medium, electrolysis occurs — the anode oxidises and the cathode reduces dissolved ions, degrading the probe surface over time and introducing measurement drift. The electrolytic current density at the probe surface is:"
+        },
+        {
+          "type": "equation",
+          "value": "j = \\sigma_b \\cdot E = \\sigma_b \\cdot \\frac{V_{probe}}{d_{probe}}"
+        },
+        {
+          "type": "text",
+          "content": "To minimise corrosion, firmware implementations apply voltage to the probes only during sampling (pulsed excitation), keeping the duty cycle low. Additionally, ionic conductivity increases approximately 2% per °C with temperature, meaning moisture readings will appear higher at elevated temperatures for the same actual water content, requiring temperature compensation for precision applications."
+        },
+        {
+          "type": "text",
+          "content": "**1.4 Wi-Fi Connectivity and Cloud Data Logging**"
+        },
+        {
+          "type": "text",
+          "content": "The ESP32 connects to a Wi-Fi network in Station (STA) mode using the 802.11 b/g/n protocol. After DHCP-based IP assignment, the device issues HTTP GET requests to a Google Apps Script web application, encoding the sensor reading as URL query parameters:"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{GET /exec?adc=}\\langle value \\rangle\\&\\text{moisture=}\\langle \\% \\rangle\\&\\text{status=}\\langle label \\rangle\\&\\text{time=}\\langle ts \\rangle\\text{ HTTP/1.1}"
+        },
+        {
+          "type": "text",
+          "content": "The Apps Script endpoint appends each incoming record as a new timestamped row in Google Sheets. The total round-trip logging latency is:"
+        },
+        {
+          "type": "equation",
+          "value": "T_{total} = T_{TCP} + T_{TLS} + T_{HTTP\\_req} + T_{script\\_exec} + T_{HTTP\\_resp}"
+        },
+        {
+          "type": "text",
+          "content": "Under normal conditions, $T_{total}$ lies between 300 ms and 2 s. The logging interval must satisfy $T_{interval} > T_{total}$ to prevent request queuing and data loss. The complete IoT data pipeline is: Moisture Sensor → ESP32 ADC/GPIO → Wi-Fi AP → Internet → Google Apps Script → Google Sheets, forming a complete end-to-end IoT sensing and cloud logging system."
+        }
+      ]
     },
     "preLab": {
       "id": "preLab",
@@ -217,8 +326,29 @@
     "postLab": {
       "id": "postLab",
       "title": "Post-Lab / Viva Voce",
-      "isApplicable": false,
-      "content": []
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Note:** The following questions are of medium to hard difficulty and are application- and concept-based."
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The soil moisture sensor's analog output voltage increases as moisture increases, yet the raw ESP32 ADC reading also increases. Explain the circuit reason for this, and why the relationship is not perfectly linear.\n\n**A:** The sensor uses a voltage divider where $R_{soil}$ is in series with $R_{fixed}$. $V_{out} = V_{cc} \\times R_{fixed} / (R_{fixed} + R_{soil})$. As moisture increases, $R_{soil}$ decreases, increasing $V_{out}$ and hence the ADC code. Non-linearity arises because the voltage divider equation is hyperbolic ($V_{out} \\propto 1/(1 + R_{soil}/R_{fixed})$), not linear. Additionally, ionic conductivity varies non-linearly with volumetric water content, soil texture, compaction, and dissolved salt concentration.",
+            "**Q:** Why do resistive soil moisture sensors degrade faster than capacitive sensors? What physical mechanism is responsible, and how can firmware mitigate this?\n\n**A:** Resistive sensors apply a continuous DC voltage across bare metal probes in conductive soil-water electrolyte, driving electrolysis: the anode undergoes oxidative corrosion and the cathode undergoes reductive ion deposition, shifting the baseline resistance irreversibly. Capacitive sensors use AC excitation and measure dielectric permittivity without DC current flow, avoiding this entirely. Firmware mitigation: pulsed excitation — applying supply voltage only for a few milliseconds during each ADC sample — drastically reduces average electrolytic current and slows corrosion.",
+            "**Q:** A student calibrates the sensor: $ADC_{dry} = 3200$ (air), $ADC_{wet} = 950$ (saturated soil). For $ADC_{measured} = 2100$, compute the moisture percentage. What does a negative result imply?\n\n**A:** Moisture (%) = $((3200 - 2100) / (3200 - 950)) \\times 100 = (1100 / 2250) \\times 100 \\approx 48.9\\%$. A negative percentage occurs if $ADC_{measured} > ADC_{dry}$, meaning the reading exceeds the dry-air reference. This signals a calibration error — the $ADC_{dry}$ reference was recorded incorrectly (sensor not fully dried), or sensor drift has shifted the baseline. Recalibration is required.",
+            "**Q:** The ESP32 ADC has known nonlinearity near 0 V and 3.3 V. How does this affect moisture readings at the extremes, and what are the recommended mitigations?\n\n**A:** Near the rail extremes, the SAR ADC exhibits ±10–20 LSB nonlinearity, making codes near 0 and 4095 unreliable. For moisture sensing, very dry readings (high $R_{soil}$, low $V_{out} \\approx 0$ V) and very wet readings (low $R_{soil}$, $V_{out} \\approx 3.3$ V) are distorted. Mitigations: (a) use ADC_11db attenuation to spread the usable range; (b) apply Espressif's esp_adc_cal_characterize calibration API using factory eFuse correction coefficients; (c) restrict sensor operating range to 0.15–3.1 V where linearity is acceptable.",
+            "**Q:** What happens when the Google Apps Script execution quota is exhausted mid-experiment? How should the firmware respond to avoid data loss?\n\n**A:** Quota exhaustion causes the endpoint to return HTTP 429 or 503, or silently time out without logging. If firmware ignores response codes, data is lost without notification. Correct firmware response: (a) check HTTP response code after every request; (b) on 429/503, enter exponential back-off retry; (c) buffer missed readings in ESP32 SPIFFS or EEPROM for retransmission on reconnection; (d) reduce sampling/transmission frequency to stay within daily quota limits.",
+            "**Q:** Why do moisture readings differ between air, dry soil, and wet soil even though all three are non-metallic? Explain in terms of the charge transport mechanism.\n\n**A:** In air, virtually no free charge carriers exist, so $R_{soil}$ is extremely high (hundreds of kΩ to MΩ) and $V_{out}$ is low. In dry soil, residual surface-bound ions and hygroscopic moisture provide limited ionic conduction, giving moderate $R_{soil}$. In wet soil, water fills pore spaces and dissolves mineral salts (Na⁺, K⁺, Ca²⁺, Cl⁻), dramatically increasing ionic conductivity and lowering $R_{soil}$ to a few kΩ. The charge transport is entirely ionic (electrolytic), not electronic, so temperature and dissolved salt concentration affect readings independently of pure water content.",
+            "**Q:** If the Wi-Fi connection drops mid-experiment, what happens to data being transmitted? Describe a robust firmware strategy to ensure no data loss.\n\n**A:** A dropped connection causes the HTTP client to block until timeout (5–10 s) or immediately fail with a connection error; any unacknowledged reading is lost. Robust strategy: (a) check WiFi.status() before each transmission and reconnect if disconnected; (b) store failed readings in a SPIFFS ring buffer with timestamps; (c) flush buffered records to Google Sheets in sequence after reconnection before resuming normal logging; (d) use a watchdog timer to reset the ESP32 if the reconnection loop hangs.",
+            "**Q:** Compare the information content of the sensor's DO versus AO. Under what application scenario would relying solely on DO be insufficient?\n\n**A:** DO is binary — LOW when moisture exceeds a fixed threshold, HIGH otherwise — conveying only wet/dry state. AO is continuous, providing quantitative moisture content across the full range. Relying solely on DO is insufficient for: (a) precision irrigation control requiring VWC maintained within a narrow band (e.g., 40–60%); (b) drought monitoring requiring moisture trend analysis over time; (c) research applications requiring calibration curves; (d) detecting gradual moisture loss that takes hours to cross the DO threshold but is already visible in the AO trend.",
+            "**Q:** The Apps Script timestamps each entry server-side. What is the limitation of this, and how would you implement accurate client-side timestamping on the ESP32?\n\n**A:** Server-side timestamping records arrival time at Google's servers, not the physical acquisition time. Network latency (0.3–2 s) introduces a systematic offset. Batched or buffered retransmissions receive a single timestamp, destroying temporal accuracy. Client-side fix: (a) synchronise ESP32 RTC via NTP using configTime() at boot (fetches UTC from pool.ntp.org); (b) call time() at the exact moment of ADC sampling; (c) embed the acquisition timestamp as a query parameter in the HTTP GET request, so it is recorded independently of server processing time.",
+            "**Q:** Temperature rises by 10°C while soil water content remains constant. How does this affect the ADC reading, and what compensation formula should be applied?\n\n**A:** Ionic conductivity of soil water increases $\\approx 2\\%$ per °C. A 10°C rise increases $\\sigma_w$ by $\\approx 20\\%$, reducing $R_{soil}$ by $\\approx 20\\%$ and raising $V_{out}$ and the ADC code — the soil appears wetter than it is. Temperature compensation: measure temperature with a co-located sensor (e.g., DS18B20); correct the measured conductance using $G_{corrected} = G_{measured} / (1 + \\alpha \\cdot (T - T_{ref}))$, where $\\alpha \\approx 0.02 /°C$ and $T_{ref} = 25°C$ (calibration temperature); compute moisture from $G_{corrected}$ to reflect actual water content rather than thermally-induced conductivity changes."
+          ]
+        }
+      ]
     },
     "resources": {
       "id": "resources",
