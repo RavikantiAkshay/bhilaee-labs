@@ -34,10 +34,10 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "6",

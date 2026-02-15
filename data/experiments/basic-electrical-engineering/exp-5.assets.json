@@ -1,0 +1,19 @@
+{
+    "fig1-open-circuit-test": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-5/fig1-oc-test.png",
+        "description": "Open Circuit Test Diagram"
+    },
+    "fig3-short-circuit-test": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-5/fig3-sc-test.png",
+        "description": "Short Circuit Test Diagram"
+    },
+    "fig4-efficiency-curve": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-5/fig4-efficiency-curve.png",
+        "description": "Efficiency Curve"
+    },
+    "fig2-phasor-diagram-oc-test": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-5/fig2-phasor.png",
+        "description": "Phasor Diagram (Open Circuit)"
+    },
+    "fig5-equivalent-circuit-lv": null
+}

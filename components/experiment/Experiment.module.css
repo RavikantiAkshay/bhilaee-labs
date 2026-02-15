@@ -146,13 +146,17 @@
 }
 
 .equation {
-    margin: 1.5rem 0;
-    padding: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
     background: var(--bg-secondary, #f8f9fa);
     border-radius: 4px;
     text-align: center;
     font-size: 1.05rem;
     overflow-x: auto;
+}
+
+.equation :global(.katex-display) {
+    margin: 0;
 }
 
 

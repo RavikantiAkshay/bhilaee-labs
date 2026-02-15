@@ -1,0 +1,628 @@
+{
+    "id": "exp-5",
+    "title": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
+    "labId": "basic-electrical-engineering",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "2.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To perform open circuit and short-circuit tests on a single phase transformer to calculate its equivalent circuit parameters, and to find the efficiency at various loads."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To perform open circuit and short-circuit tests on a single phase transformer to calculate its equivalent circuit parameters, and to find the efficiency at various loads.",
+                        "Draw efficiency vs load curve, find out the load at which the efficiency is maximum."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Apparatus",
+                        "Technical Specification",
+                        "Quantities"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Single Phase Transformer",
+                            "2 kVA, 240/120 V, 50 Hz",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Autotransformer (Variac)",
+                            "0–240 V, 50 Hz",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Digital Ammeter",
+                            "0–20 A",
+                            "2"
+                        ],
+                        [
+                            "4",
+                            "Digital Voltmeter",
+                            "0–300 V",
+                            "2"
+                        ],
+                        [
+                            "5",
+                            "Digital Wattmeter",
+                            "0–2000 W",
+                            "1"
+                        ],
+                        [
+                            "6",
+                            "Connecting Wires",
+                            "-",
+                            "As per need"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Transformer Testing:** In order to determine the efficiency, circuit constant and voltage regulation of a given transformer, two types of tests are performed: open circuit test and short circuit test."
+                },
+                {
+                    "type": "text",
+                    "content": "**I. Open Circuit Test:** This test is performed to measure the no load current and the iron losses of the transformer. Generally, HT side is kept open-circuited and the rated voltage at rated frequency is applied to LT winding. The wattmeter, ammeter and the voltmeter are connected to their primary winding. The connections are made as shown in Figure 1. Rated voltage is supplied through an auto-transformer. The readings of wattmeter, voltmeter and ammeter are noted."
+                },
+                {
+                    "type": "text",
+                    "content": "Let W₀, V₀ and I₀ be the readings of wattmeter, voltmeter, and ammeter respectively."
+                },
+                {
+                    "type": "text",
+                    "content": "The iron losses:"
+                },
+                {
+                    "type": "equation",
+                    "value": "P_i = W_0"
+                },
+                {
+                    "type": "equation",
+                    "value": "W_0 = V_0 I_0 \\cos\\phi_0"
+                },
+                {
+                    "type": "text",
+                    "content": "The no-load power factor is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\cos\\phi_0 = \\frac{W_0}{V_0 I_0}"
+                },
+                {
+                    "type": "text",
+                    "content": "The various parameters can be calculated as under:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_w = \\frac{W_0}{V_0} = I_0 \\cos\\phi_0"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_m = \\sqrt{I_0^2 - I_w^2} = I_0 \\sin\\phi_0"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_0 = \\frac{V_0}{I_w}"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_0 = \\frac{V_0}{I_m}"
+                },
+                {
+                    "type": "text",
+                    "content": "where, Iₘ = Magnetizing component current, I_w = Working component current. Figure 2 shows the phasor diagram of the transformer when an open circuit test is performed. This test gives the core loss of transformer and shunt parameter of the equivalent circuit. The iron losses measured by the open circuit test is used for calculating the efficiency of the transformer. Hence, calculated R₀ and X₀ are the shunt parameters of the transformer equivalent circuit."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-phasor-diagram-oc-test",
+                    "caption": "Figure 2: Phasor Diagram of Open Circuit Test"
+                },
+                {
+                    "type": "text",
+                    "content": "**II. Short Circuit Test:** This test is carried out to determine the equivalent resistance and the leakage reactance of the transformer. The LT winding is short circuited. A low voltage is applied to HT side using an auto transformer. This voltage is adjusted so that the full-load current flows through the HT and LT windings. Since low voltage is applied, the iron loss is negligibly small as compared to the copper loss. Therefore, the wattmeter reading gives the copper loss."
+                },
+                {
+                    "type": "text",
+                    "content": "Let W_sc, V_sc, and I_sc be the readings of wattmeter, voltmeter and ammeter respectively."
+                },
+                {
+                    "type": "equation",
+                    "value": "R = \\frac{W_{sc}}{I_{sc}^2}"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z = \\frac{V_{sc}}{I_{sc}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "X = \\sqrt{Z^2 - R^2}"
+                },
+                {
+                    "type": "text",
+                    "content": "Where, R is the equivalent resistance, X is the equivalent leakage reactance and Z is the equivalent impedance. These parameters refer to the winding on which measurements are made. From these, the various parameters as referred to other winding can also be calculated."
+                },
+                {
+                    "type": "equation",
+                    "value": "P_o = VI\\cos\\phi \\quad \\text{(Output Power)}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Efficiency of the transformer** is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta = \\frac{P_0}{P_0 + W_0 + W_{sc}}"
+                },
+                {
+                    "type": "text",
+                    "content": "For any other load which is a factor x of full load, the core/iron loss will be constant but the copper loss will be changed by a factor x². Therefore, the efficiency at load factor x is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta_x = \\frac{xP_0}{xP_0 + W_0 + x^2 W_{sc}}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta_x = \\frac{P_0}{P_0 + \\frac{W_0}{x} + xW_{sc}}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Condition for Maximum Efficiency:** The efficiency η_x would be maximum if the denominator of the R.H.S. expression is minimum, i.e., its first derivative should be zero:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{W_0}{x^2} + W_{sc} = 0"
+                },
+                {
+                    "type": "equation",
+                    "value": "W_0 = W_{sc} \\quad (\\text{Iron losses} = \\text{Copper losses})"
+                },
+                {
+                    "type": "text",
+                    "content": "Therefore, a transformer has maximum efficiency at a load (x) when copper losses are equal to iron losses. From the efficiency curve (Fig. 4), obtain the value of X_m and verify that:"
+                },
+                {
+                    "type": "equation",
+                    "value": "W_0 = X_m^2 W_{sc}"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-efficiency-curve",
+                    "caption": "Figure 4: Efficiency Curve for a Transformer"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-open-circuit-test",
+                    "caption": "Figure 1: Open Circuit Test on Transformer"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-short-circuit-test",
+                    "caption": "Figure 3: Short Circuit Test on Transformer"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**(a) Open-Circuit Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 1.",
+                        "Before switching-on the supply, ensure that the variac is at a low output voltage. Now, switch on the supply.",
+                        "Adjust the variac output voltage to the rated voltage of the transformer.",
+                        "Record no-load current, voltage applied and no load power from this set up and switch-off the supply."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**(b) Short Circuit Test:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 3.",
+                        "Before switching on the supply, ensure that variac is set at zero value. Now, switch-on the supply.",
+                        "Increase the voltage applied slowly, so that the current flowing in the transformer winding equals the rated value.",
+                        "Record the readings of ammeter, voltmeter and wattmeter; which correspond to short circuit current, corresponding applied voltage and power with full load flowing under short circuit conditions respectively. Then switch-off the supply."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "All connections should be tight and clean.",
+                        "Special care should be taken while selecting the ranges of the meters for conducting Short-circuit test and open-circuit test.",
+                        "While conducting the short-circuit test, the voltage applied should be initially set at zero, and then increased slowly."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Observations for Open-Circuit Test**"
+                },
+                {
+                    "type": "text",
+                    "content": "Rated LV voltage (120 V) is applied to the LV winding. HV side is left open. Instruments are connected on the LV side."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Voltage Applied V₀ (V)",
+                        "No-Load Current I₀ (A)",
+                        "Iron Loss W₀ (W)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "120",
+                            "0.167",
+                            "12.0"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** At rated LV voltage of 120 V, the no-load current I₀ is approximately 0.167 A. The wattmeter registers the core (iron) loss W₀ = 12 W, which remains constant at all loads."
+                },
+                {
+                    "type": "text",
+                    "content": "**Observations for Short-Circuit Test**"
+                },
+                {
+                    "type": "text",
+                    "content": "LV side is short-circuited. Reduced voltage is applied to HV side until rated HV current (8.33 A) flows. Instruments are connected on the HV side."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Voltage Applied V_sc (V)",
+                        "Short Circuit Current I_sc (A)",
+                        "Copper Loss W_sc (W)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "11.91",
+                            "8.33",
+                            "80.0"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** A reduced voltage of approximately 11.91 V (≈ 4.96% of rated HV voltage) is sufficient to circulate the full-load current of 8.33 A in the HV winding. The wattmeter reading gives the full-load copper loss W_sc = 80 W. Iron losses are negligible under this test."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**From Open-Circuit Test (LV side, V₀ = 120 V, I₀ = 0.167 A, W₀ = 12 W):**"
+                },
+                {
+                    "type": "text",
+                    "content": "No-load power factor:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\cos\\phi_0 = \\frac{W_0}{V_0 I_0} = \\frac{12}{120 \\times 0.167} = 0.599"
+                },
+                {
+                    "type": "text",
+                    "content": "Working component of no-load current:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_w = \\frac{W_0}{V_0} = \\frac{12}{120} = 0.100 \\text{ A}"
+                },
+                {
+                    "type": "text",
+                    "content": "Magnetizing component of no-load current:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_m = \\sqrt{I_0^2 - I_w^2} = \\sqrt{(0.167)^2 - (0.100)^2} = \\sqrt{0.02789 - 0.01000} = 0.133 \\text{ A}"
+                },
+                {
+                    "type": "text",
+                    "content": "Core loss resistance (referred to LV side):"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_0 = \\frac{V_0}{I_w} = \\frac{120}{0.100} = 1200 \\; \\Omega \\approx 1.2 \\text{ k}\\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "Magnetizing reactance (referred to LV side):"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_0 = \\frac{V_0}{I_m} = \\frac{120}{0.133} = 902 \\; \\Omega \\approx 1.0 \\text{ k}\\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "**From Short-Circuit Test (HV side, V_sc = 11.91 V, I_sc = 8.33 A, W_sc = 80 W):**"
+                },
+                {
+                    "type": "text",
+                    "content": "Equivalent resistance referred to HV side:"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{eq(HV)} = \\frac{W_{sc}}{I_{sc}^2} = \\frac{80}{(8.33)^2} = \\frac{80}{69.39} = 1.153 \\; \\Omega \\approx 1.15 \\; \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "Equivalent impedance referred to HV side:"
+                },
+                {
+                    "type": "equation",
+                    "value": "Z_{eq(HV)} = \\frac{V_{sc}}{I_{sc}} = \\frac{11.91}{8.33} = 1.430 \\; \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "Equivalent leakage reactance referred to HV side:"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_{eq(HV)} = \\sqrt{Z_{eq}^2 - R_{eq}^2} = \\sqrt{(1.430)^2 - (1.15)^2} = \\sqrt{2.0449 - 1.3225} = \\sqrt{0.7224} = 0.850 \\; \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "**Referring HV parameters to LV side** (turns ratio a = 240/120 = 2):"
+                },
+                {
+                    "type": "equation",
+                    "value": "R_{eq(LV)} = \\frac{R_{eq(HV)}}{a^2} = \\frac{1.15}{4} = 0.2875 \\; \\Omega"
+                },
+                {
+                    "type": "equation",
+                    "value": "X_{eq(LV)} = \\frac{X_{eq(HV)}}{a^2} = \\frac{0.85}{4} = 0.2125 \\; \\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "**Efficiency Calculations at Unity Power Factor (rated output P₀ = 2000 W, W₀ = 12 W, W_sc = 80 W):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\eta_x = \\frac{x \\times 2000}{x \\times 2000 + 12 + x^2 \\times 80} \\times 100\\%"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Sl. No.",
+                        "Load Factor x",
+                        "xP₀ (W)",
+                        "x²W_sc (W)",
+                        "η (%)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0.25",
+                            "500",
+                            "5.0",
+                            "97.33"
+                        ],
+                        [
+                            "2",
+                            "0.50",
+                            "1000",
+                            "20.0",
+                            "97.56"
+                        ],
+                        [
+                            "3",
+                            "0.75",
+                            "1500",
+                            "45.0",
+                            "97.26"
+                        ],
+                        [
+                            "4",
+                            "1.00",
+                            "2000",
+                            "80.0",
+                            "96.15"
+                        ],
+                        [
+                            "5",
+                            "1.25",
+                            "2500",
+                            "125.0",
+                            "95.10"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Load for Maximum Efficiency:** Maximum efficiency occurs when iron loss equals copper loss, i.e., W₀ = x²_m × W_sc:"
+                },
+                {
+                    "type": "equation",
+                    "value": "x_m = \\sqrt{\\frac{W_0}{W_{sc}}} = \\sqrt{\\frac{12}{80}} = \\sqrt{0.15} = 0.387"
+                },
+                {
+                    "type": "text",
+                    "content": "Therefore, maximum efficiency occurs at approximately 38.7% of full load."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The equivalent circuit parameters (referred to LV side) and rated value of losses for the transformer have been calculated and the values are as follows:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Symbol",
+                        "Value (referred to LV side)"
+                    ],
+                    "rows": [
+                        [
+                            "Core Loss Resistance",
+                            "R₀",
+                            "1.2 kΩ"
+                        ],
+                        [
+                            "Magnetizing Reactance",
+                            "X₀",
+                            "1.0 kΩ"
+                        ],
+                        [
+                            "Equivalent Resistance",
+                            "R_eq",
+                            "0.2875 Ω"
+                        ],
+                        [
+                            "Equivalent Reactance",
+                            "X_eq",
+                            "0.2125 Ω"
+                        ],
+                        [
+                            "Iron (Core) Loss",
+                            "W₀",
+                            "12 W"
+                        ],
+                        [
+                            "Full-Load Copper Loss",
+                            "W_sc",
+                            "80 W"
+                        ],
+                        [
+                            "Load for Maximum Efficiency",
+                            "x_m",
+                            "≈ 0.387 (38.7% of full load)"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "The efficiency vs load curve peaks near x = 0.387, confirming that the transformer achieves maximum efficiency when iron losses equal copper losses. At full load (x = 1), the efficiency is approximately 96.15%, consistent with the rated efficiency of 94% (at rated load and lagging power factor)."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding and practical reasoning arising from this experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why is the open circuit test performed on the LV side and the short circuit test on the HV side of the transformer?\n\n**A:** The open circuit test is performed on the LV side because it requires the rated voltage to be applied, and the LV winding has a lower voltage rating that is easier and safer to supply directly from the mains or a variac. The HV side is left open. In the short circuit test, the HV side is energised because only a small fraction of the rated voltage (typically 4–8%) is needed to circulate full-load current, and it is safer to apply this reduced voltage to the HV side while short-circuiting the LV side. Performing the tests on these sides also ensures that the instruments used are in their convenient measurement ranges.",
+                        "**Q:** Why is the iron loss assumed to be negligible during the short circuit test?\n\n**A:** During the short circuit test, only a very small voltage (around 4–8% of rated voltage) is applied to the HV winding. Since core (iron) loss is proportional to the square of the applied voltage (P_core ∝ V²), at such a drastically reduced voltage the iron loss becomes extremely small — typically less than 1% of its value at rated voltage. Therefore it is negligible in comparison to the copper loss, which is significant because full-load current is flowing through the windings. The wattmeter reading is thus taken entirely as the full-load copper loss (W_sc).",
+                        "**Q:** What information does the no-load current I₀ provide, and why is it split into two components Iw and Im?\n\n**A:** The no-load current I₀ is the current drawn by the primary winding when the secondary is open-circuited and rated voltage is applied. It supplies the core losses and maintains the magnetic flux in the core. It is split into two orthogonal components: the working (or core-loss) component I_w = I₀ cos φ₀, which is in phase with the applied voltage and accounts for the hysteresis and eddy current losses in the core; and the magnetising component I_m = I₀ sin φ₀, which lags the voltage by 90° and is responsible for establishing the mutual flux. These two components directly give the shunt branch parameters R₀ = V₀/I_w and X₀ = V₀/I_m of the transformer equivalent circuit.",
+                        "**Q:** What is the physical significance of the condition W₀ = x²_m × W_sc for maximum efficiency, and what is the value of x_m for this transformer?\n\n**A:** This condition states that maximum efficiency occurs at the load factor x_m where the constant iron losses exactly equal the variable copper losses. Since iron losses are fixed (independent of load) and copper losses vary as the square of the load factor, there exists a unique loading point where their sum — which constitutes the total internal losses — is minimised relative to the output power. For this transformer with W₀ = 12 W and W_sc = 80 W, the load factor for maximum efficiency is x_m = √(W₀/W_sc) = √(12/80) ≈ 0.387, meaning maximum efficiency is achieved at approximately 38.7% of full load.",
+                        "**Q:** How are the equivalent circuit parameters measured on the HV side converted to refer to the LV side, and why is this referral necessary?\n\n**A:** The referral is done using the turns ratio a = N₁/N₂ = V₁/V₂ = 240/120 = 2. Impedances on the HV side are divided by a² = 4 to refer them to the LV side: R_eq(LV) = R_eq(HV)/a² and X_eq(LV) = X_eq(HV)/a². This referral is necessary because the transformer has two separate electrical circuits (primary and secondary) coupled magnetically, and to draw a single unified equivalent circuit all parameters must be expressed on the same voltage base. Referring to the LV side allows the shunt branch parameters (R₀, X₀ from the OC test, which are already on the LV side) and the series branch parameters (R_eq, X_eq from the SC test, originally on the HV side) to be combined into one coherent equivalent circuit.",
+                        "**Q:** If the transformer is operated at a load power factor of 0.8 lagging instead of unity, how would you expect the efficiency to change at full load, and why?\n\n**A:** The efficiency at full load and unity power factor is η = xP₀/(xP₀ + W₀ + x²W_sc), where P₀ = rated VA × power factor. At 0.8 lagging power factor, the actual output power P₀ = 2000 × 0.8 = 1600 W while the copper loss remains the same (since it depends on the magnitude of the current, not the power factor). Therefore the efficiency formula gives η = 1600/(1600 + 12 + 80) = 1600/1692 ≈ 94.6%, which is lower than the unity PF case. This happens because the useful power output decreases with power factor while the losses remain unchanged, reducing the ratio of output to input.",
+                        "**Q:** What does the approximate equivalent circuit of the transformer referred to the LV side look like, and what does each element represent physically?\n\n**A:** The approximate equivalent circuit referred to the LV side consists of a shunt branch and a series branch. The shunt branch, connected across the supply terminal, contains R₀ (≈ 1.2 kΩ) in parallel with X₀ (≈ 1.0 kΩ); R₀ represents the core loss resistance accounting for hysteresis and eddy current losses, while X₀ is the magnetising reactance representing the energy stored in the magnetic flux. In the approximate circuit, the shunt branch is moved to the input terminals (neglecting the small voltage drop across the series impedance at no load). The series branch contains R_eq (the total winding resistance referred to LV side) and X_eq (the total leakage reactance referred to LV side), which represent copper losses and flux leakage respectively. The load is connected at the output terminals of this series branch.",
+                        "**Q:** Why do transformers have very high efficiency (typically 95–99%) compared to rotating electrical machines?\n\n**A:** Transformers have no moving parts and therefore no mechanical losses such as friction, windage, or rotational eddy current losses that are present in motors and generators. Their only losses are the core (iron) losses due to hysteresis and eddy currents in the laminated core, and the copper (I²R) losses in the windings. Both of these loss mechanisms are small relative to the power transferred, especially in well-designed cores using high-grade silicon steel laminations and low-resistance copper conductors. Furthermore, since the transformer operates at a fixed frequency and the core flux is nearly constant, the core losses are steady and predictable. The absence of mechanical energy conversion also means there is no air gap reluctance loss. Collectively, these factors result in transformer efficiencies that are significantly higher than those of rotating machines."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The open circuit and short circuit tests were successfully performed on the 2 kVA, 240/120 V single-phase transformer. The OC test yielded the shunt branch parameters (R₀ ≈ 1.2 kΩ, X₀ ≈ 1.0 kΩ) and the iron loss (W₀ = 12 W). The SC test yielded the series branch parameters (R_eq ≈ 1.15 Ω, X_eq ≈ 0.85 Ω referred to HV side) and the full-load copper loss (W_sc = 80 W). The efficiency vs load curve confirmed that maximum efficiency occurs at approximately 38.7% of full load, where iron losses equal copper losses, consistent with the theoretical condition W₀ = x²_m × W_sc."
+                }
+            ]
+        }
+    }
+}
