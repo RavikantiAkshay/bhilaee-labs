@@ -1,0 +1,18 @@
+{
+    "fig5-star-star-lab-setup": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-6/fig5-star-star-lab-setup.png",
+        "description": "Star-Star Lab Setup"
+    },
+    "fig6-delta-delta-lab-setup": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-6/fig6-delta-delta-lab-setup.png",
+        "description": "Delta-Delta Lab Setup"
+    },
+    "fig7-star-delta-lab-setup": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-6/fig7-star-delta-lab-setup.png",
+        "description": "Star-Delta Lab Setup"
+    },
+    "fig8-delta-star-lab-setup": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-6/fig8-delta-star-lab-setup.png",
+        "description": "Delta-Star Lab Setup"
+    }
+}

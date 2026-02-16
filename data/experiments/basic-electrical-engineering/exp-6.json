@@ -1,0 +1,709 @@
+{
+    "id": "exp-6",
+    "title": "Investigation of Star-Star, Delta-Delta, Star-Delta and Delta-Star Connections using Three Single-Phase Transformers",
+    "labId": "basic-electrical-engineering",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Investigation of Star-Star, Delta-Delta, Star-Delta and Delta-Star Connections using Three Single-Phase Transformers."
+                },
+                {
+                    "type": "text",
+                    "content": "To study the characteristics of a three-phase transformer when connected in star and delta configurations for all four possible configurations and investigating the relationship between line to line and line phase voltages on either side of the transformers."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Single Phase Transformer Nameplate Details:**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Electrical Parameter",
+                        "Value",
+                        "Unit"
+                    ],
+                    "rows": [
+                        [
+                            "KVA Rating",
+                            "1",
+                            "kVA"
+                        ],
+                        [
+                            "Primary Voltage",
+                            "240",
+                            "V"
+                        ],
+                        [
+                            "Primary Current",
+                            "4.17",
+                            "A"
+                        ],
+                        [
+                            "Secondary Voltage",
+                            "120",
+                            "V"
+                        ],
+                        [
+                            "Secondary Current",
+                            "8.33",
+                            "A"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Equipment List:**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Equipment",
+                        "Specification",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Single Phase Transformer",
+                            "240V/120V, 1 kVA",
+                            "3"
+                        ],
+                        [
+                            "2",
+                            "Three Phase Variac (Autotransformer)",
+                            "0–415 V, 50 Hz",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Digital Voltmeter",
+                            "0–500 V AC",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Analog Voltmeter",
+                            "0–300 V AC",
+                            "1"
+                        ],
+                        [
+                            "5",
+                            "Connecting Leads",
+                            "-",
+                            "As per need"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In a three-phase transformer, the primary and secondary windings can be connected in either star (Y) or delta (Δ) configuration. Understanding the relationship between line voltage (V_L) and phase voltage (V_P) is crucial in analyzing the performance of the transformer in different configurations."
+                },
+                {
+                    "type": "text",
+                    "content": "**Star (Y) Connection:** In a star connection, one end of each winding is connected together at a common point known as the neutral point, and the other ends are connected to the respective phases of the three-phase supply. The line voltage (V_L) in a star-connected system is √3 times the phase voltage (V_P)."
+                },
+                {
+                    "type": "equation",
+                    "value": "V_L = \\sqrt{3} \\times V_P"
+                },
+                {
+                    "type": "text",
+                    "content": "**Delta (Δ) Connection:** In a delta connection, the windings are connected end-to-end to form a closed loop without a neutral point. The line voltage (V_L) in a delta-connected system is equal to the phase voltage (V_P)."
+                },
+                {
+                    "type": "equation",
+                    "value": "V_L = V_P"
+                },
+                {
+                    "type": "text",
+                    "content": "**Relationship between Line Voltage and Phase Voltage:** For a balanced three-phase system where loads are identical and equally distributed across the phases, the relationship between V_L and V_P depends on the winding configuration. In a star-connected system V_L = √3 × V_P, whereas in a delta-connected system V_L = V_P. This relationship is essential in designing electrical systems and understanding the distribution of power in three-phase circuits."
+                },
+                {
+                    "type": "text",
+                    "content": "**Ideal Transformer Voltage Relations:** For mathematical analysis, transformers are treated as ideal. Each single-phase transformer satisfies the following per-phase voltage relationships based on turns ratio N₁:N₂:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_a = \\frac{N_2}{N_1}\\hat{V}_A, \\quad \\hat{V}_b = \\frac{N_2}{N_1}\\hat{V}_B, \\quad \\hat{V}_c = \\frac{N_2}{N_1}\\hat{V}_C"
+                },
+                {
+                    "type": "text",
+                    "content": "**Wye-Wye and Delta-Delta Configurations:** For these configurations the secondary line voltages are directly related to primary line voltages through the turns ratio alone, with no additional scaling:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\frac{N_2}{N_1}\\hat{V}_{AB}, \\quad \\hat{V}_{bc} = \\frac{N_2}{N_1}\\hat{V}_{BC}, \\quad \\hat{V}_{ca} = \\frac{N_2}{N_1}\\hat{V}_{CA}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Delta-Wye (Star-Delta) Configuration:** The secondary line voltage leads the primary line voltage by 30° and is additionally scaled by √3:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\hat{V}_{AB} \\times \\frac{N_2}{N_1}\\sqrt{3}\\,\\angle{30^\\circ}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Wye-Delta (Star-Delta) Configuration:** The secondary voltage lags the primary voltage by 30° and is scaled by 1/√3:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\hat{V}_{AB} \\times \\frac{N_2}{N_1} \\cdot \\frac{1}{\\sqrt{3}}\\,\\angle{-30^\\circ}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig5-star-star-lab-setup",
+                    "caption": "Fig 5: Star-Star configuration using three single phase transformers Lab set-up.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig6-delta-delta-lab-setup",
+                    "caption": "Fig 6: Delta-Delta configuration using three single phase transformer Lab set-up.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig7-star-delta-lab-setup",
+                    "caption": "Fig 7: Star-delta configuration using three single phase transformers Lab set-up.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig8-delta-star-lab-setup",
+                    "caption": "Fig 8: Delta-Star configuration using three single phase transformers Lab set-up.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Star-Star Configuration:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 5.",
+                        "Switch on the supply and increase the voltage from the three-phase autotransformer.",
+                        "Measure and record the voltage on the digital multimeter on the HV side and on the analog meter on the LV side.",
+                        "Repeat steps 2 and 3 for five sets of voltages between 0 and 415 volts on the HV side."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Delta-Delta Configuration:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 6.",
+                        "Switch on the supply and increase the voltage from the three-phase autotransformer.",
+                        "Measure and record the voltage on the digital multimeter on the HV side and on the analog meter on the LV side.",
+                        "Repeat steps 2 and 3 for five sets of voltages between 0 and 240 volts on the HV side."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Star-Delta Configuration:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 7.",
+                        "Switch on the supply and increase the voltage from the three-phase autotransformer.",
+                        "Measure and record the voltage on the digital multimeter on the HV side and on the analog meter on the LV side.",
+                        "Repeat steps 2 and 3 for five sets of voltages between 0 and 415 volts on the HV side."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Delta-Star Configuration:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Make the connections as per the circuit diagram given in Fig. 8.",
+                        "Switch on the supply and increase the voltage from the three-phase autotransformer.",
+                        "Measure and record the voltage on the digital multimeter on the HV side and on the analog meter on the LV side.",
+                        "Repeat steps 2 and 3 for five sets of voltages between 0 and 240 volts on the HV side."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Safety Precautions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Switch on the power supply only in the presence of TAs.",
+                        "Always wear shoes while performing the experiment and entering into the lab.",
+                        "Instruments used should be of proper range.",
+                        "All connections should be tight.",
+                        "Give the supply through the autotransformer only by gradually rotating the knob. Do not operate the autotransformer abruptly; keep the knob at zero position before switching on.",
+                        "Never touch live conductors or terminals."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** Transformers used are rated 240V/120V (turns ratio N₁:N₂ = 2:1). HV side voltage is measured using a digital voltmeter (0–500 V); LV side voltage is measured using an analog voltmeter (0–300 V). Phase voltages are derived from line voltages using the standard star/delta relationships."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 1: Star-Star Configuration**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Voltmeter Reading HV (V_L) [Volts]",
+                        "Voltmeter Reading LV (V_l) [Volts]",
+                        "Phase Voltage HV (V_P = V_L / 1.732) [Volts]",
+                        "Phase Voltage LV (V_p = V_l / 1.732) [Volts]"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "100",
+                            "50",
+                            "57.7",
+                            "28.9"
+                        ],
+                        [
+                            "2",
+                            "150",
+                            "75",
+                            "86.6",
+                            "43.3"
+                        ],
+                        [
+                            "3",
+                            "200",
+                            "100",
+                            "115.5",
+                            "57.7"
+                        ],
+                        [
+                            "4",
+                            "300",
+                            "150",
+                            "173.2",
+                            "86.6"
+                        ],
+                        [
+                            "5",
+                            "415",
+                            "207",
+                            "239.6",
+                            "119.5"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** In the Star-Star configuration the secondary line voltage is half the primary line voltage, consistent with the 2:1 turns ratio. The ratio V_L(HV)/V_l(LV) ≈ 2.0 across all readings confirms correct wye-wye operation. Phase voltages on both sides are 1/√3 of the respective line voltages."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 2: Delta-Delta Configuration**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Voltmeter Reading HV (V_L) [Volts]",
+                        "Voltmeter Reading LV (V_l) [Volts]",
+                        "Phase Voltage HV (V_P = V_L) [Volts]",
+                        "Phase Voltage LV (V_p = V_l) [Volts]"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "50",
+                            "25",
+                            "50",
+                            "25"
+                        ],
+                        [
+                            "2",
+                            "100",
+                            "50",
+                            "100",
+                            "50"
+                        ],
+                        [
+                            "3",
+                            "150",
+                            "75",
+                            "150",
+                            "75"
+                        ],
+                        [
+                            "4",
+                            "200",
+                            "100",
+                            "200",
+                            "100"
+                        ],
+                        [
+                            "5",
+                            "240",
+                            "120",
+                            "240",
+                            "120"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** In the Delta-Delta configuration, line voltage and phase voltage are equal on both sides. The secondary voltage is exactly half of the primary voltage (turns ratio 2:1) and the ratio V_L/V_l ≈ 2.0 is maintained consistently across all readings."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 3: Star-Delta Configuration**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Voltmeter Reading HV (V_L) [Volts]",
+                        "Voltmeter Reading LV (V_l) [Volts]",
+                        "Phase Voltage HV (V_P = V_L / 1.732) [Volts]",
+                        "Phase Voltage LV (V_p = V_l) [Volts]"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "100",
+                            "29",
+                            "57.7",
+                            "29"
+                        ],
+                        [
+                            "2",
+                            "150",
+                            "43",
+                            "86.6",
+                            "43"
+                        ],
+                        [
+                            "3",
+                            "200",
+                            "58",
+                            "115.5",
+                            "58"
+                        ],
+                        [
+                            "4",
+                            "300",
+                            "87",
+                            "173.2",
+                            "87"
+                        ],
+                        [
+                            "5",
+                            "415",
+                            "120",
+                            "239.6",
+                            "120"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** In the Star-Delta configuration, the HV side phase voltage (= V_L / √3) is stepped down by the turns ratio to give the LV phase voltage, which equals the LV line voltage (delta secondary). The secondary line voltage is thus reduced by √3 relative to what a simple turns ratio would give, as expected from the wye-to-delta transformation."
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 4: Delta-Star Configuration**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Voltmeter Reading HV (V_L) [Volts]",
+                        "Voltmeter Reading LV (V_l) [Volts]",
+                        "Phase Voltage HV (V_P = V_L) [Volts]",
+                        "Phase Voltage LV (V_p = V_l / 1.732) [Volts]"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "50",
+                            "43",
+                            "50",
+                            "24.8"
+                        ],
+                        [
+                            "2",
+                            "100",
+                            "87",
+                            "100",
+                            "50.2"
+                        ],
+                        [
+                            "3",
+                            "150",
+                            "130",
+                            "150",
+                            "75.1"
+                        ],
+                        [
+                            "4",
+                            "200",
+                            "174",
+                            "200",
+                            "100.5"
+                        ],
+                        [
+                            "5",
+                            "240",
+                            "208",
+                            "240",
+                            "120.1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Observation:** In the Delta-Star configuration, the HV phase voltage (= V_L for delta) is stepped down by the turns ratio to give the LV phase voltage. The LV line voltage is √3 times the LV phase voltage (star secondary), resulting in the secondary line voltage being boosted by √3 relative to the simple turns ratio, as expected from the delta-to-wye transformation."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Phase Voltage from Line Voltage:** For a Star (Wye) connected winding:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_P = \\frac{V_L}{\\sqrt{3}} = \\frac{V_L}{1.732}"
+                },
+                {
+                    "type": "text",
+                    "content": "For a Delta connected winding:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_P = V_L"
+                },
+                {
+                    "type": "text",
+                    "content": "**Turns Ratio and Voltage Transformation:** For ideal transformers with turns ratio N₁:N₂, the secondary phase voltage relates to the primary phase voltage as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{V_{P2}}{V_{P1}} = \\frac{N_2}{N_1}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Star-Star and Delta-Delta — No Phase Shift:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\frac{N_2}{N_1}\\hat{V}_{AB}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Delta-Wye — Secondary leads by +30°:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\hat{V}_{AB} \\times \\frac{N_2}{N_1} \\times \\sqrt{3}\\,\\angle{+30^\\circ}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Wye-Delta — Secondary lags by −30°:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\hat{V}_{ab} = \\hat{V}_{AB} \\times \\frac{N_2}{N_1} \\times \\frac{1}{\\sqrt{3}}\\,\\angle{-30^\\circ}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Sample Calculation — Star-Star (Reading 5):** V_L(HV) = 415 V, N₁:N₂ = 2:1"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{P,HV} = \\frac{415}{1.732} = 239.6 \\text{ V}"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{P,LV} = \\frac{N_2}{N_1} \\times V_{P,HV} = \\frac{1}{2} \\times 239.6 = 119.8 \\text{ V}"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{l,LV} = \\sqrt{3} \\times 119.8 = 207.4 \\text{ V} \\approx 207 \\text{ V (measured)}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment was successfully conducted for all four three-phase transformer configurations. The measured line and phase voltages on both the HV and LV sides were in close agreement with theoretically predicted values based on the turns ratio (2:1) and the respective star/delta voltage relationships."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Configuration",
+                        "HV Connection",
+                        "LV Connection",
+                        "V_L(HV) / V_l(LV) Ratio (Expected)",
+                        "Phase Shift (Secondary w.r.t. Primary)"
+                    ],
+                    "rows": [
+                        [
+                            "Star-Star (Y-Y)",
+                            "Star",
+                            "Star",
+                            "2.0  (N₁/N₂)",
+                            "0°"
+                        ],
+                        [
+                            "Delta-Delta (Δ-Δ)",
+                            "Delta",
+                            "Delta",
+                            "2.0  (N₁/N₂)",
+                            "0°"
+                        ],
+                        [
+                            "Star-Delta (Y-Δ)",
+                            "Star",
+                            "Delta",
+                            "3.46  (√3 × N₁/N₂)",
+                            "−30°"
+                        ],
+                        [
+                            "Delta-Star (Δ-Y)",
+                            "Delta",
+                            "Star",
+                            "1.155  (N₁ / (√3 × N₂))",
+                            "+30°"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Key Findings:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Y-Y and Δ-Δ configurations** produced secondary line voltages equal to exactly 1/2 of the primary line voltages, consistent with the 2:1 turns ratio and no additional scaling from the connection type.",
+                        "**Y-Δ (Star-Delta) configuration** resulted in a secondary line voltage reduced by an additional factor of √3 compared to Y-Y, because the secondary line voltage equals the secondary phase voltage in a delta connection.",
+                        "**Δ-Y (Delta-Star) configuration** resulted in a secondary line voltage boosted by √3, as the star-connected secondary line voltage is √3 times the secondary phase voltage.",
+                        "Minor discrepancies between measured and calculated values are attributed to non-ideal transformer behaviour including winding resistance, leakage flux, core losses, and instrument loading effects."
+                    ]
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Note:** The following questions are intended to evaluate conceptual understanding and practical reasoning arising from the experiment."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the fundamental difference between a star (wye) and a delta connection in a three-phase transformer system, and how does each affect the relationship between line voltage and phase voltage?\n\n**A:** In a star connection, one terminal of each winding is joined to a common neutral point, and the line voltage is √3 times the phase voltage (V_L = √3 × V_P). This configuration provides a neutral point which allows both single-phase and three-phase loads to be served from the same system. In a delta connection, the windings are connected end-to-end forming a closed loop with no neutral, and the line voltage equals the phase voltage (V_L = V_P). The absence of a neutral restricts delta connections to balanced three-phase loads. The choice between configurations governs both the effective voltage transformation ratio and whether a phase shift is introduced between primary and secondary line voltages.",
+                        "**Q:** In the Star-Delta and Delta-Star configurations, why does the secondary line voltage not simply equal the primary line voltage scaled by the turns ratio alone?\n\n**A:** The turns ratio (N₁:N₂) relates only the primary and secondary phase voltages of each individual single-phase transformer. The line-to-line voltage, however, also depends on whether the winding is connected in star or delta. In a Y-Δ connection, the primary phase voltage is V_L(HV)/√3; after stepping down by the turns ratio, this gives the secondary phase voltage, which equals the secondary line voltage (since V_L = V_P for delta). This results in an additional division by √3 compared to Y-Y. Conversely, in a Δ-Y connection the secondary line voltage is √3 times the secondary phase voltage (star), introducing an additional multiplication by √3. Therefore the effective line voltage ratio is (N₁/N₂)×√3 for Y-Δ and (N₁/N₂)/√3 for Δ-Y.",
+                        "**Q:** During the experiment, what was the purpose of using two different types of voltmeters — digital on the HV side and analog on the LV side?\n\n**A:** The digital voltmeter (0–500 V range) was placed on the HV side to precisely measure primary line voltages reaching up to 415 V in star configurations. Its high input impedance and digital display minimise parallax and loading errors at elevated voltages. The analog voltmeter (0–300 V range) was placed on the LV side where voltages are lower due to the step-down turns ratio. Analog meters are well suited here because they provide intuitive visual indication of voltage trends and fluctuations during gradual adjustment of the variac. Using separate instruments on each side also prevents overranging and ensures measurement accuracy is matched to each voltage level.",
+                        "**Q:** Explain why a 30° phase shift exists between primary and secondary line voltages in the Δ-Y and Y-Δ configurations but not in Y-Y or Δ-Δ.\n\n**A:** In Y-Y or Δ-Δ connections, each secondary phase voltage is a direct scaled replica of its corresponding primary phase voltage, so all phasors maintain the same angular orientation and no displacement is introduced. In a Y-Δ connection, however, the secondary line voltage V_ab = V_a − V_b is a phasor difference of two secondary phase voltages. The primary Y-connected phases are displaced by 120° from each other, and the phasor subtraction introduces a geometric rotation of −30° in the resulting secondary line voltage. The opposite sign shift (+30°) appears in the Δ-Y connection. This inherent phase displacement cannot be avoided and has critical implications when attempting to parallel transformers of different vector groups in power systems.",
+                        "**Q:** In practical power distribution, what are the preferred application scenarios for each of the four configurations — Y-Y, Δ-Δ, Y-Δ, and Δ-Y?\n\n**A:** The Y-Y configuration is used when a neutral is needed on both sides, such as in low-voltage distribution networks supplying single-phase domestic loads. The Δ-Δ configuration is preferred in high-current industrial applications and also provides fault tolerance — if one transformer fails, the remaining two can continue supplying three-phase power in an open-delta (V-V) arrangement. The Y-Δ (step-down) configuration is standard in distribution substations stepping high transmission voltages down to feeder levels; the delta secondary suppresses triplen harmonic currents. The Δ-Y (step-up) configuration is universally used at generating stations to step up the generator terminal voltage to transmission level; the star secondary provides a solidly grounded neutral for system protection and fault current management."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Through this experiment, the principles and characteristics of Star-Star, Delta-Delta, Star-Delta, and Delta-Star connections in three-phase transformer systems were successfully demonstrated. The measured line and phase voltages on both HV and LV sides were in close agreement with theoretically expected values derived from the turns ratio (2:1) and the respective connection-type voltage relationships. The Y-Y and Δ-Δ configurations yielded a line voltage ratio equal purely to the turns ratio with no phase shift, while the Y-Δ and Δ-Y configurations introduced an additional √3 scaling factor and a ±30° phase displacement between primary and secondary line voltages. Students gained practical insights into the advantages and application contexts of each configuration, enhancing their understanding of three-phase power distribution systems."
+                }
+            ]
+        }
+    }
+}
