@@ -8,7 +8,7 @@
           "id": "1",
           "title": "Measurement and Correction of Power Factor",
           "fileName": "exp-1.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {
@@ -531,9 +531,9 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Object Detection",
+          "title": "Measurement and Correction of Power Factor",
           "fileName": "exp-1.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {

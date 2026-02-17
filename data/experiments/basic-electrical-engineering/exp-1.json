@@ -2,10 +2,12 @@
     "id": "exp-1",
     "title": "Measurement and Correction of Power Factor",
     "labId": "basic-electrical-engineering",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-1",
+        "simulationType": "AC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.0.0",
@@ -225,9 +227,14 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
-            "content": []
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulate the circuit to measure and correct the power factor."
+                }
+            ]
         },
         "observation": {
             "id": "observation",
