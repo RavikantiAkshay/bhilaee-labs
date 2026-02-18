@@ -1,0 +1,38 @@
+{
+    "exp03-mux-sim-obs": {
+        "path": "/assets/labs/digital-electronics/exp-3/sim_output.png",
+        "description": "Simulation Output for 4:1 Multiplexer"
+    },
+    "exp03-mux-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-3/case1.png",
+        "description": "Hardware verification: S1=0, S0=0 -> I0 selected"
+    },
+    "exp03-mux-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-3/case2.png",
+        "description": "Hardware verification: S1=0, S0=1 -> I1 selected"
+    },
+    "exp03-mux-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-3/case3.png",
+        "description": "Hardware verification: S1=1, S0=0 -> I2 selected"
+    },
+    "exp03-mux-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-3/case4.png",
+        "description": "Hardware verification: S1=1, S0=1 -> I3 selected"
+    },
+    "exp03-or-mux-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-3/or_case1.png",
+        "description": "OR via MUX Case 1: A=0, B=0 -> Y=0"
+    },
+    "exp03-or-mux-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-3/or_case2.png",
+        "description": "OR via MUX Case 2: A=0, B=1 -> Y=1"
+    },
+    "exp03-or-mux-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-3/or_case3.png",
+        "description": "OR via MUX Case 3: A=1, B=0 -> Y=1"
+    },
+    "exp03-or-mux-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-3/or_case4.png",
+        "description": "OR via MUX Case 4: A=1, B=1 -> Y=1"
+    }
+}

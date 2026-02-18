@@ -1,0 +1,412 @@
+{
+    "id": "3",
+    "title": "Design and Implementation of 4:1 Multiplexer and OR Gate using Multiplexer on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement a 4:1 Multiplexer on the FPGA board and to implement an OR gate using a multiplexer."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Multiplexer:** A multiplexer (MUX) is a combinational circuit that selects one of several digital input signals and forwards the selected input onto a single output line. The selection is controlled by select lines. A 4:1 multiplexer has 4 data input lines (I0–I3), 2 select lines (S0, S1), and 1 output line (Y)."
+                },
+                {
+                    "type": "text",
+                    "content": "The select lines determine which input is passed to the output according to the following selection table:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S1",
+                        "S0",
+                        "Output Y"
+                    ],
+                    "rows": [
+                        [
+                            "0",
+                            "0",
+                            "I0"
+                        ],
+                        [
+                            "0",
+                            "1",
+                            "I1"
+                        ],
+                        [
+                            "1",
+                            "0",
+                            "I2"
+                        ],
+                        [
+                            "1",
+                            "1",
+                            "I3"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**OR Gate using a Multiplexer:** Any logic gate can be implemented using a multiplexer. An OR gate with inputs A and B can be implemented using a 2:1 MUX by using A as the select line and connecting the data inputs such that: when A=0, the output follows B (set I0=B), and when A=1, the output is always 1 regardless of B (set I1=1). This setup ensures the output Y = A + B."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1: 4:1 Multiplexer**\n1.  **Project Setup:** Create a new Xilinx ISE/Vivado project targeting your FPGA device.\n2.  **Verilog Code:** Create a module `mux4_1` using an `always` block and `case` or `if-else` statement to select inputs based on `Sel`.\n3.  **Simulation:** Verify the design using ISim. Test all select combinations (00, 01, 10, 11) with distinct input values.\n4.  **Implementation:** Create a UCF file mapping `I[3:0]`, `Sel[1:0]`, and `Y` to board switches and LEDs. Synthesize and generate bitstream.\n5.  **Test:** Download bitstream to FPGA and verify hardware behavior."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2: OR Gate using Multiplexer**\n1.  **Verilog Code:** Create a module `or_gate_mux` using a conditional operator (ternary) or `if-else` logic: `assign Y = A ? 1 : B;`.\n2.  **Simulation:** Simulating this module should check the standard OR truth table.\n3.  **Implementation:** Map `A`, `B`, and `Y` in the UCF file. Synthesize and program the board.\n4.  **Test:** Verify all 4 input cases match the OR gate truth table."
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for 4:1 Multiplexer:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module Mux(\n  input [3:0] I,\n  input [1:0] Sel,\n  output reg Y\n);\n  always@(Sel or I)\n  begin\n    case(Sel)\n      2'b00: Y = I[0];\n      2'b01: Y = I[1];\n      2'b10: Y = I[2];\n      2'b11: Y = I[3];\n    endcase\n  end\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File (UCF) for 4:1 MUX:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"Sel[0]\" LOC = P22;\nNET \"Sel[1]\" LOC = P21;\nNET \"I[0]\"   LOC = P17;\nNET \"I[1]\"   LOC = P16;\nNET \"I[2]\"   LOC = P15;\nNET \"I[3]\"   LOC = P14;\nNET \"Y\"      LOC = P24;"
+                },
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for OR Gate using Multiplexer:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module OR_using_mux(\n  input A,\n  input B,\n  output Y\n);\n  assign Y = A ? 1 : B;\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File (UCF) for OR Gate:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"A\" LOC = P22;\nNET \"B\" LOC = P21;\nNET \"Y\" LOC = P30;"
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1: 4:1 Multiplexer — Hardware Implementation**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-mux-sim-obs",
+                    "caption": "Simulation Output for 4:1 Multiplexer showing select lines and output.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "S1",
+                        "S0",
+                        "Selected Input",
+                        "Input Value",
+                        "Output Y"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "I0",
+                            "High (1)",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "0",
+                            "1",
+                            "I1",
+                            "High (1)",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "1",
+                            "0",
+                            "I2",
+                            "High (1)",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "1",
+                            "1",
+                            "I3",
+                            "High (1)",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-mux-hw-case1",
+                    "caption": "Case 1: S0=0, S1=0 — I0 selected, Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-mux-hw-case2",
+                    "caption": "Case 2: S0=0, S1=1 — I1 selected, Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-mux-hw-case3",
+                    "caption": "Case 3: S0=1, S1=0 — I2 selected, Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-mux-hw-case4",
+                    "caption": "Case 4: S0=1, S1=1 — I3 selected, Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2: OR Gate using Multiplexer**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "A (Select)",
+                        "B (I0)",
+                        "Output Y",
+                        "Expected (A+B)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "2",
+                            "0",
+                            "1",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "1",
+                            "0",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "1",
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-or-mux-hw-case1",
+                    "caption": "OR via MUX Case 1: A=0, B=0 — Output Y=0.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-or-mux-hw-case2",
+                    "caption": "OR via MUX Case 2: A=0, B=1 — Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-or-mux-hw-case3",
+                    "caption": "OR via MUX Case 3: A=1, B=0 — Output Y=1.",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp03-or-mux-hw-case4",
+                    "caption": "OR via MUX Case 4: A=1, B=1 — Output Y=1.",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verification of OR Gate using MUX logic:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "Y = A \\cdot 1 + \\overline{A} \\cdot B = A + \\overline{A}B = A + B"
+                },
+                {
+                    "type": "text",
+                    "content": "This confirms that the 2:1 MUX configuration with A as select, I1=1 and I0=B correctly implements the OR function."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results \u0026 Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Both parts of the experiment were successfully completed. The 4:1 multiplexer correctly forwarded the selected input to the output based on the select line combination. The OR gate implemented using a 2:1 MUX configuration produced outputs that exactly matched the OR truth table for all input combinations."
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, a 4:1 multiplexer was successfully designed and implemented on the FPGA board. The functionality was also verified with a simulation. Additionally, an OR gate was implemented using a 2:1 multiplexer, demonstrating the versatility of multiplexers in implementing arbitrary logic functions."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a multiplexer, and how does it differ from a demultiplexer?\n\n**A:** A multiplexer (MUX) selects one of several input signals and routes it to a single output. A demultiplexer (DEMUX) takes a single input signal and routes it to one of several outputs.",
+                        "**Q:** How many select lines does a 4:1 multiplexer require, and why?\n\n**A:** A 4:1 multiplexer requires 2 select lines because 2 binary bits can represent 4 distinct values (00, 01, 10, 11), one for each of the 4 input channels.",
+                        "**Q:** Explain how any Boolean function of two variables can be implemented using a 4:1 MUX.\n\n**A:** A 4:1 MUX has two select lines which can be driven by input variables. By setting each data input Ii to the desired constant (0 or 1), any truth table of a 2-variable Boolean function can be implemented.",
+                        "**Q:** What is the advantage of implementing logic gates using multiplexers?\n\n**A:** Using multiplexers reduces the number of different IC types needed and simplifies circuit modification. In FPGAs, LUTs are essentially programmable multiplexers.",
+                        "**Q:** In the OR gate using a 2:1 MUX, why is A used as the select line?\n\n**A:** Using A as the select line allows a clean assignment: when A=0, Output=B; when A=1, Output=1. This creates the OR logic. Using B as the select line would also work due to the commutative property of OR.",
+                        "**Q:** What is the Boolean expression for the output of a 4:1 MUX?\n\n**A:** The Boolean expression is: Y = (S1' S0' I0) + (S1' S0 I1) + (S1 S0' I2) + (S1 S0 I3).",
+                        "**Q:** What happens if more than one select line combination is applied simultaneously (glitching)?\n\n**A:** Logic levels in digital circuits switch rapidly. During transitions, non-ideal signal timing can cause temporary glitches (hazards) where the output may reflect an incorrect input briefly."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References \u0026 Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                },
+                {
+                    "type": "text",
+                    "content": "**Note:** This manual covers all experiments for the Digital Electronics course."
+                }
+            ]
+        }
+    }
+}
