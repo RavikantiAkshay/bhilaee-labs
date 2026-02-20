@@ -123,10 +123,10 @@
         },
         {
           "id": "7",
-          "title": "Experiment 7",
+          "title": "Design and Implementation of 8:3 Encoder Circuit on FPGA Board",
           "fileName": "exp-7.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "8",

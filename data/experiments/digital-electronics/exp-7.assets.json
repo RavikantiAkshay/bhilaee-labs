@@ -1,0 +1,22 @@
+{
+    "exp07-encoder-simulation-waveform": {
+        "path": "/assets/labs/digital-electronics/exp-7/sim_output.png",
+        "description": "Simulation Output: Waveforms for all 8 one-hot input combinations"
+    },
+    "exp07-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-7/case_000.png",
+        "description": "Case 1: Inputs I0 active -> Y[2:0]=000"
+    },
+    "exp07-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-7/case_011.png",
+        "description": "Case 2: Inputs I3 active -> Y[2:0]=011"
+    },
+    "exp07-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-7/case_101.png",
+        "description": "Case 3: Inputs I5 active -> Y[2:0]=101"
+    },
+    "exp07-hw-case4": {
+        "path": "/assets/labs/digital-electronics/exp-7/case_111.png",
+        "description": "Case 4: Inputs I7 active -> Y[2:0]=111"
+    }
+}

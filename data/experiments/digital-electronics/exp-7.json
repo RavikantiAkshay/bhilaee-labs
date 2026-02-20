@@ -1,0 +1,496 @@
+{
+    "id": "7",
+    "title": "Design and Implementation of 8:3 Encoder Circuit on FPGA Board",
+    "labId": "digital-electronics",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "Hardware-Oriented",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement an 8:3 encoder circuit on the FPGA board."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Tool / Equipment",
+                        "Purpose"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "FPGA Development Board (Spartan-6)",
+                            "Hardware implementation and verification"
+                        ],
+                        [
+                            "2",
+                            "Xilinx ISE Software",
+                            "HDL design entry, synthesis, and implementation"
+                        ],
+                        [
+                            "3",
+                            "ISim Simulator",
+                            "Functional simulation before hardware download"
+                        ],
+                        [
+                            "4",
+                            "USB Programming Cable",
+                            "Downloading bitstream to FPGA board"
+                        ],
+                        [
+                            "5",
+                            "PC / Workstation",
+                            "Running the Xilinx software environment"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "An encoder is a combinational circuit that performs the reverse operation of a decoder. It converts a set of binary inputs (typically in one-hot format) into a compact binary code at its outputs. It encodes the information from 2^n input lines into an n-bit binary output code representing the position of the active input."
+                },
+                {
+                    "type": "text",
+                    "content": "An 8:3 encoder has 8 input lines (I0–I7) and 3 output lines (Y0–Y2). At any given time, exactly one input is assumed to be high, and the output Y[2:0] holds the 3-bit binary representation of the active input's index."
+                },
+                {
+                    "type": "text",
+                    "content": "**Limitations of a Standard Encoder:** A standard encoder has two key limitations. First, if all inputs are 0, the output is undefined or ambiguous (typically defaults to 000, which conflicts with the encoding for I0=1). Second, if more than one input is simultaneously high, the output becomes incorrect because the circuit is designed for only one active input at a time. These problems are resolved by using a priority encoder, which assigns a priority to each input and generates the output corresponding to the highest-priority active input."
+                },
+                {
+                    "type": "text",
+                    "content": "The truth table for the 8:3 encoder (assuming one-hot input) is given below:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Active Input",
+                        "I7",
+                        "I6",
+                        "I5",
+                        "I4",
+                        "I3",
+                        "I2",
+                        "I1",
+                        "I0",
+                        "Y2",
+                        "Y1",
+                        "Y0"
+                    ],
+                    "rows": [
+                        [
+                            "I0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "I1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "I2",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "I3",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "1"
+                        ],
+                        [
+                            "I4",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "I5",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "0",
+                            "1"
+                        ],
+                        [
+                            "I6",
+                            "0",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "1",
+                            "0"
+                        ],
+                        [
+                            "I7",
+                            "1",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "0",
+                            "1",
+                            "1",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": false,
+            "content": []
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Open Xilinx ISE and create a new project targeting the appropriate FPGA device.",
+                        "Create a new Verilog source file and write the 8:3 encoder module using an always block and a case statement that maps each one-hot 8-bit input to its corresponding 3-bit binary output. Add a default case for handling the all-zeros input condition.",
+                        "Create the User Constraints File (UCF) mapping I[0]–I[7] and Y[0]–Y[2] to their designated FPGA pin locations.",
+                        "Run the behavioural simulation in ISim by applying all 8 one-hot input combinations and verifying that the correct 3-bit binary output is produced.",
+                        "Synthesize and implement the design in Xilinx ISE.",
+                        "Generate the programming bitstream and download to the FPGA board.",
+                        "Test the four representative input cases on the board using toggle switches.",
+                        "Observe the LED outputs for Y0, Y1, and Y2 and verify the binary encoding matches the active input index."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Verilog Code for 8:3 Encoder Implementation:**"
+                },
+                {
+                    "type": "code",
+                    "language": "verilog",
+                    "code": "module Encoder(\n  input  [7:0] I,\n  output reg [2:0] Y\n);\n  always@(I)\n  begin\n    case(I)\n      8'b00000001: Y = 3'b000;\n      8'b00000010: Y = 3'b001;\n      8'b00000100: Y = 3'b010;\n      8'b00001000: Y = 3'b011;\n      8'b00010000: Y = 3'b100;\n      8'b00100000: Y = 3'b101;\n      8'b01000000: Y = 3'b110;\n      8'b10000000: Y = 3'b111;\n      default:     Y = 3'b111;\n    endcase\n  end\nendmodule"
+                },
+                {
+                    "type": "text",
+                    "content": "In the code above, I and Y are bit-vectors (buses). The case statement assigns the appropriate 3-bit binary code to Y for each one-hot input combination. A default case is included to handle the condition when all inputs are zero — the output defaults to 3'b111 to avoid undefined behaviour."
+                },
+                {
+                    "type": "text",
+                    "content": "**User Constraints File for 8:3 Encoder:**"
+                },
+                {
+                    "type": "code",
+                    "language": "properties",
+                    "code": "NET \"I[0]\" LOC=\"P22\";\nNET \"I[1]\" LOC=\"P21\";\nNET \"I[2]\" LOC=\"P17\";\nNET \"I[3]\" LOC=\"P16\";\nNET \"I[4]\" LOC=\"P15\";\nNET \"I[5]\" LOC=\"P14\";\nNET \"I[6]\" LOC=\"P12\";\nNET \"I[7]\" LOC=\"P11\";\nNET \"Y[0]\" LOC=\"P138\";\nNET \"Y[1]\" LOC=\"P143\";\nNET \"Y[2]\" LOC=\"P142\";"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp07-encoder-simulation-waveform",
+                    "caption": "Simulation waveform for 8:3 Encoder: output Y correctly encodes the binary index of the active input for all 8 one-hot input combinations.",
+                    "role": "simulation-screenshot"
+                },
+                {
+                    "type": "text",
+                    "content": "From the simulation waveform, the output bits Yi exactly match the expected binary encoding for every one-hot input combination. It is verified that only one bit of I is high in each test case, ensuring correct encoder functionality."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Hardware implementation was verified on the FPGA board. Four representative input cases were tested."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "Active Input",
+                        "Y2 (Obs.)",
+                        "Y1 (Obs.)",
+                        "Y0 (Obs.)",
+                        "Binary Output",
+                        "Expected Binary"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "I0 = 1, all others 0",
+                            "0",
+                            "0",
+                            "0",
+                            "000",
+                            "000"
+                        ],
+                        [
+                            "2",
+                            "I3 = 1, all others 0",
+                            "0",
+                            "1",
+                            "1",
+                            "011",
+                            "011"
+                        ],
+                        [
+                            "3",
+                            "I5 = 1, all others 0",
+                            "1",
+                            "0",
+                            "1",
+                            "101",
+                            "101"
+                        ],
+                        [
+                            "4",
+                            "I7 = 1, all others 0",
+                            "1",
+                            "1",
+                            "1",
+                            "111",
+                            "111"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 1 (I0=1, all others 0):** Input I0 is high while all other inputs are low. The outputs Y0, Y1, and Y2 are all zero, which is the binary representation of the number 0."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp07-hw-case1",
+                    "caption": "Case 1: I0 active — Y[2:0]=000 (binary 0).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 2 (I3=1, all others 0):** Input I3 is high. Outputs Y0 and Y1 are high while Y2 is low, giving the binary output 011, which is the binary representation of 3."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp07-hw-case2",
+                    "caption": "Case 2: I3 active — Y[2:0]=011 (binary 3).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 3 (I5=1, all others 0):** Input I5 is high. Outputs Y0 and Y2 are high while Y1 is low, giving the binary output 101, which is the binary representation of 5."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp07-hw-case3",
+                    "caption": "Case 3: I5 active — Y[2:0]=101 (binary 5).",
+                    "role": "hardware-photo"
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 4 (I7=1, all others 0):** Input I7 is high. All outputs Y0, Y1, and Y2 are high, giving the binary output 111, which is the binary representation of 7."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp07-hw-case4",
+                    "caption": "Case 4: I7 active — Y[2:0]=111 (binary 7).",
+                    "role": "hardware-photo"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Verification of binary output encoding for all four test cases:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Active Input Index",
+                        "Expected Binary Y[2:0]",
+                        "Decimal Verification"
+                    ],
+                    "rows": [
+                        [
+                            "I0 (index 0)",
+                            "000",
+                            "0 in decimal — Y[2:0] = 0"
+                        ],
+                        [
+                            "I3 (index 3)",
+                            "011",
+                            "3 in decimal — Y[2:0] = 3"
+                        ],
+                        [
+                            "I5 (index 5)",
+                            "101",
+                            "5 in decimal — Y[2:0] = 5"
+                        ],
+                        [
+                            "I7 (index 7)",
+                            "111",
+                            "7 in decimal — Y[2:0] = 7"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "In all cases, the 3-bit binary output equals the decimal index of the active input, confirming correct encoder operation."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The 8:3 encoder was successfully designed in Verilog and implemented on the FPGA board. "
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "**Software Verification:** The simulation results matched the truth table for all 8 one-hot input combinations.",
+                        "**Hardware Verification:** The hardware implementation confirmed that the 3-bit binary output correctly encodes the index of the active input for all tested cases."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, the implementation of an 8:3 encoder on the FPGA board was successfully completed. Both software simulation and hardware implementation were performed and verified against the expected truth table. The different problems that can arise in a standard encoder — such as undefined output when all inputs are zero and incorrect output when multiple inputs are active — were identified, and the default case in the Verilog code was used as a remedial measure. The experiment demonstrates the complementary relationship between encoders and decoders as fundamental combinational building blocks."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is an encoder, and how does it differ functionally from a decoder?\n\n**A:** An encoder is a combinational circuit that converts a one-hot (or sparse) input into a compact binary code. It reduces 2^n input lines to n output lines, where the binary output represents the index of the active input. A decoder performs the reverse: it converts an n-bit binary input into a one-hot 2^n output, activating exactly one output line corresponding to the binary value. In short, the encoder compresses information (many to few), while the decoder expands it (few to many).",
+                        "**Q:** What are the two main problems associated with a standard (non-priority) encoder?\n\n**A:** The two main problems are: (1) All-zeros input ambiguity — when none of the inputs is high, the output defaults to 000, which is the same as the valid encoding for input I0 being active. This makes it impossible to distinguish between 'no input active' and 'I0 active'. (2) Multiple active inputs — if more than one input is simultaneously high, the encoder produces an incorrect output that may not correspond to any valid input encoding. These problems are resolved by using a priority encoder, which assigns priorities to inputs and always generates the output for the highest-priority active input.",
+                        "**Q:** What is a priority encoder, and how does it differ from a standard encoder?\n\n**A:** A priority encoder resolves the ambiguity of having multiple simultaneous active inputs by assigning a priority order to the inputs, typically with the highest index input having the highest priority. When multiple inputs are active, the output corresponds to the highest-priority active input, and lower-priority active inputs are ignored. Priority encoders often include an additional output — a valid bit — that is high when at least one input is active, distinguishing the all-zeros input state from the I0-only active state. Standard encoders assume that only one input is ever active at a time.",
+                        "**Q:** How is an 8:3 encoder related to a 3:8 decoder in terms of function and implementation?\n\n**A:** An 8:3 encoder and a 3:8 decoder are inverse functions of each other. If the output of an 8:3 encoder is fed as input to a 3:8 decoder, the decoder recovers the original one-hot input pattern (assuming no noise or errors). This complementary relationship makes them commonly used in communication systems for data encoding and decoding. In implementation, the decoder uses a case statement that maps binary codes to one-hot outputs, while the encoder's case statement maps one-hot inputs to binary codes — essentially the same structure with the lookup direction reversed.",
+                        "**Q:** In the Verilog implementation of the encoder, why is a default case included in the case statement?\n\n**A:** The default case is included to handle the condition when all inputs are zero (8'b00000000), which does not match any of the eight explicitly listed one-hot patterns. Without a default case, the Verilog synthesis tool would leave Y undefined for this input combination, which could lead to unpredictable or incorrect hardware behaviour. The default case assigns a known output value (3'b111 in this implementation) to prevent undefined states, even though this conflicts with the valid I7 encoding — a practical compromise for handling the otherwise undefined state.",
+                        "**Q:** What is the significance of using bit-vector (bus) representation for inputs and outputs in the Verilog encoder code?\n\n**A:** Using bit-vector representation (e.g., input [7:0] I, output reg [2:0] Y) allows the entire 8-bit input and 3-bit output to be treated as single grouped signals, simplifying the code compared to declaring 11 separate single-bit ports. The case statement can then directly compare the 8-bit input I to 8-bit binary constants, and assign a 3-bit output Y in a single statement. This makes the code more readable, compact, and structurally similar to the truth table, and also synthesizes efficiently to a LUT-based implementation.",
+                        "**Q:** If an 8:3 encoder is cascaded with a 3:8 decoder, what is the expected output, and under what conditions would this fail?\n\n**A:** If a one-hot 8-bit input is applied to the 8:3 encoder, the resulting 3-bit binary output is fed to the 3:8 decoder, which should recover the original one-hot pattern — only the same output line as the original active input should be high. This round-trip works correctly when exactly one input to the encoder is active at a time. It fails when: (1) all inputs are zero (the encoder defaults to 111, causing the decoder to activate Y7 instead of no output), or (2) multiple inputs are active (the encoder produces an incorrect binary code, causing the decoder to activate the wrong output line)."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Digital Electronics Lab Manual**\n[Download Common Lab Manual (PDF)](/assets/labs/digital-electronics/manual.pdf)"
+                }
+            ]
+        }
+    }
+}
