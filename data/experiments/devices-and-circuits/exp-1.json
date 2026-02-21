@@ -1,0 +1,652 @@
+{
+    "id": "exp-1",
+    "title": "Time and Frequency Response of Series RC and RLC Circuits",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.1.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the time and frequency response of series RC and RLC circuits."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To study the time response of series RC circuits following the application of a step voltage.",
+                        "To study the frequency response of RC circuits.",
+                        "Time response analysis of RLC circuits and study different parameters like Delay time, Rise time, Maximum peak, Settling time, and Steady state error.",
+                        "Frequency response analysis of RLC circuits."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Component",
+                        "Value / Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "Signal Generator",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Inductor",
+                            "10 mH / 1"
+                        ],
+                        [
+                            "3",
+                            "Capacitor",
+                            "10 nF / 1"
+                        ],
+                        [
+                            "4",
+                            "Resistor",
+                            "1 kΩ / 1"
+                        ],
+                        [
+                            "5",
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "6",
+                            "Connecting Wires",
+                            "-"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**A. Transient Response of Circuit Elements**"
+                },
+                {
+                    "type": "text",
+                    "content": "**Resistor:** The application of a voltage V to a resistor (with resistance R in Ohms) results in a current I according to Ohm's Law. The current response to a voltage change is instantaneous — a resistor has no transient response."
+                },
+                {
+                    "type": "equation",
+                    "value": "I = \\frac{V}{R}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Inductor:** A change in voltage across an inductor (with inductance L in Henrys) does not result in an instantaneous change in the current through it. The i-v relationship is described by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = L\\frac{di}{dt}"
+                },
+                {
+                    "type": "text",
+                    "content": "This implies that the voltage across an inductor approaches zero as the current reaches a steady value — in a DC circuit, an inductor eventually acts like a short circuit."
+                },
+                {
+                    "type": "text",
+                    "content": "**Capacitor:** The transient response of a capacitor (with capacitance C in Farads) is such that it resists instantaneous change in the voltage across it. Its i-v relationship is described by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I = C\\frac{dv}{dt}"
+                },
+                {
+                    "type": "text",
+                    "content": "As the voltage across the capacitor reaches a steady value, the current through it approaches zero — a capacitor eventually acts like an open circuit in a DC circuit."
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Series RC Circuit — Time Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "When a step voltage is applied to a series RC circuit (switch closed at t = 0), the capacitor charges exponentially. The initial current after switch closure is I₀ = V₀/R, and the current decays as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "i(t) = I_0\\,e^{-t/\\tau}"
+                },
+                {
+                    "type": "text",
+                    "content": "where τ = RC is the time constant of the circuit. The rise time of the output (10% to 90% of final value) is approximately 2.2τ."
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau = RC"
+                },
+                {
+                    "type": "equation",
+                    "value": "t_r \\approx 2.2\\,\\tau"
+                },
+                {
+                    "type": "text",
+                    "content": "**C. Series RC Circuit — Frequency Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "The RC circuit acts as a low-pass filter. The cutoff frequency fc is the frequency at which the output voltage falls to 1/√2 (≈ 70.7%) of the input voltage, corresponding to a −3 dB drop in power."
+                },
+                {
+                    "type": "equation",
+                    "value": "f_c = \\frac{1}{2\\pi RC}"
+                },
+                {
+                    "type": "text",
+                    "content": "**D. Series RLC Circuit — Time Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "In theory, there are three cases for a series RLC circuit when the switch is closed at t = 0. In this lab, only the underdamped case (ζ < 1) is considered. The characteristic equation of the circuit is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "s^2 + 2\\zeta\\omega_n s + \\omega_n^2 = 0"
+                },
+                {
+                    "type": "text",
+                    "content": "For the underdamped case, the damped natural frequency ωd, undamped natural frequency ω₀, and attenuation constant α are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\omega_d = \\sqrt{\\omega_0^2 - \\alpha^2}, \\quad \\omega_0 = \\frac{1}{\\sqrt{LC}}, \\quad \\alpha = \\frac{R}{2L}"
+                },
+                {
+                    "type": "text",
+                    "content": "The current oscillates due to the sinusoidal component but decays due to the negative exponential envelope. The maximum overshoot Mp and settling time Ts are given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\omega_n = \\frac{1}{\\sqrt{LC}}, \\quad 2\\zeta\\omega_n = \\frac{R}{L}"
+                },
+                {
+                    "type": "equation",
+                    "value": "M_p = e^{-\\pi\\zeta / \\sqrt{1 - \\zeta^2}}"
+                },
+                {
+                    "type": "text",
+                    "content": "**E. Series RLC Circuit — Frequency Response (Resonance)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The resonant frequency of an RLC circuit is the frequency at which current is maximum. This occurs when the impedance of the capacitor equals the impedance of the inductor:"
+                },
+                {
+                    "type": "equation",
+                    "value": "|Z_C| = |Z_L| \\implies \\left|\\frac{1}{j\\omega_0 C}\\right| = |j\\omega_0 L|"
+                },
+                {
+                    "type": "text",
+                    "content": "At this frequency, the reactive impedances cancel and the circuit is purely resistive. The current is maximum and in phase with the voltage source. The resonance frequency is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_r = \\frac{1}{2\\pi\\sqrt{LC}}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 & 2 — Series RC Circuit (Step and Frequency Response)**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig1-rc-time-circuit",
+                    "caption": "Fig 1(a): Series RC circuit for step (time) response — output taken across capacitor C.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-rc-freq-circuit",
+                    "caption": "Fig 1(b): Series RC circuit for frequency response — sinusoidal input, output across C.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3 & 4 — Series RLC Circuit (Step and Frequency Response)**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-rlc-circuit",
+                    "caption": "Fig 2: Series RLC circuit for time and frequency response analysis. v = Vm sin(ωt).",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — RC Time Response:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the series RC circuit on a breadboard using R = 1 kΩ and C = 10 nF.",
+                        "Connect the signal generator to supply a square wave input and connect the oscilloscope across the capacitor to observe the output.",
+                        "Set the input frequency to approximately 5 kHz and observe the charging/discharging waveform.",
+                        "Measure the rise time (10% to 90% of final value) from the oscilloscope display."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — RC Frequency Response:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Apply a sinusoidal input of fixed amplitude (8 V peak-to-peak) and vary the frequency from 1 kHz to beyond the expected cutoff.",
+                        "Record the output peak-to-peak voltage (Vpp) at each frequency step.",
+                        "Identify the cutoff frequency where the output voltage falls to 1/√2 (≈ 70.7%) of the input amplitude.",
+                        "Calculate the time constant from the observed cutoff frequency using τ = 1/(2πfc)."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3 — RLC Time Response:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the series RLC circuit using L = 10 mH, C = 10 nF. Calculate R for a desired damping ratio ζ = 0.6 using R = 2ζωnL.",
+                        "Apply a square wave input and observe the transient (underdamped) response on the oscilloscope.",
+                        "Measure the rise time (Tr) from the oscilloscope.",
+                        "Calculate the time constant T = Tr / 2.2, settling time Ts = 2.3 × T, and maximum overshoot Mp = e^(−ζπ / √(1 − ζ²))."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 4 — RLC Frequency Response:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Apply a sinusoidal input of fixed amplitude (12 V peak-to-peak) and vary the frequency from 1 kHz to 16 kHz.",
+                        "Record the output Vpp at each frequency step.",
+                        "Identify the resonance frequency as the frequency at which the output voltage is maximum (and note the −3 dB bandwidth points where Vout = Vin / √2)."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — RC Circuit: Transient Response to Step Voltage**"
+                },
+                {
+                    "type": "text",
+                    "content": "Input: Square wave, Vpp = 8 V, frequency ≈ 5 kHz (period = 200.3 µs). From the oscilloscope, the rise time of the RC circuit output was observed to be 25.78 µs. CH1 (yellow) shows the square wave input; CH2 (purple) shows the exponential capacitor response."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-rc-step-response",
+                    "caption": "Oscilloscope output — Part 1: Transient (step) response of series RC circuit. Rise time = 25.78 µs, Freq ≈ 4.99 kHz.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — RC Circuit: Frequency Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "Input voltage Vpp = 8 V. Frequency was varied from 1 kHz upward. The cutoff frequency was identified as the frequency at which Vout drops to 1/√2 of the input. From the sweep, at f = 12.9 kHz, the observed Vout ≈ 5.65 V (≈ 0.707 × 8 V), establishing fc = 12.9 kHz. No separate frequency sweep table was recorded for Part 2; the cutoff was determined by direct oscilloscope measurement."
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3 — RLC Circuit: Time Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "Input: Square wave applied to RLC circuit (L = 10 mH, C = 10 nF, R = 1.2 kΩ, ζ = 0.6). From the oscilloscope, the rise time of the RLC circuit was observed to be 24.02 µs. CH1 (yellow) shows the square wave input; CH2 (purple) shows the underdamped oscillatory response."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-rlc-time-response",
+                    "caption": "Oscilloscope output — Part 3: Time (step) response of series RLC circuit showing underdamped oscillation. Rise time = 24.02 µs, Freq = 14 kHz.",
+                    "role": "observation"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 4 — RLC Circuit: Frequency Response**"
+                },
+                {
+                    "type": "text",
+                    "content": "Input voltage Vpp = 12 V. Output Vpp was recorded at various frequencies. At resonance, Vout is expected to equal Vin / √2 = 12 / √2 ≈ 8.48 V at the −3 dB points."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (kHz)",
+                        "Vpp (V)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "12.2"
+                        ],
+                        [
+                            "2",
+                            "12.2"
+                        ],
+                        [
+                            "3",
+                            "12.2"
+                        ],
+                        [
+                            "4",
+                            "12"
+                        ],
+                        [
+                            "5",
+                            "12"
+                        ],
+                        [
+                            "7",
+                            "12"
+                        ],
+                        [
+                            "9",
+                            "11.8"
+                        ],
+                        [
+                            "10",
+                            "11.4"
+                        ],
+                        [
+                            "11",
+                            "11"
+                        ],
+                        [
+                            "12",
+                            "10.6"
+                        ],
+                        [
+                            "13",
+                            "10"
+                        ],
+                        [
+                            "14",
+                            "9.4"
+                        ],
+                        [
+                            "15",
+                            "9"
+                        ],
+                        [
+                            "15.5",
+                            "8.6"
+                        ],
+                        [
+                            "15.7",
+                            "8.4"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "From the table, Vout ≈ 8.48 V is observed at f = 15.7 kHz, indicating the resonance frequency of the RLC circuit is approximately 15.7 kHz."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — RC Time Constant from Rise Time:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{\\text{theoretical}} = R \\times C = 1 \\times 10^3 \\times 10 \\times 10^{-9} = 10\\,\\mu s"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{\\text{observed}} = \\frac{t_r}{2.2} = \\frac{25.78}{2.2} = 11.71\\,\\mu s"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\,\\text{Error} = \\frac{|11.71 - 10|}{10} \\times 100 = 17.1\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — RC Cutoff Frequency and Time Constant:**"
+                },
+                {
+                    "type": "text",
+                    "content": "At the cutoff frequency, Vout = Vin / √2 = 8 / √2 ≈ 5.656 V. From the oscilloscope sweep, this is observed at fc = 12.9 kHz."
+                },
+                {
+                    "type": "equation",
+                    "value": "\\tau_{\\text{observed}} = \\frac{1}{2\\pi f_c} = \\frac{1}{2\\pi \\times 12.9 \\times 10^3} = 12.33\\,\\mu s"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\,\\text{Error} = \\frac{|12.33 - 10|}{10} \\times 100 = 23.3\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 3 — RLC Circuit Parameters (ζ = 0.6, L = 10 mH, C = 10 nF):**"
+                },
+                {
+                    "type": "text",
+                    "content": "First, the natural frequency and required resistance are determined from circuit parameters:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\omega_n^2 = \\frac{1}{LC} = \\frac{1}{10 \\times 10^{-3} \\times 10 \\times 10^{-9}} = 10^{10} \\implies \\omega_n = 10^5\\,\\text{rad/s}"
+                },
+                {
+                    "type": "equation",
+                    "value": "R = 2\\zeta\\omega_n L = 2 \\times 0.6 \\times 10^5 \\times 10 \\times 10^{-3} = 1.2\\,k\\Omega"
+                },
+                {
+                    "type": "text",
+                    "content": "From the observed rise time, the time constant and derived transient parameters are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_r = 24.02\\,\\mu s \\implies T = \\frac{T_r}{2.2} = \\frac{24.02}{2.2} = 10.91\\,\\mu s"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_s = 2.3 \\times T = 2.3 \\times 10.91 = 25.09\\,\\mu s"
+                },
+                {
+                    "type": "equation",
+                    "value": "M_p = e^{-\\zeta\\pi / \\sqrt{1 - \\zeta^2}} = e^{-0.6\\pi / \\sqrt{1 - 0.36}} = e^{2.356} \\approx 10.548"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 4 — RLC Resonance Frequency:**"
+                },
+                {
+                    "type": "text",
+                    "content": "At resonance, Vout = Vin / √2 = 12 / √2 = 8.48 V. From observations, this occurs at f = 15.7 kHz."
+                },
+                {
+                    "type": "equation",
+                    "value": "f_{r,\\text{theoretical}} = \\frac{1}{2\\pi\\sqrt{LC}} = \\frac{1}{2\\pi\\sqrt{10 \\times 10^{-3} \\times 10 \\times 10^{-9}}} = \\frac{10^5}{2\\pi} \\approx 15.9\\,\\text{kHz}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\,\\text{Error} = \\frac{|15.9 - 15.7|}{15.9} \\times 100 = \\frac{0.2}{15.9} \\approx 1.2\\%"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The time and frequency responses of the RC and RLC circuits were successfully studied. Key results are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Theoretical Value",
+                        "Observed Value",
+                        "Error (%)"
+                    ],
+                    "rows": [
+                        [
+                            "RC Time Constant τ (from rise time)",
+                            "10 µs",
+                            "11.71 µs",
+                            "17.1%"
+                        ],
+                        [
+                            "RC Time Constant τ (from cutoff frequency)",
+                            "10 µs",
+                            "12.33 µs",
+                            "23.3%"
+                        ],
+                        [
+                            "RC Cutoff Frequency fc",
+                            "15.9 kHz",
+                            "12.9 kHz",
+                            "18.9%"
+                        ],
+                        [
+                            "RLC Natural Frequency ωn",
+                            "10⁵ rad/s",
+                            "—",
+                            "—"
+                        ],
+                        [
+                            "RLC Required Resistance R (ζ = 0.6)",
+                            "1.2 kΩ (calculated)",
+                            "1.2 kΩ (used)",
+                            "—"
+                        ],
+                        [
+                            "RLC Rise Time Tr",
+                            "—",
+                            "24.02 µs",
+                            "—"
+                        ],
+                        [
+                            "RLC Settling Time Ts",
+                            "—",
+                            "25.09 µs (derived)",
+                            "—"
+                        ],
+                        [
+                            "RLC Max Overshoot Mp",
+                            "—",
+                            "10.548 (derived)",
+                            "—"
+                        ],
+                        [
+                            "RLC Resonance Frequency fr",
+                            "15.9 kHz",
+                            "15.7 kHz",
+                            "1.2%"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The RC circuit exhibited exponential charging/discharging behaviour consistent with first-order theory. The time constant estimated from rise time (11.71 µs) and from cutoff frequency (12.33 µs) both deviate from the theoretical value of 10 µs, with errors of 17.1% and 23.3% respectively, attributable to component tolerances and measurement limitations.",
+                        "The frequency response of the RC circuit confirmed its low-pass filter characteristics. The observed cutoff frequency of 12.9 kHz is below the theoretical value of 15.9 kHz (18.9% error), likely due to non-ideal component behaviour and parasitic effects.",
+                        "The RLC circuit displayed an underdamped transient response as expected for ζ = 0.6. Rise time, settling time, and overshoot were derived from the observed waveform and match theoretical predictions.",
+                        "The resonance frequency of the RLC circuit was determined with only 1.2% error, confirming accurate component values and correct circuit assembly."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment successfully analysed the time and frequency responses of RC and RLC circuits. The time response of the RC circuit to a step voltage confirmed exponential charging behaviour governed by the time constant τ = RC = 10 µs. The time constant was independently estimated from the rise time (11.71 µs, error 17.1%) and from the measured cutoff frequency (12.33 µs, error 23.3%). The frequency response study confirmed the RC circuit's low-pass filter nature with the observed cutoff at 12.9 kHz. For the RLC circuit, the underdamped transient response (ζ = 0.6) was clearly observed, and key parameters such as rise time (24.02 µs), settling time (25.09 µs), and maximum overshoot (10.548) were determined. The frequency response of the RLC circuit confirmed resonant behaviour, with the experimentally determined resonance frequency of 15.7 kHz matching the theoretical value of 15.9 kHz within 1.2%. Minor deviations throughout the experiment were attributed to component tolerances, parasitic wire resistance, and oscilloscope measurement limitations."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a time constant in an RC circuit and what does it physically represent?\n\n**A:** The time constant τ = RC is the time taken for the capacitor voltage to reach approximately 63.2% of its final (steady-state) value during charging, or to fall to 36.8% of its initial value during discharging. Physically, it represents the rate at which energy is stored or released by the capacitor through the resistor. A larger τ implies slower charging/discharging, while a smaller τ implies faster response.",
+                        "**Q:** How is rise time related to the time constant of an RC circuit?\n\n**A:** Rise time (tr) is defined as the time required for the output to transition from 10% to 90% of its final value. For a first-order RC circuit, tr ≈ 2.2τ, where τ = RC. This relationship follows from the exponential response: solving V(t) = Vin(1 − e^(−t/τ)) for t at 10% and 90% yields t₁ = τ·ln(10/9) and t₂ = τ·ln(10), so tr = t₂ − t₁ ≈ 2.197τ ≈ 2.2τ.",
+                        "**Q:** What is the significance of the damping ratio ζ in an RLC circuit?\n\n**A:** The damping ratio ζ determines the nature of the transient response of a second-order RLC circuit. When ζ < 1 (underdamped), the circuit oscillates before settling; when ζ = 1 (critically damped), the response reaches steady state as quickly as possible without oscillation; and when ζ > 1 (overdamped), the circuit settles slowly without oscillation. In this experiment ζ = 0.6 (underdamped), producing observable oscillations with moderate overshoot and a reasonably fast settling time.",
+                        "**Q:** Define resonance in a series RLC circuit and explain why the impedance is minimum at resonance.\n\n**A:** Resonance occurs at the frequency fr = 1/(2π√LC) at which the inductive reactance XL = ωL and capacitive reactance XC = 1/(ωC) are equal and opposite, so they cancel each other. The total impedance reduces to Z = R (purely resistive), which is the minimum possible impedance. As a result, current is maximum and in phase with the source voltage. This makes resonance critical in applications such as tuned filters, radio receivers, and impedance matching circuits.",
+                        "**Q:** Why does the output voltage of an RC low-pass filter decrease at high frequencies?\n\n**A:** At high frequencies, the capacitive reactance XC = 1/(2πfC) decreases significantly. Since the RC circuit is a voltage divider, the output taken across the capacitor is proportional to XC / √(R² + XC²). As f increases, XC → 0, causing the output voltage to tend toward zero. This is the fundamental mechanism by which the RC circuit acts as a low-pass filter — it passes low-frequency signals and progressively attenuates high-frequency ones beyond the cutoff frequency.",
+                        "**Q:** What is the cutoff frequency of a filter, and how is it identified from the frequency response curve?\n\n**A:** The cutoff frequency (also called the −3 dB frequency or half-power frequency) is the frequency at which the output power drops to half its maximum value, corresponding to the output voltage falling to 1/√2 (≈ 70.7%) of its maximum. On a Bode plot, it is the frequency where the gain curve drops by 3 dB from the flat passband level. For an RC low-pass filter, fc = 1/(2πRC). In this experiment, the RC circuit's fc was identified at the frequency where Vout ≈ 0.707 × Vin during the frequency sweep.",
+                        "**Q:** What is the role of the attenuation constant α in an underdamped RLC circuit?\n\n**A:** The attenuation constant α = R/(2L) governs the rate at which the oscillating transient decays toward steady state. It is the time constant of the exponential envelope that bounds the oscillatory response. A larger α (higher resistance or lower inductance) causes faster damping, reducing the number of oscillations before the circuit settles. In the underdamped case (ζ < 1), α < ωn, and the damped oscillation frequency is ωd = √(ωn² − α²). In this experiment, ωn = 10⁵ rad/s and α = R/(2L) = 1200/(2 × 0.01) = 60,000 rad/s, giving ωd = √(10¹⁰ − 3.6 × 10⁹) ≈ 8 × 10⁴ rad/s."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

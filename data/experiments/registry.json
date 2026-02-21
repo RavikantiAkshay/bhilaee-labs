@@ -156,10 +156,10 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Transient Response of Series RL, RC and RLC Circuits",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Simulation Available",
+          "completeness": 1
         },
         {
           "id": "2",

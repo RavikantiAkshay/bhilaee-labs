@@ -1,0 +1,22 @@
+{
+    "fig1-rc-time-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+        "description": "Fig 1(a): Series RC circuit for step (time) response"
+    },
+    "fig2-rc-freq-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+        "description": "Fig 1(b): Series RC circuit for frequency response"
+    },
+    "fig3-rlc-circuit": {
+        "path": "/assets/labs/basic-electrical-engineering/exp-4/fig3-rlc-circuit.png",
+        "description": "Fig 2: Series RLC circuit for time and frequency response analysis"
+    },
+    "obs-rc-step-response": {
+        "path": "/assets/labs/devices-and-circuits/exp-1/obs-rc-step-response.png",
+        "description": "Oscilloscope output: Transient response of RC circuit to a step (square wave) input at ~5 kHz"
+    },
+    "obs-rlc-time-response": {
+        "path": "/assets/labs/devices-and-circuits/exp-1/obs-rlc-time-response.png",
+        "description": "Oscilloscope output: Time response of the RLC circuit showing underdamped oscillation"
+    }
+}
