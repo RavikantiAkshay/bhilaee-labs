@@ -1,0 +1,14 @@
+{
+    "exp08-hw-case1": {
+        "path": "/assets/labs/digital-electronics/exp-8/case1.jpg",
+        "description": "Case 1: A=0, B=0 — A_equal_B output active."
+    },
+    "exp08-hw-case2": {
+        "path": "/assets/labs/digital-electronics/exp-8/case2.jpg",
+        "description": "Case 2: A=8, B=0 — A_greater_B output active."
+    },
+    "exp08-hw-case3": {
+        "path": "/assets/labs/digital-electronics/exp-8/case3.jpg",
+        "description": "Case 3: A=0, B=8 — A_less_B output active."
+    }
+}

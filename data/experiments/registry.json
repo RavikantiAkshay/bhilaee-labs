@@ -130,10 +130,10 @@
         },
         {
           "id": "8",
-          "title": "Experiment 8",
+          "title": "Design and Implementation of 4-bit Magnitude Comparator on FPGA Board",
           "fileName": "exp-8.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "9",
