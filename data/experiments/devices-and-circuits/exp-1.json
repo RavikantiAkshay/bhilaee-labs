@@ -2,10 +2,11 @@
     "id": "exp-1",
     "title": "Time and Frequency Response of Series RC and RLC Circuits",
     "labId": "devices-and-circuits-lab",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-4",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.1.0",
@@ -310,9 +311,18 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
-            "content": []
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Simulate the series RC and RLC circuits to verify their time and frequency responses. This uses the same transient response simulator as Basic EE Experiment 4."
+                },
+                {
+                    "type": "text",
+                    "content": "**Running this experiment?** Please set the simulation type to **Transient Analysis** for time response, or **AC Analysis** for frequency response."
+                }
+            ]
         },
         "observation": {
             "id": "observation",
