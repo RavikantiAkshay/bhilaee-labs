@@ -1,6 +1,7 @@
 import styles from './Experiment.module.css';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
+import PlotToggleButton from './PlotToggleButton';
 
 /**
  * Switcher component to render different content types based on the 'type' field.
@@ -154,8 +155,31 @@ function ImageBlock({ block, assets }) {
 }
 
 function TableBlock({ block }) {
+    return <TableBlockInner block={block} />;
+}
+
+// We need a separate default export wrapper to keep ContentBlock as a server component,
+// but TableBlockInner must be imported from a client file for the plot toggle.
+// Since ContentBlock already uses KaTeX (client), we can use dynamic import for PlotPanel.
+function TableBlockInner({ block }) {
+    // Check if table has >= 2 numeric columns (for plot eligibility)
+    const numericCount = (block.headers || []).filter((_, i) => {
+        let total = 0, numeric = 0;
+        for (const row of (block.rows || [])) {
+            const val = row[i];
+            if (val === undefined || val === null || String(val).trim() === '') continue;
+            total++;
+            const parsed = parseFloat(String(val).replace(/,/g, ''));
+            if (!isNaN(parsed) && isFinite(parsed)) numeric++;
+        }
+        return total > 0 && (numeric / total) >= 0.8;
+    }).length;
+
+    const canPlot = numericCount >= 2 && (block.rows || []).length >= 1;
+
     return (
-        <div className={`${styles.contentBlock} ${styles.tableWrapper}`}>
+        <div className={`${styles.contentBlock} ${styles.tableWrapper}`} style={{ position: 'relative' }}>
+            {canPlot && <PlotToggleButton headers={block.headers} rows={block.rows} />}
             <table className={styles.table}>
                 <thead>
                     <tr>
