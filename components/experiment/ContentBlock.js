@@ -6,7 +6,7 @@ import PlotToggleButton from './PlotToggleButton';
 /**
  * Switcher component to render different content types based on the 'type' field.
  */
-export default function ContentBlock({ block, assets }) {
+export default function ContentBlock({ block, assets, sectionId }) {
     if (!block || !block.type) return null;
 
     switch (block.type) {
@@ -17,7 +17,7 @@ export default function ContentBlock({ block, assets }) {
         case 'image':
             return <ImageBlock block={block} assets={assets} />;
         case 'table':
-            return <TableBlock block={block} />;
+            return <TableBlock block={block} sectionId={sectionId} />;
         case 'code':
             return <CodeBlock block={block} />;
         case 'equation':
@@ -154,14 +154,14 @@ function ImageBlock({ block, assets }) {
     );
 }
 
-function TableBlock({ block }) {
-    return <TableBlockInner block={block} />;
+function TableBlock({ block, sectionId }) {
+    return <TableBlockInner block={block} sectionId={sectionId} />;
 }
 
 // We need a separate default export wrapper to keep ContentBlock as a server component,
 // but TableBlockInner must be imported from a client file for the plot toggle.
 // Since ContentBlock already uses KaTeX (client), we can use dynamic import for PlotPanel.
-function TableBlockInner({ block }) {
+function TableBlockInner({ block, sectionId }) {
     // Check if table has >= 2 numeric columns (for plot eligibility)
     const numericCount = (block.headers || []).filter((_, i) => {
         let total = 0, numeric = 0;
@@ -175,7 +175,11 @@ function TableBlockInner({ block }) {
         return total > 0 && (numeric / total) >= 0.8;
     }).length;
 
-    const canPlot = numericCount >= 2 && (block.rows || []).length >= 1;
+    // Only allow plotting in specific data-heavy sections
+    const isPlotAllowedSection = ['observation', 'calculation', 'result'].includes(sectionId);
+
+    // Final plot condition
+    const canPlot = isPlotAllowedSection && numericCount >= 2 && (block.rows || []).length >= 1;
 
     return (
         <div className={`${styles.contentBlock} ${styles.tableWrapper}`} style={{ position: 'relative' }}>

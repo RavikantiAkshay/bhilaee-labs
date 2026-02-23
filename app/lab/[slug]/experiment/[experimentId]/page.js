@@ -41,7 +41,7 @@ export default async function ExperimentPage({ params }) {
                             hasContent ? (
                                 <div className={styles.sectionContent}>
                                     {section.content.map((block, index) => (
-                                        <ContentBlock key={index} block={block} assets={experiment.assets} />
+                                        <ContentBlock key={index} block={block} assets={experiment.assets} sectionId={sectionKey} />
                                     ))}
                                 </div>
                             ) : (
