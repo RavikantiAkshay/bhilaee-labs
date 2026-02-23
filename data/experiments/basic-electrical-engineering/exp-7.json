@@ -2,8 +2,10 @@
     "id": "exp-7",
     "title": "No-Load and Load Test on a Single Phase Transformer",
     "labId": "basic-electrical-engineering",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "basic-ee-exp-7",
+        "simulationType": "AC Analysis",
         "experimentType": "hardware",
         "status": "active",
         "difficulty": "intermediate",
@@ -259,8 +261,8 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
+            "isApplicable": true,
+            "route": "/simulator/basic-ee-exp-7",
             "content": []
         },
         "observation": {
