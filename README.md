@@ -2,7 +2,7 @@
 
 A structured virtual laboratory platform for **Electrical & Electronics Engineering** students, providing comprehensive experiment guides, observation data, circuit diagrams, and interactive simulations.
 
-> **Status**: Active Development · **10 / 90** experiments fully populated
+> **Status**: Active Development · **23 / 90** experiments fully populated
 
 ---
 
@@ -10,29 +10,31 @@ A structured virtual laboratory platform for **Electrical & Electronics Engineer
 
 ### 🏠 Homepage
 - **Labs Dashboard** — Access all **9 core EEE labs** at a glance via interactive cards.
+- **Cross-Lab Experiment Search** — Search any experiment by name across all labs; results appear in place of the grid with lab name badges on each card.
 - **Responsive Grid** — Adapts seamlessly across desktop, tablet, and mobile.
 
 ### 📘 Lab Landing Pages
 - **Metadata Bar** — Lab code, nature (Hardware / Simulation / Theory), total experiments.
 - **Experiment Cards** — Each card shows experiment number, title, and status badge.
-- **Status Indicators** — Color-coded: `Simulation Available`, `Hardware-Oriented`, `Guide Only`.
+- **Status Indicators** — Color-coded: `Simulation Available`, `Hardware-Oriented`, `Software-Oriented`, `Guide Only`.
 
 ### 🧪 Experiment Pages
 - **Structured Sections** — Every experiment follows a fixed academic flow:
-  > Aim → Apparatus → Theory → Pre-Lab → Procedure → Observations → Calculations → Results & Analysis → Post-Lab / Viva Voce → References → Conclusion
+  > Aim → Apparatus → Theory → Pre-Lab → Procedure → Simulation → Observations → Calculations → Results & Analysis → Post-Lab / Viva Voce → Conclusion → References
 - **Rich Content Rendering** — Supports:
-  - Formatted text with **bold**, *italic*, and [clickable links]()
+  - Formatted text with **bold**, *italic*, and clickable links
   - Ordered & unordered lists
   - Data tables (with responsive horizontal scroll)
-  - Circuit diagram images (via Asset Registry)
+  - Circuit diagram and hardware observation images (via Asset Registry)
   - LaTeX equations (powered by KaTeX)
-  - Code blocks
+  - Syntax-highlighted code blocks (Verilog, VHDL, Properties, etc.)
 - **Sticky Sidebar TOC** — Auto-generated from applicable sections (desktop).
 - **Graceful Degradation** — Sections marked "Not Applicable" are hidden cleanly.
 
 ### 🚀 Simulation Integration
 - **Launch Simulator** — One-click button opens the external circuit simulator in a new tab.
-- **Context-Aware Notes** — Experiment-specific hints (e.g., "Set simulation type to Transient").
+- **Shared Simulations** — Experiments across different labs can share the same simulator (e.g., Devices & Circuits Exp 1 reuses Basic EE Exp 4's transient simulator).
+- **Context-Aware Notes** — Experiment-specific hints (e.g., "Set simulation type to Transient Analysis").
 
 ### 🎨 UI / UX
 - **Clean Academic Design** — Professional typography, consistent spacing, muted color palette.
@@ -43,24 +45,24 @@ A structured virtual laboratory platform for **Electrical & Electronics Engineer
 
 ## 📊 Content Progress
 
-| Lab | Experiments | Complete | Status |
-|-----|:-----------:|:--------:|--------|
-| Basic Electrical Engineering | 10 | **4** | Exp 1–4 ✅ |
-| Instrumentation Lab | 10 | **5** | Exp 1–5 ✅ |
-| Control System Lab | 10 | **1** | Exp 1 ✅ |
-| Digital Electronics | 10 | 0 | Skeleton |
-| Devices and Circuits | 10 | 0 | Skeleton |
-| Power System Lab | 10 | 0 | Skeleton |
-| Sensor Lab | 10 | 0 | Skeleton |
-| Power Electronics Lab | 10 | 0 | Skeleton |
-| Machines Lab | 10 | 0 | Skeleton |
+| Lab | Code | Experiments | Complete | Details |
+|-----|------|:-----------:|:--------:|---------|
+| Basic Electrical Engineering | EEL101 | 10 | **7** | Exp 1–7 ✅ (6 with simulations) |
+| Digital Electronics | EEP210 | 10 | **8** | Exp 1–8 ✅ (FPGA-based) |
+| Instrumentation Lab | EEP307 | 10 | **5** | Exp 1–5 ✅ (ESP32-based) |
+| Devices and Circuits | EEP209 | 10 | **1** | Exp 1 ✅ (shares Basic EE sim) |
+| Control System Lab | EEP308 | 10 | **1** | Exp 1 ✅ |
+| Machines Lab | EEP306 | 10 | **1** | Exp 1 ✅ (shares Basic EE sim) |
+| Power System Lab | EEP305 | 10 | 0 | Skeleton |
+| Sensor Lab | EEP304 | 10 | 0 | Skeleton |
+| Power Electronics Lab | EEP309 | 10 | 0 | Skeleton |
 
 ---
 
 ## 🛠️ Tech Stack
 
 | Layer | Technology |
-|-------|-----------|
+|-------|-----------:|
 | Framework | **Next.js 15** (App Router) |
 | UI | **React 19** + CSS Modules |
 | Math | **KaTeX** via `react-katex` |
@@ -95,7 +97,7 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 ```
 basic-lab-guide/
 ├── app/                          # Next.js App Router
-│   ├── page.js                   # Homepage (Labs Dashboard)
+│   ├── page.js                   # Homepage (server → HomeContent)
 │   ├── layout.js                 # Root layout (Header + Footer)
 │   ├── globals.css               # Design tokens & global styles
 │   └── lab/
@@ -106,6 +108,9 @@ basic-lab-guide/
 ├── components/
 │   ├── Header.js                 # Global navigation bar
 │   ├── Footer.js                 # Global footer
+│   ├── HomeContent.js            # Home page client component (search + grid)
+│   ├── SearchBar.js              # Cross-lab experiment search input
+│   ├── SearchBar.module.css      # Search UI styles
 │   ├── ExperimentCard.js         # Lab page experiment cards
 │   ├── ExperimentList.js         # Grid container for cards
 │   ├── LabHeader.js              # Lab title + breadcrumb
@@ -117,28 +122,35 @@ basic-lab-guide/
 │       └── Experiment.module.css # Experiment page styles
 │
 ├── data/
-│   ├── labs.js                   # Lab metadata (reads from registry)
+│   ├── labs.js                   # Lab metadata + getAllExperiments()
 │   ├── experiments.js            # Experiment loader (async JSON import)
 │   ├── experiment_schema.js      # Section order, titles, enums
 │   └── experiments/
 │       ├── registry.json         # Master index (90 experiments)
 │       ├── basic-electrical-engineering/
-│       │   ├── exp-1.json        # Power Factor
-│       │   ├── exp-1.assets.json # Asset registry for Exp 1
-│       │   ├── exp-2.json        # Superposition Theorem
-│       │   ├── exp-3.json        # Thevenin's Theorem
-│       │   └── exp-4.json        # Transient Response
+│       │   ├── exp-{1..7}.json        # Fully populated experiments
+│       │   └── exp-{1..7}.assets.json # Asset registries
+│       ├── digital-electronics/
+│       │   ├── exp-{1..8}.json        # Fully populated experiments
+│       │   └── exp-{1..8}.assets.json # Asset registries
 │       ├── instrumentation-lab/
-│       │   ├── exp-1.json … exp-5.json
-│       │   └── *.assets.json
-│       └── control-system-lab/
-│           └── exp-1.json        # RLC Transient Response
+│       │   ├── exp-{1..5}.json
+│       │   └── exp-{1..5}.assets.json
+│       ├── devices-and-circuits/
+│       │   ├── exp-1.json + assets
+│       ├── control-system-lab/
+│       │   └── exp-1.json
+│       └── machines-lab/
+│           ├── exp-1.json + assets
 │
 ├── public/
 │   └── assets/
 │       └── labs/                  # Experiment images & diagrams
 │           ├── basic-electrical-engineering/
-│           └── instrumentation-lab/
+│           ├── digital-electronics/
+│           ├── instrumentation-lab/
+│           ├── devices-and-circuits/
+│           └── machines-lab/
 │
 ├── scripts/                       # Utility scripts
 ├── package.json
@@ -147,35 +159,42 @@ basic-lab-guide/
 
 ---
 
-## 🧩 Data Schema (v2.0)
+## 🧩 Data Schema
 
 Each experiment JSON file follows a strict schema:
 
 ```jsonc
 {
-  "schemaVersion": "2.0",
-  "experimentId": "1",
+  "id": "exp-1",
   "title": "Experiment Title",
-  "code": "EEL101-E01",
-  "status": "Simulation Available",  // | "Hardware-Oriented" | "Guide Only"
-  "meta": { "difficulty": "Intermediate", "duration": "2 hours" },
+  "labId": "basic-electrical-engineering",
+  "status": "Simulation Available",  // | "Hardware-Oriented" | "Software-Oriented" | "Guide Only"
+  "meta": {
+    "simulationId": "basic-ee-exp-4",  // optional — links to external simulator
+    "experimentType": "hardware",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120
+  },
   "sections": {
-    "aim": { "id": "aim", "title": "Aim", "isApplicable": true, "content": [...] },
-    "apparatus": { ... },
-    "theory": { ... },
-    "preLab": { ... },          // Circuit diagrams via assetId
-    "procedure": { ... },
-    "observations": { ... },    // Tables with sample data
-    "calculations": { ... },
-    "result": { ... },
-    "postLab": { ... },         // Viva Voce Q&A
-    "resources": { ... },
-    "conclusion": { ... }
+    "aim":         { "id": "aim",         "title": "Aim",         "isApplicable": true, "content": [...] },
+    "apparatus":   { ... },
+    "theory":      { ... },
+    "preLab":      { ... },        // Circuit diagrams via assetId
+    "procedure":   { ... },
+    "simulation":  { ..., "route": "default" },   // Simulator launch
+    "observation": { ... },        // Tables, hardware photos
+    "calculation": { ... },
+    "result":      { ... },
+    "postLab":     { ... },        // Viva Voce Q&A
+    "conclusion":  { ... },
+    "resources":   { ... }
   }
 }
 ```
 
 **Content block types**: `text`, `list`, `table`, `image`, `code`, `equation`
+
+**Asset registries** (`*.assets.json`) map `assetId` keys to file paths and descriptions under `public/assets/labs/`.
 
 ---
 
