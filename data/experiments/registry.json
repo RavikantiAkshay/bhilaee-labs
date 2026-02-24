@@ -158,7 +158,7 @@
           "id": "3",
           "title": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
           "fileName": "exp-3.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {

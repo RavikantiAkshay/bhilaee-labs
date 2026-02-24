@@ -5,6 +5,7 @@
     "status": "Simulation Available",
     "meta": {
         "simulationId": "basic-ee-exp-4",
+        "simulationType": "Transient / AC Analysis",
         "experimentType": "hardware",
         "status": "simulation-available",
         "difficulty": "intermediate",
@@ -317,10 +318,6 @@
                 {
                     "type": "text",
                     "content": "Simulate the series RC and RLC circuits to verify their time and frequency responses. This uses the same transient response simulator as Basic EE Experiment 4."
-                },
-                {
-                    "type": "text",
-                    "content": "**Running this experiment?** Please set the simulation type to **Transient Analysis** for time response, or **AC Analysis** for frequency response."
                 }
             ]
         },

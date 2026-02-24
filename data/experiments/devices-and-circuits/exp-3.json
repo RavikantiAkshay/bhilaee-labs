@@ -2,10 +2,12 @@
     "id": "exp-3",
     "title": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
     "labId": "devices-and-circuits-lab",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "devices_and_circuits-exp3",
+        "simulationType": "Transient",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.1.0",
@@ -188,7 +190,7 @@
                 {
                     "type": "image",
                     "assetId": "fig5-clipper",
-                    "caption": "Fig 5: Clipper circuit — series configuration (D-IN4006, R = 1 kΩ, DC reference voltage V). Output is clipped at reference level V.",
+                    "caption": "Fig 5: Clipper circuit (D-IN4006, R = 1 kΩ, DC reference voltage V). Output is clipped at V.",
                     "role": "circuit-diagram"
                 }
             ]
@@ -234,7 +236,7 @@
             "id": "simulation",
             "title": "Simulation / Execution",
             "isApplicable": true,
-            "route": null,
+            "route": "default",
             "content": [
                 {
                     "type": "text",
