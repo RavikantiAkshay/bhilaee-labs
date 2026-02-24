@@ -65,10 +65,11 @@ export default function ExperimentLayout({ experiment, children }) {
                         const isSimStatus = experiment.status === 'Simulation Available';
 
                         let simulatorUrl = null;
+                        const defaultSimUrl = process.env.NEXT_PUBLIC_SIMULATOR_URL || 'https://bhilaee-simulator.vercel.app';
                         if (route && route !== 'default') {
                             simulatorUrl = route;
                         } else if (route === 'default' || isSimStatus) {
-                            simulatorUrl = process.env.NEXT_PUBLIC_SIMULATOR_URL;
+                            simulatorUrl = defaultSimUrl;
                         }
 
                         if (!simulatorUrl) return null;
@@ -77,7 +78,7 @@ export default function ExperimentLayout({ experiment, children }) {
                             experiment.status === 'Simulation Available' && (
                                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                                     <a
-                                        href={`${process.env.NEXT_PUBLIC_SIMULATOR_URL}?expId=${experiment.meta?.simulationId || experiment.id}&newSession=true`}
+                                        href={`${simulatorUrl}?expId=${experiment.meta?.simulationId || experiment.id}&newSession=true`}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         style={{
