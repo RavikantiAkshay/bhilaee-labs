@@ -2,10 +2,12 @@
     "id": "exp-4",
     "title": "Mathematical Operations with Op-Amps",
     "labId": "devices-and-circuits-lab",
-    "status": "Hardware-Oriented",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "devices_and_circuits-exp4",
+        "simulationType": "Transient / DC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.1.0",
@@ -306,7 +308,7 @@
             "id": "simulation",
             "title": "Simulation / Execution",
             "isApplicable": true,
-            "route": null,
+            "route": "default",
             "content": [
                 {
                     "type": "text",
