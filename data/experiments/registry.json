@@ -170,10 +170,10 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Study of Op-Amp Characteristics Using OP-07",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "6",

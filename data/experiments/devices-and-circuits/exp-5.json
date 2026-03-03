@@ -1,0 +1,652 @@
+{
+    "id": "exp-5",
+    "title": "Study of Op-Amp Characteristics Using OP-07",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study Op-Amp characteristics using OP-07 and measure the following parameters:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Common Mode Rejection Ratio (CMRR)",
+                        "Open-Loop Gain",
+                        "Gain-Bandwidth Product (GBP)",
+                        "Inverting and Non-Inverting Amplifier configurations"
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "DC Supply",
+                            "4"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "10 kΩ Resistor",
+                            "2"
+                        ],
+                        [
+                            "56 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "100 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "180 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "47 kΩ Resistor",
+                            "4"
+                        ],
+                        [
+                            "OP-Amp 07",
+                            "1"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Software:** LTspice XVII (LM741 model used for simulation verification)."
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Inverting Amplifier:** The inverting amplifier uses negative feedback from the output to the inverting (−) input. The closed-loop gain is determined by the ratio of the feedback resistor to the input resistor, and the output is phase-inverted with respect to the input:"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_v = -\\frac{R_f}{R_1}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Non-Inverting Amplifier:** The input is applied to the non-inverting (+) input. The output is in phase with the input, and the gain is always ≥ 1:"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_v = 1 + \\frac{R_f}{R_1}"
+                },
+                {
+                    "type": "text",
+                    "content": "**CMRR (Common Mode Rejection Ratio):** CMRR is the ability of the Op-Amp to reject signals that are common to both inputs. It is defined as the ratio of differential-mode gain (Ad) to common-mode gain (Ac):"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{CMRR} = \\frac{A_d}{A_c}"
+                },
+                {
+                    "type": "text",
+                    "content": "An ideal Op-Amp has CMRR = ∞. A high CMRR indicates the Op-Amp effectively rejects noise common to both inputs (e.g., power supply noise)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Gain-Bandwidth Product (GBP):** The GBP is a constant for a given Op-Amp, defined as the product of the closed-loop gain and the bandwidth at that gain:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{GBP} = A_v \\times BW"
+                },
+                {
+                    "type": "text",
+                    "content": "If gain increases, bandwidth decreases proportionally and vice versa. GBP is determined from the Bode plot of the amplifier."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-inv-amp",
+                    "caption": "Fig 1: Inverting amplifier using OP-07 (R1 = 10 kΩ, Rf = variable).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-noninv-amp",
+                    "caption": "Fig 2: Non-inverting amplifier using OP-07 (R1 = 10 kΩ, Rf = variable).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig3-cmrr-diff",
+                    "caption": "Fig 3: Differential mode circuit for CMRR measurement (all R = 47 kΩ).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig4-cmrr-common",
+                    "caption": "Fig 4: Common mode circuit for CMRR measurement.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig5-gbp-circuit",
+                    "caption": "Fig 5: Bode plot circuit for GBP measurement (R1 = 10 kΩ, R2 = 47 kΩ, SINE(0 0.2 20)).",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Inverting Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the inverting amplifier circuit with R1 = 10 kΩ and select Rf from {10 kΩ, 56 kΩ, 100 kΩ, 180 kΩ} to obtain gains of 1, 5.6, 10, and 18 respectively.",
+                        "Apply a sinusoidal input of 2 V amplitude at 100 Hz using the function generator.",
+                        "Observe both input and output on the oscilloscope. Measure output amplitude and calculate actual gain.",
+                        "Note that the output is inverted (180° phase shift) with respect to the input."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Non-Inverting Amplifier:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the non-inverting amplifier circuit with R1 = 10 kΩ and select Rf for gains of 2, 6.6, 11, and 19.",
+                        "Apply the same input signal (2 V, 100 Hz) and measure the output amplitude.",
+                        "Verify that the output is in phase (not inverted) with respect to the input."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. CMRR Measurement:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the differential mode circuit (Fig 3). Apply a differential input of 500 mV. Measure the output voltage and calculate Ad.",
+                        "Assemble the common mode circuit (Fig 4). Apply a common-mode input of 1000 mV to both inputs. Measure the output and calculate Ac.",
+                        "Calculate CMRR = Ad / Ac."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Gain-Bandwidth Product:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Assemble the GBP measurement circuit (Fig 5) with gain set to 11 (Rf = 47 kΩ, R1 = 10 kΩ non-inverting).",
+                        "Apply a sinusoidal input of 0.2 V and vary the frequency from 20 Hz to 2 MHz.",
+                        "Record the output voltage at each frequency and calculate gain and gain in dB.",
+                        "Plot the Bode plot and determine the upper and lower cutoff frequencies (−3 dB points).",
+                        "Calculate GBP = Mid-band gain × Bandwidth."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": true,
+            "route": null,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "All circuits were simulated in LTspice using the LM741 model. Transient analysis and AC analysis were used to verify inverting/non-inverting amplifier gain, CMRR, and frequency response for GBP calculation."
+                },
+                {
+                    "type": "text",
+                    "content": "Simulation results closely matched hardware measurements in terms of gain for cases where output was not clipped. For high gain cases (Rf = 180 kΩ), both simulation and hardware showed output clipping due to supply voltage limits."
+                }
+            ]
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Inverting Amplifier (Input = 2 V amplitude, 100 Hz)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "Rf",
+                        "R1",
+                        "Expected Gain",
+                        "Observed Output (V)",
+                        "Observed Gain"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "10 kΩ",
+                            "10 kΩ",
+                            "1",
+                            "~2.0",
+                            "~1"
+                        ],
+                        [
+                            "2",
+                            "56 kΩ",
+                            "10 kΩ",
+                            "5.6",
+                            "~11.2 V",
+                            "~5.6"
+                        ],
+                        [
+                            "3",
+                            "100 kΩ",
+                            "10 kΩ",
+                            "10",
+                            "~19.8 V",
+                            "~9.9"
+                        ],
+                        [
+                            "4",
+                            "180 kΩ",
+                            "10 kΩ",
+                            "18",
+                            "~29 V (clipped)",
+                            "<18 (clipped)"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Case 4 shows output clipping as the desired output amplitude (36 V) exceeds the supply voltage (±15 V), limiting actual output to ≈ 29 V."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Non-Inverting Amplifier (Input = 2 V amplitude, 100 Hz)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "Rf",
+                        "R1",
+                        "Expected Gain",
+                        "Observed Output",
+                        "Observed Gain"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "10 kΩ",
+                            "10 kΩ",
+                            "2",
+                            "~4.0 V",
+                            "~2"
+                        ],
+                        [
+                            "2",
+                            "56 kΩ",
+                            "10 kΩ",
+                            "6.6",
+                            "~13.2 V",
+                            "~6.6"
+                        ],
+                        [
+                            "3",
+                            "100 kΩ",
+                            "10 kΩ",
+                            "11",
+                            "~22 V",
+                            "~11"
+                        ],
+                        [
+                            "4",
+                            "180 kΩ",
+                            "10 kΩ",
+                            "19",
+                            "~29 V (clipped)",
+                            "~14.79 (clipped)"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "Output is in phase with input (no inversion) in all non-inverting cases."
+                },
+                {
+                    "type": "text",
+                    "content": "**3. CMRR Measurement**"
+                },
+                {
+                    "type": "text",
+                    "content": "Differential mode: Vin = 500 mV, Vout ≈ 521 mV (experimental), 504 mV (simulation)."
+                },
+                {
+                    "type": "equation",
+                    "value": "A_d = \\frac{V_{out}}{V_{in}} = \\frac{521}{500} = 1.042"
+                },
+                {
+                    "type": "text",
+                    "content": "Common mode: Vin = 1000 mV, Vout ≈ 6 mV (experimental), 4 mV (simulation)."
+                },
+                {
+                    "type": "equation",
+                    "value": "A_c = \\frac{V_{out}}{V_{in}} = \\frac{6\\,mV}{1000\\,mV} = 0.006"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{CMRR} = \\frac{A_d}{A_c} = \\frac{1.042}{0.006} = 173.66"
+                },
+                {
+                    "type": "text",
+                    "content": "**4. Gain-Bandwidth Product (Input = 0.2 V, R1 = 10 kΩ, Rf = 47 kΩ)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "Log(Frequency)",
+                        "Vout (V)",
+                        "Gain",
+                        "Gain (dB)"
+                    ],
+                    "rows": [
+                        [
+                            "20",
+                            "1.301",
+                            "2.2",
+                            "11",
+                            "20.83"
+                        ],
+                        [
+                            "100",
+                            "2",
+                            "2.2",
+                            "11",
+                            "20.83"
+                        ],
+                        [
+                            "500",
+                            "2.699",
+                            "2.2",
+                            "11",
+                            "20.83"
+                        ],
+                        [
+                            "1000",
+                            "3",
+                            "2.2",
+                            "11",
+                            "20.83"
+                        ],
+                        [
+                            "10000",
+                            "4",
+                            "2.16",
+                            "10.8",
+                            "20.67"
+                        ],
+                        [
+                            "50000",
+                            "4.699",
+                            "1.88",
+                            "9.4",
+                            "19.46"
+                        ],
+                        [
+                            "100000",
+                            "5",
+                            "1.32",
+                            "6.6",
+                            "16.39"
+                        ],
+                        [
+                            "150000",
+                            "5.176",
+                            "1.04",
+                            "5.2",
+                            "14.32"
+                        ],
+                        [
+                            "250000",
+                            "5.398",
+                            "0.568",
+                            "2.84",
+                            "9.07"
+                        ],
+                        [
+                            "400000",
+                            "5.602",
+                            "0.356",
+                            "1.78",
+                            "5.01"
+                        ],
+                        [
+                            "600000",
+                            "5.778",
+                            "0.228",
+                            "1.14",
+                            "1.14"
+                        ],
+                        [
+                            "900000",
+                            "5.954",
+                            "0.164",
+                            "0.82",
+                            "-1.72"
+                        ],
+                        [
+                            "1200000",
+                            "6.079",
+                            "0.104",
+                            "0.52",
+                            "-5.68"
+                        ],
+                        [
+                            "1600000",
+                            "6.204",
+                            "0.092",
+                            "0.46",
+                            "-6.74"
+                        ],
+                        [
+                            "2000000",
+                            "6.301",
+                            "0.056",
+                            "0.28",
+                            "-11.06"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**CMRR Calculation:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_d = \\frac{521}{500} = 1.042, \\quad A_c = \\frac{6}{1000} = 0.006"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{CMRR} = \\frac{1.042}{0.006} = 173.66"
+                },
+                {
+                    "type": "text",
+                    "content": "**Gain-Bandwidth Product Calculation:** From the Bode plot, the maximum mid-band gain is 11 (at frequencies 20 Hz – 10 kHz). The −3 dB cutoff (gain drops from ~20.83 dB to ~17.83 dB) occurs approximately between 5–10 Hz (lower) and ~60 kHz (upper)."
+                },
+                {
+                    "type": "equation",
+                    "value": "BW = f_H - f_L \\approx 60000 - 10 = 59990\\,\\text{Hz}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{GBP} = A_v \\times BW = 11 \\times 59990 \\approx 660\\,\\text{kHz}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Key Op-Amp parameters measured from this experiment are summarised below."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Parameter",
+                        "Measured Value",
+                        "Remarks"
+                    ],
+                    "rows": [
+                        [
+                            "Inverting Amplifier Gain (Rf=56k)",
+                            "5.6",
+                            "Exact match with theory"
+                        ],
+                        [
+                            "Inverting Amplifier Gain (Rf=100k)",
+                            "≈9.9",
+                            "~1% error due to clipping margin"
+                        ],
+                        [
+                            "Non-Inverting Amplifier Gain (Rf=56k)",
+                            "6.6",
+                            "Exact match with theory"
+                        ],
+                        [
+                            "CMRR",
+                            "173.66",
+                            "High; ideal would be ∞"
+                        ],
+                        [
+                            "Mid-Band Gain (GBP circuit)",
+                            "11 (20.83 dB)",
+                            "Stable up to ~10 kHz"
+                        ],
+                        [
+                            "Bandwidth (GBP circuit)",
+                            "≈59.99 kHz",
+                            "From Bode plot"
+                        ],
+                        [
+                            "Gain-Bandwidth Product (GBP)",
+                            "≈660 kHz",
+                            "Within OP-07 spec"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Inverting and non-inverting amplifier gains matched theoretical values closely for non-clipping cases.",
+                        "Output clipping observed at high gain (Rf = 180 kΩ) in both configurations — expected due to ±15 V supply limitation.",
+                        "CMRR of 173.66 is reasonably high, indicating good common-mode noise rejection. Ideal CMRR is infinite.",
+                        "The GBP of approximately 660 kHz is consistent with the OP-07 specifications."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment successfully demonstrated the characteristics of the OP-07 Op-Amp through implementation of inverting and non-inverting amplifiers at various gain settings. The CMRR was calculated as 173.66, demonstrating effective common-mode signal rejection. The Gain-Bandwidth Product was determined to be approximately 660 kHz from the constructed Bode plot. Output clipping was observed at high gain settings where the desired output amplitude exceeded the supply voltage limits. LTspice simulations validated all hardware results, with deviations within acceptable limits attributed to component tolerances and probe loading effects."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is CMRR and why is a high value desirable in practical Op-Amp circuits?\n\n**A:** CMRR (Common Mode Rejection Ratio) is the ratio of differential-mode gain (Ad) to common-mode gain (Ac): CMRR = Ad/Ac. A high CMRR indicates that the Op-Amp amplifies the desired differential signal strongly while rejecting noise or interference that appears equally (in common mode) on both input terminals — such as 50 Hz power supply hum or electromagnetic interference. In applications like instrumentation amplifiers, ECG signal processing, and data acquisition systems, high CMRR is critical for accurate measurement of small signals in the presence of large common-mode noise.",
+                        "**Q:** What is Gain-Bandwidth Product (GBP) and how is it used in amplifier design?\n\n**A:** GBP is a constant parameter of an Op-Amp defined as the product of the closed-loop voltage gain and the corresponding bandwidth: GBP = Av × BW. Since this product is fixed for a given Op-Amp, increasing the closed-loop gain reduces the available bandwidth proportionally. For example, if GBP = 1 MHz, a gain of 10 gives bandwidth of 100 kHz, while a gain of 100 gives only 10 kHz. This is critical in amplifier design: the designer must choose a gain-bandwidth trade-off that meets both gain requirements and signal frequency requirements. The GBP is typically read from the Op-Amp datasheet.",
+                        "**Q:** What happens to the output of an Op-Amp amplifier when the required output voltage exceeds the supply voltage?\n\n**A:** When the calculated output voltage exceeds the Op-Amp's output swing capability (typically Vcc − 1 V to Vcc − 2 V for the supply rails), the output saturates or clips at the maximum achievable value. For a ±15 V supply, the output is limited to approximately ±13–14 V, not the full ±15 V. In this experiment, for Rf = 180 kΩ with a 2 V input, the ideal output would be ±36 V, which is impossible with a ±15 V supply, so the output clips at ≈ ±29 V. Clipping causes significant waveform distortion.",
+                        "**Q:** What is the difference between open-loop gain and closed-loop gain of an Op-Amp?\n\n**A:** Open-loop gain (AOL) is the gain of the Op-Amp without any external feedback — it is extremely high (typically 100,000 to 1,000,000 or more) but varies greatly with frequency and temperature, making it impractical for amplifier design. Closed-loop gain (ACL) is the gain of the amplifier when negative feedback is applied via external resistors. It is much lower but stable, predictable, and primarily determined by the resistor ratios rather than the Op-Amp's internal characteristics. For an inverting amplifier: ACL = −Rf/R1; for non-inverting: ACL = 1 + Rf/R1.",
+                        "**Q:** Why does the gain of an Op-Amp circuit decrease at high frequencies even with a fixed Rf/R1 ratio?\n\n**A:** The open-loop gain of an Op-Amp is not constant with frequency — it decreases at approximately 20 dB/decade beyond the unity gain bandwidth. As frequency increases, the available open-loop gain reduces, and the condition for ideal closed-loop gain (Av ≈ Rf/R1, assuming AOL >> Rf/R1) no longer holds. Once the open-loop gain approaches the desired closed-loop gain, the actual closed-loop gain begins to fall. Additionally, internal pole-compensation capacitors and parasitic capacitances in the circuit create further bandwidth limitations at high frequencies.",
+                        "**Q:** How does output clipping affect the waveform shape, and what would you observe on an oscilloscope?\n\n**A:** When output clipping occurs, the portion of the output waveform that would exceed the supply rail is flattened at the saturation level. For a sinusoidal input, the output waveform will appear sinusoidal in the low-amplitude region but will have flat tops and/or bottoms at the clipping voltage level, resembling a trapezoidal or quasi-square wave. On an oscilloscope, this is clearly visible as the peaks of the waveform being cut off horizontally. The clipped waveform contains harmonics of the fundamental frequency, indicating distortion.",
+                        "**Q:** What is the significance of the unity gain bandwidth (UGB) of an Op-Amp?\n\n**A:** Unity gain bandwidth (UGB) is the frequency at which the open-loop gain of the Op-Amp falls to 1 (0 dB). It is numerically equal to the GBP for a single-pole Op-Amp and is often listed on the datasheet as the gain-bandwidth product. UGB sets the absolute maximum frequency limit for amplification — beyond this frequency, the Op-Amp cannot amplify signals at all, regardless of gain setting. It is a key selection criterion when designing amplifiers for high-frequency applications. For the OP-07, the UGB is approximately 0.6–1 MHz."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

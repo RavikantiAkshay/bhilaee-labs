@@ -1,0 +1,27 @@
+{
+    "fig1-inv-amp": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Inverting amplifier circuit diagram (placeholder)"
+    },
+    "fig2-noninv-amp": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Non-inverting amplifier circuit diagram (placeholder)"
+    },
+    "fig3-cmrr-diff": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Differential mode CMRR circuit diagram (placeholder)"
+    },
+    "fig4-cmrr-common": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Common mode CMRR circuit diagram (placeholder)"
+    },
+    "fig5-gbp-circuit": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Bode plot GBP measurement circuit diagram (placeholder)"
+    }
+}
