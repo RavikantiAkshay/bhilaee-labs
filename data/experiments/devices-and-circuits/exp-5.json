@@ -253,6 +253,46 @@
                 {
                     "type": "text",
                     "content": "Simulation results closely matched hardware measurements in terms of gain for cases where output was not clipped. For high gain cases (Rf = 180 kΩ), both simulation and hardware showed output clipping due to supply voltage limits."
+                },
+                {
+                    "type": "text",
+                    "content": "**Inverting Amplifier — Case 2 (Rf = 56 kΩ, Gain = 5.6):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-inv-case2",
+                    "caption": "LTspice simulation — Inverting amp (Rf = 56 kΩ, R1 = 10 kΩ): Input 2 V sine (green), output ~11.2 V inverted sine (blue). Gain = 5.6, matches theory exactly.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Inverting Amplifier — Case 4 (Rf = 180 kΩ, Gain = 18, Clipped):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-inv-case4",
+                    "caption": "LTspice simulation — Inverting amp (Rf = 180 kΩ, R1 = 10 kΩ): Output clips at ±14 V due to ±15 V supply. Desired output of ±36 V is impossible; waveform shows flat-top clipping.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Non-Inverting Amplifier — Case 2 (Rf = 56 kΩ, Gain = 6.6):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-noninv-case2",
+                    "caption": "LTspice simulation — Non-inverting amp (Rf = 56 kΩ, R1 = 10 kΩ): Input 2 V sine, output ~13.2 V in-phase sine. Gain = 6.6, matches theory.",
+                    "role": "simulation-output"
+                },
+                {
+                    "type": "text",
+                    "content": "**Non-Inverting Amplifier — Case 4 (Rf = 180 kΩ, Gain = 19, Clipped):**"
+                },
+                {
+                    "type": "image",
+                    "assetId": "sim-noninv-case4",
+                    "caption": "LTspice simulation — Non-inverting amp (Rf = 180 kΩ, R1 = 10 kΩ): Output clips at supply rails. In-phase but saturated waveform confirms clipping at high gain.",
+                    "role": "simulation-output"
                 }
             ]
         },
@@ -315,6 +355,18 @@
                     "content": "Case 4 shows output clipping as the desired output amplitude (36 V) exceeds the supply voltage (±15 V), limiting actual output to ≈ 29 V."
                 },
                 {
+                    "type": "image",
+                    "assetId": "obs-inv-case2",
+                    "caption": "Oscilloscope — Inverting amp Case 2 (Rf = 56 kΩ): Yellow = input (2 Vpp, 1 kHz), cyan = output (~11.2 Vpp inverted). Gain ≈ 5.6, output cleanly inverted.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-inv-case4",
+                    "caption": "Oscilloscope — Inverting amp Case 4 (Rf = 180 kΩ): Output clipped at supply rails (~±14 V). Waveform shows flat-top distortion due to gain exceeding supply capacity.",
+                    "role": "observation"
+                },
+                {
                     "type": "text",
                     "content": "**2. Non-Inverting Amplifier (Input = 2 V amplitude, 100 Hz)**"
                 },
@@ -366,6 +418,18 @@
                 {
                     "type": "text",
                     "content": "Output is in phase with input (no inversion) in all non-inverting cases."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-noninv-case2",
+                    "caption": "Oscilloscope — Non-inverting amp Case 2 (Rf = 56 kΩ): Output in phase with input, gain ≈ 6.6. No clipping observed.",
+                    "role": "observation"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-noninv-case4",
+                    "caption": "Oscilloscope — Non-inverting amp Case 4 (Rf = 180 kΩ): Output saturated and clipped at supply rails. In-phase but distorted.",
+                    "role": "observation"
                 },
                 {
                     "type": "text",

@@ -24,45 +24,45 @@
         "path": "/assets/labs/devices-and-circuits/exp-5/fig5-gbp-circuit.png",
         "description": "Bode plot GBP measurement circuit diagram"
     },
-    "obs-inv-gain1": {
+    "sim-inv-case2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Inverting amp gain = 1 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-inv-case2.png",
+        "description": "LTspice simulation: Inverting amp Rf=56k gain=5.6"
     },
-    "obs-inv-gain5_6": {
+    "sim-inv-case4": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Inverting amp gain = 5.6 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/sim-inv-case4.png",
+        "description": "LTspice simulation: Inverting amp Rf=180k clipped"
     },
-    "obs-inv-gain10": {
+    "sim-noninv-case2": {
         "type": "image",
         "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Inverting amp gain = 10 (placeholder)"
+        "description": "LTspice simulation: Non-inverting amp Rf=56k gain=6.6 (placeholder)"
     },
-    "obs-inv-gain18-clipped": {
+    "sim-noninv-case4": {
         "type": "image",
         "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Inverting amp gain = 18 clipped (placeholder)"
+        "description": "LTspice simulation: Non-inverting amp Rf=180k clipped (placeholder)"
     },
-    "obs-noninv-gain2": {
+    "obs-inv-case2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp gain = 2 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-inv-case2.png",
+        "description": "Oscilloscope: Inverting amp Rf=56k gain=5.6"
     },
-    "obs-noninv-gain6_6": {
+    "obs-inv-case4": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp gain = 6.6 (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-5/obs-inv-case4.png",
+        "description": "Oscilloscope: Inverting amp Rf=180k clipped"
     },
-    "obs-noninv-gain11": {
+    "obs-noninv-case2": {
         "type": "image",
         "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp gain = 11 (placeholder)"
+        "description": "Oscilloscope: Non-inverting amp Rf=56k gain=6.6 (placeholder)"
     },
-    "obs-noninv-gain19-clipped": {
+    "obs-noninv-case4": {
         "type": "image",
         "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Non-inverting amp gain = 19 clipped (placeholder)"
+        "description": "Oscilloscope: Non-inverting amp Rf=180k clipped (placeholder)"
     },
     "obs-cmrr-diff": {
         "type": "image",
