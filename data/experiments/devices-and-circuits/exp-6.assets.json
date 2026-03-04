@@ -56,27 +56,27 @@
     },
     "bpf-cascaded-oscilloscope-2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: Cascaded filter output at another frequency (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/bpf-cascaded-oscilloscope-2.png",
+        "description": "Oscilloscope: Cascaded filter output at 1.6kHz"
     },
     "bpf-cascaded-frequency-response-plot": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Frequency response plot of the Cascaded BPF (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/bpf-cascaded-frequency-response-plot.png",
+        "description": "Frequency response plot of the Cascaded BPF"
     },
     "svf-oscilloscope-1": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: SVF output near centre frequency (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/svf-oscilloscope-1.jpg",
+        "description": "Oscilloscope: SVF output near centre frequency (820Hz)"
     },
     "svf-oscilloscope-2": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Oscilloscope: SVF output narrow band-pass (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/svf-oscilloscope-2.png",
+        "description": "Oscilloscope: SVF output narrow band-pass (1kHz)"
     },
     "svf-frequency-response-plot": {
         "type": "image",
-        "path": "/images/placeholder-blank.png",
-        "description": "Frequency response plot of the SV BPF (placeholder)"
+        "path": "/assets/labs/devices-and-circuits/exp-6/svf-frequency-response-plot.png",
+        "description": "Frequency response plot of the SV BPF"
     }
 }

@@ -172,12 +172,6 @@
                 },
                 {
                     "type": "image",
-                    "assetId": "fig1-lpf-response",
-                    "caption": "Fig 1(b): Frequency response of the low-pass filter (dotted = ideal, solid = practical).",
-                    "role": "frequency-response"
-                },
-                {
-                    "type": "image",
                     "assetId": "fig2-hpf-circuit",
                     "caption": "Fig 2(a): First-order active high-pass filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, fcutoff = 10 kHz).",
                     "role": "circuit-diagram"
@@ -448,6 +442,18 @@
                     "content": "The circuit is designed using R1 = 5.6 kΩ and R2 = 56 kΩ to obtain a gain of 10. Since the cutoff frequency is given as 10 kHz, the capacitance required is found to be 2.8 nF. A 2Vp−p AC sinusoidal signal is applied at various frequencies and the corresponding output voltages and gains are noted."
                 },
                 {
+                    "type": "image",
+                    "assetId": "hpf-oscilloscope-low-freq",
+                    "caption": "Oscilloscope screenshot: HPF output at low frequency (attenuation visible).",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "hpf-oscilloscope-high-freq",
+                    "caption": "Oscilloscope screenshot: HPF output at high frequency (pass-band). When frequency is 25 Hz or 50 Hz, Vout and Gain are very low, demonstrating the behaviour of a high-pass filter.",
+                    "role": "oscilloscope-capture"
+                },
+                {
                     "type": "table",
                     "headers": [
                         "Frequency (Hz)",
@@ -549,18 +555,6 @@
                 },
                 {
                     "type": "image",
-                    "assetId": "hpf-oscilloscope-low-freq",
-                    "caption": "Oscilloscope screenshot: HPF output at low frequency (attenuation visible).",
-                    "role": "oscilloscope-capture"
-                },
-                {
-                    "type": "image",
-                    "assetId": "hpf-oscilloscope-high-freq",
-                    "caption": "Oscilloscope screenshot: HPF output at high frequency (pass-band). When frequency is 25 Hz or 50 Hz, Vout and Gain are very low, demonstrating the behaviour of a high-pass filter.",
-                    "role": "oscilloscope-capture"
-                },
-                {
-                    "type": "image",
                     "assetId": "hpf-frequency-response-plot",
                     "caption": "Fig: Frequency response of the High-Pass Filter (gain in dB vs frequency).",
                     "role": "frequency-response-plot"
@@ -576,6 +570,18 @@
                 {
                     "type": "text",
                     "content": "To obtain a cascaded filter, both the high-pass and low-pass filters are cascaded. The output of one filter is given as the input to the second one. Both filters are designed with the same values of R1, R2, and C. An input voltage of 2Vp−p sine wave is applied and the following results are observed."
+                },
+                {
+                    "type": "image",
+                    "assetId": "bpf-cascaded-oscilloscope-1",
+                    "caption": "Oscilloscope screenshot: Cascaded filter output (band-pass behaviour).",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "bpf-cascaded-oscilloscope-2",
+                    "caption": "Oscilloscope screenshot: Cascaded filter output at another frequency.",
+                    "role": "oscilloscope-capture"
                 },
                 {
                     "type": "table",
@@ -676,18 +682,6 @@
                             "5"
                         ]
                     ]
-                },
-                {
-                    "type": "image",
-                    "assetId": "bpf-cascaded-oscilloscope-1",
-                    "caption": "Oscilloscope screenshot: Cascaded filter output (band-pass behaviour).",
-                    "role": "oscilloscope-capture"
-                },
-                {
-                    "type": "image",
-                    "assetId": "bpf-cascaded-oscilloscope-2",
-                    "caption": "Oscilloscope screenshot: Cascaded filter output at another frequency.",
-                    "role": "oscilloscope-capture"
                 },
                 {
                     "type": "image",
