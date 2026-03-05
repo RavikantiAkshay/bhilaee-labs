@@ -49,7 +49,8 @@
 
 .imageWrapper {
     width: 100%;
-    max-width: 550px; /* Forces all images to exactly the same column width */
+    max-width: 550px;
+    /* Forces all images to exactly the same column width */
     margin: 0 auto;
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -57,11 +58,13 @@
     background: white;
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers everything */
+    align-items: center;
+    /* Centers everything */
 }
 
 .image {
-    width: 100%; /* Make image span exactly the inner width of the 550px wrapper */
+    width: 100%;
+    /* Make image span exactly the inner width of the 550px wrapper */
     height: auto;
     object-fit: contain;
     display: block;
@@ -74,7 +77,8 @@
     font-size: 0.9rem;
     color: var(--text-muted);
     font-style: italic;
-    white-space: normal; /* Let browser wrap naturally within 550px */
+    white-space: normal;
+    /* Let browser wrap naturally within 550px */
     line-height: 1.5;
     text-align: center;
 }
@@ -389,4 +393,84 @@
     border: 1px dashed var(--border-color);
     border-radius: 4px;
     text-align: center;
+}
+
+/* Print Button Element */
+.printButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background-color: #f1f3f5;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    margin-left: auto;
+    /* Push to right if in flex container */
+}
+
+.printButton:hover {
+    background-color: #e9ecef;
+    color: #212529;
+}
+
+/* =========================================
+   Print-Friendly Overrides for Experiment
+   ========================================= */
+@media print {
+
+    /* Hide layout chrome */
+    .sidebar,
+    .mobileNav,
+    .printButton,
+    .noPrint {
+        display: none !important;
+    }
+
+    /* Expand main content to full width */
+    .mainContent {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        max-width: none !important;
+        border: none !important;
+        background: none !important;
+    }
+
+    /* Hide "Not Applicable" empty sections */
+    .notApplicableBadge,
+    .notApplicableText,
+    .emptyPlaceholder {
+        display: none !important;
+    }
+
+    /* Reduce header margins for print */
+    .experimentHeader {
+        margin-bottom: 2rem !important;
+        padding-bottom: 1rem !important;
+        border-bottom: 2px solid #000 !important;
+    }
+
+    .experimentTitle {
+        font-size: 24pt !important;
+        color: #000 !important;
+    }
+
+    .sectionTitle {
+        font-size: 16pt !important;
+        margin-top: 1.5rem !important;
+        margin-bottom: 1rem !important;
+        color: #000 !important;
+        border-bottom: 1px solid #ccc !important;
+        page-break-after: avoid;
+    }
+
+    .sectionContainer {
+        margin-bottom: 2rem !important;
+    }
 }

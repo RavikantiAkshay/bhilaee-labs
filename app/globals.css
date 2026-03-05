@@ -88,6 +88,55 @@ html {
   white-space: nowrap;
 }
 
+@media (max-width: 480px) {
+  .labs-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   Print-Friendly Mode
+   ========================================= */
+@media print {
+  /* Hide typical app navigation/footers */
+  header, footer, nav, aside {
+    display: none !important;
+  }
+
+  /* Reset body and container for optimal paper usage */
+  body, html {
+    background-color: #ffffff !important;
+    background: none !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 11pt;
+  }
+
+  .app-wrapper, .main-content, .container {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Remove distracting shadows and extra borders */
+  * {
+    box-shadow: none !important;
+  }
+
+  /* Prevent awkward page breaks */
+  img, table, figure, pre, blockquote, .sectionContainer {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Ensure links don't output their URLs by default if not wanted, or style them cleanly */
+  a {
+    text-decoration: none !important;
+    color: #000000 !important;
+  }
+}
 .labs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
