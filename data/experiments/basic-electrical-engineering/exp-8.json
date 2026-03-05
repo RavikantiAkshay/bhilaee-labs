@@ -1,0 +1,424 @@
+{
+    "id": "exp-dc-shunt-motor-03",
+    "title": "Speed Control of a DC Shunt Motor",
+    "labId": "electrical-machines",
+    "status": "Hardware Only",
+    "meta": {
+        "simulationId": null,
+        "simulationType": null,
+        "experimentType": "hardware",
+        "status": "hardware-only",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study the speed control of a DC shunt motor using:"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Field current control method",
+                        "Armature voltage control method"
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Apparatus",
+                        "Specification",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "DC Shunt Motor",
+                            "1.5 kW, 1500 RPM",
+                            "1"
+                        ],
+                        [
+                            "2",
+                            "Voltmeter",
+                            "0–300 V",
+                            "1"
+                        ],
+                        [
+                            "3",
+                            "Ammeter (Armature)",
+                            "0–20 A",
+                            "1"
+                        ],
+                        [
+                            "4",
+                            "Ammeter (Field)",
+                            "0–2 A",
+                            "1"
+                        ],
+                        [
+                            "5",
+                            "Rheostat (Armature)",
+                            "20 Ω, 10 A",
+                            "1"
+                        ],
+                        [
+                            "6",
+                            "Rheostat (Field)",
+                            "300 Ω, 2 A",
+                            "1"
+                        ],
+                        [
+                            "7",
+                            "DC Supply",
+                            "Variable",
+                            "1"
+                        ],
+                        [
+                            "8",
+                            "Tachometer / Speed Meter",
+                            "0–2000 RPM",
+                            "1"
+                        ],
+                        [
+                            "9",
+                            "Connecting Wires",
+                            "—",
+                            "As required"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The equation governing the speed of a DC shunt motor is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "N = \\frac{V - I_a R_a}{k\\phi}"
+                },
+                {
+                    "type": "text",
+                    "content": "Where N is the speed of the machine, V is the armature voltage, Ia is the armature current, Ra is the armature resistance, φ is the field flux, and k is a machine constant. Since Ra is fixed, the speed of the motor can be controlled in two ways:"
+                },
+                {
+                    "type": "text",
+                    "content": "**A. Armature Voltage Control Method**"
+                },
+                {
+                    "type": "text",
+                    "content": "In this method, a rheostat is introduced in the armature circuit. By varying the rheostat resistance, the voltage across the armature changes, resulting in different motor speeds. As armature voltage increases (rheostat decreased from maximum), speed increases proportionally — this method gives speeds below the base speed. The field current is kept constant throughout. The N vs. V characteristic is approximately linear (Fig. 2A)."
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Field Current (Flux) Control Method**"
+                },
+                {
+                    "type": "text",
+                    "content": "In this method, a rheostat is introduced in the field circuit. By increasing the field rheostat resistance, the field current (If) and therefore the field flux φ decrease. From the speed equation, a decrease in φ results in an increase in speed. This method provides speeds above the base (rated) speed. The N vs. If characteristic is a hyperbolic (inverse) curve (Fig. 2B)."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-speed-control-graphs",
+                    "caption": "Fig. 2: Speed Control of D.C. Shunt Motor — (A) Armature Control Method (N vs. V) and (B) Field Control Method (N vs. If).",
+                    "role": "theory-diagram"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-dc-shunt-motor-circuit",
+                    "caption": "Fig. 1: Circuit diagram for the study of speed control of a D.C. Shunt Motor. The armature rheostat (20 Ω, 10 A) is connected in series with the armature, and the field rheostat (300 Ω, 2 A) is connected in series with the field winding.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "Before the experiment, ensure the following initial conditions are set: armature rheostat at maximum resistance, field rheostat at minimum resistance. This ensures the motor starts with reduced armature voltage and full field flux, preventing large starting currents."
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**General Setup:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in Fig. 1.",
+                        "Keep the armature rheostat at its maximum value and the field rheostat at its minimum value.",
+                        "Switch ON the DC supply. The motor will start and run at a slow speed.",
+                        "Note down the speed, field current, and armature voltage."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**A. Armature Voltage Control Method:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "With the field rheostat fixed at minimum (constant field current), vary the armature rheostat from maximum to minimum in steps.",
+                        "At each step, note the armature voltage (V) and the corresponding speed (N in RPM). Field current If must remain constant throughout.",
+                        "Continue until the armature rheostat reaches its minimum value (rated armature voltage).",
+                        "Draw a graph of N (RPM) vs. V (Volts) — this should be approximately linear."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Field Current Control Method:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Set the armature rheostat to its minimum value (rated armature voltage applied).",
+                        "Gradually increase the field rheostat resistance in steps, reducing the field current If.",
+                        "At each step, note the field current If (A) and the corresponding speed N (RPM). Armature voltage must remain constant.",
+                        "Continue until the field rheostat is at its maximum value.",
+                        "Draw a graph of N (RPM) vs. If (A) — this should be a hyperbolic (inverse) curve.",
+                        "After completing the observations, bring the armature rheostat back to its maximum value and switch OFF the DC supply."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table 1: Observations for Speed Control of DC Shunt Motor**"
+                },
+                {
+                    "type": "text",
+                    "content": "**A. Armature Voltage Control Method** — Field current fixed at rated value (If = 0.70 A), field rheostat at minimum."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Armature Voltage V (Volts)",
+                        "Speed N (RPM)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "80",
+                            "450"
+                        ],
+                        [
+                            "2",
+                            "110",
+                            "620"
+                        ],
+                        [
+                            "3",
+                            "140",
+                            "820"
+                        ],
+                        [
+                            "4",
+                            "170",
+                            "1020"
+                        ],
+                        [
+                            "5",
+                            "200",
+                            "1220"
+                        ]
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Field (Flux) Control Method** — Armature voltage fixed at rated value (220 V), armature rheostat at minimum."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S.No.",
+                        "Field Current If (A)",
+                        "Speed N (RPM)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0.70",
+                            "1260"
+                        ],
+                        [
+                            "2",
+                            "0.60",
+                            "1380"
+                        ],
+                        [
+                            "3",
+                            "0.50",
+                            "1520"
+                        ],
+                        [
+                            "4",
+                            "0.40",
+                            "1680"
+                        ],
+                        [
+                            "5",
+                            "0.30",
+                            "1820"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Speed Equation (DC Shunt Motor):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "N = \\frac{V - I_a R_a}{k\\phi}"
+                },
+                {
+                    "type": "text",
+                    "content": "**A. Armature Control — Sample Calculation (Row 5):**"
+                },
+                {
+                    "type": "text",
+                    "content": "Given: V = 200 V, If = 0.70 A (constant), Ra ≈ 2 Ω, Ia ≈ 3 A (light load), k·φ = constant."
+                },
+                {
+                    "type": "equation",
+                    "value": "N \\propto V - I_a R_a = 200 - (3 \\times 2) = 194 \\text{ V (effective)}"
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Field Control — Sample Calculation:**"
+                },
+                {
+                    "type": "text",
+                    "content": "At rated field current If = 0.70 A, rated speed N = 1260 RPM. When field current is reduced to If = 0.30 A, flux φ decreases proportionally, and speed increases."
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{N_2}{N_1} = \\frac{\\phi_1}{\\phi_2} \\approx \\frac{I_{f1}}{I_{f2}} = \\frac{0.70}{0.30} \\approx 2.33"
+                },
+                {
+                    "type": "equation",
+                    "value": "N_2 = 1260 \\times 2.33 \\approx 1820 \\text{ RPM (matches observation)}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Results Summary:**"
+                },
+                {
+                    "type": "text",
+                    "content": "The N vs. V graph (armature control) is approximately linear, confirming direct proportionality between armature voltage and speed at constant flux. The N vs. If graph (field control) is hyperbolic, confirming inverse proportionality between field current and speed."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The speed control of the DC shunt motor was successfully demonstrated using both armature voltage control and field current control methods."
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Armature voltage control: Speed varied from approximately 450 RPM to 1220 RPM as armature voltage was increased from 80 V to 200 V at constant field current. The N vs. V characteristic is approximately linear, confirming the theoretical relationship.",
+                        "Field current control: Speed varied from 1260 RPM to 1820 RPM as the field current was reduced from 0.70 A to 0.30 A at rated armature voltage. The N vs. If characteristic is hyperbolic (inverse), consistent with theory.",
+                        "Armature control provides speeds below the base (rated) speed, while field control provides speeds above the base speed.",
+                        "Field control is more economical as it involves low power loss in the field circuit; armature control involves higher copper losses in the series rheostat."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The experiment successfully demonstrated the two primary methods of speed control for a DC shunt motor. In the armature voltage control method, increasing the armature voltage (by reducing the series rheostat) resulted in a proportional increase in speed below the rated speed — the N vs. V graph was approximately linear. In the field current control method, reducing the field current (by increasing the field rheostat) increased the speed above the rated value — the N vs. If graph was hyperbolic. The experimental observations are consistent with the theoretical speed equation N = (V − IaRa) / kφ. All prescribed safety precautions were observed during the experiment."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is the fundamental speed equation of a DC shunt motor and what does each term represent?\n\n**A:** The speed equation is N = (V − IaRa) / kφ, where N is the motor speed (RPM), V is the applied armature voltage, Ia is the armature current, Ra is the armature resistance, φ is the field flux, and k is a machine constant. Since Ra is fixed for a given motor, speed can be controlled by varying either the armature voltage V or the field flux φ.",
+                        "**Q:** Why must the field rheostat be set to minimum resistance before starting the motor?\n\n**A:** At minimum field rheostat resistance, the field current is maximum, which produces maximum flux φ. From the speed equation N = (V − IaRa)/kφ, maximum φ gives minimum starting speed and maximum starting torque. High starting torque is needed to overcome inertia. If the field is weakened (high resistance) at start, the motor may overspeed dangerously or fail to start under load.",
+                        "**Q:** Why is the armature rheostat set to maximum resistance at the time of starting?\n\n**A:** At startup (N = 0), the back EMF Eb = kφN = 0, so the armature current Ia = V/Ra would be excessively large if full voltage were applied — this could damage the armature windings. The series armature rheostat limits the starting current to a safe value. As the motor accelerates and back EMF builds up, the rheostat is progressively reduced.",
+                        "**Q:** Why does reducing field current increase speed in a DC shunt motor?\n\n**A:** Increasing field rheostat resistance reduces field current If, which reduces flux φ. From N = (V − IaRa)/kφ, a decrease in φ (denominator) causes N to increase, provided V remains constant. This is why field control gives speeds above the rated (base) speed.",
+                        "**Q:** What are the limitations of armature voltage control and field current control methods?\n\n**A:** Armature control limitations: it gives speeds only below the rated speed; the series rheostat dissipates significant power (I²R loss), reducing efficiency; voltage regulation is poor at high loads. Field control limitations: it gives speeds only above rated speed; weakening the field excessively reduces the motor's torque capacity (T ∝ φ·Ia) and can lead to instability or commutation problems at very high speeds.",
+                        "**Q:** In the N vs. If graph (field control), why is the curve hyperbolic rather than linear?\n\n**A:** The speed equation shows N ∝ 1/φ ∝ 1/If (since φ is proportional to If in a shunt motor below saturation). A relationship of the form N = k/If describes a rectangular hyperbola when plotted as N vs. If. This is in contrast to the armature control method where N ∝ V (linear relationship).",
+                        "**Q:** What precaution should be taken before switching OFF the DC supply?\n\n**A:** Before switching OFF, the armature rheostat must be brought back to its maximum resistance position. This ensures that when the supply is next switched ON, the motor starts with limited armature current. Additionally, any sudden disconnection of the field circuit should be avoided as loss of field in a lightly loaded shunt motor can cause dangerous overspeeding (runaway condition)."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

@@ -1,0 +1,12 @@
+{
+    "fig1-dc-shunt-motor-circuit": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Fig. 1: Circuit diagram for the study of speed control of a D.C. Shunt Motor. (placeholder)"
+    },
+    "fig2-speed-control-graphs": {
+        "type": "image",
+        "path": "/images/placeholder-blank.png",
+        "description": "Fig. 2: Speed Control of D.C. Shunt Motor — (A) Armature Control Method and (B) Field Control Method (placeholder)"
+    }
+}
