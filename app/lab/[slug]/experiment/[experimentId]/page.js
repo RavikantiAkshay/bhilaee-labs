@@ -3,6 +3,7 @@ import { getExperiment, getAllExperimentPaths } from '@/data/experiments';
 import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
 import ExperimentLayout from '@/components/experiment/ExperimentLayout';
 import ContentBlock from '@/components/experiment/ContentBlock';
+import ExperimentFeedback from '@/components/experiment/ExperimentFeedback';
 import styles from '@/components/experiment/Experiment.module.css';
 
 /**
@@ -55,6 +56,9 @@ export default async function ExperimentPage({ params }) {
                     </section>
                 );
             })}
+
+            {/* Quick feedback widget */}
+            <ExperimentFeedback />
         </ExperimentLayout>
     );
 }

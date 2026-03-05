@@ -9,11 +9,10 @@ export default function ThemeToggle() {
 
     useEffect(() => {
         setMounted(true);
-        // Check for saved preference or system preference on mount
+        // Check for saved preference only — light mode is the default
         const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-        if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+        if (savedTheme === 'dark') {
             setIsDark(true);
             document.documentElement.setAttribute('data-theme', 'dark');
         }
