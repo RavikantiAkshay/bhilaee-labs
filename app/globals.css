@@ -110,8 +110,8 @@ html {
   /* Reset body and container for optimal paper usage */
   @page {
     size: auto;
-    margin: 15mm;
-    /* Sufficient margin hides browser headers/footers typically, or we can use margin: 0 and pad the body */
+    margin: 0mm;
+    /* Using 0 margin perfectly strips browser header/footer URLs and Dates */
   }
 
   body,
@@ -120,7 +120,8 @@ html {
     background: none !important;
     color: #000000 !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 15mm 15mm 15mm 15mm !important;
+    /* Move the margin inside the body padding so text isn't cut off */
     font-size: 11pt;
   }
 
