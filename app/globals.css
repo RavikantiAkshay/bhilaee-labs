@@ -110,8 +110,8 @@ html {
   /* Reset body and container for optimal paper usage */
   @page {
     size: auto;
-    margin: 20mm 15mm;
-    /* 20mm top/bottom margin creates the physical empty space between printed pages */
+    /* 8mm top/bottom is typically too small for Chrome to print headers/footers, but provides a visible page break gap */
+    margin: 8mm 15mm;
   }
 
   body,

@@ -450,6 +450,30 @@
         display: none !important;
     }
 
+    /* Fix tables getting cut off in PDF generation */
+    .tableWrapper {
+        overflow: visible !important;
+        overflow-x: visible !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border: 1px solid #ccc !important;
+    }
+
+    .table {
+        table-layout: fixed !important;
+        width: 100% !important;
+        word-wrap: break-word !important;
+    }
+
+    .table th,
+    .table td {
+        white-space: normal !important;
+        /* Allow text to wrap instead of forcing horizontal scroll */
+        padding: 0.5rem !important;
+        /* Slightly reduce padding to fit more columns if needed */
+        font-size: 10pt !important;
+    }
+
     /* Reduce header margins for print */
     .experimentHeader {
         margin-bottom: 2rem !important;

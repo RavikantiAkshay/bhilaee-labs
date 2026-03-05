@@ -22,8 +22,8 @@ const labMetadata = [
     description: "Fundamental concepts of electrical engineering including circuit analysis and basic measurements",
     focus: "Fundamental circuit laws and theorems",
     nature: "Circuit-based",
-    prerequisites: "12th Grade Physics, Calculus",
-    totalExperiments: 10
+    prerequisites: "12th Grade Physics, Basic Network Theory, AC Fundamentals",
+    totalExperiments: 9
   },
   {
     id: "digital-electronics",
