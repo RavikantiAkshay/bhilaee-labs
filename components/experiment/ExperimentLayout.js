@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
+import BookmarkButton from './BookmarkButton';
 import styles from './Experiment.module.css';
 
 /**
@@ -71,6 +72,9 @@ export default function ExperimentLayout({ experiment, children }) {
                             </svg>
                             Download as PDF
                         </button>
+
+                        {/* Bookmark Button */}
+                        <BookmarkButton experimentId={experiment.id} />
                     </div>
                     <h1 className={styles.experimentTitle}>{experiment.title}</h1>
 
