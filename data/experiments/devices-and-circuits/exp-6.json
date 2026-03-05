@@ -1,11 +1,13 @@
 {
     "id": "exp-6",
     "title": "Study of Frequency Response of Different Filters Using Op-Amp",
-    "labId": "devices-and-circuits-lab",
-    "status": "Hardware-Oriented",
+    "labId": "devices-and-circuits",
+    "status": "Simulation Available",
     "meta": {
+        "simulationId": "devices_and_circuits-exp6",
+        "simulationType": "Transient / AC Analysis",
         "experimentType": "hardware",
-        "status": "active",
+        "status": "simulation-available",
         "difficulty": "intermediate",
         "estimatedTimeMinutes": 120,
         "version": "1.0.0",
@@ -254,9 +256,14 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
-            "route": null,
-            "content": []
+            "isApplicable": true,
+            "route": "default",
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Running this experiment? Set the simulation type to transient and observe the frequency response of each filter configuration."
+                }
+            ]
         },
         "observation": {
             "id": "observation",
