@@ -67,7 +67,7 @@ A structured virtual laboratory platform for **Electrical & Electronics Engineer
 | UI | **React 19** + CSS Modules |
 | Math | **KaTeX** via `react-katex` |
 | Data | JSON files + dynamic imports |
-| Hosting | Vercel (planned) |
+| Hosting | Vercel |
 
 ---
 
