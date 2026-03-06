@@ -1,0 +1,27 @@
+{
+    "fig1-current-mirror": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-8/fig1-current-mirror.png",
+        "description": "MOSFET current mirror circuit with M1 (diode-connected) and M2 (output branch)"
+    },
+    "obs-case1-iref": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-8/obs-case1-iref.jpeg",
+        "description": "Digital multimeter reading showing Iref for Case 1 (12.064 mA)"
+    },
+    "obs-case1-iout": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-8/obs-case1-iout.jpeg",
+        "description": "Digital multimeter reading showing Iout for Case 1 (9.83 mA)"
+    },
+    "obs-case2-iref": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-8/obs-case2-iref.jpeg",
+        "description": "Keithley multimeter reading showing Iref for Case 2 (11.997 mA)"
+    },
+    "obs-case2-iout": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-8/obs-case2-iout.jpeg",
+        "description": "Keithley multimeter reading showing Iout for Case 2 (0.999 mA)"
+    }
+}

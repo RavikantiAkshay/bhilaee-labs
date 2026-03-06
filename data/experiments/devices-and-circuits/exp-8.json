@@ -1,0 +1,417 @@
+{
+    "id": "exp-8",
+    "title": "MOSFET Current Mirror Experiment",
+    "labId": "devices-and-circuits",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and analyse a MOSFET-based current mirror circuit and study its characteristics, including current matching and output compliance."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Digital Multimeter",
+                            "1"
+                        ],
+                        [
+                            "DC Supply (0–15 V)",
+                            "2"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "N-Channel MOSFET (2N7000 / BS170)",
+                            "2"
+                        ],
+                        [
+                            "10 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "1 kΩ Resistor",
+                            "1"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "-"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A **current mirror** is a circuit that copies the current from one active device to another. It consists of two identical MOSFETs: one acts as a reference (M1), and the other as the output (M2). The reference current (Iref) is set by a resistor, and ideally, the output current (Iout) matches Iref. Current mirrors are fundamental building blocks in analog integrated circuit design, used as active loads, current sources, and bias current generators."
+                },
+                {
+                    "type": "text",
+                    "content": "**Principle of Operation:**"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The gate and drain of M1 are connected together (diode-connected), forcing it to operate in saturation.",
+                        "This creates a reference current through M1, determined by the source resistor R1.",
+                        "Since M1 and M2 are matched, the same VGS is applied to both MOSFETs, making Iout approximately equal to Iref.",
+                        "The circuit provides a stable current source with high output impedance."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "For an ideal current mirror, assuming negligible channel-length modulation (λ ≈ 0), the output drain current is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{out} \\approx I_{ref} = \\frac{1}{2}\\mu_n C_{ox} \\frac{W}{L} (V_{GS} - V_{th})^2"
+                },
+                {
+                    "type": "text",
+                    "content": "where μn is the mobility of electrons, Cox is the oxide capacitance per unit area, W and L are the width and length of the MOSFET channel, VGS is the gate-source voltage, Vth is the threshold voltage, and VDS is the drain-source voltage."
+                },
+                {
+                    "type": "text",
+                    "content": "For matched transistors with identical W/L ratios, the output current scales as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{out} = \\frac{W_2/L_2}{W_1/L_1} \\times I_{ref}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Output Compliance:** The output compliance range is the range of output voltage over which the mirror maintains accurate current copying. M2 must remain in saturation (VDS2 ≥ VGS − Vth). If VDS2 drops below this value, M2 enters the ohmic region and Iout decreases."
+                },
+                {
+                    "type": "text",
+                    "content": "**Practical Limitations:** Due to channel-length modulation (finite output resistance), the output current slightly increases with VDS2. Mismatch between transistor threshold voltages (ΔVth) is the primary source of current mismatch. Since the MOSFET I-V relationship is quadratic (rather than exponential as in BJT mirrors), even small ΔVth can cause significant current error in discrete implementations."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-current-mirror",
+                    "filename": "exp8_image1.png",
+                    "caption": "Fig 1: MOSFET current mirror circuit with M1 (diode-connected, reference branch, R1 = 1 kΩ) and M2 (output branch, R2 variable). V1 sets Iref; V2 supplies the output branch.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Circuit Setup:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the circuit as shown in the schematic using two identical N-channel MOSFETs (M1 and M2) with their gates tied together.",
+                        "Connect M1 in diode configuration (gate shorted to drain). Connect both sources to ground.",
+                        "Connect R1 = 1 kΩ between V1 and the drain of M1 to set the reference current Iref.",
+                        "Connect R2 at the drain of M2 as required for each case (R2 = 0 for Case 1, R2 = 10 kΩ for Case 2)."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Applying Power:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Power the circuit using DC supply. Measure the reference current Iref using a digital multimeter in series with M1 (through R1).",
+                        "**Case 1 (R2 = 0):** Set V1 = V2 = 15 V. Measure Iref and Iout (current through M2) using the digital multimeter in series with each branch.",
+                        "**Case 2 (R2 = 10 kΩ):** Set V1 = 15 V, V2 = 12 V. Repeat current measurements in both branches."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**3. Measuring Current Mirror Action:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Measure the output current (Iout) at different load conditions.",
+                        "Compare Iout with Iref to verify current mirroring.",
+                        "Record observations and analyse the degree of current matching for both cases."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The above circuit is implemented with two different cases to verify the proper operation of the current mirror. The current on both sides is measured, with Iref flowing through R1 and Iout representing the current through the second branch."
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 1: R1 = 1 kΩ, R2 = 0 (short), V1 = V2 = 15 V**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "V1 (V)",
+                        "V2 (V)",
+                        "R1",
+                        "R2",
+                        "Iref (mA)",
+                        "Iout (mA)"
+                    ],
+                    "rows": [
+                        [
+                            "15",
+                            "15",
+                            "1 kΩ",
+                            "0",
+                            "12.064",
+                            "9.83"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-case1-iref",
+                    "filename": "exp8_image2.jpeg",
+                    "caption": "Digital multimeter reading showing Iref (current through R1) for Case 1.",
+                    "role": "measurement-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-case1-iout",
+                    "filename": "exp8_image3.jpeg",
+                    "caption": "Digital multimeter reading showing Iout (current through the output branch) for Case 1.",
+                    "role": "measurement-capture"
+                },
+                {
+                    "type": "text",
+                    "content": "It can be seen that both the currents are not equal when they should have been. The picture on the left shows the current through R1 (Iref) and the one on the right shows the output current. Both the currents are not equal; in practice, exactly equal currents cannot be obtained as there are many factors that affect the accuracy of the measurement. An error of around 2 mA can be seen in this case, which is acceptable and is possibly due to minor errors like component tolerances, measurement inaccuracies, and wire resistances."
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 2: R1 = 1 kΩ, R2 = 10 kΩ, V1 = 15 V, V2 = 12 V**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "V1 (V)",
+                        "V2 (V)",
+                        "R1",
+                        "R2",
+                        "Iref (mA)",
+                        "Iout (mA)"
+                    ],
+                    "rows": [
+                        [
+                            "15",
+                            "12",
+                            "1 kΩ",
+                            "10 kΩ",
+                            "11.997",
+                            "0.999"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-case2-iref",
+                    "filename": "exp8_image4.png",
+                    "caption": "Digital multimeter reading showing Iref (current through R1) for Case 2.",
+                    "role": "measurement-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-case2-iout",
+                    "filename": "exp8_image5.png",
+                    "caption": "Digital multimeter reading showing Iout (approximately one-tenth of Iref) for Case 2.",
+                    "role": "measurement-capture"
+                },
+                {
+                    "type": "text",
+                    "content": "It can be seen that both the currents are not equal and have a ratio of around 12. In theory they should be equal, but in practice it is not possible because even a slight difference in transistor threshold voltages can cause exponential differences in current due to the nature of MOSFET I-V characteristics. The picture on the left shows Iref and the right one shows Iout which is around one-tenth of Iref. Irrespective of resistors used in a current mirror, the current on both sides should ideally be equal, but here it is not due to the above-mentioned reasons."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Case 1 — Theoretical Reference Current:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "I_{ref,\\text{approx}} = \\frac{V_1 - V_{GS}}{R_1} \\approx \\frac{15 - 2.1}{1\\,\\text{k}\\Omega} \\approx 12.9\\,\\text{mA}"
+                },
+                {
+                    "type": "text",
+                    "content": "Measured Iref = 12.064 mA, which is close to the approximation (VGS estimated at ≈ 2.94 V from measurement)."
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 1 — Current Mismatch:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\Delta I = I_{ref} - I_{out} = 12.064 - 9.83 = 2.234\\,\\text{mA}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Mismatch}\\% = \\frac{\\Delta I}{I_{ref}} \\times 100 = \\frac{2.234}{12.064} \\times 100 \\approx 18.5\\%"
+                },
+                {
+                    "type": "text",
+                    "content": "**Case 2 — Current Ratio:**"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{I_{ref}}{I_{out}} = \\frac{11.997}{0.999} \\approx 12"
+                },
+                {
+                    "type": "text",
+                    "content": "The ∼12× ratio is primarily due to the difference in supply voltages (V2 = 12 V vs V1 = 15 V) and the resistive voltage drop across R2 = 10 kΩ, which reduces the effective VDS of M2. In an ideal mirror with identical bias conditions, Iout = Iref."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The MOSFET current mirror was implemented and characterised under two cases. The expected result is that Iout should approximately match Iref, and the output current should remain stable across a range of output voltages (high output impedance). Small mismatches due to MOSFET parameter variations are expected."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Case",
+                        "Iref (mA)",
+                        "Iout (mA)",
+                        "Ratio Iref/Iout",
+                        "Remarks"
+                    ],
+                    "rows": [
+                        [
+                            "1 (R2 = 0, V1 = V2 = 15 V)",
+                            "12.064",
+                            "9.83",
+                            "1.23",
+                            "∼18.5% mismatch; expected 1:1"
+                        ],
+                        [
+                            "2 (R2 = 10 kΩ, V1 = 15 V, V2 = 12 V)",
+                            "11.997",
+                            "0.999",
+                            "12.01",
+                            "Large mismatch due to different V2 and R2 voltage drop"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "In Case 1, the currents were not exactly equal despite the same supply voltage, due to threshold voltage mismatch between the two discrete MOSFETs and measurement errors.",
+                        "In Case 2, the significant current imbalance confirms that in MOSFET mirrors, even small differences in threshold voltage can cause large differences in drain current due to the square-law I-V characteristics, compounded by the different supply voltages.",
+                        "These errors can be minimised in practice by using carefully matched transistors (same die/wafer), keeping VDS equal on both transistors (cascode mirror), and using high-precision resistors.",
+                        "The experiment successfully demonstrated the principle of current mirroring and highlighted the practical limitations of discrete MOSFET current mirrors."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, we have successfully completed the implementation of a current mirror. We have verified its operation at different values of resistors and supply voltages and compared the results with expected outputs. The possible sources of error were also discussed. In Case 1, an 18.5% mismatch was observed primarily due to threshold voltage differences between the discrete MOSFETs. In Case 2, the large ratio was caused by different supply voltages and the resistive drop across R2. These errors can be minimised by selecting matched transistors with negligible threshold voltage difference and ensuring both output transistors operate in saturation. The experiment reinforced the importance of transistor matching and operating point selection in current mirror design."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What is a current mirror, and what is its primary function in analog circuits?\n\n**A:** A current mirror is an analog circuit that replicates a reference current into one or more output branches, maintaining a constant output current regardless of load resistance variations (within the output compliance range). Its primary functions include: providing stable bias currents to transistor stages, acting as an active load to replace passive resistors for higher gain, creating current sources for differential amplifiers, and implementing current multiplication/division by scaling the W/L ratios. Current mirrors are fundamental building blocks in analog ICs such as Op-Amps, voltage regulators, and data converters.",
+                        "**Q:** Why must the reference transistor (M1) be diode-connected in a MOSFET current mirror?\n\n**A:** M1 is diode-connected (gate shorted to drain) so that it acts as a two-terminal device whose VGS automatically adjusts to carry the desired reference current Iref. The VGS established across M1 is the same VGS applied to M2 (since both gates are connected together). Since VGS fully determines the drain current in saturation (for a given W/L ratio), M2 carries a current equal to Iref if it is matched to M1. Without diode-connecting M1, there would be no defined VGS to force M1 into a specific operating point, and the circuit would not function as a mirror.",
+                        "**Q:** What is output compliance voltage in a current mirror, and what limits it?\n\n**A:** Output compliance voltage is the minimum output voltage (at the drain of M2) above which the current mirror accurately maintains the output current. For a MOSFET mirror, the output transistor M2 must remain in saturation, which requires VDS2 ≥ VGS − Vth = Vov (overdrive voltage). If the output voltage drops below this minimum (VDS2 < Vov), M2 enters the ohmic region, its drain current decreases, and the mirror fails. Compliance is limited by the overdrive voltage of the MOSFET — a lower threshold voltage and smaller overdrive allow operation at lower output voltages.",
+                        "**Q:** What is channel length modulation and how does it affect the accuracy of a current mirror?\n\n**A:** Channel length modulation is the effect in MOSFETs where the effective channel length decreases slightly with increasing VDS, causing the drain current to increase linearly with VDS even in saturation (instead of remaining perfectly constant). This is modelled by the Early voltage parameter λ: ID = (1/2)μnCox(W/L)(VGS−Vth)²(1 + λVDS). In a current mirror, if VDS1 ≠ VDS2, the two transistors operate at different points on their output characteristics, causing a systematic offset in the mirrored current. This is the primary reason a simple MOSFET mirror has finite output resistance and less-than-perfect current matching as VDS changes.",
+                        "**Q:** How would you improve the accuracy of a MOSFET current mirror in a practical circuit?\n\n**A:** Several techniques improve current mirror accuracy: (1) Cascode current mirror — an additional transistor is stacked above each mirror transistor to equalise VDS of M1 and M2, reducing the effect of channel length modulation. (2) Wilson current mirror — uses three transistors with feedback to improve output resistance and current matching. (3) Matched transistors — using transistors from the same die, oriented identically, and with matched geometric layouts eliminates most threshold voltage mismatch. (4) Large W/L ratio — increases gm and reduces the relative impact of threshold mismatch. (5) Operating at lower overdrive voltage reduces sensitivity to VDS variations.",
+                        "**Q:** Why is a MOSFET current mirror generally less accurate than a BJT current mirror?\n\n**A:** BJT current mirrors benefit from the exponential I-V relationship of the base-emitter junction (IS·e^(VBE/VT)), which means both transistors respond identically to the same VBE if matched, giving very accurate current mirroring. MOSFET mirrors rely on the square-law relationship ID = (1/2)μCox(W/L)(VGS−Vth)², which is more sensitive to threshold voltage mismatch (ΔVth). Since Vth of discrete MOSFETs varies significantly between devices (due to oxide thickness and doping variations), even small ΔVth can cause significant ΔID. In integrated circuits where both transistors are fabricated adjacently on the same die, matching is much better and MOSFET mirrors can be very accurate.",
+                        "**Q:** What is the significance of the W/L ratio in scaling a current mirror?\n\n**A:** The W/L ratio (width-to-length ratio) of a MOSFET determines the transistor's drain current for a given VGS. In a current mirror, the ratio of output current to reference current equals the ratio of W/L ratios: Iout/Iref = (W/L)2 / (W/L)1. This allows precise current scaling — if M2 has twice the W/L of M1, the mirror copies twice the reference current. Multiple output transistors with different W/L ratios can be connected to the same reference to produce various scaled currents from a single reference. This is a fundamental technique in analog IC design for creating accurate bias networks from a single reference current."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
