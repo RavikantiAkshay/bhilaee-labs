@@ -531,8 +531,21 @@
         "postLab": {
             "id": "postLab",
             "title": "Post-Lab / Viva Voce",
-            "isApplicable": false,
-            "content": []
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why is the gain of the filter at the cutoff frequency equal to 1/√2 (≈ 0.707) and not 0.5?\n\n**A:** At the cutoff frequency, the impedance of the capacitor equals the resistance (Xc = R), so the reactive and resistive components are equal. The output is taken across one of two equal-magnitude impedances, but since they are 90° out of phase, the total impedance is √2 times each individual impedance. This results in a voltage division by √2, giving a gain of 1/√2. The power at this point is half the passband power (−3 dB), which is why it is called the half-power point, not the half-voltage point.",
+                        "**Q:** In an inverting op-amp filter, the DC gain is set by −Rf/R1. If you wanted to make a unity-gain low-pass filter, what constraint would that impose on the components, and what trade-off would you face?\n\n**A:** For unity gain, Rf = R1 is required. However, the cutoff frequency of the LPF is fc = 1/(2πRfC), so fixing Rf = R1 ties the gain and cutoff frequency together through the same resistor. You cannot independently adjust gain and cutoff frequency — changing R1 or Rf to tune gain will simultaneously shift fc unless the capacitor value is re-calculated. This lack of independent control is a limitation of the simple first-order inverting topology.",
+                        "**Q:** What happens to the phase relationship between input and output as frequency increases in a first-order low-pass filter?\n\n**A:** At very low frequencies, the capacitor impedance is very high and contributes little, so the phase shift is approximately 180° (due to the inverting configuration). As frequency approaches the cutoff frequency fc, the phase contribution of the RC network adds an additional −45°, giving a total of −225° (or equivalently −45° relative to the ideal inverting output). At very high frequencies, the additional phase lag approaches −90°, giving a total of −270°. So the RC network adds a phase lag that varies from 0° to −90° as frequency increases.",
+                        "**Q:** If the observed cutoff frequency is lower than the designed value, what are the most likely causes and how would you correct each?\n\n**A:** The most likely causes are: (1) The actual capacitance is higher than the nominal value due to component tolerance — verify with an LCR meter and replace if needed. (2) Breadboard parasitic capacitance adds to the circuit capacitance — use a PCB or minimize wire lengths. (3) The actual resistance is higher than nominal — measure with a multimeter. The cutoff frequency can be restored by reducing either R or C proportionally, since fc = 1/(2πRC).",
+                        "**Q:** Why does the frequency response of the practical filter deviate from the ideal 'brick wall' response, and why can a linear circuit never achieve a true brick wall?\n\n**A:** A brick wall filter would require an instantaneous, discontinuous transition between passband and stopband, which mathematically corresponds to an infinite-order transfer function with infinitely many poles. A physical linear circuit can only implement a finite number of poles (each real passive or active component contributes at most one pole), so the roll-off is always gradual. Furthermore, the Paley–Wiener theorem from signal processing proves that any causal, physically realizable filter cannot have a perfectly sharp frequency cutoff.",
+                        "**Q:** How would you modify the first-order low-pass filter circuit to double its cutoff frequency without changing the capacitor value?\n\n**A:** Since fc = 1/(2πRfC), doubling fc requires halving Rf. However, halving Rf would also halve the passband gain (Av = −Rf/R1). To maintain the same gain while doubling fc, both Rf and R1 must be halved simultaneously — this keeps the ratio Rf/R1 unchanged (preserving gain) while halving Rf to double the cutoff frequency."
+                    ]
+                }
+            ]
         },
         "resources": {
             "id": "resources",
