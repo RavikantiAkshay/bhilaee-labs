@@ -1,0 +1,396 @@
+{
+    "id": "exp-7",
+    "title": "Design of Multivibrator Circuits Using Timer 555 IC",
+    "labId": "devices-and-circuits-lab",
+    "status": "Hardware-Oriented",
+    "meta": {
+        "experimentType": "hardware",
+        "status": "active",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To design and implement multivibrator circuits using the Timer 555 IC."
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "To design a Monostable Multivibrator using the 555 timer IC.",
+                        "To design an Astable Multivibrator using the 555 timer IC."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Timer 555 IC",
+                            "1"
+                        ],
+                        [
+                            "DC Supply",
+                            "3"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "10 k\u03a9 Resistor",
+                            "2"
+                        ],
+                        [
+                            "0.1 \u00b5F Capacitor",
+                            "2"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "-"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**IC 555 Timer:** The 555 timer is widely used as an IC timer circuit and it is the most commonly used general purpose linear integrated circuit. It can run in either one of two modes: Monostable (one stable state) or Astable (no stable state). In the Monostable mode it can produce accurate time delays from microseconds to hours. In the Astable mode it can produce rectangular waveforms with a variable duty cycle. There are three resistors in the voltage divider network section, all having the same value of 5 k\u03a9 in the bipolar version of this IC \u2014 hence the name 555."
+                },
+                {
+                    "type": "text",
+                    "content": "**A. Block Diagram of 555 Timer IC:** A 555 timer has two comparators (which are basically two Op-Amps), an R-S flip-flop, two transistors, and a resistive network. The resistive network consists of three equal resistors (5 k\u03a9 each) and acts as a voltage divider. The voltage at the inverting terminal of Comparator 1 (Upper comparator) is 2/3 Vcc and the voltage at the non-inverting terminal of Comparator 2 (Lower comparator) is 1/3 Vcc. Comparator 1 compares the threshold voltage (at pin 6) with 2/3 Vcc; Comparator 2 compares the trigger voltage (at pin 2) with 1/3 Vcc."
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig-555-block-diagram",
+                    "filename": "exp7_image3.png",
+                    "caption": "Block diagram of the 555 IC Timer showing internal comparators, flip-flop, discharge transistor, and voltage divider.",
+                    "role": "theory-diagram"
+                },
+                {
+                    "type": "text",
+                    "content": "When the threshold voltage exceeds 2/3 Vcc, the upper comparator sets the flip-flop and its output goes high. This saturates the discharge transistor at pin 7. When the trigger input falls below 1/3 Vcc, the lower comparator resets the flip-flop, turning the output high and disabling the discharge transistor. When not in use, a 0.01 nF capacitor should be connected between pin 5 (control voltage) and ground to prevent noise-induced false triggering. Pin 4 (Reset), when not in use, should be tied to Vcc."
+                },
+                {
+                    "type": "text",
+                    "content": "**B. Astable Multivibrator:** These circuits are not stable in any state and continuously switch outputs after predetermined time periods, generating a square/rectangular waveform. The capacitor C charges from 1/3 Vcc to 2/3 Vcc through RA and RB (output HIGH), and discharges from 2/3 Vcc to 1/3 Vcc through RB only (output LOW). The time expressions are derived from the RC charging/discharging equations:"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{high}} = 0.693(R_A + R_B)C"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{low}} = 0.693 R_B C"
+                },
+                {
+                    "type": "equation",
+                    "value": "T = T_{\\text{high}} + T_{\\text{low}} = 0.693(R_A + 2R_B)C"
+                },
+                {
+                    "type": "equation",
+                    "value": "f = \\frac{1}{T} = \\frac{1.44}{(R_A + 2R_B)C}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\%\\,\\text{Duty Cycle} = \\frac{T_{\\text{high}}}{T} \\times 100 = \\frac{R_A + R_B}{R_A + 2R_B} \\times 100"
+                },
+                {
+                    "type": "text",
+                    "content": "A 50% duty cycle (square wave) cannot be obtained in the standard configuration unless RA = 0, which risks damaging the internal discharge transistor. A 50% duty cycle can be achieved by connecting a diode across RB, so that the capacitor charges only through RA and discharges only through RB."
+                },
+                {
+                    "type": "text",
+                    "content": "**C. Monostable Multivibrator:** A monostable multivibrator is a pulse-generating circuit having one stable and one quasi-stable state. The stable output is approximately zero (logic low). An external trigger pulse (negative-going, below 1/3 Vcc at pin 2) forces the output HIGH. The discharge transistor is turned OFF and the capacitor charges through R. When the capacitor voltage reaches 2/3 Vcc, the output returns to the stable LOW state. The pulse width is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{pulse}} = 1.0986\\,RC \\approx 1.1\\,RC"
+                },
+                {
+                    "type": "text",
+                    "content": "This relation is derived from: Vc = Vcc(1 \u2212 e\u207b\u1d57/RC). Setting Vc = 2/3 Vcc gives t = RC \u00d7 loge 3 = 1.0986 RC. Hence, each time a trigger pulse is applied, the circuit produces a single output pulse of width T = 1.1RC (one-shot multivibrator)."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "fig1-astable-555",
+                    "filename": "exp7_image1.png",
+                    "caption": "Fig 1: Astable multivibrator using NE555 IC (RA = RB = 10 k\u03a9, C1 = C2 = 0.1 \u00b5F, mark-to-space ratio = 2:1).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "fig2-monostable-555",
+                    "filename": "exp7_image2.png",
+                    "caption": "Fig 2: Monostable multivibrator using 555 IC (R = 10 k\u03a9, C = 0.1 \u00b5F, trigger at pin 2).",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Astable Multivibrator:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design an astable multivibrator with a frequency of 1 kHz and a mark-to-space ratio (duty cycle ratio) of 2:1. Choose RA = RB = 10 k\u03a9 and C1 = C2 = 0.1 \u00b5F.",
+                        "Connect the DC power supply to Vcc (pin 8) and ground (pin 1). Connect a 0.01 \u00b5F bypass capacitor between pin 5 (control voltage) and ground. Tie pin 4 (Reset) to Vcc.",
+                        "Connect the oscilloscope probes: one to pin 3 (output Vout) and the other to pin 2/6 (capacitor voltage Vc).",
+                        "Switch on the supply and observe the output square wave and capacitor waveform on the oscilloscope.",
+                        "Measure the positive duty cycle, negative duty cycle, and oscillation frequency from the oscilloscope."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Monostable Multivibrator:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design a monostable multivibrator with a delay time of 10 ms. Choose R = 10 k\u03a9 and C = 0.1 \u00b5F.",
+                        "Connect a trigger square pulse generator to pin 2 (trigger input) and a 0.01 \u00b5F capacitor between pin 5 and ground. Tie pin 4 to Vcc.",
+                        "Connect the oscilloscope probes to pin 3 (output) and pin 6/2 (capacitor voltage Vc).",
+                        "Apply a trigger pulse and observe that the output goes high for a pulse width of T = 1.1RC, then returns to the stable low state.",
+                        "Verify that the pulse width is consistent with the theoretical value."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": null,
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Astable Multivibrator (RA = RB = 10 k\u03a9, C1 = C2 = 0.1 \u00b5F)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The circuit is designed using RA = RB = 10 k\u03a9 and C1 = C2 = 0.1 \u00b5F to obtain a vibrator with mark-to-space ratio of 2:1. The output voltage Vout is measured across pin 3 of the IC along with the voltage across capacitor C1 as Vc."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-astable-oscilloscope",
+                    "filename": "exp7_image4.jpeg",
+                    "caption": "Experimental output: Astable multivibrator \u2014 oscilloscope capture showing Vout (square wave) and Vc (capacitor ramp). Positive duty \u2248 67.8%, Negative duty \u2248 32.2%, Frequency \u2248 720 Hz.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-astable-theoretical",
+                    "filename": "exp7_image5.png",
+                    "caption": "Actual (theoretical) response of an astable multivibrator for comparison.",
+                    "role": "reference-waveform"
+                },
+                {
+                    "type": "text",
+                    "content": "From the images it can be observed that the output response is very similar to the practical response of an astable multivibrator. The positive duty and negative duty have a ratio of approximately 2:1 as desired. The frequency is not exactly 1 kHz but is close to it, which is likely due to minor errors or tolerances in the circuit."
+                },
+                {
+                    "type": "text",
+                    "content": "**2. Monostable Multivibrator (R = 10 k\u03a9, C = 0.1 \u00b5F)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The circuit is designed using R = 10 k\u03a9 and C = 0.1 \u00b5F to obtain a monostable multivibrator. The output voltage Vout is measured across pin 3 of the IC along with the voltage across capacitor C as Vc. A square pulse is given as trigger input to obtain the following results."
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-monostable-oscilloscope",
+                    "filename": "exp7_image6.jpeg",
+                    "caption": "Experimental output: Monostable multivibrator \u2014 oscilloscope capture showing Vout and Vc. Pulse width \u2248 1.1 ms, consistent with T = 1.1RC.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "image",
+                    "assetId": "obs-monostable-theoretical",
+                    "filename": "exp7_image7.png",
+                    "caption": "Actual (theoretical) response of a monostable multivibrator for comparison.",
+                    "role": "reference-waveform"
+                },
+                {
+                    "type": "text",
+                    "content": "From the images it can be observed that the output response is very similar to the practical response of a monostable multivibrator. The pulse width of both the capacitor voltage and output voltage is equal in both the experimental and theoretical outputs. Since the oscilloscope can handle only two waveforms at once, the trigger input is not plotted alongside Vc."
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Astable Multivibrator \u2014 Theoretical Timing (RA = RB = 10 k\u03a9, C = 0.1 \u00b5F):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{high}} = 0.693(R_A + R_B)C = 0.693 \\times 20 \\times 10^3 \\times 0.1 \\times 10^{-6} = 1.386\\,\\text{ms}"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{low}} = 0.693\\,R_B C = 0.693 \\times 10 \\times 10^3 \\times 0.1 \\times 10^{-6} = 0.693\\,\\text{ms}"
+                },
+                {
+                    "type": "equation",
+                    "value": "T = T_{\\text{high}} + T_{\\text{low}} = 1.386 + 0.693 = 2.079\\,\\text{ms}"
+                },
+                {
+                    "type": "equation",
+                    "value": "f = \\frac{1.44}{(R_A + 2R_B)C} = \\frac{1.44}{30 \\times 10^3 \\times 0.1 \\times 10^{-6}} \\approx 480\\,\\text{Hz}"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Mark-to-Space Ratio} = \\frac{T_{\\text{high}}}{T_{\\text{low}}} = \\frac{1.386}{0.693} = 2:1"
+                },
+                {
+                    "type": "text",
+                    "content": "**Monostable Multivibrator \u2014 Pulse Width (R = 10 k\u03a9, C = 0.1 \u00b5F):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "T_{\\text{pulse}} = 1.1\\,RC = 1.1 \\times 10 \\times 10^3 \\times 0.1 \\times 10^{-6} = 1.1\\,\\text{ms}"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Both multivibrator circuits were successfully implemented using the 555 IC Timer."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Circuit",
+                        "Parameter",
+                        "Theoretical Value",
+                        "Observed Value"
+                    ],
+                    "rows": [
+                        [
+                            "Astable",
+                            "Mark-to-Space Ratio",
+                            "2:1",
+                            "\u2248 2:1 (67.8% / 32.2%)"
+                        ],
+                        [
+                            "Astable",
+                            "Oscillation Frequency",
+                            "\u2248 480 Hz",
+                            "\u2248 720 Hz (close to 1 kHz design)"
+                        ],
+                        [
+                            "Monostable",
+                            "Pulse Width",
+                            "1.1 ms",
+                            "\u2248 1.1 ms (matched)"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The astable multivibrator produced a continuous square wave with a 2:1 mark-to-space ratio as designed, confirming correct RA = RB configuration.",
+                        "The oscillation frequency observed was close to but not exactly equal to the theoretical value, attributed to component tolerances and capacitor leakage.",
+                        "The monostable multivibrator generated a single stable output pulse upon trigger application with pulse width closely matching the theoretical value of 1.1 ms.",
+                        "The output waveforms (Vout and Vc) matched the expected practical responses of astable and monostable multivibrators."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, we have successfully completed the implementation of an astable multivibrator and a monostable multivibrator using the 555 timer IC. The astable multivibrator was configured to achieve a mark-to-space ratio (duty cycle ratio) of 2:1 and produced a continuous square wave oscillation with frequency close to the designed value. The monostable multivibrator produced a stable output pulse with the desired delay when trigger input was applied, with the pulse width matching the theoretical calculation (T = 1.1RC). The experimental outputs closely matched the actual responses of the corresponding multivibrators, confirming the correct operation of the circuits implemented. Minor deviations in frequency are attributed to component tolerances and capacitor characteristics."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** What are the three operating modes of the 555 timer IC, and what is the basic function of each?\n\n**A:** The 555 timer can operate in three modes: (1) Astable mode \u2014 the circuit has no stable state; it continuously oscillates between high and low output, generating a free-running rectangular waveform. (2) Monostable mode \u2014 the circuit has one stable state (output low). Upon receiving a trigger pulse, the output goes high for a time period T = 1.1RC, then returns to the stable low state. (3) Bistable mode (Schmitt trigger) \u2014 the circuit has two stable states. The output is set by a trigger and reset by a reset signal, acting like a simple flip-flop. No timing components (R, C) are needed in bistable mode.",
+                        "**Q:** In an astable multivibrator, what determines the mark-to-space ratio (duty cycle), and how can a 50% duty cycle be achieved?\n\n**A:** In the standard 555 astable configuration, Thigh = 0.693(RA + RB)C and Tlow = 0.693\u00b7RB\u00b7C. The mark-to-space ratio is Thigh/Tlow = (RA + RB)/RB. For the ratio to equal 2:1, RA = RB. To achieve a 50% duty cycle (Thigh = Tlow), we need RA = 0, which would short pin 7 to Vcc through RA. This is not possible in the standard configuration as it may damage the discharge transistor. In practice, a 50% duty cycle is achieved by adding a diode across RB, allowing the capacitor to charge through RA only and discharge through RB only.",
+                        "**Q:** What are the internal threshold voltages of the 555 timer, and what role do they play in timing?\n\n**A:** The 555 timer has an internal voltage divider using three equal 5 k\u03a9 resistors that set two threshold levels: the upper threshold (pin 6) at 2/3 Vcc and the lower threshold/trigger (pin 2) at 1/3 Vcc. In astable mode, the capacitor charges from 1/3 Vcc to 2/3 Vcc (Thigh) and discharges from 2/3 Vcc back to 1/3 Vcc (Tlow). When pin 6 reaches 2/3 Vcc, the upper comparator resets the flip-flop, turning the output low and enabling the discharge transistor. When pin 2 falls to 1/3 Vcc, the lower comparator sets the flip-flop, turning the output high and charging the capacitor again.",
+                        "**Q:** What is the role of the control voltage pin (pin 5) in the 555 timer, and why is a bypass capacitor connected there?\n\n**A:** Pin 5 (control voltage) provides external access to the upper comparator reference voltage (normally 2/3 Vcc from the internal divider). By applying an external voltage to pin 5, the timing thresholds can be varied, enabling voltage-controlled frequency or pulse-width modulation (PWM). When no external control is applied, a small bypass capacitor (typically 0.01 \u00b5F) is connected between pin 5 and ground to filter out high-frequency noise that could otherwise shift the internal threshold voltages and cause jitter or erratic timing behaviour. This is a standard noise-decoupling practice.",
+                        "**Q:** Why does the observed oscillation frequency of the astable multivibrator differ from the theoretical value?\n\n**A:** The theoretical frequency formula f = 1.44/(RA + 2RB)C assumes ideal components. In practice, deviations occur due to: (1) Component tolerances \u2014 resistors and capacitors have \u00b15\u201310% tolerances, shifting timing from the nominal value. (2) Capacitor leakage current \u2014 a real capacitor has a finite parallel resistance, causing it to discharge slightly faster than expected. (3) Threshold voltage variation \u2014 the internal voltage divider in the 555 is affected by temperature and supply voltage fluctuations. (4) Discharge transistor non-ideality \u2014 the internal discharge transistor has a small saturation voltage that affects the effective discharge path.",
+                        "**Q:** What happens in a monostable multivibrator if a second trigger pulse arrives before the first timing period ends?\n\n**A:** In the standard 555 monostable configuration, if a new trigger pulse arrives before the output pulse period T = 1.1RC has elapsed, the output pulse width remains T regardless of additional trigger pulses during the timing period. The standard circuit is not retriggerable \u2014 the 555 will not respond to further triggers until the capacitor has discharged and the output has returned to the stable low state. To implement retriggerable behaviour, additional circuitry is required.",
+                        "**Q:** How does the 555 timer achieve precise timing despite being a simple analogue IC?\n\n**A:** The 555 timer achieves precision through its internal voltage divider, which sets stable threshold voltages at exactly 1/3 Vcc and 2/3 Vcc referenced to the supply voltage. This ratiometric referencing means timing is independent of absolute supply voltage variations (as long as Vcc is stable). The timing is governed by the RC time constant. Since both the threshold voltages and the charging voltage scale with Vcc, the timing equations T = 1.1RC (monostable) and T = 0.693RC (astable) depend only on R and C values, not on supply voltage. This makes the 555 inherently stable and predictable for timing applications."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

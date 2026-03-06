@@ -1,0 +1,37 @@
+{
+    "fig1-astable-555": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/fig1-astable-555.png",
+        "description": "Astable multivibrator circuit using NE555 IC (RA = RB = 10 kΩ, C1 = C2 = 0.1 µF)"
+    },
+    "fig2-monostable-555": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/fig2-monostable-555.png",
+        "description": "Monostable multivibrator circuit using 555 IC (R = 10 kΩ, C = 0.1 µF)"
+    },
+    "fig-555-block-diagram": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/fig-555-block-diagram.png",
+        "description": "Block diagram of the 555 IC Timer showing internal comparators, flip-flop, discharge transistor, and voltage divider"
+    },
+    "obs-astable-oscilloscope": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/obs-astable-oscilloscope.jpeg",
+        "description": "Oscilloscope capture: Astable multivibrator Vout (square wave) and Vc (capacitor ramp)"
+    },
+    "obs-astable-theoretical": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/obs-astable-theoretical.png",
+        "description": "Theoretical response of an astable multivibrator showing Vout and Vc waveforms"
+    },
+    "obs-monostable-oscilloscope": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/obs-monostable-oscilloscope.jpeg",
+        "description": "Oscilloscope capture: Monostable multivibrator Vout and Vc, pulse width ≈ 1.1 ms"
+    },
+    "obs-monostable-theoretical": {
+        "type": "image",
+        "path": "/assets/labs/devices-and-circuits/exp-7/obs-monostable-theoretical.png",
+        "description": "Theoretical response of a monostable multivibrator showing trigger, capacitor voltage, and output"
+    }
+}
