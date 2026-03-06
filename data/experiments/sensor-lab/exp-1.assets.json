@@ -9,11 +9,6 @@
         "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-theoretical-circuit.png",
         "description": "Fig (c): Theoretical Diagram of High-Pass Filter"
     },
-    "exp1-hpf-practical-circuit": {
-        "type": "image",
-        "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-practical-circuit.png",
-        "description": "Fig (d): Practical Circuit of High-Pass Filter (Lab)"
-    },
     "exp1-lpf-oscilloscope-cutoff": {
         "type": "image",
         "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-oscilloscope-cutoff.jpg",
