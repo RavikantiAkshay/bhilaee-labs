@@ -1,0 +1,558 @@
+{
+    "id": "exp-1",
+    "title": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
+    "labId": "sensor-lab",
+    "status": "Completed",
+    "meta": {
+        "simulationId": "sensor_lab-exp1",
+        "simulationType": "AC Analysis",
+        "experimentType": "hardware",
+        "status": "completed",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 120,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To study and analyze the frequency response of low-pass and high-pass filters using an operational amplifier (op-amp)."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Function Generator",
+                            "1"
+                        ],
+                        [
+                            "Oscilloscope",
+                            "1"
+                        ],
+                        [
+                            "DC Supply (+15V, -15V)",
+                            "1"
+                        ],
+                        [
+                            "Bread Board",
+                            "1"
+                        ],
+                        [
+                            "5.6 kΩ Resistor",
+                            "2"
+                        ],
+                        [
+                            "2.8 nF Capacitor",
+                            "1"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "As required"
+                        ],
+                        [
+                            "Op-Amp 07",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Low-Pass Filter:** A low-pass filter is an electronic circuit that lets signals with a frequency lower than a certain cutoff frequency pass through, while reducing higher-frequency signals. It is often built using a resistor-capacitor (RC) network or an operational amplifier (op-amp) in active filter setups. The output voltage is taken across the capacitor, which charges and discharges in response to changes in input frequency."
+                },
+                {
+                    "type": "text",
+                    "content": "When an op-amp is used, it increases the gain and prevents loading effects on the input signal. The cutoff frequency fc is determined by the values of the resistor and capacitor as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_c = \\frac{1}{2\\pi RC}"
+                },
+                {
+                    "type": "text",
+                    "content": "**2. High-Pass Filter:** A high-pass filter lets signals with frequencies above a certain cutoff frequency pass through, while it reduces those below that level. The simplest type uses an RC network. In this setup, the capacitor is in series with the input signal, and the resistor connects to ground. In active filters that use op-amps, we can add gain while keeping the signal clear."
+                },
+                {
+                    "type": "text",
+                    "content": "The cutoff frequency fc in a high-pass filter is also calculated using the same formula. These filters are commonly used to eliminate low-frequency noise or DC components from signals."
+                },
+                {
+                    "type": "equation",
+                    "value": "f_c = \\frac{1}{2\\pi RC}"
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp1-lpf-theoretical-circuit",
+                    "filename": "exp1_image1.png",
+                    "caption": "Fig (a): Theoretical Diagram of Low-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, fc = 10 kHz).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-lpf-practical-circuit",
+                    "filename": "exp1_image2.png",
+                    "caption": "Fig (b): Practical Circuit of Low-Pass Filter (Lab).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-hpf-theoretical-circuit",
+                    "filename": "exp1_image3.png",
+                    "caption": "Fig (c): Theoretical Diagram of High-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, fc = 10 kHz).",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-hpf-practical-circuit",
+                    "filename": "exp1_image4.png",
+                    "caption": "Fig (d): Practical Circuit of High-Pass Filter (Lab).",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — Low-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design and realize a first-order active low-pass filter with R1 = Rf = 5.6 kΩ and C = 2.8 nF for a cutoff frequency of 10 kHz.",
+                        "Connect the circuit on a breadboard with Op-Amp 07 powered by ±15V DC supply.",
+                        "Apply a 1 Vpp AC sinusoidal input from the function generator.",
+                        "Vary the input frequency from 10 Hz to 500 kHz.",
+                        "Record the output voltage (Vout) at each frequency step using the oscilloscope.",
+                        "Calculate gain (Vout/Vin) at each frequency and plot gain vs log(frequency) to obtain the frequency response curve."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — High-Pass Filter:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Design and realize a first-order active high-pass filter with R1 = Rf = 5.6 kΩ and C = 2.8 nF for a cutoff frequency of 10 kHz.",
+                        "Apply a 1 Vpp AC sinusoidal input and vary frequency from 10 Hz to 1 MHz.",
+                        "Record Vout at each frequency step using the oscilloscope.",
+                        "Calculate gain (Vout/Vin) at each frequency and plot gain vs log(frequency) to obtain the frequency response curve.",
+                        "Verify the −3 dB point by checking the gain at the cutoff frequency (expected ≈ 0.707)."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**1. Low-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, Vin = 1 Vpp)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The oscilloscope output at the cutoff frequency (10 kHz) showed an output voltage of approximately 696 mV (≈ 700 mV Vpp), while the input signal was 1 V Vpp. The measured gain at cutoff is 0.7, which closely matches the theoretical value of 0.707, confirming the −3 dB behavior of the low-pass filter."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-lpf-oscilloscope-cutoff",
+                    "filename": "exp1_image5.png",
+                    "caption": "Output waveform of Low-Pass Filter at Cutoff Frequency (10 kHz). Measured Vout ≈ 696 mV, Vin = 1 V.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "log(f)",
+                        "Vout (mV)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "1.00",
+                            "1.16"
+                        ],
+                        [
+                            "100",
+                            "2.00",
+                            "1.14"
+                        ],
+                        [
+                            "500",
+                            "2.70",
+                            "1.12"
+                        ],
+                        [
+                            "1000",
+                            "3.00",
+                            "1.08"
+                        ],
+                        [
+                            "2500",
+                            "3.40",
+                            "1.04"
+                        ],
+                        [
+                            "5000",
+                            "3.70",
+                            "1.00"
+                        ],
+                        [
+                            "7500",
+                            "3.88",
+                            "0.86"
+                        ],
+                        [
+                            "10000",
+                            "4.00",
+                            "0.70"
+                        ],
+                        [
+                            "12500",
+                            "4.10",
+                            "0.64"
+                        ],
+                        [
+                            "15000",
+                            "4.18",
+                            "0.52"
+                        ],
+                        [
+                            "20000",
+                            "4.30",
+                            "0.35"
+                        ],
+                        [
+                            "25000",
+                            "4.40",
+                            "0.16"
+                        ],
+                        [
+                            "50000",
+                            "4.70",
+                            "0.14"
+                        ],
+                        [
+                            "75000",
+                            "4.88",
+                            "0.12"
+                        ],
+                        [
+                            "100000",
+                            "5.00",
+                            "0.08"
+                        ],
+                        [
+                            "500000",
+                            "5.70",
+                            "0.08"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-lpf-frequency-response-plot",
+                    "filename": "exp1_image6.png",
+                    "caption": "Frequency Response of the Low-Pass Filter — Gain (Vout/Vin) vs Frequency (Hz) on log scale.",
+                    "role": "frequency-response-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "**2. High-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, Vin = 1 Vpp)**"
+                },
+                {
+                    "type": "text",
+                    "content": "The oscilloscope output at the cutoff frequency (10 kHz) showed an output voltage of 752 mV Vpp, while the input signal was 1 V Vpp. The measured gain at cutoff is 0.752, which approximately matches the theoretical value of 0.707, confirming the −3 dB response of the high-pass filter."
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-hpf-oscilloscope-cutoff",
+                    "filename": "exp1_image7.png",
+                    "caption": "Output waveform of High-Pass Filter at Cutoff Frequency (10 kHz). Measured Vout = 752 mV, Vin = 1 V.",
+                    "role": "oscilloscope-capture"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Frequency (Hz)",
+                        "log(f)",
+                        "Vout (mV)"
+                    ],
+                    "rows": [
+                        [
+                            "10",
+                            "1.00",
+                            "14"
+                        ],
+                        [
+                            "100",
+                            "2.00",
+                            "16"
+                        ],
+                        [
+                            "500",
+                            "2.70",
+                            "64"
+                        ],
+                        [
+                            "1000",
+                            "3.00",
+                            "114"
+                        ],
+                        [
+                            "2500",
+                            "3.40",
+                            "270"
+                        ],
+                        [
+                            "5000",
+                            "3.70",
+                            "492"
+                        ],
+                        [
+                            "7500",
+                            "3.88",
+                            "644"
+                        ],
+                        [
+                            "10000",
+                            "4.00",
+                            "752"
+                        ],
+                        [
+                            "12500",
+                            "4.10",
+                            "860"
+                        ],
+                        [
+                            "15000",
+                            "4.18",
+                            "888"
+                        ],
+                        [
+                            "25000",
+                            "4.40",
+                            "976"
+                        ],
+                        [
+                            "50000",
+                            "4.70",
+                            "1020"
+                        ],
+                        [
+                            "100000",
+                            "5.00",
+                            "1060"
+                        ],
+                        [
+                            "250000",
+                            "5.40",
+                            "1080"
+                        ],
+                        [
+                            "500000",
+                            "5.70",
+                            "1100"
+                        ],
+                        [
+                            "1000000",
+                            "6.00",
+                            "1140"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp1-hpf-frequency-response-plot",
+                    "filename": "exp1_image8.png",
+                    "caption": "Frequency Response of the High-Pass Filter — Gain (Vout/Vin) vs Frequency (Hz) on log scale.",
+                    "role": "frequency-response-plot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "For both the low-pass and high-pass filters, the desired cutoff frequency (fc) is 10 kHz. The standard formula for cutoff frequency is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "f_c = \\frac{1}{2\\pi RC}"
+                },
+                {
+                    "type": "text",
+                    "content": "Rearranging to solve for capacitance C:"
+                },
+                {
+                    "type": "equation",
+                    "value": "C = \\frac{1}{2\\pi R f_c}"
+                },
+                {
+                    "type": "text",
+                    "content": "Substituting R = 5.6 kΩ and fc = 10 kHz:"
+                },
+                {
+                    "type": "equation",
+                    "value": "C = \\frac{1}{2\\pi \\times 5.6 \\times 10^3 \\times 10 \\times 10^3} \\approx 2.84\\,\\text{nF}"
+                },
+                {
+                    "type": "text",
+                    "content": "Hence, the required capacitor value is approximately 2.8 nF. Since a single 2.8 nF capacitor was unavailable in the lab, two 5.6 nF capacitors were connected in series to achieve the equivalent value:"
+                },
+                {
+                    "type": "equation",
+                    "value": "C_{eq} = \\frac{C}{2} = \\frac{5.6\\,\\text{nF}}{2} = 2.8\\,\\text{nF}"
+                },
+                {
+                    "type": "text",
+                    "content": "Since R1 = Rf = 5.6 kΩ and the circuit is an inverting amplifier, the voltage gain is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "A_v = -\\frac{R_f}{R_1} = -\\frac{5.6\\,\\text{k}\\Omega}{5.6\\,\\text{k}\\Omega} = -1"
+                },
+                {
+                    "type": "text",
+                    "content": "At the cutoff frequency, the gain drops by a factor of 1/√2, so the magnitude of gain at cutoff is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "|A_{v_{\\text{cutoff}}}| = \\frac{1}{\\sqrt{2}} \\approx 0.707"
+                },
+                {
+                    "type": "text",
+                    "content": "The negative sign indicates a 180° phase shift, which is expected in inverting amplifier configurations."
+                },
+                {
+                    "type": "text",
+                    "content": "**Measured gain verification at cutoff (LPF):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "|A_{v_{\\text{measured}}}| = \\frac{V_{out}}{V_{in}} = \\frac{700\\,\\text{mV}}{1\\,\\text{V}} = 0.7"
+                },
+                {
+                    "type": "text",
+                    "content": "**Measured gain verification at cutoff (HPF):**"
+                },
+                {
+                    "type": "equation",
+                    "value": "|A_{v_{\\text{measured}}}| = \\frac{V_{out}}{V_{in}} = \\frac{752\\,\\text{mV}}{1\\,\\text{V}} = 0.752"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Filter Type",
+                        "Design fc",
+                        "Measured Gain at fc",
+                        "Theoretical Gain at fc"
+                    ],
+                    "rows": [
+                        [
+                            "Low-Pass Filter",
+                            "10 kHz",
+                            "0.700",
+                            "0.707"
+                        ],
+                        [
+                            "High-Pass Filter",
+                            "10 kHz",
+                            "0.752",
+                            "0.707"
+                        ]
+                    ]
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The low-pass filter passed frequencies below 10 kHz and attenuated higher frequencies, as expected.",
+                        "The high-pass filter passed frequencies above 10 kHz and suppressed lower frequencies, as expected.",
+                        "The measured gain at the cutoff frequency for the LPF (0.700) and HPF (0.752) closely match the theoretical −3 dB value of 0.707.",
+                        "The plotted frequency response curves clearly illustrate the intended filter behavior for both circuits."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The frequency response characteristics of low-pass and high-pass filters were studied and confirmed using op-amp-based setups. The cutoff frequency for both filters was set to 10 kHz. The gain measured at this frequency closely matched the theoretical value of 1/√2 ≈ 0.707, confirming the expected −3 dB point. The plotted frequency responses clearly illustrated the attenuation of higher frequencies in the low-pass filter and suppression of lower frequencies in the high-pass filter, validating their intended functionality."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": false,
+            "content": []
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

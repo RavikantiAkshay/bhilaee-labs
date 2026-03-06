@@ -1,0 +1,42 @@
+{
+    "exp1-lpf-theoretical-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-theoretical-circuit.png",
+        "description": "Fig (a): Theoretical Diagram of Low-Pass Filter"
+    },
+    "exp1-lpf-practical-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-practical-circuit.png",
+        "description": "Fig (b): Practical Circuit of Low-Pass Filter (Lab)"
+    },
+    "exp1-hpf-theoretical-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-theoretical-circuit.png",
+        "description": "Fig (c): Theoretical Diagram of High-Pass Filter"
+    },
+    "exp1-hpf-practical-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-practical-circuit.png",
+        "description": "Fig (d): Practical Circuit of High-Pass Filter (Lab)"
+    },
+    "exp1-lpf-oscilloscope-cutoff": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-oscilloscope-cutoff.png",
+        "description": "Output waveform of Low-Pass Filter at Cutoff Frequency"
+    },
+    "exp1-lpf-frequency-response-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-frequency-response-plot.png",
+        "description": "Frequency Response of the Low-Pass Filter"
+    },
+    "exp1-hpf-oscilloscope-cutoff": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-oscilloscope-cutoff.png",
+        "description": "Output waveform of High-Pass Filter at Cutoff Frequency"
+    },
+    "exp1-hpf-frequency-response-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-frequency-response-plot.png",
+        "description": "Frequency Response of the High-Pass Filter"
+    }
+}

@@ -271,10 +271,10 @@
       "experiments": [
         {
           "id": "1",
-          "title": "Experiment 1",
+          "title": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
           "fileName": "exp-1.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Completed",
+          "completeness": 1
         },
         {
           "id": "2",
