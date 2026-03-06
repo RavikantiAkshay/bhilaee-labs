@@ -177,10 +177,10 @@
         },
         {
           "id": "7",
-          "title": "Experiment 7",
+          "title": "Design of Multivibrator Circuits Using Timer 555 IC",
           "fileName": "exp-7.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "8",
