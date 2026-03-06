@@ -1,0 +1,27 @@
+{
+    "exp3b-wheatstone-bridge-thermistor": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-3/exp3b-wheatstone-bridge-thermistor.png",
+        "description": "Thermistor incorporated in a Wheatstone bridge circuit for signal conditioning"
+    },
+    "exp3b-calibration-curve": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-3/exp3b-calibration-curve.png",
+        "description": "Figure 1: Thermistor Resistance vs Temperature (Calibration Curve) plotted in MATLAB"
+    },
+    "exp3b-curve-fitting": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-3/exp3b-curve-fitting.png",
+        "description": "Figure 2: Curve Fitting for Thermistor Parameters using MATLAB"
+    },
+    "exp3b-sensitivity-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-3/exp3b-sensitivity-plot.png",
+        "description": "Figure 3: Temperature vs Sensitivity of the Thermistor"
+    },
+    "exp3b-bridge-voltage-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-3/exp3b-bridge-voltage-plot.png",
+        "description": "Figure 4: Bridge Voltage VAB vs Temperature plot obtained from MATLAB"
+    }
+}
