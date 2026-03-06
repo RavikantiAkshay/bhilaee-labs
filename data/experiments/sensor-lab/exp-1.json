@@ -119,23 +119,9 @@
                 },
                 {
                     "type": "image",
-                    "assetId": "exp1-lpf-practical-circuit",
-                    "filename": "exp1_image2.png",
-                    "caption": "Fig (b): Practical Circuit of Low-Pass Filter (Lab).",
-                    "role": "circuit-diagram"
-                },
-                {
-                    "type": "image",
                     "assetId": "exp1-hpf-theoretical-circuit",
                     "filename": "exp1_image3.png",
                     "caption": "Fig (c): Theoretical Diagram of High-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, fc = 10 kHz).",
-                    "role": "circuit-diagram"
-                },
-                {
-                    "type": "image",
-                    "assetId": "exp1-hpf-practical-circuit",
-                    "filename": "exp1_image4.png",
-                    "caption": "Fig (d): Practical Circuit of High-Pass Filter (Lab).",
                     "role": "circuit-diagram"
                 }
             ]
