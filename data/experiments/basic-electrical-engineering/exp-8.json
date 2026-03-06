@@ -1,7 +1,7 @@
 {
     "id": "exp-dc-shunt-motor-03",
     "title": "Speed Control of a DC Shunt Motor",
-    "labId": "basic-ee",
+    "labId": "basic-electrical-engineering",
     "status": "Hardware Oriented",
     "meta": {
         "simulationId": null,

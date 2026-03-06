@@ -1,7 +1,7 @@
 {
     "id": "exp-3phase-im-05",
     "title": "No Load Test and Blocked Rotor Test of a 3-Phase Induction Motor",
-    "labId": "basic-ee",
+    "labId": "basic-electrical-engineering",
     "status": "Hardware Oriented",
     "meta": {
         "simulationId": null,
