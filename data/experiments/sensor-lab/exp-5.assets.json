@@ -1,0 +1,27 @@
+{
+  "exp5-rtd-bridge-diffamp-esp32-circuit": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-rtd-bridge-diffamp-esp32-circuit.png",
+    "description": "Circuit diagram showing the RTD Wheatstone bridge, differential amplifier, and ESP32 with LCD display via I2C."
+  },
+  "exp5-bridge-voltage-vs-temp-plot": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-bridge-voltage-vs-temp-plot.png",
+    "description": "Bridge Voltage (VAB) vs Temperature plot."
+  },
+  "exp5-actual-vs-measured-temp-plot": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-actual-vs-measured-temp-plot.png",
+    "description": "Actual Temperature vs Measured Temperature for RTD system."
+  },
+  "exp5-lcd-display-reading-1": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-lcd-display-reading-1.jpg",
+    "description": "LCD display reading 1"
+  },
+  "exp5-lcd-display-reading-2": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-lcd-display-reading-2.jpg",
+    "description": "LCD display reading 2"
+  }
+}

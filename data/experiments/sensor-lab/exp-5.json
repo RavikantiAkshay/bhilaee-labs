@@ -1,0 +1,626 @@
+{
+  "id": "exp-5",
+  "title": "Design of a Temperature Detection Device Using RTD",
+  "labId": "sensor-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "sensor_lab-exp5",
+    "simulationType": "Hardware Implementation / ADC",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To design a temperature measurement system using an RTD:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To design a temperature measurement system using an RTD.",
+            "To interface the RTD through a bridge circuit and differential amplifier for signal conditioning.",
+            "To use an ESP32 microcontroller to convert bridge voltage to temperature using a linear calibration relation.",
+            "To display the measured temperature on an LCD module."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Quantity"
+          ],
+          "rows": [
+            [
+              "RTD Sensor",
+              "1"
+            ],
+            [
+              "Resistor (100 Ω)",
+              "3"
+            ],
+            [
+              "Resistor (2.2 kΩ)",
+              "2"
+            ],
+            [
+              "Resistor (4.7 kΩ)",
+              "2"
+            ],
+            [
+              "DC Power Supply",
+              "2"
+            ],
+            [
+              "Connecting Wires",
+              "As required"
+            ],
+            [
+              "Operational Amplifier (Op-Amp)",
+              "1"
+            ],
+            [
+              "ESP32 Microcontroller",
+              "1"
+            ],
+            [
+              "LCD Display",
+              "1"
+            ],
+            [
+              "Display Driver / Interface IC (I2C)",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A Resistance Temperature Detector (RTD) is a temperature sensor that operates on the principle of change in electrical resistance of a pure metal with temperature. RTDs are commonly used for precise and stable temperature measurements in industrial and laboratory settings. The Pt-100 type, made of platinum with 100 Ω resistance at 0°C, is the most common due to its high accuracy, repeatability, and linearity."
+        },
+        {
+          "type": "text",
+          "content": "The resistance-temperature relationship of an RTD is almost linear across a broad range, which makes it suitable for accurate temperature measurement and control systems. Platinum is preferred because of its chemical stability, reproducibility, and wide temperature range (−200°C to 850°C). The resistance of an RTD as a function of temperature is expressed using the Callendar–Van Dusen equation:"
+        },
+        {
+          "type": "equation",
+          "value": "R(T) = R_0\\left[1 + \\alpha T + \\beta T^2 + \\gamma(T - 100)T^3\\right]"
+        },
+        {
+          "type": "text",
+          "content": "where R(T) is the resistance at temperature T (°C), R₀ is the resistance at 0°C (typically 100 Ω for Pt-100), and α, β, γ are temperature coefficients."
+        },
+        {
+          "type": "text",
+          "content": "To detect small variations in resistance, the RTD is connected in a Wheatstone bridge circuit, so that the change in resistance is converted into a voltage difference. This output voltage is proportional to the temperature and serves as the input for further signal conditioning."
+        },
+        {
+          "type": "text",
+          "content": "The bridge output is then sent through a differential amplifier, which amplifies the difference between the two bridge arms while rejecting any common-mode noise or interference. This ensures that only the temperature-dependent component of the signal is amplified."
+        },
+        {
+          "type": "text",
+          "content": "In this experiment, the differential amplifier is configured with appropriate resistor ratios to provide attenuation and signal stability. The attenuation ensures that the amplified voltage remains within the input voltage range of the ESP32's ADC, preventing distortion or damage to the microcontroller."
+        },
+        {
+          "type": "text",
+          "content": "The conditioned signal is then supplied to the ESP32, which processes the analog input using its ADC. A linear calibration relation, obtained from the previous experiment, is used to convert the bridge voltage into the corresponding temperature. The computed temperature is displayed on an LCD module through an I2C interface."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp5-rtd-bridge-diffamp-esp32-circuit",
+          "caption": "Figure 1: Circuit diagram showing the RTD Wheatstone bridge (3× 100 Ω), differential amplifier (R1 = 4.7 kΩ, R2 = 2.2 kΩ), and ESP32 microcontroller with LCD display via I2C interface.",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Part 1 — Circuit Assembly:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the RTD as one arm of the Wheatstone bridge using three 100 Ω resistors for the remaining arms.",
+            "Connect the bridge output to the differential amplifier configured with R1 = 4.7 kΩ and R2 = 2.2 kΩ to attenuate the bridge voltage within the ESP32 ADC range.",
+            "Connect the amplifier output to the ADC input pin of the ESP32 microcontroller.",
+            "Connect the LCD module to the ESP32 via the I2C interface (Display Driver IC).",
+            "Power the bridge circuit and op-amp with the DC power supply."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 2 — Calibration and Programming:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Use the linear calibration relation T(°C) = 129.4 · Vbridge − 26.4 derived from the previous experiment.",
+            "Incorporate the amplifier gain (Gain = R2/R1 = 2.2/4.7 ≈ 0.468) to relate ADC voltage to temperature: T(°C) = 276.49 · VADC − 26.4.",
+            "Program the ESP32 with this conversion equation.",
+            "Verify the displayed temperature matches a reference thermometer."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 3 — Measurement:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Gradually heat the RTD in the water bath from 35°C to 70°C.",
+            "Record the bridge voltage and the measured temperature displayed on the LCD at each step.",
+            "Compare the displayed measured temperature with the actual reference temperature.",
+            "Calculate the absolute and percentage errors for each reading."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "As the RTD was gradually heated, the corresponding bridge voltage was processed by the ESP32, converted to temperature using the pre-calibrated linear equation, and displayed on the LCD module."
+        },
+        {
+          "type": "text",
+          "content": "**Calibration Data (From Previous Experiment) — Table 1: Bridge Voltage (VAB) vs Temperature**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "S. No.",
+            "Temperature (°C)",
+            "Bridge Voltage VAB (V)"
+          ],
+          "rows": [
+            [
+              "1",
+              "37",
+              "0.49"
+            ],
+            [
+              "2",
+              "40",
+              "0.50"
+            ],
+            [
+              "3",
+              "42",
+              "0.515"
+            ],
+            [
+              "4",
+              "45",
+              "0.541"
+            ],
+            [
+              "5",
+              "47",
+              "0.569"
+            ],
+            [
+              "6",
+              "50",
+              "0.590"
+            ],
+            [
+              "7",
+              "52",
+              "0.610"
+            ],
+            [
+              "8",
+              "55",
+              "0.632"
+            ],
+            [
+              "9",
+              "57",
+              "0.644"
+            ],
+            [
+              "10",
+              "60",
+              "0.661"
+            ],
+            [
+              "11",
+              "62",
+              "0.690"
+            ],
+            [
+              "12",
+              "65",
+              "0.710"
+            ],
+            [
+              "13",
+              "67",
+              "0.724"
+            ],
+            [
+              "14",
+              "69",
+              "0.735"
+            ],
+            [
+              "15",
+              "70",
+              "0.745"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-bridge-voltage-vs-temp-plot",
+          "caption": "Figure 2: Bridge Voltage (VAB) vs Temperature — plotted using MATLAB from calibration data.",
+          "role": "matlab-plot"
+        },
+        {
+          "type": "text",
+          "content": "**Table 2: Actual vs Measured Temperature and Bridge Voltage (Live ESP32 Readings)**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Actual Temp (°C)",
+            "Measured Temp (°C)",
+            "Bridge Voltage (V)"
+          ],
+          "rows": [
+            [
+              "35",
+              "35.42",
+              "0.478"
+            ],
+            [
+              "38",
+              "38.61",
+              "0.500"
+            ],
+            [
+              "42",
+              "42.90",
+              "0.536"
+            ],
+            [
+              "44",
+              "44.88",
+              "0.551"
+            ],
+            [
+              "47",
+              "47.90",
+              "0.572"
+            ],
+            [
+              "50",
+              "50.95",
+              "0.598"
+            ],
+            [
+              "53",
+              "54.08",
+              "0.622"
+            ],
+            [
+              "56",
+              "57.03",
+              "0.645"
+            ],
+            [
+              "59",
+              "60.01",
+              "0.668"
+            ],
+            [
+              "62",
+              "63.21",
+              "0.693"
+            ],
+            [
+              "65",
+              "66.43",
+              "0.717"
+            ],
+            [
+              "68",
+              "69.73",
+              "0.743"
+            ],
+            [
+              "70",
+              "71.47",
+              "0.756"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-lcd-display-reading-1",
+          "caption": "Figure 3(a): LCD display reading showing bridge voltage and corresponding temperature value (Vb: 0.536V  T: 42.99C).",
+          "role": "hardware-photo"
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-lcd-display-reading-2",
+          "caption": "Figure 3(b): LCD display reading showing bridge voltage and corresponding temperature value (Vb: 0.743V  T: 69.73C).",
+          "role": "hardware-photo"
+        },
+        {
+          "type": "text",
+          "content": "**Table 3: Error Analysis — Absolute and Percentage Errors**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Actual Temp (°C)",
+            "Measured Temp (°C)",
+            "Absolute Error",
+            "Percentage Error (%)"
+          ],
+          "rows": [
+            [
+              "35",
+              "35.42",
+              "0.478",
+              "1.20"
+            ],
+            [
+              "38",
+              "38.61",
+              "0.501",
+              "1.61"
+            ],
+            [
+              "42",
+              "42.90",
+              "0.536",
+              "2.14"
+            ],
+            [
+              "44",
+              "44.88",
+              "0.548",
+              "2.00"
+            ],
+            [
+              "47",
+              "47.90",
+              "0.569",
+              "1.91"
+            ],
+            [
+              "50",
+              "50.95",
+              "0.591",
+              "1.90"
+            ],
+            [
+              "53",
+              "54.08",
+              "0.614",
+              "2.03"
+            ],
+            [
+              "56",
+              "57.03",
+              "0.636",
+              "1.84"
+            ],
+            [
+              "59",
+              "60.01",
+              "0.658",
+              "1.71"
+            ],
+            [
+              "62",
+              "63.21",
+              "0.680",
+              "1.95"
+            ],
+            [
+              "65",
+              "66.43",
+              "0.703",
+              "2.20"
+            ],
+            [
+              "68",
+              "69.73",
+              "0.743",
+              "2.54"
+            ],
+            [
+              "70",
+              "71.47",
+              "0.744",
+              "2.10"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp5-actual-vs-measured-temp-plot",
+          "caption": "Figure 4: Actual Temperature vs Measured Temperature for RTD system. Measured points track closely with the ideal (dashed) line.",
+          "role": "matlab-plot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A linear regression was applied to the calibration data to determine the relationship between bridge voltage and temperature."
+        },
+        {
+          "type": "text",
+          "content": "The linear relation is expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = m \\cdot V_{\\text{bridge}} + c"
+        },
+        {
+          "type": "text",
+          "content": "Slope m and intercept c are calculated from the calibration data endpoints:"
+        },
+        {
+          "type": "equation",
+          "value": "m = \\frac{\\Delta T}{\\Delta V} = \\frac{70 - 37}{0.745 - 0.49} \\approx 129.4"
+        },
+        {
+          "type": "equation",
+          "value": "c = T - m \\cdot V = 37 - (129.4 \\times 0.49) \\approx -26.4"
+        },
+        {
+          "type": "text",
+          "content": "Thus, the final linear calibration equation used in the ESP32 program is:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = 129.4 \\cdot V_{\\text{bridge}} - 26.4"
+        },
+        {
+          "type": "text",
+          "content": "Since the differential amplifier attenuates the bridge voltage before feeding it to the ESP32 ADC, the measured ADC voltage VADC is related to the actual bridge voltage by the amplifier gain:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{\\text{bridge}} = \\frac{V_{\\text{ADC}}}{\\text{Gain}}, \\quad \\text{where Gain} = \\frac{R_2}{R_1} = \\frac{2.2\\,\\text{k}\\Omega}{4.7\\,\\text{k}\\Omega} \\approx 0.468"
+        },
+        {
+          "type": "text",
+          "content": "Substituting into the calibration equation, the temperature corresponding to a measured ADC voltage is:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = 129.4 \\cdot \\frac{V_{\\text{ADC}}}{0.468} - 26.4 = 276.49 \\cdot V_{\\text{ADC}} - 26.4"
+        },
+        {
+          "type": "text",
+          "content": "**Sample Error Calculation (at 35°C):**"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta T = T_{\\text{measured}} - T_{\\text{actual}} = 35.53 - 35.00 = 0.53^\\circ\\text{C}"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{Relative Error} = \\frac{\\Delta T}{T_{\\text{actual}}} = \\frac{0.53}{35.00} = 0.01514"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{Percentage Error} = 0.01514 \\times 100 = 1.51\\%"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The linear calibration equation T(°C) = 129.4 · Vbridge − 26.4 was successfully programmed into the ESP32.",
+            "After accounting for the differential amplifier attenuation (Gain ≈ 0.468), the final ADC-to-temperature equation is T(°C) = 276.49 · VADC − 26.4.",
+            "Measured temperatures tracked closely with actual temperatures across the range of 35°C to 70°C.",
+            "Percentage errors ranged from 1.20% to 2.54%, with the maximum error at 68°C.",
+            "The LCD module successfully displayed real-time bridge voltage and computed temperature values."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, a temperature measurement system was successfully implemented using an RTD connected in a bridge circuit. The bridge voltage was attenuated using a differential amplifier to ensure it remains within the measurable range of the ESP32 microcontroller. The ESP32 was connected to an LCD module to display the temperature readings. A linear relation between the bridge voltage and temperature, obtained from the previous experiment, was used to convert the measured voltage into corresponding temperature values. This equation was programmed into the ESP32 to calculate and display temperature directly from the bridge output. Small deviations were observed and these errors can be attributed to factors such as ADC resolution limits, amplifier gain tolerances, and minor fluctuations in the RTD response due to heating conditions. Overall, the experiment successfully verified the accuracy and effectiveness of the RTD-based temperature measurement system."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The differential amplifier in this experiment is configured with R2/R1 = 2.2/4.7 ≈ 0.468, giving an attenuation (gain < 1). Why is attenuation used here instead of amplification?\n\n**A:** The RTD bridge output voltage is in the range 0.49 V to 0.745 V — already a reasonable signal level. The ESP32 ADC has an input range of 0 to 3.3 V (or 0 to 1.1 V for the internal reference in some modes). If the bridge signal were amplified, it could exceed the ADC's input range and cause clipping or damage. Attenuation ensures the signal comfortably fits within the ADC's input range at all temperatures, preserving measurement integrity. The linear calibration equation then accounts for the attenuation factor in converting ADC readings back to temperature.",
+            "**Q:** The linear calibration uses only the two endpoints (37°C and 70°C) to compute slope and intercept. What are the limitations of this two-point calibration approach?\n\n**A:** Two-point calibration assumes the relationship between bridge voltage and temperature is perfectly linear between those endpoints. However, the RTD's R-T relationship has a slight quadratic component, and the bridge circuit introduces additional non-linearity (the voltage-resistance relationship in a bridge is not perfectly linear). Using only the endpoints ignores any curvature in between, causing the largest errors at mid-range temperatures. A multi-point calibration using least-squares regression across all 15 data points would give a better fit and reduce systematic mid-range errors. Additionally, two-point calibration is highly sensitive to measurement noise at the chosen endpoints.",
+            "**Q:** The ESP32 has a 12-bit ADC. What is the theoretical temperature resolution of the measurement system, and what limits the actual resolution in practice?\n\n**A:** A 12-bit ADC has 2¹² = 4096 quantisation levels. With a 3.3 V reference, the voltage resolution is 3.3/4096 ≈ 0.806 mV per step. Using the final equation T = 276.49 · VADC − 26.4, the temperature resolution is 276.49 × 0.000806 ≈ 0.223°C per ADC step. In practice, the actual resolution is worse because: (1) The ESP32's ADC is known for non-linearity errors (integral and differential non-linearity), particularly in the middle of its range. (2) Noise in the bridge circuit and amplifier adds random variation that is larger than one ADC step. (3) The ADC's effective number of bits (ENOB) is typically 9–10 bits rather than the ideal 12, reducing actual resolution.",
+            "**Q:** Why is an I2C interface used to connect the LCD display to the ESP32 rather than a direct parallel connection?\n\n**A:** A standard 16×2 LCD in parallel mode requires 6 to 8 GPIO pins (4 data lines + RS, RW, EN signals), and additional pins for backlight control. The ESP32 has limited GPIO pins, and many are already allocated to the ADC and power management functions. An I2C interface (using an interface driver IC) requires only 2 pins (SDA and SCL), regardless of how many devices are connected, since multiple I2C devices share the same two-wire bus using unique addresses. This frees up GPIO pins for other uses and simplifies wiring significantly, at the cost of slightly lower data transfer speed — which is not a concern for a slow temperature display.",
+            "**Q:** If the temperature displayed on the LCD is consistently 3°C higher than the actual temperature across the full range, how would you correct this in the ESP32 program without recalibrating the hardware?\n\n**A:** A consistent offset error of +3°C means the intercept c in the calibration equation is 3°C too high. The correction is straightforward: subtract 3 from the constant term in the firmware. The corrected equation becomes T(°C) = 276.49 · VADC − 26.4 − 3 = 276.49 · VADC − 29.4. This is a software-only fix that requires no hardware changes. However, if the error were not constant but instead proportional to temperature (scaling error), both the slope and intercept would need adjustment, requiring at least two reference points for re-calibration.",
+            "**Q:** How would the system performance change if the water bath temperature were varied rapidly rather than gradually during the measurement?\n\n**A:** Several issues would arise: (1) Thermal lag — the RTD has a finite thermal time constant (typically 3–10 seconds depending on its construction and the medium). Rapid temperature changes mean the RTD element has not reached thermal equilibrium with the surrounding water, so the resistance (and therefore measured temperature) lags behind the actual temperature. (2) The ESP32 ADC samples the voltage at discrete intervals; if temperature changes faster than the sampling rate, readings may miss peaks or transitions. (3) The Wheatstone bridge assumes steady-state resistance values; transient resistance changes during rapid heating may introduce additional measurement errors due to the bridge's finite response time."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}
