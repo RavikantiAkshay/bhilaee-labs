@@ -1,0 +1,372 @@
+{
+    "id": "exp-7",
+    "title": "Measurement of Displacement Using an LVDT",
+    "labId": "sensor-lab",
+    "status": "Completed",
+    "meta": {
+        "simulationId": "sensor_lab-exp7",
+        "simulationType": "Hardware / Transducer Characterisation",
+        "experimentType": "hardware",
+        "status": "completed",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To measure linear displacement using an LVDT kit and to analyze the relationship between core displacement and the corresponding output voltage."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "LVDT Kit",
+                            "1"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "As required"
+                        ],
+                        [
+                            "Multimeter",
+                            "1"
+                        ],
+                        [
+                            "AC Power Supply",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A Linear Variable Differential Transformer (LVDT) is an electromechanical transducer used to convert linear displacement into an electrical signal. It works on the principle of mutual induction and consists of one primary coil and two secondary coils wound symmetrically on a hollow former. A soft iron core, which can move freely inside the former, acts as the movable element."
+                },
+                {
+                    "type": "text",
+                    "content": "An alternating current (AC) excitation is applied to the primary coil, which induces voltages in the two secondary coils. The two secondary windings are connected in series opposition so that their induced voltages oppose each other. When the core is at the central (null) position, the induced voltages in both secondary coils are equal and opposite, giving a net output voltage of zero."
+                },
+                {
+                    "type": "equation",
+                    "value": "E_o = E_{S1} - E_{S2}"
+                },
+                {
+                    "type": "equation",
+                    "value": "E_o \\propto x"
+                },
+                {
+                    "type": "text",
+                    "content": "where Eo is the differential output voltage and x is the displacement of the core from the null position."
+                },
+                {
+                    "type": "text",
+                    "content": "When the core is displaced towards one of the secondary coils, the mutual inductance between the primary and that secondary coil increases, while it decreases for the other. This results in a net differential voltage Eo, which increases linearly with displacement and also changes phase depending on the direction of movement."
+                },
+                {
+                    "type": "text",
+                    "content": "Hence, the LVDT provides an output voltage whose amplitude indicates the magnitude of displacement and whose phase indicates the direction. The relationship between displacement and output voltage remains linear over a specified range, making the LVDT one of the most accurate and reliable displacement transducers."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp7-lvdt-structure-circuit",
+                    "caption": "Figure 1: Structure and equivalent circuit diagram of the LVDT, showing the primary coil (centre), two secondary coils (S1 and S2) connected in series opposition, the movable soft iron core, and the differential output Eo.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the LVDT kit to the AC voltage supply and a multimeter as shown in the circuit diagram, ensuring proper excitation to the primary coil and correct polarity at the secondary terminals.",
+                        "Calibrate the setup such that zero output voltage is obtained when the core is at the null (central) position. This can be done by adjusting the calibration screw carefully.",
+                        "After calibration, slowly move the core using the vernier screw arrangement in small steps (1 mm each), keeping track of each movement.",
+                        "For each displacement, note the corresponding output voltage from the multimeter. Record both positive and negative displacements to observe the change in polarity.",
+                        "Continue this process for the full range of the core's motion (±10 mm) and tabulate the readings for both sides of the null position."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Readings were taken for both cases — when the core was moved in the positive direction and when moved in the negative direction. Negative voltage corresponds to displacement in one direction from the null position, and positive voltage corresponds to displacement in the opposite direction. The polarity depends on the wiring of the LVDT secondary coils and the direction of core movement."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S. No.",
+                        "Displacement (mm)",
+                        "Output Voltage (mV)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "1",
+                            "-1.03"
+                        ],
+                        [
+                            "2",
+                            "2",
+                            "-2.07"
+                        ],
+                        [
+                            "3",
+                            "3",
+                            "-3.105"
+                        ],
+                        [
+                            "4",
+                            "4",
+                            "-4.18"
+                        ],
+                        [
+                            "5",
+                            "5",
+                            "-5.22"
+                        ],
+                        [
+                            "6",
+                            "6",
+                            "-6.25"
+                        ],
+                        [
+                            "7",
+                            "7",
+                            "-7.28"
+                        ],
+                        [
+                            "8",
+                            "8",
+                            "-8.27"
+                        ],
+                        [
+                            "9",
+                            "9",
+                            "-9.26"
+                        ],
+                        [
+                            "10",
+                            "10",
+                            "-10.22"
+                        ],
+                        [
+                            "11",
+                            "0",
+                            "0"
+                        ],
+                        [
+                            "12",
+                            "-1",
+                            "1.06"
+                        ],
+                        [
+                            "13",
+                            "-2",
+                            "2.1"
+                        ],
+                        [
+                            "14",
+                            "-3",
+                            "3.15"
+                        ],
+                        [
+                            "15",
+                            "-4",
+                            "4.18"
+                        ],
+                        [
+                            "16",
+                            "-5",
+                            "5.19"
+                        ],
+                        [
+                            "17",
+                            "-6",
+                            "6.2"
+                        ],
+                        [
+                            "18",
+                            "-7",
+                            "7.21"
+                        ],
+                        [
+                            "19",
+                            "-8",
+                            "8.19"
+                        ],
+                        [
+                            "20",
+                            "-9",
+                            "9.17"
+                        ],
+                        [
+                            "21",
+                            "-10",
+                            "10.12"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp7-voltage-vs-displacement-plot",
+                    "caption": "Figure 2: LVDT output voltage vs displacement. The fitted linear equation is V = −1.017x + 0.000, confirming the proportional behaviour of the LVDT across ±10 mm.",
+                    "role": "characteristic-plot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A linear relation between the LVDT output voltage V and core displacement x is assumed:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = S \\cdot x + V_0"
+                },
+                {
+                    "type": "text",
+                    "content": "where S is the sensitivity (slope in mV/mm) and V₀ is the offset voltage at zero displacement. Using the two extreme points from the measured data:"
+                },
+                {
+                    "type": "equation",
+                    "value": "(x_1,\\, V_1) = (10,\\; -10.22\\,\\text{mV}), \\quad (x_2,\\, V_2) = (-10,\\; 10.12\\,\\text{mV})"
+                },
+                {
+                    "type": "text",
+                    "content": "The sensitivity (slope) is calculated as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "S = \\frac{V_2 - V_1}{x_2 - x_1} = \\frac{10.12 - (-10.22)}{-10 - 10} = \\frac{20.34}{-20} = -1.017\\,\\text{mV/mm}"
+                },
+                {
+                    "type": "text",
+                    "content": "The offset voltage at zero displacement:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_0 = V - S \\cdot x = 0 - (-1.017 \\times 0) = 0\\,\\text{mV}"
+                },
+                {
+                    "type": "text",
+                    "content": "Hence, the final derived linear equation is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = -1.017\\,x + 0"
+                },
+                {
+                    "type": "text",
+                    "content": "The negative slope indicates that the output voltage decreases when the core is moved in the positive direction, consistent with the series-opposition wiring of the secondary coils."
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The LVDT output voltage varied linearly with core displacement across the full ±10 mm range.",
+                        "The measured sensitivity is S = −1.017 mV/mm, and the offset at the null position is V₀ = 0 mV, confirming accurate calibration.",
+                        "The output voltage reversed polarity symmetrically about the null position, demonstrating the LVDT's ability to indicate direction of displacement through phase change.",
+                        "Small deviations from perfect linearity are observed (e.g., at x = 8 mm, V = −8.27 mV vs expected −8.136 mV), attributable to minor mechanical backlash in the vernier screw and multimeter reading resolution.",
+                        "The linear fit V = −1.017x closely matches all measured data points, confirming the LVDT behaves as an accurate linear displacement transducer within its operating range."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, the characteristics of a Linear Variable Differential Transformer (LVDT) were studied and its output was calibrated with respect to core displacement. The obtained readings confirmed a nearly linear relationship between the output voltage and displacement within the operating range of the transducer. The null position was accurately set by adjusting the calibration screw to achieve zero output voltage at zero displacement. From the plotted data, a linear equation V = −1.017x was derived, confirming the proportional behaviour of the LVDT. The small deviations from perfect linearity can be attributed to minor mechanical and measurement errors. Overall, the experiment successfully demonstrated the working principle, linearity, and sensitivity of the LVDT, proving its suitability for precise displacement measurements in instrumentation systems."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** Why are the two secondary coils of an LVDT connected in series opposition rather than in series aiding?\n\n**A:** In series aiding, the two secondary voltages ES1 and ES2 would add together at all core positions, producing a large non-zero output even at the null position and making it impossible to detect the direction of displacement. In series opposition, ES1 and ES2 subtract, so at the null position they cancel exactly to give zero output. As the core moves away from null, one secondary voltage increases and the other decreases, producing a net differential output Eo = ES1 − ES2 that is proportional to displacement and changes sign (phase) with direction. This sign change is the key feature that allows both magnitude and direction of displacement to be determined from a single output voltage.",
+                        "**Q:** The measured sensitivity is −1.017 mV/mm. What does the negative sign physically represent, and how would you change it without modifying the mechanical setup?\n\n**A:** The negative sign indicates that moving the core in the positive mechanical direction (as defined by the vernier screw convention) causes the output voltage to decrease — specifically, it means the core moves closer to secondary coil S2, increasing ES2 and decreasing the net output Eo = ES1 − ES2. To reverse the sign of the sensitivity without touching the mechanics, simply swap the two output terminals of the secondary coils in the circuit — this exchanges ES1 and ES2, turning the output into ES2 − ES1, which gives a positive slope. This is purely a wiring change with no effect on the physical transducer behaviour.",
+                        "**Q:** What is the 'null voltage' in a practical LVDT, and why is it never exactly zero even after careful calibration?\n\n**A:** The null voltage is the residual output voltage that remains when the core is at the geometric centre (null) position. Ideally it should be zero, but in practice it is never exactly zero because: (1) The two secondary coils are not perfectly identical — slight differences in the number of turns, wire resistance, or winding geometry cause ES1 ≠ ES2 even at the null position. (2) The primary magnetic field is not perfectly uniform along the former, so flux coupling to S1 and S2 is not exactly equal at centre. (3) Harmonic distortion in the AC excitation produces residual voltages at frequencies other than the fundamental, which do not cancel. The null voltage is typically specified as a percentage of full-scale output and represents a fundamental accuracy limit of the LVDT.",
+                        "**Q:** How does the frequency of the AC excitation applied to the primary coil affect the LVDT's performance?\n\n**A:** The excitation frequency affects the LVDT in several ways: (1) Sensitivity increases with frequency because mutual inductance-based voltage induction is proportional to dΦ/dt = ω × Φ, so higher frequency produces higher induced secondary voltages for the same core position. (2) However, excessively high frequencies increase eddy current losses in the soft iron core, causing heating and non-linear behaviour. (3) The frequency also sets the upper limit on the dynamic measurement bandwidth — the LVDT can only track displacements that change significantly more slowly than the excitation frequency (typically the measurement bandwidth is about 1/10 of the excitation frequency). (4) Standard LVDT kits use 50 Hz mains supply for simplicity, while precision LVDTs use 1–10 kHz for higher sensitivity and dynamic response.",
+                        "**Q:** If the plot of output voltage vs displacement shows a slight S-curve shape rather than a perfect straight line, what does this indicate about the LVDT's operating condition?\n\n**A:** An S-curve (sigmoid) shape indicates that the core has been displaced beyond the linear operating range of the LVDT. Near the null position, the output is linear because the flux change is approximately proportional to displacement. However, at large displacements, the core begins to exit one of the secondary coils entirely — the mutual inductance no longer increases proportionally with position, and the rate of change of ES1 or ES2 decreases. This causes the output to flatten at large displacements, creating the curved ends of an S-shape. It means the measurement is being attempted beyond the rated stroke of the LVDT, and the readings in the curved regions are unreliable.",
+                        "**Q:** Compare the LVDT with a simple potentiometer as a displacement sensor. In which application would you prefer each, and why?\n\n**A:** A potentiometer is resistive — the wiper makes physical contact with the resistive track, which causes wear and limits its life in applications involving continuous or rapid motion. It has no moving magnetic parts, is inexpensive, and gives a DC output directly usable without demodulation. An LVDT is contactless — the core moves freely inside the former with no mechanical friction or wear, giving virtually unlimited life. It provides better resolution (no contact noise), works in harsh environments (sealed against moisture and dust), and its AC output encodes both magnitude and direction. Potentiometers are preferred for low-cost, slow, or intermittent position sensing (e.g., a control knob). LVDTs are preferred for precision industrial displacement measurement, structural health monitoring, and any application requiring high reliability, long life, or operation in contaminated environments."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

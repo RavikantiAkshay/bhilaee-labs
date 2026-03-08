@@ -1,0 +1,12 @@
+{
+    "exp7-lvdt-structure-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-7/exp7-lvdt-structure-circuit.png",
+        "description": "Structure and equivalent circuit diagram of the LVDT."
+    },
+    "exp7-voltage-vs-displacement-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-7/exp7-voltage-vs-displacement-plot.png",
+        "description": "LVDT output voltage vs displacement plot."
+    }
+}
