@@ -1,0 +1,374 @@
+{
+    "id": "exp-8",
+    "title": "Measurement of Strain Using a Strain Gauge",
+    "labId": "sensor-lab",
+    "status": "Completed",
+    "meta": {
+        "simulationId": "sensor_lab-exp8",
+        "simulationType": "Hardware / Transducer Characterisation",
+        "experimentType": "hardware",
+        "status": "completed",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "To measure strain using a strain gauge setup and to analyze the relationship between the applied load and the corresponding output voltage."
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "ST2304 Trainer Kit",
+                            "1"
+                        ],
+                        [
+                            "Weights (all different)",
+                            "7–8"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "As required"
+                        ],
+                        [
+                            "Multimeter",
+                            "1"
+                        ],
+                        [
+                            "DC Power Supply",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A strain gauge is an electromechanical transducer used to measure strain (deformation per unit length) on a structural member when subjected to a load. It works on the piezoresistive effect, which states that the electrical resistance of a conductor changes when it is stretched or compressed."
+                },
+                {
+                    "type": "text",
+                    "content": "When a metallic conductor of initial length L, cross-sectional area A, and resistivity ρ is unstrained, its resistance is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "R = \\frac{\\rho L}{A}"
+                },
+                {
+                    "type": "text",
+                    "content": "When the conductor is subjected to a tensile strain, its length increases and cross-sectional area decreases, leading to an increase in resistance. Conversely, under compressive strain, its resistance decreases. The strain (ε) is defined as the fractional change in length:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\varepsilon = \\frac{\\Delta L}{L}"
+                },
+                {
+                    "type": "text",
+                    "content": "The Poisson's ratio (μ) is the ratio of lateral strain to longitudinal strain:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\mu = \\frac{\\text{Lateral strain}}{\\text{Longitudinal strain}}"
+                },
+                {
+                    "type": "text",
+                    "content": "The Gauge Factor (GF) is a constant of proportionality that relates the fractional change in resistance to the strain:"
+                },
+                {
+                    "type": "equation",
+                    "value": "GF = \\frac{\\Delta R / R}{\\Delta L / L} = \\frac{\\Delta R / R}{\\varepsilon}"
+                },
+                {
+                    "type": "text",
+                    "content": "The strain gauge is usually bonded to the surface of a cantilever beam or specimen where strain occurs due to an applied load. The resulting small change in resistance is converted into a measurable voltage using a Wheatstone bridge circuit. The bridge output voltage is proportional to the strain experienced by the gauge."
+                },
+                {
+                    "type": "text",
+                    "content": "In this experiment, a strain gauge mounted on a cantilever beam is used to measure strain for different applied loads. The corresponding output voltage from the bridge circuit is recorded, and the relationship between the applied load and output voltage is analyzed to verify the linear behaviour of the strain gauge within its operating range."
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp8-strain-gauge-kit-circuit",
+                    "caption": "Figure 1: Strain gauge setup showing the ST2304 experimental kit and its internal Wheatstone bridge circuit diagram. The kit includes a strain gauge bridge (four 350 Ω arms), buffer amplifiers, a differential amplifier, a low-noise gain amplifier, and an offset null adjust control.",
+                    "role": "circuit-diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the strain gauge setup as shown in the circuit diagram, ensuring proper wiring of the Wheatstone bridge and correct polarity of the DC power supply.",
+                        "Switch on the power supply and adjust the balancing (offset null adjust) control so that the bridge output voltage is zero with no load applied to the cantilever beam.",
+                        "Gradually apply known weights at the free end of the cantilever beam, one at a time, allowing the system to stabilize after each addition.",
+                        "For each applied load, measure and record the corresponding micro strain reading and output voltage using the multimeter.",
+                        "Tabulate the readings of applied load, micro strain, and output voltage for further analysis."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "Readings were taken for different applied loads on the cantilever beam, and the corresponding micro strain and output voltages were recorded."
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "S. No.",
+                        "Applied Load (g)",
+                        "Micro Strain (μɛ)",
+                        "Output Voltage (mV)"
+                    ],
+                    "rows": [
+                        [
+                            "1",
+                            "0",
+                            "2",
+                            "0.00"
+                        ],
+                        [
+                            "2",
+                            "10",
+                            "3",
+                            "0.05"
+                        ],
+                        [
+                            "3",
+                            "20",
+                            "4",
+                            "0.10"
+                        ],
+                        [
+                            "4",
+                            "30",
+                            "5",
+                            "0.19"
+                        ],
+                        [
+                            "5",
+                            "50",
+                            "6",
+                            "0.33"
+                        ],
+                        [
+                            "6",
+                            "70",
+                            "8",
+                            "0.48"
+                        ],
+                        [
+                            "7",
+                            "100",
+                            "9",
+                            "0.62"
+                        ],
+                        [
+                            "8",
+                            "150",
+                            "11",
+                            "0.84"
+                        ],
+                        [
+                            "9",
+                            "200",
+                            "13",
+                            "1.09"
+                        ],
+                        [
+                            "10",
+                            "250",
+                            "14",
+                            "1.26"
+                        ],
+                        [
+                            "11",
+                            "300",
+                            "16",
+                            "1.46"
+                        ],
+                        [
+                            "12",
+                            "350",
+                            "18",
+                            "1.70"
+                        ],
+                        [
+                            "13",
+                            "400",
+                            "20",
+                            "1.91"
+                        ],
+                        [
+                            "14",
+                            "450",
+                            "23",
+                            "2.28"
+                        ],
+                        [
+                            "15",
+                            "500",
+                            "26",
+                            "2.55"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp8-voltage-vs-strain-plot",
+                    "caption": "Figure 2: Strain gauge output voltage vs applied strain. The fitted linear equation is V = 2062.5ε + 0.09, confirming proportional behaviour across the measured range.",
+                    "role": "characteristic-plot"
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A linear relation between the strain gauge output voltage V and applied strain ε is assumed:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = K \\cdot \\varepsilon + V_0"
+                },
+                {
+                    "type": "text",
+                    "content": "where K is the sensitivity (slope in mV per unit strain) and V₀ is the offset voltage at zero strain. Using two extreme points from the measured data:"
+                },
+                {
+                    "type": "equation",
+                    "value": "(\\varepsilon_1,\\, V_1) = (0.001,\\; 2.15\\,\\text{mV}), \\quad (\\varepsilon_2,\\, V_2) = (0.005,\\; 10.40\\,\\text{mV})"
+                },
+                {
+                    "type": "text",
+                    "content": "The sensitivity (slope) is calculated as:"
+                },
+                {
+                    "type": "equation",
+                    "value": "K = \\frac{V_2 - V_1}{\\varepsilon_2 - \\varepsilon_1} = \\frac{10.40 - 2.15}{0.005 - 0.001} = \\frac{8.25}{0.004} = 2062.5\\,\\text{mV/unit strain}"
+                },
+                {
+                    "type": "text",
+                    "content": "The offset voltage at zero strain:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_0 = V_1 - K \\cdot \\varepsilon_1 = 2.15 - (2062.5 \\times 0.001) = 2.15 - 2.0625 = 0.09\\,\\text{mV}"
+                },
+                {
+                    "type": "text",
+                    "content": "Hence, the final derived linear equation is:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = 2062.5\\,\\varepsilon + 0.09"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "The strain gauge output voltage varied nearly linearly with applied strain across the full load range of 0–500 g (0–26 μɛ).",
+                        "The measured sensitivity is K = 2062.5 mV per unit strain, with a small offset of V₀ = 0.09 mV attributable to residual bridge imbalance at zero load.",
+                        "At no load, the micro strain reads 2 μɛ rather than 0 μɛ, indicating a small residual mechanical pre-stress in the cantilever beam or imperfect null adjustment.",
+                        "Minor deviations from the linear fit are visible at mid-range loads (e.g., 50–150 g), attributable to material hysteresis in the beam and non-ideal bridge balance.",
+                        "The linear fit V = 2062.5ε + 0.09 closely represents all measured data, confirming the strain gauge as a reliable linear transducer within its operating range."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "In this experiment, the characteristics of a strain gauge were studied, and its output voltage was calibrated with respect to the applied strain. The observed readings indicated a nearly linear relationship between the bridge output voltage and strain within the operational range of the gauge. The zero-strain condition was verified by ensuring minimum output voltage at no applied load. From the plotted data, a linear equation V = 2062.5ε + 0.09 was derived, confirming the proportional behaviour of the strain gauge. Minor deviations from perfect linearity can be attributed to material hysteresis or bridge imbalance. Overall, the experiment successfully demonstrated the working principle, sensitivity, and linearity of the strain gauge, validating its application in precise strain and stress measurement systems."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** The Gauge Factor (GF) for metallic strain gauges is typically around 2, while for semiconductor strain gauges it can be 50–150. What causes this large difference, and what is the trade-off in using semiconductor gauges?\n\n**A:** In metallic gauges, resistance change comes primarily from geometric effects — the wire gets longer and thinner when stretched, changing R = ρL/A. The piezoresistive contribution (change in ρ itself) is small. In semiconductor gauges, the dominant mechanism is the piezoresistive effect — applied stress directly alters the band structure of the semiconductor material, causing a very large change in resistivity ρ. This gives GF values of 50–150. The trade-off is that semiconductor gauges are highly sensitive to temperature (their resistance changes significantly with temperature as well as strain), are more fragile and brittle, have a more non-linear response, and are more expensive. Metallic gauges are more robust, stable, and linear, making them preferred for most structural and industrial applications despite their lower sensitivity.",
+                        "**Q:** Why must the strain gauge be bonded very carefully to the surface of the cantilever beam, and what errors arise from poor bonding?\n\n**A:** The strain gauge must faithfully follow the deformation of the surface it is measuring — it should strain by exactly the same amount as the material beneath it. This requires the adhesive layer between gauge and beam to be thin, uniform, and of high shear stiffness. If the bond is poor: (1) Shear compliance in the adhesive layer allows the gauge to partially slip rather than fully deforming with the beam, so the measured strain is lower than the actual strain (strain loss error). (2) If the adhesive is too thick, it creates a mechanical averaging effect across its thickness, smearing out stress concentrations. (3) Air bubbles or partial delamination create local stress concentrations and non-uniform gauge response. (4) Long-term creep in the adhesive causes the output to drift under sustained loads. Proper bonding with a rigid, creep-resistant adhesive such as cyanoacrylate or epoxy is essential.",
+                        "**Q:** In the ST2304 kit, the Wheatstone bridge uses four 350 Ω arms. Why is 350 Ω a common resistance value for strain gauges, and what happens to bridge sensitivity if a higher resistance gauge is used?\n\n**A:** The 350 Ω value is a industry-standard compromise between two competing effects. Lower resistance gauges (e.g., 120 Ω) require higher excitation current, which increases self-heating — the gauge warms up, its resistance changes thermally rather than due to strain, introducing error. Higher resistance gauges (350 Ω or 1000 Ω) allow higher excitation voltages at lower currents, reducing self-heating while maintaining reasonable bridge output. If a higher resistance gauge is used in a bridge with the same excitation voltage, the bridge output voltage for a given ΔR increases (since Vout ∝ ΔR/R × Vex, and ΔR scales with gauge resistance for the same strain), improving sensitivity. However, higher resistance gauges also have higher noise (Johnson noise ∝ √R) and require higher impedance signal conditioning.",
+                        "**Q:** The observation table shows a micro strain of 2 μɛ at zero load instead of 0 μɛ. What are the physical reasons for this non-zero reading, and how would it affect the derived calibration equation if left uncorrected?\n\n**A:** The residual 2 μɛ at zero load can arise from: (1) Incomplete offset null adjustment — the bridge was not perfectly balanced before loading began, leaving a small residual imbalance. (2) Mechanical pre-stress — the cantilever beam may have a slight residual bend from previous use or from clamping force at its fixed end. (3) Thermal strain — a small temperature difference between the beam and the environment causes differential thermal expansion. If left uncorrected, this offset shifts the entire calibration curve upward by a constant amount, introducing a systematic zero error. The slope (sensitivity K) would be unaffected since it is determined by how voltage changes with additional strain, but every absolute strain reading would be overestimated by 2 μɛ, and calculated stress values would be correspondingly incorrect.",
+                        "**Q:** How would the output voltage and micro strain readings change if the same loads were applied but the cantilever beam were twice as long? Assume the gauge position on the beam is fixed at a constant distance from the fixed end.\n\n**A:** The bending moment at any cross-section of a cantilever beam under a tip load F is M(x) = F·(L − x), where L is the total length and x is the distance from the fixed end. Doubling the beam length doubles the bending moment at the gauge location (since L − x increases while x stays fixed), and bending stress σ = M·c/I also doubles for the same cross-section. Since strain ε = σ/E (Hooke's law), the strain at the gauge doubles for the same applied load. The bridge output voltage, which is proportional to strain, also doubles. Therefore, the micro strain and output voltage readings for the same weights would be approximately doubled, effectively doubling the system sensitivity. However, the beam would also deflect more and could approach its yield strain at lower loads, reducing the safe operating range.",
+                        "**Q:** What is hysteresis in the context of a strain gauge measurement, and how would you detect it experimentally in this setup?\n\n**A:** Hysteresis is the phenomenon where the output of the measurement system depends not only on the current input (applied load) but also on the history of previous inputs. In strain measurement, it manifests as a difference between the output voltage recorded while increasing the load and the output voltage recorded at the same load while decreasing the load — the loading and unloading curves do not coincide. It arises from inelastic deformation in the beam material (internal friction, dislocation movement in the metal), viscoelastic creep in the adhesive layer, and mechanical backlash in the loading mechanism. To detect it experimentally: apply loads in increasing steps from 0 to 500 g, recording voltage at each step, then remove loads in decreasing steps from 500 g back to 0, recording voltage at each step again. If hysteresis is present, the two curves will form a closed loop rather than a single line, and the area of the loop quantifies the hysteresis error."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}

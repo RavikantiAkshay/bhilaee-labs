@@ -1,0 +1,12 @@
+{
+    "exp8-strain-gauge-kit-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-8/exp8-strain-gauge-kit-circuit.png",
+        "description": "Strain gauge setup showing ST2304 experimental kit and internal Wheatstone bridge circuit."
+    },
+    "exp8-voltage-vs-strain-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-8/exp8-voltage-vs-strain-plot.png",
+        "description": "Strain gauge output voltage vs applied strain plot."
+    }
+}

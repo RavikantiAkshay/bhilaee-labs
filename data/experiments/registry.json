@@ -320,10 +320,10 @@
         },
         {
           "id": "8",
-          "title": "Experiment 8",
+          "title": "Measurement of Strain Using a Strain Gauge",
           "fileName": "exp-8.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "9",
