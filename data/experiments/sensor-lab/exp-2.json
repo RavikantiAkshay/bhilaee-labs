@@ -1,0 +1,503 @@
+{
+  "id": "exp-2",
+  "title": "Study of Op-Amp Circuits: Integrator, Differentiator, Inverting Amplifier, and Instrumentation Amplifier",
+  "labId": "sensor-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "sensor_lab-exp2",
+    "simulationType": "Transient Analysis",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To study and implement the following circuits using an OP-AMP:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Integrator",
+            "Differentiator",
+            "Inverting Amplifier",
+            "Instrumentation Amplifier"
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Quantity"
+          ],
+          "rows": [
+            [
+              "Dual Power Supply (±15V)",
+              "1"
+            ],
+            [
+              "DC Power Source",
+              "1"
+            ],
+            [
+              "Function Generator (0–1 MHz)",
+              "1"
+            ],
+            [
+              "Oscilloscope",
+              "1"
+            ],
+            [
+              "Breadboard",
+              "1"
+            ],
+            [
+              "Probes and Connecting Wires",
+              "As required"
+            ],
+            [
+              "OP07",
+              "1"
+            ],
+            [
+              "IC 741C",
+              "1"
+            ],
+            [
+              "Resistor (15 kΩ)",
+              "1"
+            ],
+            [
+              "Resistor (470 kΩ)",
+              "1"
+            ],
+            [
+              "Capacitor (0.015 µF)",
+              "1"
+            ],
+            [
+              "Resistor (10 kΩ)",
+              "4"
+            ],
+            [
+              "Resistor (4.7 kΩ)",
+              "3"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1. Integrator:** An op-amp integrator produces an output proportional to the time integral of the input voltage. The input is applied through a resistor to the inverting terminal, while a capacitor is placed in the feedback path. The output is expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "v_o(t) = -\\frac{1}{RC} \\int v_{in}(t)\\, dt"
+        },
+        {
+          "type": "text",
+          "content": "The constant of integration depends on the initial output voltage at t = 0. The negative sign shows that the output is inverted with respect to the input. In practice, a resistor is often connected in parallel with the capacitor to prevent output drift and improve stability for long-duration signals."
+        },
+        {
+          "type": "text",
+          "content": "**2. Differentiator:** An op-amp differentiator generates an output proportional to how quickly the input changes. The input comes through a capacitor, and there is a resistor in the feedback path. The output is:"
+        },
+        {
+          "type": "equation",
+          "value": "v_o(t) = -RC \\frac{dv_{in}(t)}{dt}"
+        },
+        {
+          "type": "text",
+          "content": "For a sinusoidal input, the output is 90° ahead of the input. A cosine input results in a sine output, while a triangular input produces a square output. To reduce high-frequency noise, practical circuits include a small resistor in series with the capacitor, making the differentiator act like a high-pass filter. Differentiators are often used for edge detection and waveform shaping."
+        },
+        {
+          "type": "text",
+          "content": "**3. Inverting Amplifier:** In this circuit, the input goes through R1 to the inverting terminal, and a resistor Rf provides feedback. The non-inverting input is grounded. The voltage gain is:"
+        },
+        {
+          "type": "equation",
+          "value": "A_v = -\\frac{R_f}{R_1}"
+        },
+        {
+          "type": "text",
+          "content": "The output is flipped 180° compared to the input. The gain depends solely on the resistor ratio, and the inverting input node functions as a virtual ground. This setup is common in signal processing because it offers reliable and predictable gain."
+        },
+        {
+          "type": "text",
+          "content": "**4. Instrumentation Amplifier:** The instrumentation amplifier is a differential amplifier with high accuracy and common-mode rejection. It usually has three op-amps: two serve as input buffers and the third functions as a difference amplifier. The overall gain is:"
+        },
+        {
+          "type": "equation",
+          "value": "A_v = \\left(1 + \\frac{2R}{R_g}\\right) \\frac{R_f}{R_1}"
+        },
+        {
+          "type": "text",
+          "content": "The buffered input stage offers high input impedance. The final difference amplifier ensures precise subtraction. This design allows for adjustable gain and effectively rejects unwanted common-mode signals. Instrumentation amplifiers are used in medical instruments, strain gauge sensors, and data acquisition systems."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp2-integrator-circuit",
+          "caption": "Practical Circuit of Integrator (R = 15 kΩ, Rf = 470 kΩ, C = 0.015 µF, Op-Amp OP07, ±12V supply).",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-differentiator-circuit",
+          "caption": "Practical Circuit of Differentiator (capacitor at input, resistor in feedback path).",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-inverting-amplifier-circuit",
+          "caption": "Circuit of Inverting Amplifier (R1 input resistor, Rf feedback resistor, non-inverting terminal grounded).",
+          "role": "circuit-diagram"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-instrumentation-amplifier-circuit",
+          "caption": "Circuit of Instrumentation Amplifier (three op-amps: two input buffers and one difference amplifier stage).",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Part 1 — Integrator:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Assemble the integrator circuit on the breadboard using R = 15 kΩ, Rf = 470 kΩ, and C = 0.015 µF with OP07 powered by ±12V.",
+            "Apply a square wave input from the function generator and observe the output on the oscilloscope.",
+            "Apply a sinusoidal input and observe the output waveform.",
+            "Record and compare input and output waveforms at different frequencies."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 2 — Differentiator:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Assemble the differentiator circuit with the capacitor at the input and resistor in the feedback.",
+            "Apply a square wave input and observe the output on the oscilloscope.",
+            "Apply a sinusoidal input and observe the output waveform.",
+            "Record and compare input and output waveforms at different frequencies."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 3 — Inverting Amplifier:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Assemble the inverting amplifier circuit with appropriate R1 and Rf values.",
+            "Apply a square wave input at 1 kHz and observe the output waveform.",
+            "Increase the frequency to 10 kHz and observe the effect of the op-amp slew rate on the output.",
+            "Apply a sinusoidal input and verify the phase inversion and gain."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 4 — Instrumentation Amplifier:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Assemble the three op-amp instrumentation amplifier circuit using IC 741C and resistors.",
+            "Apply an input voltage of 2V Vpp and observe the amplified output on the oscilloscope.",
+            "Calculate the measured gain and verify the amplification behavior based on the resistor values."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**1. Integrator**"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-integrator-square-input",
+          "caption": "Figure 1(a): Integrator output for Square wave input — output is triangular, consistent with the integration property.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-integrator-sine-input",
+          "caption": "Figure 2(b): Integrator output for Sine wave input — output is a cosine-like waveform shifted by 90°.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "For a square wave input, the output is triangular, consistent with the integration property.",
+            "For a sinusoidal input, the output is a cosine-like waveform shifted by 90°.",
+            "At low frequencies, integration is more precise and the expected waveforms are achieved. At higher frequencies, distortion occurs because the capacitor reactance decreases, weakening the ideal integration effect."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**2. Differentiator**"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-differentiator-square-input",
+          "caption": "Figure 3(a): Differentiator output for Square wave input — output shows sharp spikes at transitions.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-differentiator-sine-input",
+          "caption": "Figure 4(b): Differentiator output for Sine wave input — output is a cosine-like waveform shifted by 90°.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "For a square wave input, the output ideally produces sharp spikes at signal transitions.",
+            "For a sinusoidal input, the output is a cosine-like waveform shifted by 90°.",
+            "In practice, the output differs from the ideal case due to non-ideal op-amp behavior. The finite open-loop gain decreasing with frequency, and the need for stabilization resistors, result in deviations especially at higher frequencies."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**3. Inverting Amplifier**"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-inverting-amp-square-1khz",
+          "caption": "Figure (a): Inverting amplifier output for Square wave input at 1 kHz — clean inverted square wave output observed.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-inverting-amp-square-10khz",
+          "caption": "Figure (b): Inverting amplifier output for Square wave input at 10 kHz — output takes triangular shape due to op-amp slew rate limitation.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-inverting-amp-sine",
+          "caption": "Figure (c): Inverting amplifier output for Sine wave input — clean inverted sine wave with no significant distortion.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "At 1 kHz, the square wave input produces a clean inverted square wave output, as expected.",
+            "At 10 kHz, the output takes the shape of an inverted triangle due to the op-amp slew rate limitation, where the output voltage cannot change fast enough to track the sharp edges.",
+            "For the sine input, the output is a clean inverted sine wave since the frequency is within the op-amp bandwidth."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**4. Instrumentation Amplifier**"
+        },
+        {
+          "type": "image",
+          "assetId": "exp2-instr-amp-output",
+          "caption": "Figure: Output showing amplified signal — Vout = 28.8V Vpp.",
+          "role": "oscilloscope-capture"
+        },
+        {
+          "type": "text",
+          "content": "The power supply is set to ±15V. With an input voltage of 2V Vpp, the output voltage is measured as 28.8V Vpp, resulting in a measured gain of 14.4."
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Integrator output expression:**"
+        },
+        {
+          "type": "equation",
+          "value": "v_o(t) = -\\frac{1}{RC} \\int v_{in}(t)\\, dt"
+        },
+        {
+          "type": "text",
+          "content": "**Differentiator output expression:**"
+        },
+        {
+          "type": "equation",
+          "value": "v_o(t) = -RC \\frac{dv_{in}(t)}{dt}"
+        },
+        {
+          "type": "text",
+          "content": "**Inverting Amplifier gain:**"
+        },
+        {
+          "type": "equation",
+          "value": "A_v = -\\frac{R_f}{R_1}"
+        },
+        {
+          "type": "text",
+          "content": "**Instrumentation Amplifier measured gain:**"
+        },
+        {
+          "type": "equation",
+          "value": "A_{v_{\\text{measured}}} = \\frac{V_{out}}{V_{in}} = \\frac{28.8\\,\\text{V}_{pp}}{2\\,\\text{V}_{pp}} = 14.4"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Circuit",
+            "Input",
+            "Expected Output",
+            "Observed Output"
+          ],
+          "rows": [
+            [
+              "Integrator",
+              "Square wave",
+              "Triangular wave",
+              "Triangular wave (confirmed)"
+            ],
+            [
+              "Integrator",
+              "Sine wave",
+              "Cosine wave (90° shift)",
+              "Cosine-like wave (confirmed)"
+            ],
+            [
+              "Differentiator",
+              "Square wave",
+              "Spike pulses at transitions",
+              "Spike-like output (confirmed)"
+            ],
+            [
+              "Differentiator",
+              "Sine wave",
+              "Cosine wave (90° ahead)",
+              "Cosine-like wave (confirmed)"
+            ],
+            [
+              "Inverting Amplifier",
+              "Square wave @ 1 kHz",
+              "Inverted square wave",
+              "Clean inverted square wave"
+            ],
+            [
+              "Inverting Amplifier",
+              "Square wave @ 10 kHz",
+              "Inverted square wave",
+              "Triangular (slew rate limited)"
+            ],
+            [
+              "Inverting Amplifier",
+              "Sine wave",
+              "Inverted sine wave",
+              "Clean inverted sine wave"
+            ],
+            [
+              "Instrumentation Amplifier",
+              "2V Vpp",
+              "Amplified output",
+              "28.8V Vpp (gain = 14.4)"
+            ]
+          ]
+        },
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "All four op-amp circuits functioned as expected with minor practical deviations.",
+            "The integrator and differentiator outputs matched theoretical waveform transformations at low frequencies.",
+            "The inverting amplifier demonstrated slew rate limitation at 10 kHz, producing a triangular output instead of a square wave.",
+            "The instrumentation amplifier achieved a measured gain of 14.4 based on the resistor configuration."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, we successfully completed all four parts and confirmed the operation of different amplifier circuits. The results indicated that the practical output closely matched theoretical expectations, with minor deviations arising from component tolerances and non-ideal op-amp behavior such as slew rate limitations. The experiment effectively demonstrated how different feedback configurations with an op-amp lead to distinct signal processing applications such as integration, differentiation, and reliable voltage amplification."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": false,
+      "content": []
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}

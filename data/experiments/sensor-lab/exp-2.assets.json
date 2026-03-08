@@ -1,0 +1,62 @@
+{
+  "exp2-integrator-circuit": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-integrator-circuit.png",
+    "description": "Practical Circuit of Integrator"
+  },
+  "exp2-differentiator-circuit": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-differentiator-circuit.png",
+    "description": "Practical Circuit of Differentiator"
+  },
+  "exp2-inverting-amplifier-circuit": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-inverting-amplifier-circuit.png",
+    "description": "Circuit of Inverting Amplifier"
+  },
+  "exp2-instrumentation-amplifier-circuit": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-instrumentation-amplifier-circuit.png",
+    "description": "Circuit of Instrumentation Amplifier"
+  },
+  "exp2-integrator-square-input": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-integrator-square-input.png",
+    "description": "Integrator output for Square wave input"
+  },
+  "exp2-integrator-sine-input": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-integrator-sine-input.png",
+    "description": "Integrator output for Sine wave input"
+  },
+  "exp2-differentiator-square-input": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-differentiator-square-input.png",
+    "description": "Differentiator output for Square wave input"
+  },
+  "exp2-differentiator-sine-input": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-differentiator-sine-input.png",
+    "description": "Differentiator output for Sine wave input"
+  },
+  "exp2-inverting-amp-square-1khz": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-inverting-amp-square-1khz.png",
+    "description": "Inverting amplifier output for Square wave input at 1 kHz"
+  },
+  "exp2-inverting-amp-square-10khz": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-inverting-amp-square-10khz.png",
+    "description": "Inverting amplifier output for Square wave input at 10 kHz"
+  },
+  "exp2-inverting-amp-sine": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-inverting-amp-sine.png",
+    "description": "Inverting amplifier output for Sine wave input"
+  },
+  "exp2-instr-amp-output": {
+    "type": "image",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-instr-amp-output.png",
+    "description": "Output showing amplified signal"
+  }
+}
