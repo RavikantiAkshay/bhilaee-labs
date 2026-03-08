@@ -299,17 +299,17 @@
         },
         {
           "id": "5",
-          "title": "Experiment 5",
+          "title": "Design of a Temperature Detection Device Using RTD",
           "fileName": "exp-5.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "6",
-          "title": "Experiment 6",
+          "title": "Design of a Temperature Detection Device Using Thermistor",
           "fileName": "exp-6.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "7",

@@ -1,0 +1,638 @@
+{
+  "id": "exp-6",
+  "title": "Design of a Temperature Detection Device Using Thermistor",
+  "labId": "sensor-lab",
+  "status": "Completed",
+  "meta": {
+    "simulationId": "sensor_lab-exp6",
+    "simulationType": "Hardware Implementation / ADC",
+    "experimentType": "hardware",
+    "status": "completed",
+    "difficulty": "intermediate",
+    "estimatedTimeMinutes": 120,
+    "version": "1.0.0",
+    "contentState": "complete",
+    "reviewStatus": "unreviewed"
+  },
+  "sections": {
+    "aim": {
+      "id": "aim",
+      "title": "Aim",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "To design a temperature measurement system using a thermistor:"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "To interface the thermistor through a bridge circuit and differential amplifier for signal conditioning.",
+            "To use an ESP32 microcontroller to convert bridge voltage to temperature using a linear calibration relation.",
+            "To display the measured temperature on an LCD module."
+          ]
+        }
+      ]
+    },
+    "apparatus": {
+      "id": "apparatus",
+      "title": "Apparatus & Software",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "table",
+          "headers": [
+            "Component",
+            "Quantity"
+          ],
+          "rows": [
+            [
+              "Thermistor Sensor",
+              "1"
+            ],
+            [
+              "Resistor (270 Ω)",
+              "1"
+            ],
+            [
+              "Resistor (2.2 kΩ)",
+              "2"
+            ],
+            [
+              "Resistor (4.7 kΩ)",
+              "2"
+            ],
+            [
+              "Resistor (100 kΩ)",
+              "1"
+            ],
+            [
+              "Resistor (300 kΩ)",
+              "1"
+            ],
+            [
+              "DC Power Supply",
+              "2"
+            ],
+            [
+              "Connecting Wires",
+              "As required"
+            ],
+            [
+              "Operational Amplifier (Op-Amp)",
+              "1"
+            ],
+            [
+              "ESP32 Microcontroller",
+              "1"
+            ],
+            [
+              "LCD Display",
+              "1"
+            ],
+            [
+              "Display Driver / Interface IC (I2C)",
+              "1"
+            ]
+          ]
+        }
+      ]
+    },
+    "theory": {
+      "id": "theory",
+      "title": "Theory",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A thermistor is a type of temperature sensor whose resistance changes significantly with temperature. Thermistors are made from semiconductor materials such as metal oxides (e.g., manganese) which have a higher sensitivity to change in temperature. Thermistors are mainly used for precise temperature measurement and control in circuits."
+        },
+        {
+          "type": "text",
+          "content": "Thermistors are mainly of two types — Negative Temperature Coefficient (NTC) and Positive Temperature Coefficient (PTC). NTC thermistor resistance decreases with an increase in temperature, which makes them suitable for sensing and control applications. PTC thermistor resistance increases with temperature and is mainly used for protection and limiting purposes."
+        },
+        {
+          "type": "text",
+          "content": "The relationship between resistance and temperature for a thermistor is given by the Steinhart–Hart equation:"
+        },
+        {
+          "type": "equation",
+          "value": "\\frac{1}{T} = A + B\\ln(R) + C[\\ln(R)]^3"
+        },
+        {
+          "type": "text",
+          "content": "where T is the absolute temperature in kelvin, R is the resistance of the thermistor, and A, B, and C are coefficients determined experimentally. For practical applications within a general temperature range, the equation can be simplified as:"
+        },
+        {
+          "type": "equation",
+          "value": "R(T) = R_0 \\, e^{\\beta\\left(\\frac{1}{T} - \\frac{1}{T_0}\\right)}"
+        },
+        {
+          "type": "text",
+          "content": "where R₀ is the resistance at reference temperature T₀, and β is a material-dependent constant."
+        },
+        {
+          "type": "text",
+          "content": "To detect small variations in resistance, the thermistor is connected in a Wheatstone bridge circuit. The change in resistance is converted into a voltage difference which is proportional to the temperature and serves as the input for further signal conditioning."
+        },
+        {
+          "type": "text",
+          "content": "The bridge output is then sent through a differential amplifier to provide attenuation and signal stability. The attenuation ensures that the voltage remains within the input voltage range of the ESP32's ADC, preventing distortion or damage to the microcontroller."
+        },
+        {
+          "type": "text",
+          "content": "The conditioned signal is then supplied to the ESP32, which processes the analog input using its ADC. A linear calibration relation, obtained from the previous experiment, is used to convert the bridge voltage into the corresponding temperature. The computed temperature is displayed on an LCD module through an I2C interface."
+        }
+      ]
+    },
+    "preLab": {
+      "id": "preLab",
+      "title": "Pre-Lab / Circuit Diagram",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "image",
+          "assetId": "exp6-thermistor-bridge-diffamp-esp32-circuit",
+          "caption": "Figure 1: Circuit diagram showing the thermistor Wheatstone bridge (270 Ω, 100 kΩ, 300 kΩ), differential amplifier (R1 = 4.7 kΩ, R2 = 2.2 kΩ), and ESP32 microcontroller with LCD display via I2C interface.",
+          "role": "circuit-diagram"
+        }
+      ]
+    },
+    "procedure": {
+      "id": "procedure",
+      "title": "Procedure",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "**Part 1 — Circuit Assembly:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Connect the thermistor as one arm of the Wheatstone bridge using 270 Ω, 100 kΩ, and 300 kΩ resistors for the remaining arms.",
+            "Connect the bridge output to the differential amplifier configured with R1 = 4.7 kΩ and R2 = 2.2 kΩ to attenuate the bridge voltage within the ESP32 ADC range.",
+            "Connect the amplifier output to the ADC input pin of the ESP32 microcontroller.",
+            "Connect the LCD module to the ESP32 via the I2C interface (Display Driver IC).",
+            "Power the bridge circuit and op-amp with the DC power supply."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 2 — Calibration and Programming:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Use the linear calibration relation T(°C) = −48.68 · Vbridge + 134.9 derived from the previous experiment.",
+            "Incorporate the amplifier gain (Gain = R2/R1 = 2.2/4.7 ≈ 0.468) to relate ADC voltage to temperature: T(°C) = −104.017 · VADC + 134.9.",
+            "Program the ESP32 with this conversion equation.",
+            "Verify the displayed temperature matches a reference thermometer."
+          ]
+        },
+        {
+          "type": "text",
+          "content": "**Part 3 — Measurement:**"
+        },
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "Gradually heat the thermistor in the water bath from 35°C to 70°C.",
+            "Record the bridge voltage and the measured temperature displayed on the LCD at each step.",
+            "Compare the displayed measured temperature with the actual reference temperature.",
+            "Calculate the absolute and percentage errors for each reading."
+          ]
+        }
+      ]
+    },
+    "simulation": {
+      "id": "simulation",
+      "title": "Simulation / Execution",
+      "isApplicable": false,
+      "route": "default",
+      "content": []
+    },
+    "observation": {
+      "id": "observation",
+      "title": "Observations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "As the thermistor was gradually heated, the corresponding bridge voltage was processed by the ESP32, converted to temperature using the calibrated equation, and displayed on the LCD module."
+        },
+        {
+          "type": "text",
+          "content": "**Calibration Data (From Previous Experiment) — Table 1: Bridge Voltage (VAB) vs Temperature**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "S. No.",
+            "Temperature (°C)",
+            "Bridge Voltage VAB (V)"
+          ],
+          "rows": [
+            [
+              "1",
+              "25.00",
+              "2.258"
+            ],
+            [
+              "2",
+              "28.33",
+              "2.200"
+            ],
+            [
+              "3",
+              "30.56",
+              "2.180"
+            ],
+            [
+              "4",
+              "33.33",
+              "2.137"
+            ],
+            [
+              "5",
+              "36.11",
+              "2.098"
+            ],
+            [
+              "6",
+              "38.89",
+              "2.089"
+            ],
+            [
+              "7",
+              "41.67",
+              "2.017"
+            ],
+            [
+              "8",
+              "44.44",
+              "1.980"
+            ],
+            [
+              "9",
+              "47.22",
+              "1.869"
+            ],
+            [
+              "10",
+              "50.00",
+              "1.738"
+            ],
+            [
+              "11",
+              "52.78",
+              "1.693"
+            ],
+            [
+              "12",
+              "55.56",
+              "1.616"
+            ],
+            [
+              "13",
+              "58.33",
+              "1.543"
+            ],
+            [
+              "14",
+              "61.11",
+              "1.464"
+            ],
+            [
+              "15",
+              "63.89",
+              "1.459"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-bridge-voltage-vs-temp-plot",
+          "caption": "Figure 2: Bridge Voltage (VAB) vs Temperature — plotted using MATLAB from calibration data. Note the decreasing trend, characteristic of the NTC thermistor.",
+          "role": "matlab-plot"
+        },
+        {
+          "type": "text",
+          "content": "**Table 2: Actual vs Measured Temperature and Bridge Voltage (Live ESP32 Readings)**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Actual Temp (°C)",
+            "Measured Temp (°C)",
+            "Bridge Voltage (V)"
+          ],
+          "rows": [
+            [
+              "35",
+              "35.88",
+              "2.033"
+            ],
+            [
+              "38",
+              "39.69",
+              "1.955"
+            ],
+            [
+              "41",
+              "42.96",
+              "1.894"
+            ],
+            [
+              "44",
+              "45.18",
+              "1.845"
+            ],
+            [
+              "47",
+              "48.42",
+              "1.776"
+            ],
+            [
+              "50",
+              "52.57",
+              "1.693"
+            ],
+            [
+              "53",
+              "54.18",
+              "1.657"
+            ],
+            [
+              "57",
+              "58.26",
+              "1.574"
+            ],
+            [
+              "60",
+              "62.82",
+              "1.479"
+            ],
+            [
+              "63",
+              "65.70",
+              "1.421"
+            ],
+            [
+              "66",
+              "69.24",
+              "1.353"
+            ],
+            [
+              "69",
+              "72.53",
+              "1.290"
+            ],
+            [
+              "70",
+              "73.85",
+              "1.255"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-lcd-display-reading-1",
+          "caption": "Figure 3(a): LCD display reading showing bridge voltage and corresponding temperature value (Vb: 1.776V  T: 48.42C).",
+          "role": "hardware-photo"
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-lcd-display-reading-2",
+          "caption": "Figure 3(b): LCD display reading showing bridge voltage and corresponding temperature value (Vb: 1.574V  T: 58.26C).",
+          "role": "hardware-photo"
+        },
+        {
+          "type": "text",
+          "content": "**Table 3: Error Analysis — Absolute and Percentage Errors**"
+        },
+        {
+          "type": "table",
+          "headers": [
+            "Actual Temp (°C)",
+            "Measured Temp (°C)",
+            "Absolute Error (°C)",
+            "Percentage Error (%)"
+          ],
+          "rows": [
+            [
+              "35",
+              "35.88",
+              "0.88",
+              "2.51"
+            ],
+            [
+              "38",
+              "39.69",
+              "1.69",
+              "4.45"
+            ],
+            [
+              "41",
+              "42.96",
+              "1.96",
+              "4.78"
+            ],
+            [
+              "44",
+              "45.18",
+              "1.18",
+              "2.68"
+            ],
+            [
+              "47",
+              "48.42",
+              "1.42",
+              "3.02"
+            ],
+            [
+              "50",
+              "52.57",
+              "2.57",
+              "5.14"
+            ],
+            [
+              "53",
+              "54.18",
+              "1.18",
+              "2.23"
+            ],
+            [
+              "57",
+              "58.26",
+              "1.26",
+              "2.21"
+            ],
+            [
+              "60",
+              "62.82",
+              "2.82",
+              "4.70"
+            ],
+            [
+              "63",
+              "65.70",
+              "2.70",
+              "4.29"
+            ],
+            [
+              "66",
+              "69.24",
+              "3.24",
+              "4.91"
+            ],
+            [
+              "69",
+              "72.53",
+              "3.53",
+              "5.12"
+            ],
+            [
+              "70",
+              "73.85",
+              "3.85",
+              "5.50"
+            ]
+          ]
+        },
+        {
+          "type": "image",
+          "assetId": "exp6-actual-vs-measured-temp-plot",
+          "caption": "Figure 4: Actual Temperature vs Measured Temperature for Thermistor system. Measured points track above the ideal line (y = x), indicating a consistent positive offset.",
+          "role": "matlab-plot"
+        }
+      ]
+    },
+    "calculation": {
+      "id": "calculation",
+      "title": "Calculations",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "A linear regression was applied to the calibration data to determine the relationship between bridge voltage and temperature. The linear relation is expressed as:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = m \\cdot V_{\\text{bridge}} + c"
+        },
+        {
+          "type": "text",
+          "content": "Slope m and intercept c are calculated from the calibration data endpoints:"
+        },
+        {
+          "type": "equation",
+          "value": "m = \\frac{\\Delta T}{\\Delta V} = \\frac{63.89 - 25.00}{1.459 - 2.258} \\approx -48.68"
+        },
+        {
+          "type": "equation",
+          "value": "c = T - m \\cdot V = 25.00 - (-48.68 \\times 2.258) = 25.00 + 109.9 \\approx 134.9"
+        },
+        {
+          "type": "text",
+          "content": "Thus, the final linear calibration equation used in the ESP32 program is:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = -48.68 \\cdot V_{\\text{bridge}} + 134.9"
+        },
+        {
+          "type": "text",
+          "content": "Since the differential amplifier attenuates the bridge voltage before feeding it to the ESP32 ADC, the measured ADC voltage VADC is related to the actual bridge voltage by the amplifier gain:"
+        },
+        {
+          "type": "equation",
+          "value": "V_{\\text{bridge}} = \\frac{V_{\\text{ADC}}}{\\text{Gain}}, \\quad \\text{where Gain} = \\frac{R_2}{R_1} = \\frac{2.2\\,\\text{k}\\Omega}{4.7\\,\\text{k}\\Omega} \\approx 0.468"
+        },
+        {
+          "type": "text",
+          "content": "Substituting into the calibration equation, the temperature corresponding to a measured ADC voltage is:"
+        },
+        {
+          "type": "equation",
+          "value": "T(^\\circ\\text{C}) = -48.68 \\cdot \\frac{V_{\\text{ADC}}}{0.468} + 134.9 = -104.017 \\cdot V_{\\text{ADC}} + 134.9"
+        },
+        {
+          "type": "text",
+          "content": "**Sample Error Calculation (at 35°C):**"
+        },
+        {
+          "type": "equation",
+          "value": "\\Delta T = T_{\\text{measured}} - T_{\\text{actual}} = 35.88 - 35.00 = 0.88^\\circ\\text{C}"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{Relative Error} = \\frac{\\Delta T}{T_{\\text{actual}}} = \\frac{0.88}{35.00} = 0.02514"
+        },
+        {
+          "type": "equation",
+          "value": "\\text{Percentage Error} = 0.02514 \\times 100 = 2.51\\%"
+        }
+      ]
+    },
+    "result": {
+      "id": "result",
+      "title": "Results & Analysis",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "unordered",
+          "items": [
+            "The linear calibration equation T(°C) = −48.68 · Vbridge + 134.9 was successfully programmed into the ESP32. The negative slope reflects the NTC thermistor's characteristic of decreasing resistance (and thus decreasing bridge voltage) with increasing temperature.",
+            "After accounting for the differential amplifier attenuation (Gain ≈ 0.468), the final ADC-to-temperature equation is T(°C) = −104.017 · VADC + 134.9.",
+            "Measured temperatures were consistently higher than actual values across the range of 35°C to 70°C, with positive offsets visible in all readings.",
+            "Percentage errors ranged from 2.21% to 5.50%, with the maximum error at 70°C.",
+            "Errors were larger than those observed in the RTD-based system (Exp5), consistent with the thermistor's inherently non-linear response being approximated by a linear equation.",
+            "The LCD module successfully displayed real-time bridge voltage and computed temperature values."
+          ]
+        }
+      ]
+    },
+    "conclusion": {
+      "id": "conclusion",
+      "title": "Conclusion",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "text",
+          "content": "In this experiment, a temperature measurement system was successfully implemented using a thermistor connected in a bridge circuit. The bridge voltage was attenuated using a differential amplifier to ensure it remains within the measurable range of the ESP32 microcontroller. The ESP32 was connected to an LCD module to display the temperature readings. A linear relation between the bridge voltage and temperature, obtained from the previous experiment, was used to convert the measured voltage into corresponding temperature values. This equation was programmed into the ESP32 to calculate and display temperature directly from the bridge output. Small deviations were observed and these errors can be attributed to factors such as ADC resolution limits, amplifier gain tolerances, and minor fluctuations in the thermistor response due to heating conditions. Overall, the experiment successfully validated the accuracy and effectiveness of the thermistor-based temperature measurement system."
+        }
+      ]
+    },
+    "postLab": {
+      "id": "postLab",
+      "title": "Post-Lab / Viva Voce",
+      "isApplicable": true,
+      "content": [
+        {
+          "type": "list",
+          "style": "ordered",
+          "items": [
+            "**Q:** The thermistor calibration equation T = −48.68 · Vbridge + 134.9 has a negative slope, while the RTD calibration (Exp5) had a positive slope. Explain the origin of this difference.\n\n**A:** The thermistor used is an NTC type — its resistance decreases as temperature increases. In the Wheatstone bridge, the thermistor occupies one arm; as temperature rises, its resistance falls, which reduces the voltage drop across it and thus increases the bridge output voltage (VAB) — no wait, in this specific bridge configuration the thermistor is the lower-left arm, so increasing temperature (decreasing resistance) causes VAB to decrease (as seen in the calibration table: VAB drops from 2.258 V at 25°C to 1.459 V at 63.89°C). Therefore temperature increases as voltage decreases, producing a negative slope m = ΔT/ΔV. The RTD, being a PTC-like device with increasing resistance, produces the opposite voltage trend and thus a positive slope.",
+            "**Q:** The percentage errors in the thermistor system (up to 5.5%) are noticeably larger than in the RTD system (up to 2.54%). What is the fundamental reason for this difference?\n\n**A:** The fundamental reason is that the thermistor has a highly non-linear R-T relationship (exponential), while the RTD has a nearly linear one. In both experiments, the calibration equation is linear (T = m · V + c). For the RTD, the bridge voltage is approximately linear with temperature, so a linear fit is accurate. For the thermistor, the bridge voltage versus temperature relationship is non-linear (following the exponential R-T characteristic), so a single straight line cannot fit the data well across the full range. The larger errors at higher temperatures reflect the increasing divergence between the linear fit and the actual non-linear thermistor response.",
+            "**Q:** In this experiment the bridge uses 270 Ω, 100 kΩ, and 300 kΩ resistors alongside the thermistor, unlike the RTD bridge which used three 100 Ω resistors. Why is the bridge design so different?\n\n**A:** The RTD (Pt-100) has a resistance of about 100–120 Ω in the operating range, so three 100 Ω resistors balanced the bridge and kept all arm resistances comparable. The thermistor, however, has a much higher resistance (thousands to tens of thousands of ohms). Using 100 Ω resistors with a thermistor would create a severely unbalanced bridge with a very small fractional resistance change relative to the fixed arms, producing almost no output voltage variation. The bridge resistors are chosen to be in the same order of magnitude as the thermistor's resistance in the operating range, ensuring a meaningful differential output voltage and good sensitivity. The 300 kΩ and 100 kΩ resistors also set the balance point appropriate for the thermistor's resistance at the mid-range temperature.",
+            "**Q:** If you replaced the linear calibration equation with the full thermistor sensing equation T = 1/(1/T₀ + (1/β)ln(RT/R₀)) programmed into the ESP32, what improvement would you expect, and what additional steps would be needed?\n\n**A:** Using the full non-linear sensing equation would significantly reduce systematic errors by correctly accounting for the thermistor's exponential R-T characteristic instead of approximating it with a straight line. The percentage errors could potentially be reduced from ~5% to below 1% across the range. However, to implement this: (1) The bridge voltage must first be converted to thermistor resistance RT using the bridge circuit equations (not a simple linear mapping). (2) The fitted parameters β and R₀ from the previous calibration experiment must be stored in the ESP32 firmware. (3) The ESP32 must compute a logarithm and divisions in its firmware, which is feasible but requires floating-point arithmetic — supported by the ESP32's hardware FPU.",
+            "**Q:** Both Exp5 and Exp6 use a differential amplifier with identical R1 and R2 values. Yet the bridge voltages in Exp6 are much higher (1.2–2.3 V) than in Exp5 (0.49–0.75 V). How does this affect the ADC measurement quality in Exp6?\n\n**A:** The higher bridge voltages in Exp6 mean the attenuated ADC input voltages are also higher (Exp6: approximately 0.56–1.07 V; Exp5: approximately 0.23–0.35 V). This is actually beneficial for ADC measurement quality because: (1) The signal occupies a larger fraction of the ADC's input range, making better use of the available quantisation levels and improving signal-to-noise ratio. (2) Quantisation error as a percentage of the reading is smaller for larger signals. However, care must be taken to ensure the attenuated voltage does not exceed the ADC's reference voltage at any temperature — in this case the maximum attenuated voltage ≈ 2.258 × 0.468 ≈ 1.056 V, which is safely within the ESP32's ADC range.",
+            "**Q:** Could the same differential amplifier circuit used for the thermistor bridge also be used for a thermocouple output without any modification? Justify your answer.\n\n**A:** No, not without modification. A thermocouple generates a very small EMF (typically 10–60 µV/°C depending on type), producing millivolt-level output voltages — orders of magnitude smaller than the thermistor bridge output (volts). The differential amplifier in this experiment is configured for attenuation (gain ≈ 0.468 < 1) to reduce the bridge voltage to fit the ADC range. Applying this attenuating amplifier to a thermocouple would further reduce the already tiny signal to a level below the ESP32 ADC's noise floor, making temperature measurement impossible. A thermocouple interface requires a high-gain instrumentation amplifier (gain of 100–1000×) with cold junction compensation, a fundamentally different design."
+          ]
+        }
+      ]
+    },
+    "resources": {
+      "id": "resources",
+      "title": "References & Resources",
+      "isApplicable": false,
+      "content": []
+    }
+  }
+}
