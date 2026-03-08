@@ -327,10 +327,10 @@
         },
         {
           "id": "9",
-          "title": "Experiment 9",
+          "title": "Study of Load Cell Characteristics",
           "fileName": "exp-9.json",
-          "status": "Guide Only",
-          "completeness": 0.1
+          "status": "Hardware-Oriented",
+          "completeness": 1
         },
         {
           "id": "10",

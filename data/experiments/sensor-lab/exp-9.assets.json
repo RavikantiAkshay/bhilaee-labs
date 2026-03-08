@@ -1,0 +1,22 @@
+{
+    "exp9-load-cell-kit-circuit": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-9/exp9-load-cell-kit-circuit.png",
+        "description": "Scientech ST2307 Load Cell Trainer Kit circuit diagram."
+    },
+    "exp9-load-cell-working-principle": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-9/exp9-load-cell-working-principle.png",
+        "description": "Working principle of a load cell using strain gauges."
+    },
+    "exp9-calibration-curve-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-9/exp9-calibration-curve-plot.png",
+        "description": "Calibration curve showing variation of output voltage with applied weight."
+    },
+    "exp9-voltage-vs-distance-plot": {
+        "type": "image",
+        "path": "/assets/labs/sensor-lab/exp-9/exp9-voltage-vs-distance-plot.png",
+        "description": "Variation of output voltage with distance from the fixed end."
+    }
+}

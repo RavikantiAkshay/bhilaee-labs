@@ -1,0 +1,541 @@
+{
+    "id": "exp-9",
+    "title": "Study of Load Cell Characteristics",
+    "labId": "sensor-lab",
+    "status": "Completed",
+    "meta": {
+        "simulationId": "sensor_lab-exp9",
+        "simulationType": "Hardware / Transducer Characterisation",
+        "experimentType": "hardware",
+        "status": "completed",
+        "difficulty": "intermediate",
+        "estimatedTimeMinutes": 90,
+        "version": "1.0.0",
+        "contentState": "complete",
+        "reviewStatus": "unreviewed"
+    },
+    "sections": {
+        "aim": {
+            "id": "aim",
+            "title": "Aim",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The objectives of this experiment are as follows:"
+                },
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "To study the characteristics and working principle of a load cell.",
+                        "To observe the linear relationship between the applied load and the corresponding output voltage.",
+                        "To analyze the effect of load position on the output of the load cell."
+                    ]
+                }
+            ]
+        },
+        "apparatus": {
+            "id": "apparatus",
+            "title": "Apparatus & Software",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "table",
+                    "headers": [
+                        "Component",
+                        "Quantity"
+                    ],
+                    "rows": [
+                        [
+                            "Scientech ST2304 Load Cell Trainer Kit",
+                            "1"
+                        ],
+                        [
+                            "Weights (all different)",
+                            "7–8"
+                        ],
+                        [
+                            "Connecting Wires",
+                            "As required"
+                        ],
+                        [
+                            "Multimeter",
+                            "1"
+                        ],
+                        [
+                            "DC Power Supply",
+                            "1"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "theory": {
+            "id": "theory",
+            "title": "Theory",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "A load cell is a transducer that converts a mechanical force or load into an electrical signal. The most common type is the strain gauge load cell, which works on the piezoresistive effect — the electrical resistance of a conductor changes when it is stretched or compressed. This produces a fractional change in resistance given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\frac{\\Delta R}{R} = GF \\times \\varepsilon"
+                },
+                {
+                    "type": "text",
+                    "content": "where GF is the gauge factor and ε is the strain produced. Since the resistance change of an individual gauge is extremely small, four strain gauges are connected in a Wheatstone bridge configuration. This converts minute resistance changes into measurable voltage differences, while also improving sensitivity and temperature stability."
+                },
+                {
+                    "type": "text",
+                    "content": "In this setup, two gauges are subjected to tensile strain while the other two experience compressive strain. The resistance changes occur in opposite directions, which doubles the net bridge output voltage and cancels temperature-induced errors. If VEX is the excitation voltage and ΔR is the resistance change due to applied load, the bridge output voltage is given by:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_O = \\left(\\frac{\\Delta R}{4R}\\right) V_{EX}"
+                },
+                {
+                    "type": "text",
+                    "content": "At no load, the bridge is balanced and VO = 0. When a load is applied, the bridge becomes unbalanced and VO varies proportionally to the applied force. This millivolt-range output is then amplified by an instrumentation amplifier to provide a usable voltage signal."
+                },
+                {
+                    "type": "text",
+                    "content": "Key characteristics of a load cell:"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Characteristic",
+                        "Definition"
+                    ],
+                    "rows": [
+                        [
+                            "Accuracy",
+                            "Closeness of the indicated value to the true load value"
+                        ],
+                        [
+                            "Sensitivity",
+                            "Ratio of change in output voltage to the corresponding change in applied load"
+                        ],
+                        [
+                            "Linearity",
+                            "Degree to which output is directly proportional to input load"
+                        ],
+                        [
+                            "Repeatability",
+                            "Ability to produce the same output for repeated applications of the same load"
+                        ],
+                        [
+                            "Hysteresis",
+                            "Difference in output for increasing vs decreasing load at the same load point"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "preLab": {
+            "id": "preLab",
+            "title": "Pre-Lab / Circuit Diagram",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "image",
+                    "assetId": "exp9-load-cell-kit-circuit",
+                    "caption": "Figure 1: Scientech ST2307 Load Cell Trainer Kit showing the internal Wheatstone bridge (R1–R4), ADC, controller, and digital display. The kit outputs both a weight reading and an analog output voltage.",
+                    "role": "circuit-diagram"
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp9-load-cell-working-principle",
+                    "caption": "Figure 2: Working principle of a load cell using strain gauges — showing the tension and compression faces of the flexural element with gauges bonded to both surfaces.",
+                    "role": "diagram"
+                }
+            ]
+        },
+        "procedure": {
+            "id": "procedure",
+            "title": "Procedure",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — Load vs Output Voltage:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Connect the load cell setup as shown in the circuit diagram, ensuring proper wiring of the Wheatstone bridge and correct polarity of the DC power supply.",
+                        "Switch on the power supply and adjust the balancing control so that the bridge output voltage is zero with no load applied to the cantilever beam.",
+                        "Gradually apply known weights at the free end of the beam, one at a time, allowing the system to stabilize after each addition.",
+                        "For each applied load, measure and record the corresponding output voltage using the multimeter.",
+                        "Tabulate the readings of applied load versus output voltage for further analysis."
+                    ]
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — Load Applied at Varying Positions:**"
+                },
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "Keep the load constant at 200 g and vary its position along the cantilever beam in equal intervals from 0 cm to 8.5 cm from the fixed end.",
+                        "Measure and record the corresponding output voltage and observed weight for each position.",
+                        "Tabulate the readings of position versus output voltage to verify that strain decreases as the load moves closer to the fixed end."
+                    ]
+                }
+            ]
+        },
+        "simulation": {
+            "id": "simulation",
+            "title": "Simulation / Execution",
+            "isApplicable": false,
+            "route": "default",
+            "content": []
+        },
+        "observation": {
+            "id": "observation",
+            "title": "Observations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Table 1: Applied Load vs Output Voltage (Load at Free End)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Applied Load (g)",
+                        "Output Voltage (V)",
+                        "Observed Weight (g)"
+                    ],
+                    "rows": [
+                        [
+                            "50",
+                            "0.469",
+                            "47.9"
+                        ],
+                        [
+                            "100",
+                            "0.967",
+                            "97.8"
+                        ],
+                        [
+                            "150",
+                            "1.493",
+                            "147.8"
+                        ],
+                        [
+                            "200",
+                            "1.974",
+                            "196.2"
+                        ],
+                        [
+                            "250",
+                            "2.518",
+                            "247.4"
+                        ],
+                        [
+                            "300",
+                            "3.039",
+                            "307.6"
+                        ],
+                        [
+                            "350",
+                            "3.694",
+                            "352.6"
+                        ],
+                        [
+                            "400",
+                            "4.330",
+                            "428.4"
+                        ],
+                        [
+                            "450",
+                            "4.577",
+                            "452.8"
+                        ],
+                        [
+                            "500",
+                            "5.106",
+                            "504.5"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp9-calibration-curve-plot",
+                    "caption": "Figure 3: Calibration curve showing variation of output voltage with applied weight. The fitted linear equation is V = 0.0103W − 0.046.",
+                    "role": "characteristic-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 2: Load at Varying Positions (Constant Load = 200 g)**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Distance from Fixed End (cm)",
+                        "Observed Weight (g)",
+                        "Output Voltage (V)"
+                    ],
+                    "rows": [
+                        [
+                            "0.0",
+                            "0.0",
+                            "0.000"
+                        ],
+                        [
+                            "1.0",
+                            "26.3",
+                            "0.145"
+                        ],
+                        [
+                            "2.5",
+                            "58.7",
+                            "0.355"
+                        ],
+                        [
+                            "3.5",
+                            "89.6",
+                            "0.610"
+                        ],
+                        [
+                            "4.5",
+                            "124.8",
+                            "0.920"
+                        ],
+                        [
+                            "5.5",
+                            "156.9",
+                            "1.260"
+                        ],
+                        [
+                            "6.5",
+                            "178.4",
+                            "1.590"
+                        ],
+                        [
+                            "8.5",
+                            "191.6",
+                            "1.890"
+                        ]
+                    ]
+                },
+                {
+                    "type": "image",
+                    "assetId": "exp9-voltage-vs-distance-plot",
+                    "caption": "Figure 4: Variation of output voltage with distance from the fixed end for a constant 200 g load. Output voltage increases non-linearly as load moves toward the free end, confirming the bending moment distribution along the cantilever.",
+                    "role": "characteristic-plot"
+                },
+                {
+                    "type": "text",
+                    "content": "**Table 3: Non-Linearity Analysis — Measured vs Theoretical Voltage**"
+                },
+                {
+                    "type": "table",
+                    "headers": [
+                        "Load (g)",
+                        "Measured Voltage (V)",
+                        "Theoretical Voltage (V)",
+                        "Error (V)"
+                    ],
+                    "rows": [
+                        [
+                            "50",
+                            "0.469",
+                            "0.469",
+                            "0.000"
+                        ],
+                        [
+                            "100",
+                            "0.967",
+                            "0.984",
+                            "-0.017"
+                        ],
+                        [
+                            "150",
+                            "1.493",
+                            "1.499",
+                            "-0.006"
+                        ],
+                        [
+                            "200",
+                            "1.974",
+                            "2.014",
+                            "-0.040"
+                        ],
+                        [
+                            "250",
+                            "2.518",
+                            "2.530",
+                            "-0.012"
+                        ],
+                        [
+                            "300",
+                            "3.039",
+                            "3.045",
+                            "-0.006"
+                        ],
+                        [
+                            "350",
+                            "3.694",
+                            "3.560",
+                            "+0.134"
+                        ],
+                        [
+                            "400",
+                            "4.330",
+                            "4.076",
+                            "+0.254"
+                        ],
+                        [
+                            "450",
+                            "4.577",
+                            "4.591",
+                            "-0.014"
+                        ],
+                        [
+                            "500",
+                            "5.106",
+                            "5.106",
+                            "0.000"
+                        ]
+                    ]
+                }
+            ]
+        },
+        "calculation": {
+            "id": "calculation",
+            "title": "Calculations",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "**Part 1 — Calibration Equation and Sensitivity:**"
+                },
+                {
+                    "type": "text",
+                    "content": "A linear relation V = mW + c is assumed. Using the two extreme data points (50 g and 500 g):"
+                },
+                {
+                    "type": "equation",
+                    "value": "m = \\frac{V_2 - V_1}{W_2 - W_1} = \\frac{5.106 - 0.469}{500 - 50} = \\frac{4.637}{450} = 0.0103\\,\\text{V/g}"
+                },
+                {
+                    "type": "equation",
+                    "value": "c = V_1 - mW_1 = 0.469 - (0.0103)(50) = 0.469 - 0.515 = -0.046"
+                },
+                {
+                    "type": "text",
+                    "content": "Hence the calibration equation and sensitivity are:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V = 0.0103\\,W - 0.046"
+                },
+                {
+                    "type": "equation",
+                    "value": "S = 0.0103\\,\\text{V/g} = 10.3\\,\\text{mV/g}"
+                },
+                {
+                    "type": "text",
+                    "content": "**Part 2 — Non-Linearity Calculation:**"
+                },
+                {
+                    "type": "text",
+                    "content": "Theoretical voltage at each load point is computed as Vfit = 0.0103W − 0.046. Sample calculation at 200 g:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{\\text{theoretical}} = 0.0103(200) - 0.046 = 2.014\\,\\text{V}"
+                },
+                {
+                    "type": "equation",
+                    "value": "E = V_{\\text{measured}} - V_{\\text{theoretical}} = 1.974 - 2.014 = -0.040\\,\\text{V}"
+                },
+                {
+                    "type": "text",
+                    "content": "The maximum deviation across all readings occurs at 400 g:"
+                },
+                {
+                    "type": "equation",
+                    "value": "E_{\\text{max}} = 0.254\\,\\text{V}"
+                },
+                {
+                    "type": "text",
+                    "content": "Total voltage span:"
+                },
+                {
+                    "type": "equation",
+                    "value": "V_{\\text{span}} = V_{\\text{max}} - V_{\\text{min}} = 5.106 - 0.469 = 4.637\\,\\text{V}"
+                },
+                {
+                    "type": "text",
+                    "content": "Non-linearity as a percentage of full-scale output:"
+                },
+                {
+                    "type": "equation",
+                    "value": "\\text{Non-linearity}\\,(\\%) = \\frac{E_{\\text{max}}}{V_{\\text{span}}} \\times 100 = \\frac{0.254}{4.637} \\times 100 \\approx 5.49\\%"
+                }
+            ]
+        },
+        "result": {
+            "id": "result",
+            "title": "Results & Analysis",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "unordered",
+                    "items": [
+                        "Output voltage increased nearly linearly with applied load across 50–500 g, yielding calibration equation V = 0.0103W − 0.046.",
+                        "The sensitivity of the load cell is S = 10.3 mV/g — every 1 g increase in load produces approximately 10.3 mV rise in output voltage.",
+                        "Non-linearity was computed at 5.49% of full-scale output, with the maximum deviation of 0.254 V occurring at 400 g. The errors change sign around 350 g, suggesting the two-point calibration line crosses the true response curve in that region.",
+                        "In the position experiment, output voltage increased from 0 V at the fixed end to 1.890 V at 8.5 cm for the same 200 g load, confirming that bending moment (and hence strain) is proportional to the distance from the fixed end.",
+                        "The observed weight at 8.5 cm position (191.6 g) is slightly below the applied 200 g, indicating the load cell's sensitivity to load position — the displayed weight depends on where the load is placed, not just its magnitude."
+                    ]
+                }
+            ]
+        },
+        "conclusion": {
+            "id": "conclusion",
+            "title": "Conclusion",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "text",
+                    "content": "The strain gauge-based load cell was successfully calibrated, and a nearly linear voltage-to-load relationship was obtained with a sensitivity of 10.3 mV/g. The observed data confirms the direct proportionality between applied load and strain-induced voltage variation. The experiment also demonstrated that strain varies with the distance of the applied load from the fixed support, reaching its maximum at the free end. The non-linearity of 5.49% of full-scale output indicates deviations attributable to non-uniform strain distribution, material imperfections in the beam, and slight variations in gauge resistance. The accuracy of load cell measurements can be influenced by factors such as non-linearity, hysteresis, creep, temperature variations, and mechanical vibrations. Proper shielding, temperature compensation, and stable mounting conditions help improve measurement accuracy and repeatability."
+                }
+            ]
+        },
+        "postLab": {
+            "id": "postLab",
+            "title": "Post-Lab / Viva Voce",
+            "isApplicable": true,
+            "content": [
+                {
+                    "type": "list",
+                    "style": "ordered",
+                    "items": [
+                        "**Q:** The load cell uses a full Wheatstone bridge with two gauges in tension and two in compression. How does this arrangement improve output sensitivity compared to using just one active gauge?\n\n**A:** In a quarter-bridge (one active gauge), the bridge output is VO = (ΔR/4R)·VEX. In a full bridge with two gauges increasing in resistance by +ΔR (tensile) and two decreasing by −ΔR (compressive), all four bridge arms contribute constructively: VO = (ΔR/R)·VEX — four times the quarter-bridge output. This is because the tensile gauges and compressive gauges are placed in opposite arms of the bridge, so their effects add rather than partially cancel. Additionally, temperature-induced resistance changes affect all four gauges equally and in the same direction, so they cancel completely in the differential output, providing inherent temperature compensation. A half-bridge (two active gauges) gives twice the quarter-bridge sensitivity but only half the full-bridge sensitivity.",
+                        "**Q:** The experiment shows the observed weight at 8.5 cm position is 191.6 g even though a 200 g load was placed. What does this tell you about the load cell's rated calibration position, and how should load cells be used correctly in practice?\n\n**A:** The discrepancy shows that the load cell was calibrated with the load applied at a specific reference position (presumably the free end, or a marked calibration point), and the calibration converts bridge voltage directly to weight assuming that position. When the load is placed at 8.5 cm (not the reference point), the bending moment at the gauge location is slightly different, producing a different bridge voltage — which the load cell interprets as a different weight. In practice, load cells must always be loaded at their designated loading point (usually the centre of the load platform or a marked spot). Pressing on different areas of a commercial scale platform is handled by using multiple load cells or a specially designed platform that mechanically constrains the load path, ensuring repeatable results regardless of where an object is placed on the scale.",
+                        "**Q:** The non-linearity was calculated as 5.49% using the two-point calibration method. Would this number be smaller or larger if the calibration line were derived using least-squares regression over all 10 data points? Explain.\n\n**A:** The non-linearity error would generally be smaller with least-squares regression. The two-point method forces the calibration line through exactly two specific points (50 g and 500 g), and any data points that lie away from this particular line contribute to the computed non-linearity. Least-squares regression minimises the sum of squared deviations across all 10 points, finding the best-fit line through the entire dataset. This distributes the residual errors more evenly, so no single point deviates as much from the fit — the maximum deviation Emax decreases. The non-linearity figure is therefore dependent on the calibration method used, which is why standards bodies specify both the calibration procedure and the definition of linearity error when characterising load cells.",
+                        "**Q:** Creep is listed as a factor affecting load cell accuracy. What is creep in a strain gauge load cell, and how does it differ from hysteresis?\n\n**A:** Creep is a time-dependent effect: when a constant load is maintained on the load cell, the output voltage slowly drifts over time (typically minutes to hours) even though the load has not changed. It arises because the elastic element (beam) and the adhesive bonding the gauges undergo slow, progressive deformation under sustained stress — a material property called viscoelastic creep. Hysteresis, by contrast, is a path-dependent effect: it refers to the difference in output voltage when a given load is approached from below (loading) versus from above (unloading), and it appears immediately rather than over time. Creep affects long-duration measurements (e.g., weighing a stationary object for a long time), while hysteresis affects repeated loading/unloading cycles. Both contribute to measurement uncertainty and are specified separately in load cell datasheets.",
+                        "**Q:** From the position experiment, the output voltage at 8.5 cm for a 200 g load is 1.890 V, but from the calibration in Part 1, a 200 g load at the free end gives 1.974 V. Why are these values different, and what does this imply about using a load cell as a weight scale?\n\n**A:** The difference arises because the strain at the gauge location depends on the bending moment at that cross-section, which is M = F·d, where d is the perpendicular distance from the loading point to the gauge. In Part 1, the load is at the free end (maximum d), maximising the moment and hence the gauge strain and output voltage. At 8.5 cm from the fixed end, d is smaller than at the free end, so the moment, strain, and output are all lower for the same 200 g load. This implies that the load cell output encodes the bending moment at the gauge location, not simply the applied force. For a commercial weight scale, this sensitivity to load position is undesirable — it means placing an object off-centre gives a different reading than placing it at the calibrated point. This is why commercial platform scales use multiple load cells, overhanging platforms, or specially shaped flexural elements to ensure the output depends only on total load and not on its distribution.",
+                        "**Q:** If the excitation voltage VEX were doubled from 5 V to 10 V, how would the sensitivity, non-linearity percentage, and the calibration equation change?\n\n**A:** From VO = (ΔR/R)·VEX, doubling VEX doubles the bridge output voltage for any given load. The sensitivity S (V/g) would therefore double — from 10.3 mV/g to approximately 20.6 mV/g, and the calibration slope m would double to ≈ 0.0206 V/g. The intercept c would also approximately double in magnitude. The non-linearity percentage, however, would remain the same: both Emax and Vspan scale proportionally with VEX, so their ratio (which defines the non-linearity %) is unchanged. Doubling VEX improves the signal-to-noise ratio of the measurement (larger signal, same noise floor) but also increases self-heating in the gauges, which can cause thermal drift and slightly worsen temperature stability — so there is an optimal excitation voltage for any given load cell design."
+                    ]
+                }
+            ]
+        },
+        "resources": {
+            "id": "resources",
+            "title": "References & Resources",
+            "isApplicable": false,
+            "content": []
+        }
+    }
+}
