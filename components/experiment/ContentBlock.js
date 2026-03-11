@@ -1,8 +1,8 @@
 import styles from './Experiment.module.css';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
-import PlotToggleButton from './PlotToggleButton';
 import ZoomableImage from './ZoomableImage';
+import EditableTableBlock from './EditableTableBlock';
 
 /**
  * Switcher component to render different content types based on the 'type' field.
@@ -251,51 +251,8 @@ function ImageBlock({ block, assets }) {
 }
 
 function TableBlock({ block, sectionId }) {
-    return <TableBlockInner block={block} sectionId={sectionId} />;
-}
-
-// We need a separate default export wrapper to keep ContentBlock as a server component,
-// but TableBlockInner must be imported from a client file for the plot toggle.
-// Since ContentBlock already uses KaTeX (client), we can use dynamic import for PlotPanel.
-function TableBlockInner({ block, sectionId }) {
-    // Check if table has >= 2 numeric columns (for plot eligibility)
-    const numericCount = (block.headers || []).filter((_, i) => {
-        let total = 0, numeric = 0;
-        for (const row of (block.rows || [])) {
-            const val = row[i];
-            if (val === undefined || val === null || String(val).trim() === '') continue;
-            total++;
-            const parsed = parseFloat(String(val).replace(/,/g, ''));
-            if (!isNaN(parsed) && isFinite(parsed)) numeric++;
-        }
-        return total > 0 && (numeric / total) >= 0.8;
-    }).length;
-
-    // Only allow plotting in specific data-heavy sections
-    const isPlotAllowedSection = ['observation', 'calculation', 'result'].includes(sectionId);
-
-    // Final plot condition
-    const canPlot = isPlotAllowedSection && numericCount >= 2 && (block.rows || []).length >= 1;
-
-    return (
-        <div className={`${styles.contentBlock} ${styles.tableWrapper}`} style={{ position: 'relative' }}>
-            {canPlot && <PlotToggleButton headers={block.headers} rows={block.rows} />}
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        {block.headers.map((header, i) => <th key={i}>{header}</th>)}
-                    </tr>
-                </thead>
-                <tbody>
-                    {block.rows.map((row, i) => (
-                        <tr key={i}>
-                            {row.map((cell, j) => <td key={j}>{cell}</td>)}
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    );
+    // We defer to the Client Component to maintain editing state and rendering
+    return <EditableTableBlock block={block} sectionId={sectionId} />;
 }
 
 function CodeBlock({ block }) {
