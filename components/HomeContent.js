@@ -28,13 +28,16 @@ export default function HomeContent({ labs, allExperiments }) {
     return (
         <>
             <section className="hero">
-                <h1>Experiment Guides</h1>
-                <p>Select a lab to view experiments and procedures</p>
+                <div className="hero-pill">
+                    <span className="hero-pill-icon">🎓</span> IIT Bhilai
+                </div>
+                <h1>Bhilai EE Labs</h1>
+                <p>A comprehensive guide to practical experiments and virtual simulations for Electrical Engineering.</p>
             </section>
 
             <section className="labs-section">
                 <div className="labs-heading-row">
-                    <h2>Available Labs ({labs.length})</h2>
+                    <h2>Explore Course Labs ({labs.length})</h2>
                     <SearchBar query={query} onQueryChange={setQuery} />
                 </div>
 

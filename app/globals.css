@@ -62,21 +62,50 @@ html {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 3rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-  background: var(--card-bg);
+  padding: 4rem 1.5rem 3rem;
+  background: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  color: var(--text-color);
+  padding: 0.35rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color);
+}
+
+.hero-pill-icon {
+  font-size: 1rem;
 }
 
 .hero h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primary-color);
-  margin-bottom: 0.5rem;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--secondary-color) 0%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent; /* Fallback for unsupported browsers */
+  padding-bottom: 0.2rem; /* Prevent clipping of descenders */
 }
 
 .hero p {
   color: var(--text-muted);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  max-width: 700px;
+  line-height: 1.6;
 }
 
 /* Labs Grid */
