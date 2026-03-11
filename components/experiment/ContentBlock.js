@@ -2,6 +2,7 @@ import styles from './Experiment.module.css';
 import 'katex/dist/katex.min.css';
 import { InlineMath, BlockMath } from 'react-katex';
 import PlotToggleButton from './PlotToggleButton';
+import ZoomableImage from './ZoomableImage';
 
 /**
  * Switcher component to render different content types based on the 'type' field.
@@ -242,8 +243,7 @@ function ImageBlock({ block, assets }) {
     return (
         <div className={`${styles.contentBlock} ${styles.imageContainer}`}>
             <div className={styles.imageWrapper}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={src} alt={alt} className={styles.image} />
+                <ZoomableImage src={src} alt={alt} className={styles.image} />
                 {block.caption && <p className={styles.caption}>{block.caption}</p>}
             </div>
         </div>
