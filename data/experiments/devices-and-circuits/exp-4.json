@@ -1,7 +1,7 @@
 {
     "id": "exp-4",
     "title": "Mathematical Operations with Op-Amps",
-    "labId": "devices-and-circuits-lab",
+    "labId": "devices-and-circuits",
     "status": "Simulation Available",
     "meta": {
         "simulationId": "devices_and_circuits-exp4",

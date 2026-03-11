@@ -1,7 +1,7 @@
 {
     "id": "exp-7",
     "title": "Design of Multivibrator Circuits Using Timer 555 IC",
-    "labId": "devices-and-circuits-lab",
+    "labId": "devices-and-circuits",
     "status": "Hardware-Oriented",
     "meta": {
         "experimentType": "hardware",
