@@ -78,7 +78,7 @@
     position: absolute;
     top: calc(100% + 8px);
     right: 0;
-    width: 220px;
+    width: 250px;
     background: var(--card-bg);
     border: 1px solid var(--border-color);
     border-radius: 8px;
@@ -86,6 +86,26 @@
     padding: 0.5rem 0;
     z-index: 1000;
     animation: slideDown 0.15s ease-out;
+}
+
+.menuHeader {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 1rem 0.5rem;
+    cursor: default;
+}
+
+.menuName {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.menuRole {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
 }
 
 @keyframes slideDown {
