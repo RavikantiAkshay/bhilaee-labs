@@ -420,85 +420,165 @@
 }
 
 /* =========================================
-   Experiment Navigation (Previous/Next)
+   Experiment Navigation (Floating Previous/Next)
    ========================================= */
 .experimentNav {
+    position: fixed;
+    bottom: 2rem;
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: space-between;
-    gap: 1.5rem;
-    margin-top: 4rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border-color);
+    padding: 0 1.5rem;
+    pointer-events: none; /* Let clicks pass through the container */
+    z-index: 50;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.navVisible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navHidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
 }
 
 .navColumn {
-    flex: 1;
     display: flex;
+    pointer-events: auto; /* Re-enable clicks for the buttons */
 }
 
 .navColumnRight {
-    justify-content: flex-end;
+    margin-left: auto;
 }
 
 .navLink {
     display: flex;
-    flex-direction: column;
-    padding: 1.25rem 1.5rem;
-    background: var(--card-bg);
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1.25rem;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 50px; /* Pill shape */
     text-decoration: none;
-    transition: all 0.2s ease;
-    width: 100%;
-    max-width: 350px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 60px; /* Collapse by default */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+[data-theme='dark'] .navLink {
+    background: rgba(30, 30, 30, 0.85);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .navLink:hover {
+    max-width: 300px; /* Expand on hover */
+    background: var(--card-bg);
     border-color: var(--secondary-color);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    background: var(--bg-color);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
 }
 
+/* Specific styling for Prev so icon stays on left and text expands to right */
 .navLinkPrev {
-    align-items: flex-start;
-    text-align: left;
+    flex-direction: row;
 }
 
+/* Specific styling for Next so icon stays on right and text expands to left */
 .navLinkNext {
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.navIcon {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+}
+
+.navTitleText {
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    transition-delay: 0s;
+}
+
+.navLink:hover .navTitleText {
+    opacity: 1;
+    transition-delay: 0.1s; /* Show text slightly after it starts expanding */
+}
+
+/* Align text properly based on direction */
+.navLinkPrev .navTitleText {
+    align-items: flex-start;
+}
+
+.navLinkNext .navTitleText {
     align-items: flex-end;
-    text-align: right;
 }
 
 .navDirection {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     color: var(--text-muted);
-    font-weight: 500;
-    margin-bottom: 0.25rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
+    line-height: 1;
+    margin-bottom: 0.1rem;
 }
 
-.navTitle {
-    font-size: 1.05rem;
+.navExpName {
+    font-size: 0.9rem;
     color: var(--primary-color);
     font-weight: 600;
-    line-height: 1.4;
+    line-height: 1.2;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
     .experimentNav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
-    .navColumnRight {
-        justify-content: flex-start;
+        bottom: 1.5rem;
+        padding: 0 1rem;
     }
     
     .navLink {
-        max-width: 100%;
+        padding: 0.75rem;
+        border-radius: 50%; /* Perfect circle on mobile */
+        width: 45px;
+        height: 45px;
+        justify-content: center;
+    }
+    
+    /* Don't expand on mobile, just keep them as icons */
+    .navLink:hover {
+        max-width: 45px;
+    }
+    
+    .navTitleText {
+        display: none; /* Never show text on mobile */
+    }
+    
+    .navIcon {
+        min-width: auto;
+        margin: 0;
     }
 }
+
 
 /* =========================================
    Glossary Term Highlight & Tooltip
