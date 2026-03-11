@@ -325,7 +325,8 @@
     .mainContent {
         margin-left: 280px;
         /* Sidebar width */
-        padding: 3rem 4rem;
+        padding: 3rem 6rem; /* Increased horizontal padding for floating buttons */
+        max-width: 1100px;
     }
 }
 
