@@ -35,15 +35,16 @@ export default function StarredPage() {
                     expId = item.experiment_id;
                 }
 
-                if (seenIds.has(item.experiment_id)) return null;
-                seenIds.add(item.experiment_id);
+                const uniqueKey = `${labId || 'unknown'}-${expId}`;
+                if (seenIds.has(uniqueKey)) return null;
+                seenIds.add(uniqueKey);
 
                 const found = allExps.find(e => 
                     String(e.id) === String(expId) && 
                     (!labId || String(e.labId) === String(labId))
                 );
                 
-                return found ? { ...found, starred_at: item.created_at } : null;
+                return found ? { ...found, starred_at: item.created_at, db_id: item.experiment_id } : null;
             }).filter(Boolean);
             setStarredItems(enriched);
         }

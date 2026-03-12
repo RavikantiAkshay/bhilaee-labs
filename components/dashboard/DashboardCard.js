@@ -33,7 +33,7 @@ export default function DashboardCard({ exp, userId, onUnstar }) {
         e.stopPropagation();
         
         setIsRemoving(true);
-        const { success } = await toggleStar(userId, exp.id, true); // force unstar
+        const { success } = await toggleStar(userId, exp.db_id || exp.id, false); // false = force unstar
         
         if (success && onUnstar) {
             setTimeout(() => {
