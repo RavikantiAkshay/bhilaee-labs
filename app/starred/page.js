@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { getStarredExperimentsDetailed } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
-import ExperimentCard from '@/components/ExperimentCard';
-import styles from '@/app/preferences/Preferences.module.css'; // Reuse container styles
-import homeStyles from '@/components/SearchBar.module.css'; // Reuse grid styles
+import DashboardCard from '@/components/dashboard/DashboardCard';
+import styles from '@/app/preferences/Preferences.module.css';
+import Link from 'next/link';
 
 export default function StarredPage() {
     const { user, loading: authLoading } = useAuth();
@@ -48,6 +48,10 @@ export default function StarredPage() {
         setLoading(false);
     };
 
+    const handleUnstar = (expId) => {
+        setStarredItems(prev => prev.filter(item => item.id !== expId));
+    };
+
     if (authLoading || loading) {
         return (
             <div className={styles.container}>
@@ -69,25 +73,35 @@ export default function StarredPage() {
 
     return (
         <div className={styles.container}>
+            <Link href="/" className={styles.backLink}>
+                ← Back to Home
+            </Link>
             <header className={styles.header}>
-                <h1 className={styles.title}>Starred Experiments</h1>
+                <div className={styles.titleWrapper}>
+                    <h1 className={styles.title}>Starred Experiments</h1>
+                    <span className={styles.countBadge}>{starredItems.length}</span>
+                </div>
                 <p className={styles.subtitle}>Experiments you've bookmarked for quick access</p>
             </header>
 
             {starredItems.length > 0 ? (
-                <div className={homeStyles.resultsGrid}>
+                <div className={styles.dashboardGrid}>
                     {starredItems.map((exp) => (
-                        <ExperimentCard 
+                        <DashboardCard 
                             key={`${exp.labId}-${exp.id}`} 
                             exp={exp} 
+                            userId={user.id}
+                            onUnstar={handleUnstar}
                         />
                     ))}
                 </div>
             ) : (
                 <div className={styles.emptyState}>
-                    <span className={styles.emptyIcon}>⭐</span>
+                    <div className={styles.emptyIconWrapper}>
+                        <span className={styles.emptyIcon}>⭐</span>
+                    </div>
                     <h3>No bookmarks yet</h3>
-                    <p>Click the star icon on any experiment to save it here.</p>
+                    <p>Click the star icon on any experiment to save it here for quick access.</p>
                 </div>
             )}
         </div>

@@ -1,12 +1,8 @@
-'use client';
-
-import { useState, useEffect } from 'react';
-import { useAuth } from '@/context/AuthContext';
 import { getRecentlyViewed } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
-import ExperimentCard from '@/components/ExperimentCard';
+import HistoryItem from '@/components/dashboard/HistoryItem';
 import styles from '@/app/preferences/Preferences.module.css';
-import homeStyles from '@/components/SearchBar.module.css';
+import Link from 'next/link';
 
 export default function HistoryPage() {
     const { user, loading: authLoading } = useAuth();
@@ -65,15 +61,21 @@ export default function HistoryPage() {
 
     return (
         <div className={styles.container}>
+            <Link href="/" className={styles.backLink}>
+                ← Back to Home
+            </Link>
             <header className={styles.header}>
-                <h1 className={styles.title}>Recently Viewed</h1>
+                <div className={styles.titleWrapper}>
+                    <h1 className={styles.title}>Recently Viewed</h1>
+                    <span className={styles.countBadge}>{historyItems.length}</span>
+                </div>
                 <p className={styles.subtitle}>Your last 10 visits, automatically synced to the cloud</p>
             </header>
 
             {historyItems.length > 0 ? (
-                <div className={homeStyles.resultsGrid}>
+                <div className={styles.historyList}>
                     {historyItems.map((exp) => (
-                        <ExperimentCard 
+                        <HistoryItem 
                             key={`${exp.labId}-${exp.id}-${exp.viewed_at}`} 
                             exp={exp} 
                         />
@@ -81,7 +83,9 @@ export default function HistoryPage() {
                 </div>
             ) : (
                 <div className={styles.emptyState}>
-                    <span className={styles.emptyIcon}>🕒</span>
+                    <div className={styles.emptyIconWrapper}>
+                        <span className={styles.emptyIcon}>🕒</span>
+                    </div>
                     <h3>No history found</h3>
                     <p>Start exploring labs to see your recently viewed experiments here.</p>
                 </div>

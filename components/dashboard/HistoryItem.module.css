@@ -1,0 +1,96 @@
+.item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.2s ease;
+    margin-bottom: 0.75rem;
+}
+
+.item:hover {
+    border-color: var(--secondary-color);
+    background: rgba(34, 139, 230, 0.03);
+    transform: translateX(4px);
+}
+
+.left {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.idBadge {
+    width: 32px;
+    height: 32px;
+    background: var(--border-color);
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 800;
+    opacity: 0.8;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.meta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.dot {
+    opacity: 0.4;
+}
+
+.status {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.arrow {
+    width: 16px;
+    height: 16px;
+    color: var(--border-color);
+    transition: transform 0.2s, color 0.2s;
+}
+
+.item:hover .arrow {
+    transform: translateX(2px);
+    color: var(--secondary-color);
+}
+
+[data-theme='light'] .item {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.01);
+}

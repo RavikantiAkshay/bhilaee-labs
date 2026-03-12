@@ -1,0 +1,168 @@
+.cardWrapper {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.removing {
+    opacity: 0;
+    transform: scale(0.9) translateX(-20px);
+    pointer-events: none;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 0;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    min-height: 120px;
+}
+
+[data-theme='light'] .card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.card:hover {
+    border-color: #228be6;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* Status-based side glow */
+.card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    background: var(--status-color, #228be6);
+    opacity: 0.8;
+}
+
+.card:hover::before {
+    width: 8px;
+    box-shadow: 4px 0 15px var(--status-color, #228be6);
+}
+
+.idSection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.expNumber {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--status-color, var(--border-color));
+    opacity: 0.4;
+    letter-spacing: -2px;
+}
+
+.mainContent {
+    flex: 1;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.titleGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.labBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-top: 0.25rem;
+}
+
+.unstarBtn {
+    background: rgba(255, 212, 59, 0.1);
+    border: 1px solid rgba(255, 212, 59, 0.2);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    color: #ffd43b;
+    transition: all 0.2s;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: -0.25rem;
+}
+
+.unstarBtn:hover {
+    background: #ffd43b;
+    color: #000;
+    transform: rotate(18deg) scale(1.1);
+}
+
+.unstarBtn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.25rem;
+}
+
+.statusText {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--status-color, var(--text-muted));
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.date {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+@media (max-width: 600px) {
+    .card {
+        flex-direction: column;
+    }
+    .idSection {
+        width: 100%;
+        height: 60px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+}
