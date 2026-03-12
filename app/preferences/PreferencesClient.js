@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import { updateProfile, clearAllBookmarks, clearAllObservations, clearAllHistory } from '@/lib/db';
+import { labs } from '@/data/labs';
 import styles from './Preferences.module.css';
 
 export default function PreferencesClient() {
@@ -12,7 +13,7 @@ export default function PreferencesClient() {
 
     // -- State Definitions --
     const [profile, setProfile] = useState({ name: '', rollNumber: '' });
-    const [appSettings, setAppSettings] = useState({ theme: 'system', defaultLab: '' });
+    const [appSettings, setAppSettings] = useState({ theme: 'dark', pinnedLabs: [] });
     const [printPrefs, setPrintPrefs] = useState({
         theory: true,
         apparatus: true,
@@ -33,8 +34,8 @@ export default function PreferencesClient() {
                 rollNumber: dbProfile.roll_number || '' 
             });
             setAppSettings({ 
-                theme: dbProfile.theme || 'system', 
-                defaultLab: dbProfile.default_lab || '' 
+                theme: dbProfile.theme || 'dark', 
+                pinnedLabs: dbProfile.default_lab ? dbProfile.default_lab.split(',').filter(Boolean) : [] 
             });
             if (dbProfile.print_preferences) {
                 setPrintPrefs(dbProfile.print_preferences);
@@ -56,6 +57,28 @@ export default function PreferencesClient() {
         }
     }, [user, dbProfile]);
 
+    // Handle external updates (e.g. from ThemeToggle in Header)
+    useEffect(() => {
+        const syncFromLocal = () => {
+            try {
+                const savedApp = localStorage.getItem('appSettings');
+                if (savedApp) {
+                    const parsed = JSON.parse(savedApp);
+                    setAppSettings(prev => ({ 
+                        ...prev, 
+                        theme: parsed.theme || prev.theme,
+                        pinnedLabs: parsed.pinnedLabs || prev.pinnedLabs
+                    }));
+                }
+            } catch (e) {
+                console.error('Error syncing preferences from local storage:', e);
+            }
+        };
+
+        window.addEventListener('preferencesUpdated', syncFromLocal);
+        return () => window.removeEventListener('preferencesUpdated', syncFromLocal);
+    }, []);
+
     // -- Handlers --
     const handleProfileChange = (e) => {
         const { name, value } = e.target;
@@ -65,6 +88,16 @@ export default function PreferencesClient() {
     const handleAppChange = (e) => {
         const { name, value } = e.target;
         setAppSettings(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleLabPinToggle = (labId) => {
+        setAppSettings(prev => {
+            const isPinned = prev.pinnedLabs.includes(labId);
+            const newPins = isPinned 
+                ? prev.pinnedLabs.filter(id => id !== labId)
+                : [...prev.pinnedLabs, labId];
+            return { ...prev, pinnedLabs: newPins };
+        });
     };
 
     const handlePrintToggle = (key) => {
@@ -80,7 +113,7 @@ export default function PreferencesClient() {
                     full_name: profile.name,
                     roll_number: profile.rollNumber,
                     theme: appSettings.theme,
-                    default_lab: appSettings.defaultLab,
+                    default_lab: appSettings.pinnedLabs.join(','),
                     print_preferences: printPrefs
                 });
                 if (error) throw error;
@@ -212,14 +245,20 @@ export default function PreferencesClient() {
                         </select>
                     </div>
                     <div className={styles.inputGroup}>
-                        <label htmlFor="defaultLab">Pinned / Default Lab</label>
-                        <select id="defaultLab" name="defaultLab" value={appSettings.defaultLab} onChange={handleAppChange}>
-                            <option value="">None (Show All)</option>
-                            <option value="Basic Electrical">Basic Electrical Engineering</option>
-                            <option value="Digital Electronics">Digital Electronics</option>
-                            <option value="Devices and Circuits">Devices and Circuits</option>
-                        </select>
-                        <small className={styles.helpText}>This lab will be prioritized on the homepage.</small>
+                        <label>Pinned / Favorite Labs</label>
+                        <div className={styles.multiSelectContainer}>
+                            {labs.map(lab => (
+                                <label key={lab.id} className={styles.checkboxRow}>
+                                    <input 
+                                        type="checkbox"
+                                        checked={appSettings.pinnedLabs.includes(lab.id)}
+                                        onChange={() => handleLabPinToggle(lab.id)}
+                                    />
+                                    <span>{lab.name}</span>
+                                </label>
+                            ))}
+                        </div>
+                        <small className={styles.helpText}>Pinned labs will appear at the top of your homepage.</small>
                     </div>
                 </div>
             </section>

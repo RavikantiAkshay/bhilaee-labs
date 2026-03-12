@@ -4,7 +4,6 @@ import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
 import { getGlossary } from '@/data/glossaryLoader';
 import ExperimentLayout from '@/components/experiment/ExperimentLayout';
 import ContentBlock from '@/components/experiment/ContentBlock';
-import ExperimentFeedback from '@/components/experiment/ExperimentFeedback';
 import PrintSettingsWrapper from '@/components/experiment/PrintSettingsWrapper';
 import styles from '@/components/experiment/Experiment.module.css';
 
@@ -77,9 +76,6 @@ export default async function ExperimentPage({ params }) {
                     </PrintSettingsWrapper>
                 );
             })}
-
-            {/* Quick feedback widget */}
-            <ExperimentFeedback />
         </ExperimentLayout>
     );
 }
@@ -88,4 +84,3 @@ export default async function ExperimentPage({ params }) {
 export async function generateStaticParams() {
     return getAllExperimentPaths();
 }
-

@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/context/AuthContext';
 import { recordVisit } from '@/lib/db';
 import ExperimentNav from './ExperimentNav';
+import FeedbackSection from './FeedbackSection';
 import styles from './Experiment.module.css';
 
 /**
@@ -159,6 +160,8 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                 <div className={styles.contentBody}>
                     {children}
                 </div>
+
+                <FeedbackSection experimentId={fullExperimentId || experiment.id} />
 
                 {/* Bottom Navigation */}
                 <ExperimentNav 

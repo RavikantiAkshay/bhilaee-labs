@@ -276,3 +276,31 @@
 .factoryBtn:hover {
     background: #dc2626;
 }
+
+/* Multi-select Labs */
+.multiSelectContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.checkboxRow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+    color: var(--text-color);
+}
+
+.checkboxRow input {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}

@@ -1,36 +1,53 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { updateProfile } from '@/lib/db';
 import styles from './ThemeToggle.module.css';
 
 export default function ThemeToggle() {
-    const [isDark, setIsDark] = useState(false);
+    const { user, profile } = useAuth();
+    const [isDark, setIsDark] = useState(true);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        // Check for saved preference only — light mode is the default
-        const savedTheme = localStorage.getItem('theme');
+        const root = document.documentElement;
 
-        if (savedTheme === 'dark') {
-            setIsDark(true);
-            document.documentElement.setAttribute('data-theme', 'dark');
-        }
+        // 1. Initial Sync
+        const currentTheme = root.getAttribute('data-theme') || 'dark';
+        setIsDark(currentTheme === 'dark');
+
+        // 2. Observer to watch for theme changes (Profile, Settings, or other Toggles)
+        const observer = new MutationObserver(() => {
+            const theme = root.getAttribute('data-theme') || 'dark';
+            setIsDark(theme === 'dark');
+        });
+
+        observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+        return () => observer.disconnect();
     }, []);
 
-    const toggleTheme = () => {
-        const newTheme = !isDark;
-        setIsDark(newTheme);
-        localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+    const toggleTheme = async () => {
+        const nextTheme = isDark ? 'light' : 'dark';
+        
+        // Optimistically set attribute to trigger observer immediately
+        document.documentElement.setAttribute('data-theme', nextTheme);
 
-        if (newTheme) {
-            document.documentElement.setAttribute('data-theme', 'dark');
+        if (user) {
+            await updateProfile(user.id, { theme: nextTheme });
         } else {
-            document.documentElement.removeAttribute('data-theme');
+            try {
+                const savedApp = JSON.parse(localStorage.getItem('appSettings') || '{}');
+                savedApp.theme = nextTheme;
+                localStorage.setItem('appSettings', JSON.stringify(savedApp));
+            } catch { }
         }
+
+        // Notify other components (like Preferences page)
+        window.dispatchEvent(new Event('preferencesUpdated'));
     };
 
-    // Prevent hydration mismatch by returning empty initial render
     if (!mounted) return <div className={styles.togglePlaceholder} aria-hidden="true" />;
 
     return (

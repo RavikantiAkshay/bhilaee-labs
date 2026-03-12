@@ -224,6 +224,16 @@ html {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+.lab-card-pinned {
+  border: 1.5px solid var(--secondary-color);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.1);
+  background: linear-gradient(to bottom right, var(--card-bg), var(--bg-secondary));
+}
+
+[data-theme='dark'] .lab-card-pinned {
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);
+}
+
 .lab-card h3 {
   font-size: 1.1rem;
   font-weight: 600;
