@@ -1,12 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { useAuth } from '@/context/AuthContext';
+import { saveObservation, getSavedObservations } from '@/lib/db';
 import styles from './Experiment.module.css';
 
 const PlotPanel = dynamic(() => import('./PlotPanel'), { ssr: false });
 
-export default function EditableTableBlock({ block, sectionId }) {
+export default function EditableTableBlock({ block, sectionId, experimentId }) {
+    const { user } = useAuth();
     // Determine plot eligibility (reused from TableBlockInner)
     const numericCount = (block.headers || []).filter((_, i) => {
         let total = 0, numeric = 0;
@@ -31,6 +34,28 @@ export default function EditableTableBlock({ block, sectionId }) {
     // draftRows hold the temporary edits before saving
     const [draftRows, setDraftRows] = useState(block.rows || []);
 
+    // -- Persistence Hook --
+    useEffect(() => {
+        const loadSavedData = async () => {
+            if (user) {
+                // Try to load from Supabase
+                const { data } = await getSavedObservations(user.id, experimentId);
+                const match = data?.find(d => d.section_id === sectionId);
+                if (match?.data) {
+                    setCurrentRows(match.data);
+                }
+            } else {
+                // Try to load from localStorage for guest
+                const localKey = `${experimentId}-draftData-${sectionId}`;
+                const saved = localStorage.getItem(localKey);
+                if (saved) {
+                    setCurrentRows(JSON.parse(saved));
+                }
+            }
+        };
+        loadSavedData();
+    }, [user, experimentId, sectionId]);
+
     const handleEditToggle = () => {
         if (!isEditing) {
             // Enter edit mode: init draft with current
@@ -42,9 +67,18 @@ export default function EditableTableBlock({ block, sectionId }) {
         }
     };
 
-    const handleSave = () => {
+    const handleSave = async () => {
         setCurrentRows(draftRows);
         setIsEditing(false);
+
+        if (user) {
+            // Persist to Supabase
+            await saveObservation(user.id, experimentId, sectionId, draftRows);
+        } else {
+            // Persist to localStorage
+            const localKey = `${experimentId}-draftData-${sectionId}`;
+            localStorage.setItem(localKey, JSON.stringify(draftRows));
+        }
     };
 
     const handleReset = () => {

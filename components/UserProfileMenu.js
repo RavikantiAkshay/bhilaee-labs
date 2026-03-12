@@ -2,9 +2,11 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
 import styles from './Header.module.css';
 
 export default function UserProfileMenu() {
+    const { user, profile, signOut, loading } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -42,8 +44,12 @@ export default function UserProfileMenu() {
                 <div className={styles.dropdownMenu}>
                     {/* Header Block */}
                     <div className={styles.menuHeader}>
-                        <div className={styles.menuName}>👤 Ravikanti Akshay</div>
-                        <div className={styles.menuRole}>BTech Electrical Engineering</div>
+                        <div className={styles.menuName}>
+                            {user ? (profile?.full_name || user.email.split('@')[0]) : 'Guest User'}
+                        </div>
+                        <div className={styles.menuRole}>
+                            {user ? (profile?.roll_number || 'BTech Student') : 'Not Logged In'}
+                        </div>
                     </div>
 
                     <div className={styles.divider}></div>
@@ -81,10 +87,27 @@ export default function UserProfileMenu() {
                     <div className={styles.divider}></div>
 
                     {/* Group 3: Auth */}
-                    <button className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
-                        <span className={styles.menuIcon}>🚪</span>
-                        Log Out
-                    </button>
+                    {user ? (
+                        <button 
+                            className={styles.dropdownItem} 
+                            onClick={() => {
+                                signOut();
+                                setIsOpen(false);
+                            }}
+                        >
+                            <span className={styles.menuIcon}>🚪</span>
+                            Log Out
+                        </button>
+                    ) : (
+                        <Link 
+                            href="/login" 
+                            className={styles.dropdownItem} 
+                            onClick={() => setIsOpen(false)}
+                        >
+                            <span className={styles.menuIcon}>🔑</span>
+                            Log In / Sign Up
+                        </Link>
+                    )}
                 </div>
             )}
         </div>

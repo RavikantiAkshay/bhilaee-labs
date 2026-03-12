@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 2rem;
+}
+
+.loginCard {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 450px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.backLink {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    text-decoration: none;
+    margin-bottom: 1rem;
+}
+
+.header h1 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.inputGroup label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.inputGroup input {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.error {
+    background: #fef2f2;
+    color: #ef4444;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid #fca5a5;
+}
+
+.success {
+    background: #f0fdf4;
+    color: #16a34a;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    border: 1px solid #bbf7d0;
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.loginBtn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.signupBtn {
+    background: transparent;
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    padding: 0.8rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.loginBtn:disabled, .signupBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.loginBtn:hover {
+    opacity: 0.9;
+}

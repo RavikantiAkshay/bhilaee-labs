@@ -59,6 +59,7 @@ export default async function ExperimentPage({ params }) {
                                             sectionId={sectionKey}
                                             glossaryTerms={glossaryTerms}
                                             highlightedTerms={highlightedTerms}
+                                            experimentId={experimentId}
                                         />
                                     ))}
                                 </div>

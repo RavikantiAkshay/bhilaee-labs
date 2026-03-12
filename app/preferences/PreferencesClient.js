@@ -2,10 +2,13 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@/context/AuthContext';
+import { updateProfile } from '@/lib/db';
 import styles from './Preferences.module.css';
 
 export default function PreferencesClient() {
     const router = useRouter();
+    const { user, profile: dbProfile, loading: authLoading } = useAuth();
 
     // -- State Definitions --
     const [profile, setProfile] = useState({ name: '', rollNumber: '' });
@@ -23,20 +26,35 @@ export default function PreferencesClient() {
 
     // -- Load specific keys on mount --
     useEffect(() => {
-        try {
-            const savedProfile = localStorage.getItem('userProfile');
-            if (savedProfile) setProfile(JSON.parse(savedProfile));
+        if (user && dbProfile) {
+            // Priority 1: Auth data from DB
+            setProfile({ 
+                name: dbProfile.full_name || '', 
+                rollNumber: dbProfile.roll_number || '' 
+            });
+            setAppSettings({ 
+                theme: dbProfile.theme || 'system', 
+                defaultLab: dbProfile.default_lab || '' 
+            });
+            if (dbProfile.print_preferences) {
+                setPrintPrefs(dbProfile.print_preferences);
+            }
+        } else {
+            // Priority 2: Guest data from localStorage
+            try {
+                const savedProfile = localStorage.getItem('userProfile');
+                if (savedProfile) setProfile(JSON.parse(savedProfile));
 
-            const savedApp = localStorage.getItem('appSettings');
-            if (savedApp) setAppSettings(JSON.parse(savedApp));
+                const savedApp = localStorage.getItem('appSettings');
+                if (savedApp) setAppSettings(JSON.parse(savedApp));
 
-            const savedPrint = localStorage.getItem('printPreferences');
-            if (savedPrint) setPrintPrefs(JSON.parse(savedPrint));
-            
-        } catch (e) {
-            console.error("Failed to load preferences", e);
+                const savedPrint = localStorage.getItem('printPreferences');
+                if (savedPrint) setPrintPrefs(JSON.parse(savedPrint));
+            } catch (e) {
+                console.error("Failed to load local preferences", e);
+            }
         }
-    }, []);
+    }, [user, dbProfile]);
 
     // -- Handlers --
     const handleProfileChange = (e) => {
@@ -53,13 +71,25 @@ export default function PreferencesClient() {
         setPrintPrefs(prev => ({ ...prev, [key]: !prev[key] }));
     };
 
-    // Note: To implement instant theme changing without page refresh, 
-    // we would ideally use a ThemeProvider context, but for now we write to local storage
-    const handleSavePrimary = () => {
+    const handleSavePrimary = async () => {
+        setSaveStatus('Saving...');
         try {
-            localStorage.setItem('userProfile', JSON.stringify(profile));
-            localStorage.setItem('appSettings', JSON.stringify(appSettings));
-            localStorage.setItem('printPreferences', JSON.stringify(printPrefs));
+            if (user) {
+                // Save to Supabase
+                const { error } = await updateProfile(user.id, {
+                    full_name: profile.name,
+                    roll_number: profile.rollNumber,
+                    theme: appSettings.theme,
+                    default_lab: appSettings.default_lab,
+                    print_preferences: printPrefs
+                });
+                if (error) throw error;
+            } else {
+                // Save to localStorage (Guest)
+                localStorage.setItem('userProfile', JSON.stringify(profile));
+                localStorage.setItem('appSettings', JSON.stringify(appSettings));
+                localStorage.setItem('printPreferences', JSON.stringify(printPrefs));
+            }
             
             // Trigger a custom event so Header/ExperimentLayout can re-read if needed
             window.dispatchEvent(new Event('preferencesUpdated'));
@@ -67,6 +97,7 @@ export default function PreferencesClient() {
             setSaveStatus('Preferences saved successfully!');
             setTimeout(() => setSaveStatus(''), 3000);
         } catch (e) {
+            console.error(e);
             setSaveStatus('Error saving preferences.');
         }
     };
@@ -103,6 +134,10 @@ export default function PreferencesClient() {
             router.push('/');
         }
     };
+
+    if (authLoading) {
+        return <div className={styles.loading}>Connecting to cloud...</div>;
+    }
 
     return (
         <div className={styles.prefGrid}>

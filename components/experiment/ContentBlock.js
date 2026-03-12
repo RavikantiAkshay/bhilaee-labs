@@ -8,7 +8,7 @@ import EditableTableBlock from './EditableTableBlock';
  * Switcher component to render different content types based on the 'type' field.
  * Accepts optional glossary data for term highlighting.
  */
-export default function ContentBlock({ block, assets, sectionId, glossaryTerms, highlightedTerms }) {
+export default function ContentBlock({ block, assets, sectionId, glossaryTerms, highlightedTerms, experimentId }) {
     if (!block || !block.type) return null;
 
     switch (block.type) {
@@ -19,7 +19,7 @@ export default function ContentBlock({ block, assets, sectionId, glossaryTerms, 
         case 'image':
             return <ImageBlock block={block} assets={assets} />;
         case 'table':
-            return <TableBlock block={block} sectionId={sectionId} />;
+            return <TableBlock block={block} sectionId={sectionId} experimentId={experimentId} />;
         case 'code':
             return <CodeBlock block={block} />;
         case 'equation':
@@ -250,9 +250,9 @@ function ImageBlock({ block, assets }) {
     );
 }
 
-function TableBlock({ block, sectionId }) {
+function TableBlock({ block, sectionId, experimentId }) {
     // We defer to the Client Component to maintain editing state and rendering
-    return <EditableTableBlock block={block} sectionId={sectionId} />;
+    return <EditableTableBlock block={block} sectionId={sectionId} experimentId={experimentId} />;
 }
 
 function CodeBlock({ block }) {

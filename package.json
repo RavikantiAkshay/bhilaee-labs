@@ -8,6 +8,7 @@
         "start": "next start"
     },
     "dependencies": {
+        "@supabase/supabase-js": "^2.99.1",
         "@vercel/analytics": "^2.0.0",
         "chart.js": "^4.5.1",
         "chartjs-plugin-zoom": "^2.2.0",

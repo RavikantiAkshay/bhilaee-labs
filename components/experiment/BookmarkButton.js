@@ -1,32 +1,59 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { addStarredExperiment, removeStarredExperiment, getStarredExperiments } from '@/lib/db';
 import styles from './BookmarkButton.module.css';
 
 export default function BookmarkButton({ experimentId }) {
+    const { user } = useAuth();
     const [starred, setStarred] = useState(false);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
-        // Check localStorage for existing bookmark
-        const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
-        if (bookmarks.includes(experimentId)) {
-            setStarred(true);
-        }
-    }, [experimentId]);
+        const checkStatus = async () => {
+            if (user) {
+                // Check database
+                const { data } = await getStarredExperiments(user.id);
+                if (data.includes(experimentId)) {
+                    setStarred(true);
+                }
+            } else {
+                // Check localStorage for guests
+                const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
+                if (bookmarks.includes(experimentId)) {
+                    setStarred(true);
+                }
+            }
+        };
+        checkStatus();
+    }, [experimentId, user]);
 
-    const toggleStar = () => {
-        const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
-        let updated;
-        if (starred) {
-            updated = bookmarks.filter(id => id !== experimentId);
+    const toggleStar = async () => {
+        if (user) {
+            // DB Toggle
+            if (starred) {
+                await removeStarredExperiment(user.id, experimentId);
+            } else {
+                await addStarredExperiment(user.id, experimentId);
+            }
+            setStarred(!starred);
         } else {
-            updated = [...bookmarks, experimentId];
+            // LocalStorage Toggle (Guest)
+            const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
+            let updated;
+            if (starred) {
+                updated = bookmarks.filter(id => id !== experimentId);
+            } else {
+                updated = [...bookmarks, experimentId];
+            }
+            localStorage.setItem('starredExperiments', JSON.stringify(updated));
+            setStarred(!starred);
         }
-        localStorage.setItem('starredExperiments', JSON.stringify(updated));
-        setStarred(!starred);
-        // Future: sync to database here
+        
+        // Notify other components (like menu)
+        window.dispatchEvent(new Event('bookmarksUpdated'));
     };
 
     if (!mounted) return <div className={styles.placeholder} aria-hidden="true" />;

@@ -3,6 +3,9 @@
 import Link from 'next/link';
 import { SECTION_ORDER, SECTION_TITLES } from '@/data/experiment_schema';
 import BookmarkButton from './BookmarkButton';
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
+import { recordVisit } from '@/lib/db';
 import ExperimentNav from './ExperimentNav';
 import styles from './Experiment.module.css';
 
@@ -10,7 +13,16 @@ import styles from './Experiment.module.css';
  * Main shell for the Experiment Page.
  * Handles the sticky sidebar navigation and responsive content area.
  */
-export default function ExperimentLayout({ experiment, children }) {
+export default function ExperimentLayout({ children, experiment }) {
+    const { user } = useAuth();
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    // Record visit to history
+    useEffect(() => {
+        if (user && experiment?.id) {
+            recordVisit(user.id, experiment.id);
+        }
+    }, [user, experiment?.id]);
     // Generate Table of Contents based on sections available in the experiment
     // Only include applicable sections
     const toc = SECTION_ORDER.filter(key =>
