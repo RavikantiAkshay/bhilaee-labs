@@ -26,6 +26,7 @@ export default function StarredPage() {
         if (!error && data) {
             const allExps = getAllExperiments();
             // Map DB IDs to full experiment objects
+            const seenIds = new Set();
             const enriched = data.map(item => {
                 let labId, expId;
                 if (item.experiment_id.includes('/')) {
@@ -34,8 +35,9 @@ export default function StarredPage() {
                     expId = item.experiment_id;
                 }
 
-                // If we have labId, we can target the search or use it directly
-                // For now, let's keep it robust and search all
+                if (seenIds.has(item.experiment_id)) return null;
+                seenIds.add(item.experiment_id);
+
                 const found = allExps.find(e => 
                     String(e.id) === String(expId) && 
                     (!labId || String(e.labId) === String(labId))
