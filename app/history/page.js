@@ -1,3 +1,7 @@
+'use client';
+
+import { useState, useEffect } from 'react';
+import { useAuth } from '@/context/AuthContext';
 import { getRecentlyViewed } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
 import HistoryItem from '@/components/dashboard/HistoryItem';
