@@ -31,39 +31,16 @@ export default function BookmarkButton({ experimentId }) {
 
     const [saving, setSaving] = useState(false);
 
-    const toggleStar = async () => {
+    const toggleStarHandler = async () => {
         setSaving(true);
-        if (user) {
-            // DB Toggle
-            console.log('BookmarkButton: Toggling DB star', { userId: user.id, experimentId, currentState: starred });
-            try {
-                if (starred) {
-                    const { error } = await removeStarredExperiment(user.id, experimentId);
-                    if (error) throw error;
-                } else {
-                    const { error } = await addStarredExperiment(user.id, experimentId);
-                    if (error) throw error;
-                }
-                setStarred(!starred);
-            } catch (e) {
-                console.error('BookmarkButton: DB update failed', e);
-                alert('Cloud sync failed. Check your connection.');
-            }
-        } else {
-            // LocalStorage Toggle (Guest)
-            const bookmarks = JSON.parse(localStorage.getItem('starredExperiments') || '[]');
-            let updated;
-            if (starred) {
-                updated = bookmarks.filter(id => id !== experimentId);
-            } else {
-                updated = [...bookmarks, experimentId];
-            }
-            localStorage.setItem('starredExperiments', JSON.stringify(updated));
-            setStarred(!starred);
-        }
+        const { success } = await toggleStar(user?.id, experimentId);
         
-        // Notify other components (like menu)
-        window.dispatchEvent(new Event('bookmarksUpdated'));
+        if (success) {
+            setStarred(!starred);
+            window.dispatchEvent(new Event('bookmarksUpdated'));
+        } else {
+            alert('Action failed. Please check your connection.');
+        }
         setSaving(false);
     };
 
@@ -72,7 +49,7 @@ export default function BookmarkButton({ experimentId }) {
     return (
         <button
             className={`${styles.bookmarkBtn} ${starred ? styles.active : ''}`}
-            onClick={toggleStar}
+            onClick={toggleStarHandler}
             title={starred ? 'Remove bookmark' : 'Bookmark this experiment'}
             aria-label={starred ? 'Remove bookmark' : 'Bookmark this experiment'}
         >
