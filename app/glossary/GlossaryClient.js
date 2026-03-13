@@ -51,15 +51,10 @@ export default function GlossaryPage({ initialTerms }) {
 
             <header className={styles.header}>
                 <div className={styles.headerContent}>
-                    <div style={{ marginBottom: '1.5rem' }}>
-                        <Link href="/" style={{ color: 'var(--secondary-color)', textDecoration: 'none', fontWeight: 500, display: 'inline-flex', alignItems: 'center', gap: '0.25rem' }}>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                <line x1="19" y1="12" x2="5" y2="12"></line>
-                                <polyline points="12 19 5 12 12 5"></polyline>
-                            </svg>
-                            Back to Home
-                        </Link>
-                    </div>
+            <nav className={styles.breadcrumb}>
+                <Link href="/">← Back to Home</Link>
+                <span> / Viva & Glossary Prep</span>
+            </nav>
                     <h1 className={styles.title}>🧠 Viva & Glossary Prep</h1>
                     <p className={styles.subtitle}>
                         Master your electrical engineering terminology. Search, review, and test your knowledge.

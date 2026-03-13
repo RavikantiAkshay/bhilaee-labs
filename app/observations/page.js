@@ -5,6 +5,7 @@ import { useAuth } from '@/context/AuthContext';
 import { getAllSavedObservations } from '@/lib/db';
 import { getAllExperiments } from '@/data/labs';
 import ExperimentCard from '@/components/ExperimentCard';
+import Link from 'next/link';
 import styles from '@/app/preferences/Preferences.module.css';
 import homeStyles from '@/components/SearchBar.module.css';
 
@@ -72,6 +73,10 @@ export default function ObservationsPage() {
 
     return (
         <div className={styles.container}>
+            <nav className={styles.breadcrumb}>
+                <Link href="/">← Back to Home</Link>
+                <span> / Saved Observations</span>
+            </nav>
             <header className={styles.header}>
                 <h1 className={styles.title}>Saved Observations</h1>
                 <p className={styles.subtitle}>Experiments where you've recorded and saved data</p>

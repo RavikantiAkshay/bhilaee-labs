@@ -65,9 +65,10 @@ export default function HistoryPage() {
 
     return (
         <div className={styles.container}>
-            <Link href="/" className={styles.backLink}>
-                ← Back to Home
-            </Link>
+            <nav className={styles.breadcrumb}>
+                <Link href="/">← Back to Home</Link>
+                <span> / Recently Viewed</span>
+            </nav>
             <header className={styles.header}>
                 <div className={styles.titleWrapper}>
                     <h1 className={styles.title}>Recently Viewed</h1>

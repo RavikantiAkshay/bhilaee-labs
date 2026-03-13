@@ -4,6 +4,19 @@
     padding: 2rem 1.5rem 4rem;
 }
 
+.breadcrumb {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+.breadcrumb a { 
+    color: var(--secondary-color); 
+    text-decoration: none; 
+    transition: opacity 0.2s;
+}
+.breadcrumb a:hover { opacity: 0.8; }
+.breadcrumb span { color: var(--text-muted); }
+
 .header {
     margin-bottom: 2.5rem;
     padding-bottom: 1.5rem;
