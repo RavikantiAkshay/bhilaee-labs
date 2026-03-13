@@ -91,9 +91,9 @@ export default function SupportPage() {
                                     <input 
                                         type="radio" 
                                         name="category" 
-                                        value="content"
-                                        checked={category === 'content'}
-                                        onChange={() => setCategory('content')}
+                                        value="content_error"
+                                        checked={category === 'content_error'}
+                                        onChange={() => setCategory('content_error')}
                                     />
                                     <div className={styles.cardContent}>
                                         <span className={styles.catIcon}>📝</span>
@@ -105,9 +105,9 @@ export default function SupportPage() {
                                     <input 
                                         type="radio" 
                                         name="category" 
-                                        value="ui"
-                                        checked={category === 'ui'}
-                                        onChange={() => setCategory('ui')}
+                                        value="ui_issue"
+                                        checked={category === 'ui_issue'}
+                                        onChange={() => setCategory('ui_issue')}
                                     />
                                     <div className={styles.cardContent}>
                                         <span className={styles.catIcon}>🐛</span>
@@ -119,9 +119,9 @@ export default function SupportPage() {
                                     <input 
                                         type="radio" 
                                         name="category" 
-                                        value="idea"
-                                        checked={category === 'idea'}
-                                        onChange={() => setCategory('idea')}
+                                        value="feature_request"
+                                        checked={category === 'feature_request'}
+                                        onChange={() => setCategory('feature_request')}
                                     />
                                     <div className={styles.cardContent}>
                                         <span className={styles.catIcon}>💡</span>
