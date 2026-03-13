@@ -1,9 +1,10 @@
-import { getLabBySlug, getAllLabSlugs } from '@/data/labs';
+import { labs, getLabBySlug, getAllLabSlugs } from '@/data/labs';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import LabHeader from '@/components/LabHeader';
 import LabMetadata from '@/components/LabMetadata';
 import ExperimentList from '@/components/ExperimentList';
+import LabNav from '@/components/LabNav';
 
 /**
  * Generate static paths for all labs
@@ -43,9 +44,14 @@ export default async function LabPage({ params }) {
         notFound();
     }
 
+    // Calculate next and previous labs
+    const currentIndex = labs.findIndex(l => l.id === lab.id);
+    const prevLab = currentIndex > 0 ? labs[currentIndex - 1] : null;
+    const nextLab = currentIndex < labs.length - 1 ? labs[currentIndex + 1] : null;
+
     return (
         <main className="lab-page">
-            <nav className="breadcrumb">
+            <nav className="breadcrumb noPrint">
                 <Link href="/">← Back to Labs</Link>
                 <span> / {lab.name}</span>
             </nav>
@@ -70,6 +76,8 @@ export default async function LabPage({ params }) {
                     labCode={lab.code}
                 />
             </section>
+
+            <LabNav prevLab={prevLab} nextLab={nextLab} />
         </main>
     );
 }

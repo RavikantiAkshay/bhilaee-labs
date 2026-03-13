@@ -740,6 +740,30 @@
     }
 }
 
+/* =========================================
+   Lab Navigation (Centered Sides)
+   ========================================= */
+.labNav {
+    position: fixed;
+    top: 70%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex; /* Fix: Enable flex layout to spread the buttons */
+    justify-content: space-between;
+    padding: 0 1rem;
+    pointer-events: none;
+    z-index: 100;
+}
+
+/* Override sidebar offset for Lab pages as they are full-width */
+@media (min-width: 1024px) {
+    .labNav {
+        left: 0 !important;
+        padding: 0 2rem;
+    }
+}
+
 
 /* =========================================
    Glossary Term Highlight & Tooltip
