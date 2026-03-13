@@ -2,15 +2,41 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { useAuth } from '@/context/AuthContext';
+import { submitSupportTicket } from '@/lib/db';
 import styles from './Support.module.css';
 
 export default function SupportPage() {
+    const { user } = useAuth();
     const [category, setCategory] = useState('simulation');
-    
-    // Static UI as requested for now
-    const handleSubmit = (e) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [status, setStatus] = useState({ type: '', message: '' });
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert('Ticket submission will be implemented soon!');
+        setIsSubmitting(true);
+        setStatus({ type: '', message: '' });
+
+        const formData = new FormData(e.target);
+        const ticketData = {
+            userId: user?.id || null,
+            category: category,
+            severity: formData.get('severity'),
+            subject: formData.get('subject'),
+            message: formData.get('message'),
+            contextUrl: formData.get('contextUrl')
+        };
+
+        const { error } = await submitSupportTicket(ticketData);
+
+        if (error) {
+            setStatus({ type: 'error', message: 'Failed to submit ticket. Please try again later.' });
+        } else {
+            setStatus({ type: 'success', message: 'Your ticket has been submitted successfully! We will look into it.' });
+            e.target.reset();
+            setCategory('simulation');
+        }
+        setIsSubmitting(false);
     };
 
     return (
@@ -35,6 +61,12 @@ export default function SupportPage() {
             <div className={styles.grid}>
                 
                 <div className={styles.ticketWrapper}>
+                    {status.message && (
+                        <div className={`${styles.statusBanner} ${status.type === 'success' ? styles.success : styles.error}`}>
+                            {status.type === 'success' ? '✅' : '❌'} {status.message}
+                        </div>
+                    )}
+
                     <form className={styles.premiumForm} onSubmit={handleSubmit}>
                         
                         <div className={styles.formSectionBlock}>
@@ -132,12 +164,14 @@ export default function SupportPage() {
                         </div>
 
                         <div className={styles.formFooter}>
-                            <button type="submit" className={styles.submitBtn}>
-                                Submit Ticket
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                </svg>
+                            <button type="submit" className={styles.submitBtn} disabled={isSubmitting}>
+                                {isSubmitting ? 'Submitting...' : 'Submit Ticket'}
+                                {!isSubmitting && (
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                                    </svg>
+                                )}
                             </button>
                         </div>
 
