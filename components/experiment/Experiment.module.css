@@ -843,8 +843,7 @@
     /* Hide layout chrome */
     .sidebar,
     .mobileNav,
-    .printButton,
-    .noPrint {
+    .printButton {
         display: none !important;
     }
 

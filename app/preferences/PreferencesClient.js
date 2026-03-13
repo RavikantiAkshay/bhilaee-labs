@@ -17,9 +17,9 @@ export default function PreferencesClient() {
     const [printPrefs, setPrintPrefs] = useState({
         theory: true,
         apparatus: true,
-        procedures: true,
-        observations: true,
-        calculations: true
+        observation: true,
+        calculation: true,
+        postLab: false
     });
     
     // Status tracking for UX
@@ -38,7 +38,15 @@ export default function PreferencesClient() {
                 pinnedLabs: dbProfile.default_lab ? dbProfile.default_lab.split(',').filter(Boolean) : [] 
             });
             if (dbProfile.print_preferences) {
-                setPrintPrefs(dbProfile.print_preferences);
+                // Map old saved keys to new ones if necessary
+                const prefs = dbProfile.print_preferences;
+                setPrintPrefs({
+                    theory: prefs.theory ?? true,
+                    apparatus: prefs.apparatus ?? true,
+                    procedure: prefs.procedure ?? prefs.procedures ?? true,
+                    observation: prefs.observation ?? prefs.observations ?? true,
+                    calculation: prefs.calculation ?? prefs.calculations ?? true
+                });
             }
         } else {
             // Priority 2: Guest data from localStorage
@@ -274,9 +282,9 @@ export default function PreferencesClient() {
                         {Object.entries({
                             theory: "Theory Background",
                             apparatus: "Apparatus & Components",
-                            procedures: "Step-by-Step Procedures",
-                            observations: "Observations & Tables",
-                            calculations: "Calculations & Results"
+                            procedure: "Step-by-Step Procedures",
+                            observation: "Observations & Tables",
+                            calculation: "Calculations & Results"
                         }).map(([key, label]) => (
                             <label key={key} className={styles.toggleRow}>
                                 <div className={styles.toggleInfo}>
@@ -285,7 +293,7 @@ export default function PreferencesClient() {
                                 <div className={`${styles.switch} ${printPrefs[key] ? styles.switchActive : ''}`}>
                                     <input 
                                         type="checkbox" 
-                                        checked={printPrefs[key]}
+                                        checked={Boolean(printPrefs[key])}
                                         onChange={() => handlePrintToggle(key)}
                                         className={styles.hiddenCheckbox}
                                     />
