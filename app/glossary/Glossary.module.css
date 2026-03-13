@@ -204,15 +204,37 @@
     transform: scale(0.98);
 }
 
-.hiddenDef .termDefinition {
-    filter: blur(8px);
-    opacity: 0.5;
-    transition: filter 0.3s, opacity 0.3s;
+.revealWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
 }
 
-.interactiveCard:hover .hiddenDef .termDefinition {
-    filter: blur(4px);
-    opacity: 0.8;
+.revealHint {
+    position: absolute;
+    z-index: 2;
+    background: var(--bg-secondary);
+    color: var(--secondary-color);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid var(--secondary-color);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
+}
+
+.blurred {
+    filter: blur(8px);
+    opacity: 0.3;
+    user-select: none;
+}
+
+.interactiveCard:hover .blurred {
+    filter: blur(6px);
+    opacity: 0.5;
 }
 
 .noResults {

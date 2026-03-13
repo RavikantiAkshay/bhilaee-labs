@@ -16,7 +16,7 @@ export default function SupportPage() {
     return (
         <main className={styles.container}>
             <nav className={styles.breadcrumb}>
-                <Link href="/">← Back to Dashboard</Link>
+                <Link href="/">← Back to Home</Link>
                 <span> / Support Hub</span>
             </nav>
 

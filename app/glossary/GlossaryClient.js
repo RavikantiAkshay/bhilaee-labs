@@ -131,9 +131,16 @@ export default function GlossaryPage({ initialTerms }) {
                                                     </span>
                                                 </div>
                                                 <div className={styles.termBody}>
-                                                    <p className={styles.termDefinition}>
-                                                        {hideDefinition ? "Click to reveal definition" : item.definition}
-                                                    </p>
+                                                    {hideDefinition ? (
+                                                        <div className={styles.revealWrapper}>
+                                                            <span className={styles.revealHint}>Click to reveal</span>
+                                                            <p className={`${styles.termDefinition} ${styles.blurred}`}>
+                                                                {item.definition}
+                                                            </p>
+                                                        </div>
+                                                    ) : (
+                                                        <p className={styles.termDefinition}>{item.definition}</p>
+                                                    )}
                                                 </div>
                                             </div>
                                         );

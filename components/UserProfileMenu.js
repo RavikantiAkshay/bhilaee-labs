@@ -81,7 +81,7 @@ export default function UserProfileMenu() {
                     </Link>
                     <Link href="/support" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>💬</span>
-                        Help & Feedback
+                        Support Hub
                     </Link>
 
                     <div className={styles.divider}></div>
