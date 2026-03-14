@@ -303,7 +303,7 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
 
             {isPlotOpen && (
                 <div className={styles.inlinePlotContainer}>
-                    <PlotPanel headers={block.headers} rows={currentRows} />
+                    <PlotPanel headers={block.headers} rows={isEditing ? draftRows : currentRows} />
                 </div>
             )}
 
