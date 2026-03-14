@@ -269,6 +269,164 @@
     border-color: #fa5252;
 }
 
+/* Tweak Panel Styles */
+.tweakPanel {
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.tweakPanelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.tweakPanelHeader h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tweakPanelBody {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.colSelectGroup {
+    flex: 1;
+    min-width: 250px;
+}
+
+.colSelectLabel {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.colChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.colChip {
+    padding: 0.3rem 0.6rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.colChip:hover {
+    border-color: var(--secondary-color);
+}
+
+.colChipActive {
+    background: var(--secondary-color);
+    color: white;
+    border-color: var(--secondary-color);
+}
+
+.toleranceGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.toleranceInputWrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.toleranceInput {
+    width: 60px;
+    padding: 0.3rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.tweakActions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.tweakBtn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.tweakBtn:hover {
+    background: #1c7ed6;
+    transform: translateY(-1px);
+}
+
+.tweakBtnSecondary {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.tweakBtnSecondary:hover {
+    background: var(--card-bg);
+    color: var(--primary-color);
+}
+
+.tweakToggleBtn {
+    background: none;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.tweakToggleBtn:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.tweakToggleActive {
+    background: rgba(34, 139, 230, 0.1);
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
 /* Code Blocks */
 .codeBlock {
     margin: 1.5rem 0;

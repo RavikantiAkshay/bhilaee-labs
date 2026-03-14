@@ -29,10 +29,24 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
     // Component State
     const [isEditing, setIsEditing] = useState(false);
     const [isPlotOpen, setIsPlotOpen] = useState(false);
+    const [isTweaking, setIsTweaking] = useState(false);
+    
     // currentRows hold the actual data sent to the plot
     const [currentRows, setCurrentRows] = useState(block.rows || []);
     // draftRows hold the temporary edits before saving
     const [draftRows, setDraftRows] = useState(block.rows || []);
+    // Snapshot for non-cumulative tweaks
+    const [preTweakRows, setPreTweakRows] = useState(null);
+
+    // Tweak configuration
+    const [tolerance, setTolerance] = useState(5); // 5% by default
+    const [selectedCols, setSelectedCols] = useState(() => {
+        // Default select all numeric columns except S.No (usually col 0)
+        return (block.headers || []).map((h, i) => {
+            if (h.toLowerCase().includes('s.no') || h.toLowerCase().includes('serial')) return null;
+            return i;
+        }).filter(item => item !== null);
+    });
 
     // -- Persistence Hook --
     useEffect(() => {
@@ -64,21 +78,70 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
         } else {
             // Cancel edit mode
             setIsEditing(false);
+            setIsTweaking(false);
+            setPreTweakRows(null);
         }
+    };
+
+    const handleTweakToggle = () => {
+        if (!isTweaking) {
+            // Enter tweak mode: ensure we are editing
+            let baseData = draftRows;
+            if (!isEditing) {
+                baseData = JSON.parse(JSON.stringify(currentRows));
+                setDraftRows(baseData);
+                setIsEditing(true);
+            }
+            setIsTweaking(true);
+            setPreTweakRows(JSON.parse(JSON.stringify(baseData))); // Save point zero
+        } else {
+            setIsTweaking(false);
+            setPreTweakRows(null);
+        }
+    };
+
+    const generateTweakedData = () => {
+        const source = preTweakRows || draftRows;
+        const newDraft = source.map(row => {
+            return row.map((cell, colIndex) => {
+                if (!selectedCols.includes(colIndex)) return cell;
+                
+                const val = parseFloat(String(cell).replace(/,/g, ''));
+                if (isNaN(val)) return cell;
+
+                // variance = val * tolerance% * random(-1 to +1)
+                const factor = 1 + ((Math.random() * 2 - 1) * (tolerance / 100));
+                const tweaked = val * factor;
+                
+                // Pretty print: match original decimal places if possible
+                const originalStr = String(cell);
+                const decimalIdx = originalStr.indexOf('.');
+                const precision = decimalIdx === -1 ? 2 : (originalStr.length - decimalIdx - 1);
+                
+                return tweaked.toFixed(precision); // Return string to preserve trailing zeros
+            });
+        });
+        setDraftRows(newDraft);
+    };
+
+    const toggleColSelection = (idx) => {
+        setSelectedCols(prev => 
+            prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]
+        );
     };
 
     const handleSave = async () => {
         const originalRows = [...currentRows];
         setCurrentRows(draftRows);
         setIsEditing(false);
+        setIsTweaking(false);
+        setPreTweakRows(null);
 
         try {
             if (user) {
                 // Persist to Supabase
-                console.log('EditableTableBlock: Saving to DB', { userId: user.id, experimentId, sectionId });
                 const { error } = await saveObservation(user.id, experimentId, sectionId, draftRows);
                 if (error) throw error;
-                console.log('EditableTableBlock: DB save successful');
             } else {
                 // Persist to localStorage
                 const localKey = `${experimentId}-draftData-${sectionId}`;
@@ -92,8 +155,12 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
     };
 
     const handleReset = () => {
-        setCurrentRows(block.rows || []);
-        setIsEditing(false);
+        if (confirm("Reset table to its default experimental values? Current changes will be lost.")) {
+            setCurrentRows(block.rows || []);
+            setIsEditing(false);
+            setIsTweaking(false);
+            setPreTweakRows(null);
+        }
     };
 
     const handleChange = (rowIndex, colIndex, value) => {
@@ -101,13 +168,20 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
         newDraft[rowIndex] = [...newDraft[rowIndex]];
         newDraft[rowIndex][colIndex] = value;
         setDraftRows(newDraft);
+        // If we were in the middle of a tweak-preview, update the base snapshot too
+        if (preTweakRows) {
+            const newPreTweak = [...preTweakRows];
+            newPreTweak[rowIndex] = [...newPreTweak[rowIndex]];
+            newPreTweak[rowIndex][colIndex] = value;
+            setPreTweakRows(newPreTweak);
+        }
     };
 
     return (
         <div className={`${styles.contentBlock} ${styles.tableWrapper}`}>
-            {/* Top Toolbar: Plot & Edit */}
-            {canPlot && (
-                <div className={styles.tableToolbar}>
+            {/* Top Toolbar: Plot, Edit, Tweak */}
+            <div className={styles.tableToolbar}>
+                {canPlot && (
                     <button
                         className={`${styles.plotToggleBtn} ${isPlotOpen ? styles.plotToggleActive : ''}`}
                         onClick={() => setIsPlotOpen(!isPlotOpen)}
@@ -115,13 +189,61 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
                     >
                         📊 {isPlotOpen ? 'Close Plot' : 'Plot Data'}
                     </button>
-                    <button 
-                        className={styles.editToggleBtn} 
-                        onClick={handleEditToggle}
-                        title={isEditing ? 'Cancel editing' : 'Edit table data'}
-                    >
-                        {isEditing ? '✕ Cancel' : '✎ Edit Data'}
-                    </button>
+                )}
+                <div style={{ flex: 1 }}></div>
+                <button
+                    className={`${styles.tweakToggleBtn} ${isTweaking ? styles.tweakToggleActive : ''}`}
+                    onClick={handleTweakToggle}
+                    title="Introduction random variance/errors to data"
+                >
+                    🎲 Tweak Readings
+                </button>
+                <button 
+                    className={`${styles.editToggleBtn} ${isEditing && !isTweaking ? styles.plotToggleActive : ''}`} 
+                    onClick={handleEditToggle}
+                    title={isEditing ? 'Cancel editing' : 'Edit table data'}
+                >
+                    {isEditing ? '✕ Cancel' : '✎ Edit Data'}
+                </button>
+            </div>
+
+            {/* Tweak Panel */}
+            {isTweaking && (
+                <div className={styles.tweakPanel}>
+                    <div className={styles.tweakPanelHeader}>
+                        <h4>🎲 Data Randomizer (Tolerance Control)</h4>
+                        <span className={styles.editHint}>Introduce realistic error margins based on a tolerance limit.</span>
+                    </div>
+                    <div className={styles.tweakPanelBody}>
+                        <div className={styles.colSelectGroup}>
+                            <span className={styles.colSelectLabel}>Select columns to tweak:</span>
+                            <div className={styles.colChips}>
+                                {block.headers.map((header, i) => (
+                                    <div 
+                                        key={i} 
+                                        className={`${styles.colChip} ${selectedCols.includes(i) ? styles.colChipActive : ''}`}
+                                        onClick={() => toggleColSelection(i)}
+                                    >
+                                        {header}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        <div className={styles.toleranceGroup}>
+                            <span className={styles.colSelectLabel}>Tolerance (±%):</span>
+                            <div className={styles.toleranceInputWrapper}>
+                                <input 
+                                    type="number" 
+                                    className={styles.toleranceInput} 
+                                    value={tolerance} 
+                                    onChange={(e) => setTolerance(Math.max(0, parseFloat(e.target.value) || 0))} 
+                                />
+                                <button className={styles.tweakBtn} onClick={generateTweakedData}>
+                                    Generate Samples
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             )}
 
@@ -164,7 +286,9 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
             {/* Bottom Edit Action Bar */}
             {isEditing && (
                 <div className={styles.tableEditActions}>
-                    <span className={styles.editHint}>Editing data — changes will update the plot.</span>
+                    <span className={styles.editHint}>
+                        {isTweaking ? 'Previewing random variations — "Generate" to rerun, "Save" to keep.' : 'Editing data — changes will update the plot.'}
+                    </span>
                     <div className={styles.editBtnGroup}>
                         <button className={styles.resetBtn} onClick={handleReset}>Reset to Default</button>
                         <button className={styles.saveBtn} onClick={handleSave}>Save Changes</button>
