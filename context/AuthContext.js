@@ -17,45 +17,49 @@ export const AuthProvider = ({ children }) => {
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-    // 1. Get initial session
-    const initSession = async () => {
-      try {
-        const { data: { session: initialSession } } = await supabase.auth.getSession();
-        setSession(initialSession);
-        setUser(initialSession?.user || null);
-        
-        if (initialSession?.user) {
-          await fetchProfile(initialSession.user.id, initialSession.user);
-        }
-      } catch (error) {
-        console.error('AuthContext: Session init error', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  useEffect(() => {
+    let mounted = true;
 
-    initSession();
+    // Listen for auth changes
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (event, currentSession) => {
+      console.log('AuthContext: onAuthStateChange', event);
+      
+      if (!mounted) return;
 
-    // 2. Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, currentSession) => {
-      try {
-        setSession(currentSession);
-        setUser(currentSession?.user || null);
-        
-        if (currentSession?.user) {
-          await fetchProfile(currentSession.user.id, currentSession.user);
-        } else {
-          setProfile(null);
+      setSession(currentSession);
+      const currentUser = currentSession?.user || null;
+      setUser(currentUser);
+      
+      if (currentUser) {
+        // If we have a user but no profile, or the user changed, fetch profile
+        if (!profile || profile.id !== currentUser.id) {
+          setLoading(true);
+          await fetchProfile(currentUser.id, currentUser);
         }
-      } catch (error) {
-        console.error('AuthContext: Auth change error', error);
-      } finally {
-        setLoading(false);
+      } else {
+        setProfile(null);
       }
+      
+      setLoading(false);
     });
 
+    // Handle initial session check
+    const checkInitialSession = async () => {
+      const { data: { session: initialSession } } = await supabase.auth.getSession();
+      if (!mounted) return;
+      
+      if (initialSession) {
+        setSession(initialSession);
+        setUser(initialSession.user);
+        await fetchProfile(initialSession.user.id, initialSession.user);
+      }
+      setLoading(false);
+    };
+
+    checkInitialSession();
+
     return () => {
+      mounted = false;
       subscription.unsubscribe();
     };
   }, []);
@@ -99,13 +103,28 @@ export const AuthProvider = ({ children }) => {
   const signOut = async () => {
     try {
       setLoading(true);
+      
+      // 1. Tell Supabase to sign out (invalidates token on server)
       await supabase.auth.signOut();
+      
+      // 2. Aggressively clear local storage as a fallback for production 'sticky' sessions
+      if (typeof window !== 'undefined') {
+        const keysToRemove = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.startsWith('sb-') || key.includes('supabase.auth.token'))) {
+            keysToRemove.push(key);
+          }
+        }
+        keysToRemove.forEach(k => localStorage.removeItem(k));
+      }
+    } catch (error) {
+      console.error('Error during signOut:', error);
+    } finally {
+      // 3. Reset local state regardless of success/fail
       setProfile(null);
       setUser(null);
       setSession(null);
-    } catch (error) {
-      console.error('Error signing out:', error);
-    } finally {
       setLoading(false);
     }
   };

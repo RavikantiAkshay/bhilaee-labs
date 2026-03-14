@@ -27,29 +27,31 @@ export default function PreferencesClient() {
 
     // -- Load specific keys on mount --
     useEffect(() => {
-        if (user && dbProfile) {
-            // Priority 1: Auth data from DB
-            setProfile({ 
-                name: dbProfile.full_name || '', 
-                rollNumber: dbProfile.roll_number || '' 
-            });
-            setAppSettings({ 
-                theme: dbProfile.theme || 'dark', 
-                pinnedLabs: dbProfile.default_lab ? dbProfile.default_lab.split(',').filter(Boolean) : [] 
-            });
-            if (dbProfile.print_preferences) {
-                // Map old saved keys to new ones if necessary
-                const prefs = dbProfile.print_preferences;
-                setPrintPrefs({
-                    theory: prefs.theory ?? true,
-                    apparatus: prefs.apparatus ?? true,
-                    procedure: prefs.procedure ?? prefs.procedures ?? true,
-                    observation: prefs.observation ?? prefs.observations ?? true,
-                    calculation: prefs.calculation ?? prefs.calculations ?? true
+        if (user) {
+            // Once we have a user, wait specifically for the profile
+            if (dbProfile) {
+                setProfile({ 
+                    name: dbProfile.full_name || '', 
+                    rollNumber: dbProfile.roll_number || '' 
                 });
+                setAppSettings({ 
+                    theme: dbProfile.theme || 'dark', 
+                    pinnedLabs: dbProfile.default_lab ? dbProfile.default_lab.split(',').filter(Boolean) : [] 
+                });
+                if (dbProfile.print_preferences) {
+                    const prefs = dbProfile.print_preferences;
+                    setPrintPrefs({
+                        theory: prefs.theory ?? true,
+                        apparatus: prefs.apparatus ?? true,
+                        procedure: prefs.procedure ?? prefs.procedures ?? true,
+                        observation: prefs.observation ?? prefs.observations ?? true,
+                        calculation: prefs.calculation ?? prefs.calculations ?? true
+                    });
+                }
             }
-        } else {
-            // Priority 2: Guest data from localStorage
+            // If user exists but dbProfile is null, we stay in 'Loading' state handled by authLoading
+        } else if (!authLoading) {
+            // Only fall back to Guest data if we are definitively NOT logged in and NOT loading
             try {
                 const savedProfile = localStorage.getItem('userProfile');
                 if (savedProfile) setProfile(JSON.parse(savedProfile));
@@ -63,7 +65,7 @@ export default function PreferencesClient() {
                 console.error("Failed to load local preferences", e);
             }
         }
-    }, [user, dbProfile]);
+    }, [user, dbProfile, authLoading]);
 
     // Handle external updates (e.g. from ThemeToggle in Header)
     useEffect(() => {

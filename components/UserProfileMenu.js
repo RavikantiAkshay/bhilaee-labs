@@ -2,11 +2,13 @@
 
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import styles from './Header.module.css';
 
 export default function UserProfileMenu() {
     const { user, profile, signOut, loading } = useAuth();
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const menuRef = useRef(null);
 
@@ -94,7 +96,8 @@ export default function UserProfileMenu() {
                             onClick={async () => {
                                 await signOut();
                                 setIsOpen(false);
-                                window.location.href = '/';
+                                router.push('/');
+                                router.refresh();
                             }}
                         >
                             <span className={styles.menuIcon}>🚪</span>
