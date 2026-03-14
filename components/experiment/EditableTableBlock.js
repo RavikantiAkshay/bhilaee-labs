@@ -102,26 +102,73 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
 
     const generateTweakedData = () => {
         const source = preTweakRows || draftRows;
-        const newDraft = source.map(row => {
-            return row.map((cell, colIndex) => {
-                if (!selectedCols.includes(colIndex)) return cell;
-                
-                const val = parseFloat(String(cell).replace(/,/g, ''));
-                if (isNaN(val)) return cell;
+        if (!source || source.length === 0) return;
 
-                // variance = val * tolerance% * random(-1 to +1)
-                const factor = 1 + ((Math.random() * 2 - 1) * (tolerance / 100));
-                const tweaked = val * factor;
-                
-                // Pretty print: match original decimal places if possible
-                const originalStr = String(cell);
-                const decimalIdx = originalStr.indexOf('.');
-                const precision = decimalIdx === -1 ? 2 : (originalStr.length - decimalIdx - 1);
-                
-                return tweaked.toFixed(precision); // Return string to preserve trailing zeros
+        const tolFactor = tolerance / 100;
+        const numCols = source[0].length;
+        
+        // Deep copy to work on
+        let tweakedTable = JSON.parse(JSON.stringify(source));
+
+        // Helper to format values with correct precision
+        const formatValue = (val, originalCell) => {
+            const originalStr = String(originalCell);
+            const decimalIdx = originalStr.indexOf('.');
+            const precision = decimalIdx === -1 ? 2 : (originalStr.length - decimalIdx - 1);
+            return val.toFixed(precision);
+        };
+
+        selectedCols.forEach(colIndex => {
+            const colData = source.map(row => {
+                const val = parseFloat(String(row[colIndex]).replace(/,/g, ''));
+                return isNaN(val) ? null : val;
             });
+
+            // Skip columns that aren't fully numeric for now
+            if (colData.some(v => v === null)) return;
+
+            // Detect Global Trend (Monotonicity)
+            let isIncreasing = true;
+            let isDecreasing = true;
+            let isStrict = false; // Check if there's actually a trend or just flat data
+
+            for (let i = 1; i < colData.length; i++) {
+                if (colData[i] > colData[i - 1]) isDecreasing = false;
+                if (colData[i] < colData[i - 1]) isIncreasing = false;
+                if (colData[i] !== colData[i - 1]) isStrict = true;
+            }
+
+            const isMonotonic = isStrict && (isIncreasing || isDecreasing);
+
+            if (isMonotonic) {
+                // TREND-AWARE Jitter: apply variance to the DELTAS (intervals)
+                // This guarantees the trend is preserved (stays increasing/decreasing)
+                let lastTweakedVal = colData[0] * (1 + (Math.random() * 2 - 1) * (tolFactor * 0.5)); // Slower start jitter
+                tweakedTable[0][colIndex] = formatValue(lastTweakedVal, source[0][colIndex]);
+
+                for (let i = 1; i < colData.length; i++) {
+                    const originalDelta = colData[i] - colData[i - 1];
+                    // Vary the delta by the tolerance
+                    const jitteredDelta = originalDelta * (1 + (Math.random() * 2 - 1) * tolFactor);
+                    
+                    // Crucial: Step-preservation check
+                    // If original delta was positive, ensure jittered delta stays positive (and vice versa)
+                    const normalizedDelta = (originalDelta > 0) ? Math.max(0.0001, jitteredDelta) : Math.min(-0.0001, jitteredDelta);
+                    
+                    lastTweakedVal += normalizedDelta;
+                    tweakedTable[i][colIndex] = formatValue(lastTweakedVal, source[i][colIndex]);
+                }
+            } else {
+                // STANDARD Jitter: Independent random variation
+                for (let i = 0; i < colData.length; i++) {
+                    const factor = 1 + ((Math.random() * 2 - 1) * tolFactor);
+                    const tweaked = colData[i] * factor;
+                    tweakedTable[i][colIndex] = formatValue(tweaked, source[i][colIndex]);
+                }
+            }
         });
-        setDraftRows(newDraft);
+
+        setDraftRows(tweakedTable);
     };
 
     const toggleColSelection = (idx) => {
