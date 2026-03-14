@@ -179,28 +179,28 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
 
     return (
         <div className={`${styles.contentBlock} ${styles.tableWrapper}`}>
-            {/* Top Toolbar: Plot, Apply Tolerance, Edit */}
+            {/* Top Toolbar: Apply Tolerance (Left) | Plot & Edit (Right) */}
             {(canPlot || isEditing) && (
                 <div className={styles.tableToolbar}>
                     {canPlot && (
-                        <>
-                            <button
-                                className={`${styles.tweakToggleBtn} ${isTweaking ? styles.tweakToggleActive : ''}`}
-                                onClick={handleTweakToggle}
-                                title="Introduce random variance/errors to data"
-                            >
-                                🎲 Apply Tolerance
-                            </button>
-                            <button
-                                className={`${styles.plotToggleBtn} ${isPlotOpen ? styles.plotToggleActive : ''}`}
-                                onClick={() => setIsPlotOpen(!isPlotOpen)}
-                                title={isPlotOpen ? 'Close plot' : 'Plot this data'}
-                            >
-                                📊 {isPlotOpen ? 'Close Plot' : 'Plot Data'}
-                            </button>
-                        </>
+                        <button
+                            className={`${styles.tweakToggleBtn} ${isTweaking ? styles.tweakToggleActive : ''}`}
+                            onClick={handleTweakToggle}
+                            title="Introduce random variance/errors to data"
+                        >
+                            🎲 Apply Tolerance
+                        </button>
                     )}
                     <div style={{ flex: 1 }}></div>
+                    {canPlot && (
+                        <button
+                            className={`${styles.plotToggleBtn} ${isPlotOpen ? styles.plotToggleActive : ''}`}
+                            onClick={() => setIsPlotOpen(!isPlotOpen)}
+                            title={isPlotOpen ? 'Close plot' : 'Plot this data'}
+                        >
+                            📊 {isPlotOpen ? 'Close Plot' : 'Plot Data'}
+                        </button>
+                    )}
                     <button 
                         className={`${styles.editToggleBtn} ${isEditing && !isTweaking ? styles.plotToggleActive : ''}`} 
                         onClick={handleEditToggle}
@@ -228,6 +228,9 @@ export default function EditableTableBlock({ block, sectionId, experimentId }) {
                                         className={`${styles.colChip} ${selectedCols.includes(i) ? styles.colChipActive : ''}`}
                                         onClick={() => toggleColSelection(i)}
                                     >
+                                        <span className={styles.chipCheck}>
+                                            {selectedCols.includes(i) ? '✓' : '○'}
+                                        </span>
                                         {header}
                                     </div>
                                 ))}

@@ -334,16 +334,31 @@
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.chipCheck {
+    font-size: 0.8rem;
+    font-weight: 700;
+    width: 14px;
+    text-align: center;
 }
 
 .colChip:hover {
     border-color: var(--secondary-color);
+    background: var(--bg-color);
 }
 
 .colChipActive {
     background: var(--secondary-color);
     color: white;
     border-color: var(--secondary-color);
+}
+
+.colChipActive .chipCheck {
+    color: #fff;
 }
 
 .toleranceGroup {
