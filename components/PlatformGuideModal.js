@@ -29,7 +29,7 @@ const CATEGORIES = [
         steps: [
             'Launch circuit simulator',
             'Fill observation tables',
-            'Auto-save observations',
+            'Save observations',
             'Generate charts',
             'Apply measurement variation'
         ],
@@ -89,11 +89,13 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
     const [activeStep, setActiveStep] = useState(0);
     const [highlights, setHighlights] = useState([]); // Support multiple spotlights
     const [cardStyle, setCardStyle] = useState({ opacity: 0 });
+    const [triggeredStep, setTriggeredStep] = useState(null); // Track one-time clicks
 
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
             document.body.style.overflow = 'hidden';
+            setTriggeredStep(null); // Reset when guide starts
         } else {
             const timer = setTimeout(() => {
                 setIsVisible(false);
@@ -114,13 +116,13 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             if (selectors.length > 0) {
                 const elements = selectors.map(s => document.querySelector(s)).filter(Boolean);
                 
-                if (elements.length > 0) {
-                if (step.title.includes('Navigation')) {
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                } else {
-                    elements[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }
-                    
+                  if (elements.length > 0) {
+                    if (step.title.includes('Navigation')) {
+                        window.scrollTo({ top: 400, behavior: 'smooth' });
+                    } else {
+                        elements[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                        
                     const updateHighlight = () => {
                         const newHighlights = elements.map(el => {
                             const rect = el.getBoundingClientRect();
@@ -180,13 +182,15 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         if (!isNaN(cardTop) && !isNaN(cardLeft)) {
                             setCardStyle({
                                 top: cardTop,
-                                left: cardLeft
+                                left: cardLeft,
+                                opacity: 1,
+                                transform: 'none'
                             });
                         }
                     };
 
-                    const timer = setTimeout(updateHighlight, 1500);
-                    const handleScroll = () => updateHighlight();
+                    let timer = setTimeout(updateHighlight, 300);
+                    const handleScroll = () => requestAnimationFrame(updateHighlight);
                     window.addEventListener('scroll', handleScroll, true);
                     window.addEventListener('resize', updateHighlight);
                     
@@ -195,20 +199,47 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         window.removeEventListener('scroll', handleScroll, true);
                         window.removeEventListener('resize', updateHighlight);
                     };
-                } else if (step.url && pathname !== step.url) {
-                    setHighlights([]); 
-                    router.push(step.url);
                 } else {
+                    // ACTION: If target is missing, try triggering it (auto-open menus/tabs)
+                    if (step.triggerSelector && triggeredStep !== `${activeCategory.id}-${activeStep}`) {
+                        const trigger = document.querySelector(step.triggerSelector);
+                        if (trigger) {
+                            setTriggeredStep(`${activeCategory.id}-${activeStep}`);
+                            trigger.click();
+                            // Short delay to let UI animations finish before next attempt
+                            let timer = setTimeout(() => setActiveStep(activeStep), 300);
+                            return () => clearTimeout(timer);
+                        }
+                    }
+
+                    // FALLBACK: If element is still missing, show card in center
                     setHighlights([]); 
-                    const retryTimer = setTimeout(() => setActiveStep(prev => prev), 500);
+                    setCardStyle({
+                        position: 'fixed',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        opacity: 1,
+                        width: 320
+                    });
+
+                    // RETRY logic
+                    const retryTimer = setTimeout(() => setActiveStep(activeStep), 1000);
                     return () => clearTimeout(retryTimer);
                 }
+            } else if (step.url && pathname !== step.url) {
+                setHighlights([]); 
+                router.push(step.url);
+            } else {
+                setHighlights([]); 
+                const retryTimer = setTimeout(() => setActiveStep(activeStep), 500);
+                return () => clearTimeout(retryTimer);
             }
         } else {
             setHighlights([]);
             setCardStyle({ opacity: 0 });
         }
-    }, [activeCategory, activeStep, pathname, router]);
+    }, [activeCategory, activeStep, pathname, router, triggeredStep]);
 
     if (!isOpen && !isVisible) return null;
 
@@ -217,15 +248,15 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             'getting-around': [
                 {
                     title: 'Master Lab Index',
-                    selector: '.labs-grid',
+                    selector: '[class*="categoryGrid"]',
                     url: '/',
-                    text: 'This is the heart of Bhilai EE Labs. All course labs are organized here. Pro tip: Pinned labs always stay at the top for quick access!'
+                    text: 'This is your central hub. All labs are organized into cards. Click any lab to explore its experiments.'
                 },
                 {
                     title: 'Cross-lab search',
-                    selector: 'input[placeholder*="Search experiments"]',
+                    selector: '[class*="searchSection"]',
                     url: '/',
-                    text: 'Need to find a specific experiment fast? This global search looks across all labs and experiments instantly.'
+                    text: 'Need something specific? Use the global search to find experiments across all labs instantly.'
                 },
                 {
                     title: 'Sticky Sidebar',
@@ -245,6 +276,39 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     url: '/lab/digital-electronics',
                     text: 'Switching courses? These buttons at the bottom of lab pages let you move between different course labs seamlessly.'
                 }
+            ],
+            'running-experiments': [
+                {
+                    title: 'Launch Simulator',
+                    selector: '[data-tour="launch-simulator"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Click this button to launch the interactive circuit simulator in a new tab. It pre-loads the correct experiment for you!'
+                },
+                {
+                    title: 'Fill observation tables',
+                    selector: '[class*="editToggleBtn"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Found some results? Click "Edit Data" to open the table for manual entry. You can type in your own measurements directly.'
+                },
+                {
+                    title: 'Save observations',
+                    selector: '[class*="saveBtn"]',
+                    triggerSelector: '[class*="editToggleBtn"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'When you\'re happy with your data, click "Save Changes". This manually persists your observations to the cloud and updates your project history.'
+                },
+                {
+                    title: 'Generate charts',
+                    selector: '[class*="plotToggleBtn"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Visualize your data instantly! Clicking "Plot Data" generates interactive HSL-tailored charts to help you analyze trends and results.'
+                },
+                {
+                    title: 'Apply measurement variation',
+                    selector: '[class*="tweakToggleBtn"]',
+                    url: '/lab/basic-electrical-engineering/experiment/1',
+                    text: 'Want to make your data more realistic? Use "Apply Tolerance" to introduce natural measurement variations and error margins.'
+                }
             ]
         };
 
@@ -252,6 +316,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
         if (steps.length > 0) {
             setActiveCategory({ ...cat, steps });
             setActiveStep(0);
+            setTriggeredStep(null);
             
             // Auto-navigate to first step's URL if needed
             if (steps[0].url && pathname !== steps[0].url) {
@@ -286,7 +351,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                                 <rect width="100%" height="100%" fill="white" />
                                 {highlights.map((style, idx) => (
                                     <rect 
-                                        key={`hole-${idx}`}
+                                        key={`mask-${idx}`}
                                         x={style.left} 
                                         y={style.top} 
                                         width={style.width} 
@@ -314,7 +379,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         ))}
                     </svg>
                     
-                    {highlights.length > 0 && isVisible && (
+                    {isVisible && activeCategory && (
                         <div className={styles.instructionCard} style={cardStyle}>
                             <div className={styles.stepHeader}>
                                 <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>

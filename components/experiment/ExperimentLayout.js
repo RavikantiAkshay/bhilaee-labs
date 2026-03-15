@@ -131,6 +131,7 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
                                         href={`${simulatorUrl}?expId=${experiment.meta?.simulationId || experiment.id}&newSession=true`}
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        data-tour="launch-simulator"
                                         style={{
                                             display: 'inline-flex',
                                             alignItems: 'center',
