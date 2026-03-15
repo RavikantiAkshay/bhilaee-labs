@@ -20,36 +20,51 @@ export default function ObservationsPage() {
         } else if (!authLoading && !user) {
             setLoading(false);
         }
+
+        // Listen for instant updates
+        const handleUpdate = () => fetchObservations();
+        window.addEventListener('workspace-updated', handleUpdate);
+        return () => window.removeEventListener('workspace-updated', handleUpdate);
     }, [user, authLoading]);
 
     const fetchObservations = async () => {
-        const { data, error } = await getAllSavedObservations(user.id);
-        if (!error && data) {
-            const allExps = getAllExperiments();
-            
-            // Group by experiment_id to avoid showing the same card multiple times if they saved multiple tables
-            const uniqueExpIds = [...new Set(data.map(item => item.experiment_id))];
-            
-            const enriched = uniqueExpIds.map(expId => {
-                let labId, eId;
-                if (String(expId).includes('/')) {
-                    [labId, eId] = String(expId).split('/');
-                } else {
-                    eId = expId;
-                }
+        // Safety timeout to prevent infinite "Loading..."
+        const timeout = setTimeout(() => {
+            setLoading(false);
+            console.warn('Observations fetch timed out');
+        }, 10000);
 
-                const found = allExps.find(e => 
-                    String(e.id) === String(eId) && 
-                    (!labId || String(e.labId) === String(labId))
-                );
+        try {
+            const { data, error } = await getAllSavedObservations(user.id);
+            if (!error && data) {
+                const allExps = getAllExperiments();
                 
-                const lastUpdated = data.find(d => d.experiment_id === expId)?.updated_at;
-                return found ? { ...found, viewed_at: lastUpdated } : null;
-            }).filter(Boolean);
+                // Group by experiment_id to avoid showing the same card multiple times
+                const uniqueExpIds = [...new Set(data.map(item => item.experiment_id))];
+                
+                const enriched = uniqueExpIds.map(expId => {
+                    let labId, eId;
+                    if (String(expId).includes('/')) {
+                        [labId, eId] = String(expId).split('/');
+                    } else {
+                        eId = expId;
+                    }
 
-            setObservationList(enriched);
+                    const found = allExps.find(e => 
+                        String(e.id) === String(eId) && 
+                        (!labId || String(e.labId) === String(labId))
+                    );
+                    
+                    const lastUpdated = data.find(d => d.experiment_id === expId)?.updated_at;
+                    return found ? { ...found, viewed_at: lastUpdated } : null;
+                }).filter(Boolean);
+
+                setObservationList(enriched);
+            }
+        } finally {
+            clearTimeout(timeout);
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     if (authLoading || loading) {

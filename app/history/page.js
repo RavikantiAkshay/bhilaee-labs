@@ -19,29 +19,44 @@ export default function HistoryPage() {
         } else if (!authLoading && !user) {
             setLoading(false);
         }
+
+        // Listen for instant updates
+        const handleUpdate = () => fetchHistory();
+        window.addEventListener('workspace-updated', handleUpdate);
+        return () => window.removeEventListener('workspace-updated', handleUpdate);
     }, [user, authLoading]);
 
     const fetchHistory = async () => {
-        const { data, error } = await getRecentlyViewed(user.id);
-        if (!error && data) {
-            const allExps = getAllExperiments();
-            const enriched = data.map(item => {
-                let labId, expId;
-                if (item.experiment_id.includes('/')) {
-                    [labId, expId] = item.experiment_id.split('/');
-                } else {
-                    expId = item.experiment_id;
-                }
+        // Safety timeout to prevent infinite "Loading..."
+        const timeout = setTimeout(() => {
+            setLoading(false);
+            console.warn('History fetch timed out');
+        }, 10000);
 
-                const found = allExps.find(e => 
-                    String(e.id) === String(expId) && 
-                    (!labId || String(e.labId) === String(labId))
-                );
-                return found ? { ...found, viewed_at: item.viewed_at } : null;
-            }).filter(Boolean);
-            setHistoryItems(enriched);
+        try {
+            const { data, error } = await getRecentlyViewed(user.id);
+            if (!error && data) {
+                const allExps = getAllExperiments();
+                const enriched = data.map(item => {
+                    let labId, expId;
+                    if (item.experiment_id.includes('/')) {
+                        [labId, expId] = item.experiment_id.split('/');
+                    } else {
+                        expId = item.experiment_id;
+                    }
+
+                    const found = allExps.find(e => 
+                        String(e.id) === String(expId) && 
+                        (!labId || String(e.labId) === String(labId))
+                    );
+                    return found ? { ...found, viewed_at: item.viewed_at } : null;
+                }).filter(Boolean);
+                setHistoryItems(enriched);
+            }
+        } finally {
+            clearTimeout(timeout);
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     if (authLoading || loading) {

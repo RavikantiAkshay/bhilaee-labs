@@ -181,7 +181,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                         }
                     };
 
-                    let timer = setTimeout(updateHighlight, 300);
+                    let timer = setTimeout(updateHighlight, 150);
                     const handleScroll = () => requestAnimationFrame(updateHighlight);
                     window.addEventListener('scroll', handleScroll, true);
                     window.addEventListener('resize', updateHighlight);
@@ -193,7 +193,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     };
                 } else {
                     // TARGET MISSING: Start retry cycle
-                    const retryTimer = setTimeout(() => setRetryTick(prev => prev + 1), 800);
+                    const retryTimer = setTimeout(() => setRetryTick(prev => prev + 1), 400);
                     
                     // FALLBACK: Show card in center while waiting
                     setHighlights([]); 

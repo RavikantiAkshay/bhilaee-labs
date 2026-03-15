@@ -19,36 +19,51 @@ export default function StarredPage() {
         } else if (!authLoading && !user) {
             setLoading(false);
         }
+
+        // Listen for instant updates
+        const handleUpdate = () => fetchStarred();
+        window.addEventListener('workspace-updated', handleUpdate);
+        return () => window.removeEventListener('workspace-updated', handleUpdate);
     }, [user, authLoading]);
 
     const fetchStarred = async () => {
-        const { data, error } = await getStarredExperimentsDetailed(user.id);
-        if (!error && data) {
-            const allExps = getAllExperiments();
-            // Map DB IDs to full experiment objects
-            const seenIds = new Set();
-            const enriched = data.map(item => {
-                let labId, expId;
-                if (item.experiment_id.includes('/')) {
-                    [labId, expId] = item.experiment_id.split('/');
-                } else {
-                    expId = item.experiment_id;
-                }
+        // Safety timeout to prevent infinite "Loading..."
+        const timeout = setTimeout(() => {
+            setLoading(false);
+            console.warn('Starred fetch timed out');
+        }, 10000);
 
-                const uniqueKey = `${labId || 'unknown'}-${expId}`;
-                if (seenIds.has(uniqueKey)) return null;
-                seenIds.add(uniqueKey);
+        try {
+            const { data, error } = await getStarredExperimentsDetailed(user.id);
+            if (!error && data) {
+                const allExps = getAllExperiments();
+                // Map DB IDs to full experiment objects
+                const seenIds = new Set();
+                const enriched = data.map(item => {
+                    let labId, expId;
+                    if (item.experiment_id.includes('/')) {
+                        [labId, expId] = item.experiment_id.split('/');
+                    } else {
+                        expId = item.experiment_id;
+                    }
 
-                const found = allExps.find(e => 
-                    String(e.id) === String(expId) && 
-                    (!labId || String(e.labId) === String(labId))
-                );
-                
-                return found ? { ...found, starred_at: item.created_at, db_id: item.experiment_id } : null;
-            }).filter(Boolean);
-            setStarredItems(enriched);
+                    const uniqueKey = `${labId || 'unknown'}-${expId}`;
+                    if (seenIds.has(uniqueKey)) return null;
+                    seenIds.add(uniqueKey);
+
+                    const found = allExps.find(e => 
+                        String(e.id) === String(expId) && 
+                        (!labId || String(e.labId) === String(labId))
+                    );
+                    
+                    return found ? { ...found, starred_at: item.created_at, db_id: item.experiment_id } : null;
+                }).filter(Boolean);
+                setStarredItems(enriched);
+            }
+        } finally {
+            clearTimeout(timeout);
+            setLoading(false);
         }
-        setLoading(false);
     };
 
     const handleUnstar = (expId) => {
