@@ -82,62 +82,150 @@ const CATEGORIES = [
 
 export default function PlatformGuideModal({ isOpen, onClose }) {
     const [isVisible, setIsVisible] = useState(false);
+    const [activeCategory, setActiveCategory] = useState(null);
+    const [activeStep, setActiveStep] = useState(0);
+    const [highlightStyle, setHighlightStyle] = useState({});
 
     useEffect(() => {
         if (isOpen) {
             setIsVisible(true);
             document.body.style.overflow = 'hidden';
         } else {
-            const timer = setTimeout(() => setIsVisible(false), 300);
+            const timer = setTimeout(() => {
+                setIsVisible(false);
+                setActiveCategory(null);
+                setActiveStep(0);
+            }, 300);
             document.body.style.overflow = 'unset';
             return () => clearTimeout(timer);
         }
     }, [isOpen]);
 
+    // Handle element highlighting
+    useEffect(() => {
+        if (activeCategory) {
+            const step = activeCategory.steps[activeStep];
+            if (step.selector) {
+                const element = document.querySelector(step.selector);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    setHighlightStyle({
+                        top: rect.top + window.scrollY - 10,
+                        left: rect.left + window.scrollX - 10,
+                        width: rect.width + 20,
+                        height: rect.height + 20,
+                        borderRadius: '12px'
+                    });
+                    
+                    // Smooth scroll to element if needed
+                    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+    }, [activeCategory, activeStep]);
+
     if (!isOpen && !isVisible) return null;
+
+    const handleStartCategory = (cat) => {
+        // Map category IDs to actual interactive steps
+        const interactiveSteps = {
+            'getting-around': [
+                {
+                    title: 'Master Lab Index',
+                    selector: '.labs-grid',
+                    text: 'This is your central hub. All course labs are organized here, with your pinned labs appearing at the top for instant access.'
+                },
+                {
+                    title: 'Cross-lab search',
+                    selector: 'input[placeholder*="Search experiments"]',
+                    text: 'Need to find a specific experiment fast? This global search looks across all labs instantly.'
+                }
+            ]
+            // More categories to be added...
+        };
+
+        const steps = interactiveSteps[cat.id] || [];
+        if (steps.length > 0) {
+            setActiveCategory({ ...cat, steps });
+            setActiveStep(0);
+        }
+    };
+
+    const handleNext = () => {
+        if (activeStep < activeCategory.steps.length - 1) {
+            setActiveStep(activeStep + 1);
+        } else {
+            setActiveCategory(null);
+            onClose();
+        }
+    };
 
     return (
         <div className={`${styles.overlay} ${isOpen ? styles.active : ''}`} onClick={onClose}>
-            <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-                <button className={styles.closeBtn} onClick={onClose}>&times;</button>
-                
-                <header className={styles.header}>
-                    <h1 className={styles.title}>Welcome to Bhilai EE Labs</h1>
-                    <p className={styles.subtitle}>
-                        Explore different parts of the platform.
-                    </p>
-                </header>
-
-                <div className={styles.categoryGrid}>
-                    {CATEGORIES.map((cat) => (
-                        <div key={cat.id} className={styles.categoryCard}>
-                            <div className={styles.cardHeader}>
-                                <span className={styles.catNum}>{cat.num}</span>
-                                <span className={styles.catIcon}>{cat.icon}</span>
-                            </div>
-                            <h2 className={styles.catTitle}>{cat.title}</h2>
-                            <p className={styles.catDescription}>{cat.description}</p>
-                            
-                            <div className={styles.catMeta}>
-                                <span className={styles.purposeLabel}>Goal:</span>
-                                <span className={styles.purposeText}>{cat.purpose}</span>
-                            </div>
-
-                            <button className={styles.startBtn}>
-                                Explore Steps
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12 5 19 12 12 19"></polyline>
-                                </svg>
+            {activeCategory ? (
+                /* INTERACTIVE STEP OVERLAY */
+                <div className={styles.interactiveOverlay} onClick={(e) => e.stopPropagation()}>
+                    <div className={styles.highlight} style={highlightStyle}></div>
+                    <div className={styles.instructionCard} style={{ 
+                        top: `calc(${highlightStyle.top}px + ${highlightStyle.height}px + 20px)`,
+                        left: `${highlightStyle.left}px`
+                    }}>
+                        <div className={styles.stepHeader}>
+                            <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
+                            <span className={styles.stepProgress}>{activeStep + 1} / {activeCategory.steps.length}</span>
+                        </div>
+                        <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
+                        <div className={styles.stepActions}>
+                            <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Skip Guide</button>
+                            <button className={styles.nextBtn} onClick={handleNext}>
+                                {activeStep === activeCategory.steps.length - 1 ? 'Finish' : 'Next Step'}
                             </button>
                         </div>
-                    ))}
+                    </div>
                 </div>
+            ) : (
+                /* CATEGORY SELECTION HUB */
+                <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+                    <button className={styles.closeBtn} onClick={onClose}>&times;</button>
+                    
+                    <header className={styles.header}>
+                        <h1 className={styles.title}>Welcome to Bhilai EE Labs</h1>
+                        <p className={styles.subtitle}>
+                            Explore different parts of the platform.
+                        </p>
+                    </header>
 
-                <footer className={styles.footer}>
-                    <p>Pro Tip: Following the guide in numerical order provides the best learning experience.</p>
-                </footer>
-            </div>
+                    <div className={styles.categoryGrid}>
+                        {CATEGORIES.map((cat) => (
+                            <div key={cat.id} className={styles.categoryCard}>
+                                <div className={styles.cardHeader}>
+                                    <span className={styles.catNum}>{cat.num}</span>
+                                    <span className={styles.catIcon}>{cat.icon}</span>
+                                </div>
+                                <h2 className={styles.catTitle}>{cat.title}</h2>
+                                <p className={styles.catDescription}>{cat.description}</p>
+                                
+                                <div className={styles.catMeta}>
+                                    <span className={styles.purposeLabel}>Goal:</span>
+                                    <span className={styles.purposeText}>{cat.purpose}</span>
+                                </div>
+
+                                <button className={styles.startBtn} onClick={() => handleStartCategory(cat)}>
+                                    Explore Steps
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        ))}
+                    </div>
+
+                    <footer className={styles.footer}>
+                        <p>Pro Tip: Following the guide in numerical order provides the best learning experience.</p>
+                    </footer>
+                </div>
+            )}
         </div>
     );
 }

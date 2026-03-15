@@ -197,3 +197,98 @@
         grid-template-columns: 1fr;
     }
 }
+
+/* INTERACTIVE OVERLAY */
+.interactiveOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 3000;
+}
+
+.highlight {
+    position: absolute;
+    box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.7);
+    border: 2px solid var(--secondary-color);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 3001;
+    pointer-events: auto;
+}
+
+.instructionCard {
+    position: absolute;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 320px;
+    z-index: 3002;
+    pointer-events: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+}
+
+.stepHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.stepTitle {
+    font-weight: 700;
+    color: var(--secondary-color);
+    font-size: 1.1rem;
+}
+
+.stepProgress {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.stepText {
+    color: var(--text-color);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+}
+
+.stepActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.skipBtn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.skipBtn:hover {
+    color: #ff6b6b;
+}
+
+.nextBtn {
+    background: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nextBtn:hover {
+    background: #1c7ed6;
+}
