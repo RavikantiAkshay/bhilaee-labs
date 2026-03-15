@@ -70,6 +70,10 @@ export default function UserProfileMenu() {
                         <span className={styles.menuIcon}>🧠</span>
                         Viva & Glossary Prep
                     </Link>
+                    <Link href="/gallery" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                        <span className={styles.menuIcon}>🖼️</span>
+                        Circuit Diagram Gallery
+                    </Link>
                     <Link href="/observations" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>📊</span>
                         Saved Observations

@@ -1,0 +1,632 @@
+[
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "1",
+    "experimentTitle": "Measurement and Correction of Power Factor",
+    "assetId": "fig1-resistive-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-1/fig1-resistive-circuit.png",
+    "caption": "Fig. 1: Voltage, current and power measurement in a resistive circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "1",
+    "experimentTitle": "Measurement and Correction of Power Factor",
+    "assetId": "fig2-rl-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-1/fig2-rl-circuit.png",
+    "caption": "Fig. 2: Voltage, current and power measurement in a resistive-inductive circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "1",
+    "experimentTitle": "Measurement and Correction of Power Factor",
+    "assetId": "fig3-rlc-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-1/fig3-rlc-circuit.png",
+    "caption": "Fig. 3: Voltage, current and power measurement in a resistive-inductive-capacitive circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "2",
+    "experimentTitle": "Superposition Theorem",
+    "assetId": "circuit-diagram-both",
+    "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-both.png",
+    "caption": "Figure 4: Circuit-1 – Both RPS1 and RPS2 active; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I_total",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "2",
+    "experimentTitle": "Superposition Theorem",
+    "assetId": "circuit-diagram-source1",
+    "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-source1.png",
+    "caption": "Figure 5: Circuit-2 – Only RPS1 active, RPS2 short-circuited; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I₁",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "2",
+    "experimentTitle": "Superposition Theorem",
+    "assetId": "circuit-diagram-source2",
+    "path": "/assets/labs/basic-electrical-engineering/exp-2/circuit-diagram-source2.png",
+    "caption": "Figure 6: Circuit-3 – Only RPS2 active, RPS1 short-circuited; R1=330Ω, R2=220Ω, R3=1kΩ, Ammeter measures I₂",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "3",
+    "experimentTitle": "Experimental Verification of Thevenin's Theorem",
+    "assetId": "fig1-original-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-3/fig1-original-circuit.png",
+    "caption": "Fig. 1: Circuit Diagram for Verification of Thevenin's Theorem",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "3",
+    "experimentTitle": "Experimental Verification of Thevenin's Theorem",
+    "assetId": "fig2-vth-measurement",
+    "path": "/assets/labs/basic-electrical-engineering/exp-3/fig2-vth-measurement.png",
+    "caption": "Fig. 2: Circuit connection to measure Open Circuit Voltage (Vth)",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "3",
+    "experimentTitle": "Experimental Verification of Thevenin's Theorem",
+    "assetId": "fig4-thevenin-equivalent",
+    "path": "/assets/labs/basic-electrical-engineering/exp-3/fig4-thevenin-equivalent.png",
+    "caption": "Fig. 3: Final Thevenin Equivalent Circuit with Load",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "4",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig1-rc-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+    "caption": "Fig. 1: Series RC Circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "4",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig2-rl-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig2-rl-circuit.png",
+    "caption": "Fig. 2: Series RL Circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "4",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig3-rlc-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig3-rlc-circuit.png",
+    "caption": "Fig. 3: Series RLC Circuit",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "5",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
+    "assetId": "fig1-open-circuit-test",
+    "path": "/assets/labs/basic-electrical-engineering/exp-5/fig1-oc-test.png",
+    "caption": "Figure 1: Open Circuit Test on Transformer",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "5",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
+    "assetId": "fig3-short-circuit-test",
+    "path": "/assets/labs/basic-electrical-engineering/exp-5/fig3-sc-test.png",
+    "caption": "Figure 3: Short Circuit Test on Transformer",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "6",
+    "experimentTitle": "Three-Phase Transformer Connections",
+    "assetId": "fig5-star-star-lab-setup",
+    "path": "/assets/labs/basic-electrical-engineering/exp-6/fig5-star-star-lab-setup.png",
+    "caption": "Fig 5: Star-Star configuration using three single phase transformers Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "6",
+    "experimentTitle": "Three-Phase Transformer Connections",
+    "assetId": "fig6-delta-delta-lab-setup",
+    "path": "/assets/labs/basic-electrical-engineering/exp-6/fig6-delta-delta-lab-setup.png",
+    "caption": "Fig 6: Delta-Delta configuration using three single phase transformer Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "6",
+    "experimentTitle": "Three-Phase Transformer Connections",
+    "assetId": "fig7-star-delta-lab-setup",
+    "path": "/assets/labs/basic-electrical-engineering/exp-6/fig7-star-delta-lab-setup.png",
+    "caption": "Fig 7: Star-delta configuration using three single phase transformers Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "6",
+    "experimentTitle": "Three-Phase Transformer Connections",
+    "assetId": "fig8-delta-star-lab-setup",
+    "path": "/assets/labs/basic-electrical-engineering/exp-6/fig8-delta-star-lab-setup.png",
+    "caption": "Fig 8: Delta-Star configuration using three single phase transformers Lab set-up.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "7",
+    "experimentTitle": "No-Load and Load Test on a Single Phase Transformer",
+    "assetId": "fig1-load-test-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-7/fig1-load-test-circuit.png",
+    "caption": "Fig 1: Load Test on single phase transformer.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "7",
+    "experimentTitle": "No-Load and Load Test on a Single Phase Transformer",
+    "assetId": "fig2-no-load-test-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-7/fig2-no-load-test-circuit.png",
+    "caption": "Fig 2: No-Load Test on single phase transformer.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "basic-electrical-engineering",
+    "labName": "Basic Electrical Engineering",
+    "experimentId": "8",
+    "experimentTitle": "Speed Control of a DC Shunt Motor",
+    "assetId": "fig1-dc-shunt-motor-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-8/fig1-dc-shunt-motor-circuit.png",
+    "caption": "Fig. 1: Circuit diagram for the study of speed control of a D.C. Shunt Motor. The armature rheostat (20 Ω, 10 A) is connected in series with the armature, and the field rheostat (300 Ω, 2 A) is connected in series with the field winding.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "1",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig1-rc-time-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+    "caption": "Fig 1(a): Series RC circuit for step (time) response — output taken across capacitor C.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "1",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig2-rc-freq-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig1-rc-circuit.png",
+    "caption": "Fig 1(b): Series RC circuit for frequency response — sinusoidal input, output across C.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "1",
+    "experimentTitle": "Transient Response of Series RL, RC and RLC Circuits",
+    "assetId": "fig3-rlc-circuit",
+    "path": "/assets/labs/basic-electrical-engineering/exp-4/fig3-rlc-circuit.png",
+    "caption": "Fig 2: Series RLC circuit for time and frequency response analysis. v = Vm sin(ωt).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "2",
+    "experimentTitle": "Frequency Response Analysis of Common Source MOSFET Amplifier",
+    "assetId": "fig1-cs-amplifier-circuit",
+    "path": "/assets/labs/devices-and-circuits/exp-2/fig1-cs-amplifier-circuit.png",
+    "caption": "Fig 1: Common Source MOSFET (2N7000) amplifier circuit with VDD = 12 V. R1 = 100 kΩ, R2 = 33 kΩ, RD = 2.7 kΩ, RS = 470 Ω, RL = 820 kΩ, Cin = Cout = 1 µF, CS = 10 µF.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "3",
+    "experimentTitle": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "assetId": "fig1-hwrect-no-filter",
+    "path": "/assets/labs/devices-and-circuits/exp-3/fig1-hwrect-no-filter.png",
+    "caption": "Fig 1: Half wave rectifier without filter (D-IN4006, RL = 1 kΩ).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "3",
+    "experimentTitle": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "assetId": "fig2-hwrect-with-filter",
+    "path": "/assets/labs/devices-and-circuits/exp-3/fig2-hwrect-with-filter.png",
+    "caption": "Fig 2: Half wave rectifier with filter capacitor (D-IN4006, RL = 1 kΩ, C = 1 µF).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "3",
+    "experimentTitle": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "assetId": "fig3-fwrect-no-filter",
+    "path": "/assets/labs/devices-and-circuits/exp-3/fig3-fwrect-no-filter.png",
+    "caption": "Fig 3: Full wave bridge rectifier without filter (4 × D-IN4006, RL = 1 kΩ).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "3",
+    "experimentTitle": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "assetId": "fig4-fwrect-with-filter",
+    "path": "/assets/labs/devices-and-circuits/exp-3/fig4-fwrect-with-filter.png",
+    "caption": "Fig 4: Full wave bridge rectifier with filter capacitor (4 × D-IN4006, RL = 1 kΩ, C = 1 µF).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "3",
+    "experimentTitle": "Study of Diode Applications: Half Wave Rectifier, Full Wave Rectifier, and Clipper Circuits",
+    "assetId": "fig5-clipper",
+    "path": "/assets/labs/devices-and-circuits/exp-3/fig5-clipper.png",
+    "caption": "Fig 5: Clipper circuit (D-IN4006, R = 1 kΩ, DC reference voltage V). Output is clipped at V.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig1-summing-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig1-summing-amp.png",
+    "caption": "Fig 1: Summing amplifier — µA741, R1 = R2 = Rf = 10 kΩ, supply ±15 V. For weighted sum Vo2 = V1 + 4.7·V2: Rf = 47 kΩ, R1 = 47 kΩ, R2 = 10 kΩ.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig2-differential-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig2-differential-amp.png",
+    "caption": "Fig 2: Differential amplifier — µA741, R1 = R2 = Rf = R3 = 10 kΩ, supply ±15 V. Vo = V2 − V1.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig3-integrator",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig3-integrator.png",
+    "caption": "Fig 3: Integrator — µA741, R = 10 kΩ (series input), C = 0.1 µF (feedback), supply ±15 V.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig4-differentiator",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig4-differentiator.png",
+    "caption": "Fig 4: Differentiator — µA741, C at input in series with R, Rf in feedback, supply ±15 V.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig5-log-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig5-log-amp.png",
+    "caption": "Fig 5: Log amplifier — µA741, R = 100 kΩ series input, diode in feedback path. Vo = −VT·ln(Vi / R·I0).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "4",
+    "experimentTitle": "Mathematical Operations with Op-Amps",
+    "assetId": "fig6-antilog-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-4/fig6-antilog-amp.png",
+    "caption": "Fig 6: Antilog amplifier — µA741, diode at input, Rf = 100 kΩ in feedback. Vo = −R·Is·e^(Vin/VT).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "5",
+    "experimentTitle": "Study of Op-Amp Characteristics Using OP-07",
+    "assetId": "fig1-inv-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-5/fig1-inv-amp.png",
+    "caption": "Fig 1: Inverting amplifier using OP-07 (R1 = 10 kΩ, Rf = variable).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "5",
+    "experimentTitle": "Study of Op-Amp Characteristics Using OP-07",
+    "assetId": "fig2-noninv-amp",
+    "path": "/assets/labs/devices-and-circuits/exp-5/fig2-noninv-amp.png",
+    "caption": "Fig 2: Non-inverting amplifier using OP-07 (R1 = 10 kΩ, Rf = variable).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "5",
+    "experimentTitle": "Study of Op-Amp Characteristics Using OP-07",
+    "assetId": "fig3-cmrr-diff",
+    "path": "/assets/labs/devices-and-circuits/exp-5/fig3-cmrr-diff.png",
+    "caption": "Fig 3: Differential mode circuit for CMRR measurement (all R = 47 kΩ).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "5",
+    "experimentTitle": "Study of Op-Amp Characteristics Using OP-07",
+    "assetId": "fig4-cmrr-common",
+    "path": "/assets/labs/devices-and-circuits/exp-5/fig4-cmrr-common.png",
+    "caption": "Fig 4: Common mode circuit for CMRR measurement.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "5",
+    "experimentTitle": "Study of Op-Amp Characteristics Using OP-07",
+    "assetId": "fig5-gbp-circuit",
+    "path": "/assets/labs/devices-and-circuits/exp-5/fig5-gbp-circuit.png",
+    "caption": "Fig 5: Bode plot circuit for GBP measurement (R1 = 10 kΩ, R2 = 47 kΩ, SINE(0 0.2 20)).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "6",
+    "experimentTitle": "Study of Frequency Response of Different Filters Using Op-Amp",
+    "assetId": "fig1-lpf-circuit",
+    "path": "/assets/labs/devices-and-circuits/exp-6/fig1-lpf-circuit.png",
+    "caption": "Fig 1(a): First-order active low-pass filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, fcutoff = 1 kHz).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "6",
+    "experimentTitle": "Study of Frequency Response of Different Filters Using Op-Amp",
+    "assetId": "fig2-hpf-circuit",
+    "path": "/assets/labs/devices-and-circuits/exp-6/fig2-hpf-circuit.png",
+    "caption": "Fig 2(a): First-order active high-pass filter (R1 = 5.6 kΩ, R2 = 56 kΩ, C = 2.8 nF, fcutoff = 10 kHz).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "6",
+    "experimentTitle": "Study of Frequency Response of Different Filters Using Op-Amp",
+    "assetId": "fig3-svf-circuit",
+    "path": "/assets/labs/devices-and-circuits/exp-6/fig3-svf-circuit.png",
+    "caption": "Fig 3: Inverting state variable filter (three Op-Amps, R1–R7, C1–C2) for simultaneous LPF, BPF, HPF outputs.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "7",
+    "experimentTitle": "Design of Multivibrator Circuits Using Timer 555 IC",
+    "assetId": "fig1-astable-555",
+    "path": "/assets/labs/devices-and-circuits/exp-7/fig1-astable-555.png",
+    "caption": "Fig 1: Astable multivibrator using NE555 IC (RA = RB = 10 kΩ, C1 = C2 = 0.1 µF, mark-to-space ratio = 2:1).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "7",
+    "experimentTitle": "Design of Multivibrator Circuits Using Timer 555 IC",
+    "assetId": "fig2-monostable-555",
+    "path": "/assets/labs/devices-and-circuits/exp-7/fig2-monostable-555.png",
+    "caption": "Fig 2: Monostable multivibrator using 555 IC (R = 10 kΩ, C = 0.1 µF, trigger at pin 2).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "devices-and-circuits",
+    "labName": "Devices and Circuits",
+    "experimentId": "8",
+    "experimentTitle": "MOSFET Current Mirror Experiment",
+    "assetId": "fig1-current-mirror",
+    "path": "/assets/labs/devices-and-circuits/exp-8/fig1-current-mirror.png",
+    "caption": "Fig 1: MOSFET current mirror circuit with M1 (diode-connected, reference branch, R1 = 1 kΩ) and M2 (output branch, R2 variable). V1 sets Iref; V2 supplies the output branch.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "1",
+    "experimentTitle": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
+    "assetId": "exp1-lpf-theoretical-circuit",
+    "path": "/assets/labs/sensor-lab/exp-1/exp1-lpf-theoretical-circuit.png",
+    "caption": "Fig (a): Theoretical Diagram of Low-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, fc = 10 kHz).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "1",
+    "experimentTitle": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
+    "assetId": "exp1-hpf-theoretical-circuit",
+    "path": "/assets/labs/sensor-lab/exp-1/exp1-hpf-theoretical-circuit.png",
+    "caption": "Fig (c): Theoretical Diagram of High-Pass Filter (R1 = Rf = 5.6 kΩ, C = 2.8 nF, fc = 10 kHz).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "2",
+    "experimentTitle": "Study of Op-Amp Circuits: Integrator, Differentiator, Inverting Amplifier, and Instrumentation Amplifier",
+    "assetId": "exp2-integrator-circuit",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-integrator-circuit.png",
+    "caption": "Practical Circuit of Integrator (R = 15 kΩ, Rf = 470 kΩ, C = 0.015 µF, Op-Amp OP07, ±12V supply).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "2",
+    "experimentTitle": "Study of Op-Amp Circuits: Integrator, Differentiator, Inverting Amplifier, and Instrumentation Amplifier",
+    "assetId": "exp2-differentiator-circuit",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-differentiator-circuit.png",
+    "caption": "Practical Circuit of Differentiator (capacitor at input, resistor in feedback path).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "2",
+    "experimentTitle": "Study of Op-Amp Circuits: Integrator, Differentiator, Inverting Amplifier, and Instrumentation Amplifier",
+    "assetId": "exp2-inverting-amplifier-circuit",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-inverting-amplifier-circuit.png",
+    "caption": "Circuit of Inverting Amplifier (R1 input resistor, Rf feedback resistor, non-inverting terminal grounded).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "2",
+    "experimentTitle": "Study of Op-Amp Circuits: Integrator, Differentiator, Inverting Amplifier, and Instrumentation Amplifier",
+    "assetId": "exp2-instrumentation-amplifier-circuit",
+    "path": "/assets/labs/sensor-lab/exp-2/exp2-instrumentation-amplifier-circuit.png",
+    "caption": "Circuit of Instrumentation Amplifier (three op-amps: two input buffers and one difference amplifier stage).",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "3",
+    "experimentTitle": "Study of Thermistor Characteristics and Key Performance Parameters",
+    "assetId": "exp3b-wheatstone-bridge-thermistor",
+    "path": "/assets/labs/sensor-lab/exp-3/exp3b-wheatstone-bridge-thermistor.png",
+    "caption": "Thermistor incorporated in a Wheatstone bridge circuit for signal conditioning. Output voltage VAB is proportional to the change in thermistor resistance.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "4",
+    "experimentTitle": "Study of RTD (Pt-100) Characteristics and Key Performance Parameters",
+    "assetId": "exp4-wheatstone-bridge-rtd",
+    "path": "/assets/labs/sensor-lab/exp-4/exp4-wheatstone-bridge-rtd.png",
+    "caption": "RTD (Pt-100) incorporated in a Wheatstone bridge circuit (R1 = R2 = R3 = 100 Ω, Vs = 10V). Output VAB is proportional to RTD resistance change.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "5",
+    "experimentTitle": "Design of a Temperature Detection Device Using RTD",
+    "assetId": "exp5-rtd-bridge-diffamp-esp32-circuit",
+    "path": "/assets/labs/sensor-lab/exp-5/exp5-rtd-bridge-diffamp-esp32-circuit.png",
+    "caption": "Figure 1: Circuit diagram showing the RTD Wheatstone bridge (3× 100 Ω), differential amplifier (R1 = 4.7 kΩ, R2 = 2.2 kΩ), and ESP32 microcontroller with LCD display via I2C interface.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "6",
+    "experimentTitle": "Design of a Temperature Detection Device Using Thermistor",
+    "assetId": "exp6-thermistor-bridge-diffamp-esp32-circuit",
+    "path": "/assets/labs/sensor-lab/exp-6/exp6-thermistor-bridge-diffamp-esp32-circuit.png",
+    "caption": "Figure 1: Circuit diagram showing the thermistor Wheatstone bridge (270 Ω, 100 kΩ, 300 kΩ), differential amplifier (R1 = 4.7 kΩ, R2 = 2.2 kΩ), and ESP32 microcontroller with LCD display via I2C interface.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "7",
+    "experimentTitle": "Measurement of Displacement Using an LVDT",
+    "assetId": "exp7-lvdt-structure-circuit",
+    "path": "/assets/labs/sensor-lab/exp-7/exp7-lvdt-structure-circuit.png",
+    "caption": "Figure 1: Structure and equivalent circuit diagram of the LVDT, showing the primary coil (centre), two secondary coils (S1 and S2) connected in series opposition, the movable soft iron core, and the differential output Eo.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "8",
+    "experimentTitle": "Measurement of Strain Using a Strain Gauge",
+    "assetId": "exp8-strain-gauge-kit-circuit",
+    "path": "/assets/labs/sensor-lab/exp-8/exp8-strain-gauge-kit-circuit.png",
+    "caption": "Figure 1: Strain gauge setup showing the ST2304 experimental kit and its internal Wheatstone bridge circuit diagram. The kit includes a strain gauge bridge (four 350 Ω arms), buffer amplifiers, a differential amplifier, a low-noise gain amplifier, and an offset null adjust control.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "9",
+    "experimentTitle": "Study of Load Cell Characteristics",
+    "assetId": "exp9-load-cell-kit-circuit",
+    "path": "/assets/labs/sensor-lab/exp-9/exp9-load-cell-kit-circuit.png",
+    "caption": "Figure 1: Scientech ST2307 Load Cell Trainer Kit showing the internal Wheatstone bridge (R1–R4), ADC, controller, and digital display. The kit outputs both a weight reading and an analog output voltage.",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "sensor-lab",
+    "labName": "Sensor Lab",
+    "experimentId": "9",
+    "experimentTitle": "Study of Load Cell Characteristics",
+    "assetId": "exp9-load-cell-working-principle",
+    "path": "/assets/labs/sensor-lab/exp-9/exp9-load-cell-working-principle.png",
+    "caption": "Figure 2: Working principle of a load cell using strain gauges — showing the tension and compression faces of the flexural element with gauges bonded to both surfaces.",
+    "role": "diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "1",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
+    "assetId": "fig1-open-circuit-test",
+    "path": "/assets/labs/basic-electrical-engineering/exp-5/fig1-oc-test.png",
+    "caption": "Figure 1: Open Circuit Test on Transformer",
+    "role": "circuit-diagram"
+  },
+  {
+    "labId": "machines-lab",
+    "labName": "Machines Lab",
+    "experimentId": "1",
+    "experimentTitle": "Open Circuit and Short Circuit Tests of Single-Phase Transformer",
+    "assetId": "fig3-short-circuit-test",
+    "path": "/assets/labs/basic-electrical-engineering/exp-5/fig3-sc-test.png",
+    "caption": "Figure 3: Short Circuit Test on Transformer",
+    "role": "circuit-diagram"
+  }
+]

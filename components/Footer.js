@@ -32,6 +32,11 @@ export default function Footer() {
                                 </a>
                             </li>
                             <li className={styles.linkItem}>
+                                <Link href="/gallery" className={styles.link}>
+                                    Circuit Diagram Gallery
+                                </Link>
+                            </li>
+                            <li className={styles.linkItem}>
                                 <Link href="/" className={styles.link}>
                                     Master Lab Index
                                 </Link>
