@@ -108,34 +108,40 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             if (step.selector) {
                 const element = document.querySelector(step.selector);
                 if (element) {
-                    // 1. Initial scroll to target
+                    // 1. Initial scroll to target - try to center the whole grid
                     element.scrollIntoView({ behavior: 'smooth', block: 'center' });
                     
                     const updateHighlight = () => {
                         const rect = element.getBoundingClientRect();
+                        // Capture the FULL dimensions of the grid element with safe padding
                         setHighlightStyle({
-                            top: rect.top - 10,
-                            left: rect.left - 10,
-                            width: rect.width + 20,
-                            height: rect.height + 20,
-                            borderRadius: '12px'
+                            top: rect.top - 20,
+                            left: rect.left - 20,
+                            width: rect.width + 40,
+                            height: rect.height + 40,
+                            borderRadius: '16px'
                         });
                     };
 
-                    // Initial delay to wait for modal transition/scroll
-                    const timer = setTimeout(updateHighlight, 500);
+                    // Wait for scroll to settle before showing highlight
+                    const timer = setTimeout(updateHighlight, 800);
                     
-                    // Keep highlight in sync on scroll/resize
-                    window.addEventListener('scroll', updateHighlight, true);
+                    const handleScroll = () => {
+                        updateHighlight();
+                    };
+
+                    window.addEventListener('scroll', handleScroll, true);
                     window.addEventListener('resize', updateHighlight);
                     
                     return () => {
                         clearTimeout(timer);
-                        window.removeEventListener('scroll', updateHighlight, true);
+                        window.removeEventListener('scroll', handleScroll, true);
                         window.removeEventListener('resize', updateHighlight);
                     };
                 }
             }
+        } else {
+            setHighlightStyle({ width: 0, height: 0 });
         }
     }, [activeCategory, activeStep]);
 
@@ -148,6 +154,11 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                     title: 'Master Lab Index',
                     selector: '.labs-grid',
                     text: 'This is the heart of Bhilai EE Labs. All course labs are organized here. Pro tip: Pinned labs always stay at the top for quick access!'
+                },
+                {
+                    title: 'Cross-lab search',
+                    selector: 'input[placeholder*="Search experiments"]',
+                    text: 'Need to find a specific experiment fast? This global search looks across all labs and experiments instantly.'
                 }
             ]
         };
@@ -173,26 +184,26 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             {activeCategory ? (
                 /* INTERACTIVE STEP OVERLAY */
                 <div className={styles.interactiveOverlay} onClick={(e) => e.stopPropagation()}>
-                    {highlightStyle.width > 0 && <div className={styles.highlight} style={highlightStyle}></div>}
-                    {highlightStyle.width > 0 && highlightStyle.top !== undefined && (
-                        <div className={styles.instructionCard} style={{ 
-                            top: highlightStyle.top + highlightStyle.height + 20 > window.innerHeight - 250 
-                                ? highlightStyle.top - 200 
-                                : highlightStyle.top + highlightStyle.height + 20,
-                            left: Math.max(20, Math.min(highlightStyle.left, window.innerWidth - 350))
-                        }}>
-                            <div className={styles.stepHeader}>
-                                <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
-                                <span className={styles.stepProgress}>{activeStep + 1} / {activeCategory.steps.length}</span>
+                    {highlightStyle.width > 0 && highlightStyle.height > 0 && (
+                        <>
+                            <div className={styles.highlight} style={highlightStyle}></div>
+                            <div className={styles.instructionCard} style={{ 
+                                top: highlightStyle.top > 250 ? highlightStyle.top - 200 : 40,
+                                left: Math.max(40, Math.min(highlightStyle.left - 10, window.innerWidth - 380))
+                            }}>
+                                <div className={styles.stepHeader}>
+                                    <span className={styles.stepTitle}>{activeCategory.steps[activeStep].title}</span>
+                                    <span className={styles.stepProgress}>{activeStep + 1} / {activeCategory.steps.length}</span>
+                                </div>
+                                <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
+                                <div className={styles.stepActions}>
+                                    <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
+                                    <button className={styles.nextBtn} onClick={handleNext}>
+                                        {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
+                                    </button>
+                                </div>
                             </div>
-                            <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
-                            <div className={styles.stepActions}>
-                                <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
-                                <button className={styles.nextBtn} onClick={handleNext}>
-                                    {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
-                                </button>
-                            </div>
-                        </div>
+                        </>
                     )}
                 </div>
             ) : (
