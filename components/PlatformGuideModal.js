@@ -197,9 +197,9 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                                 </div>
                                 <p className={styles.stepText}>{activeCategory.steps[activeStep].text}</p>
                                 <div className={styles.stepActions}>
-                                    <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Finish</button>
+                                    <button className={styles.skipBtn} onClick={() => setActiveCategory(null)}>Exit Guide</button>
                                     <button className={styles.nextBtn} onClick={handleNext}>
-                                        {activeStep === activeCategory.steps.length - 1 ? 'Got it!' : 'Next Step'}
+                                        {activeStep === activeCategory.steps.length - 1 ? 'Finish' : 'Next Step'}
                                     </button>
                                 </div>
                             </div>
