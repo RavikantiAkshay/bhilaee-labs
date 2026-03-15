@@ -58,6 +58,10 @@ export default function UserProfileMenu() {
                     <div className={styles.divider}></div>
 
                     {/* Group 1: Lab Resources */}
+                    <Link href="/guide" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
+                        <span className={styles.menuIcon}>🔭</span>
+                        Platform Guide
+                    </Link>
                     <Link href="/starred" className={styles.dropdownItem} onClick={() => setIsOpen(false)}>
                         <span className={styles.menuIcon}>⭐</span>
                         Starred Experiments
