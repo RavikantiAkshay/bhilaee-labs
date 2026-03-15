@@ -2,7 +2,7 @@
     "id": "exp-1",
     "title": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
     "labId": "sensor-lab",
-    "status": "Completed",
+    "status": "Simulation Available",
     "meta": {
         "simulationId": "sensor_lab-exp1",
         "simulationType": "AC Analysis",
@@ -167,7 +167,7 @@
         "simulation": {
             "id": "simulation",
             "title": "Simulation / Execution",
-            "isApplicable": false,
+            "isApplicable": true,
             "route": "default",
             "content": []
         },

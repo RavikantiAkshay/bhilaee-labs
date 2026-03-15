@@ -273,7 +273,7 @@
           "id": "1",
           "title": "Study of Frequency Response of Low-Pass and High-Pass Filters Using Op-Amp",
           "fileName": "exp-1.json",
-          "status": "Hardware-Oriented",
+          "status": "Simulation Available",
           "completeness": 1
         },
         {
