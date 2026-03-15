@@ -104,7 +104,7 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
                 <header className={styles.header}>
                     <h1 className={styles.title}>Welcome to Bhilai EE Labs</h1>
                     <p className={styles.subtitle}>
-                        Choose a category to master different parts of the platform.
+                        Explore different parts of the platform.
                     </p>
                 </header>
 
