@@ -31,10 +31,19 @@ export const AuthProvider = ({ children }) => {
       setUser(currentUser);
       
       if (currentUser) {
-        // If we have a user but no profile, or the user changed, fetch profile
         if (!profile || profile.id !== currentUser.id) {
           setLoading(true);
-          await fetchProfile(currentUser.id, currentUser);
+          try {
+            // Safety timeout for profile fetch (5s)
+            const pTimeout = setTimeout(() => {
+              if (mounted) setLoading(false);
+            }, 5000);
+
+            await fetchProfile(currentUser.id, currentUser);
+            clearTimeout(pTimeout);
+          } catch (e) {
+            console.error('AuthContext: Profile fetch failed', e);
+          }
         }
       } else {
         setProfile(null);

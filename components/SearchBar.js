@@ -6,7 +6,7 @@ export default function SearchBar({ query, onQueryChange }) {
     const isActive = query.trim().length > 0;
 
     return (
-        <div className={styles.searchWrapper}>
+        <div className={styles.searchWrapper} data-tour="search-section">
             {/* Search icon */}
             <svg className={styles.searchIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="11" cy="11" r="8" />

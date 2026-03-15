@@ -44,7 +44,7 @@ export default function ExperimentLayout({ children, experiment, fullExperimentI
             </nav>
 
             {/* Sidebar / Table of Contents */}
-            <aside className={styles.sidebar}>
+            <aside className={styles.sidebar} data-tour="experiment-sidebar">
                 <div className={styles.sidebarContent}>
                     <div className={styles.sidebarHeader}>
                         <h2 className={styles.sidebarTitle}>Contents</h2>

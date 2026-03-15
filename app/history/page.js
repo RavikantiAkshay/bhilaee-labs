@@ -30,8 +30,8 @@ export default function HistoryPage() {
         // Safety timeout to prevent infinite "Loading..."
         const timeout = setTimeout(() => {
             setLoading(false);
-            console.warn('History fetch timed out');
-        }, 10000);
+            console.warn('Fetch timed out (4s)');
+        }, 4000);
 
         try {
             const { data, error } = await getRecentlyViewed(user.id);

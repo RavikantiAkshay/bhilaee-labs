@@ -31,8 +31,8 @@ export default function ObservationsPage() {
         // Safety timeout to prevent infinite "Loading..."
         const timeout = setTimeout(() => {
             setLoading(false);
-            console.warn('Observations fetch timed out');
-        }, 10000);
+            console.warn('Fetch timed out (4s)');
+        }, 4000);
 
         try {
             const { data, error } = await getAllSavedObservations(user.id);

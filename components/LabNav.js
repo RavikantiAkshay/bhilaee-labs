@@ -16,7 +16,7 @@ export default function LabNav({ prevLab, nextLab }) {
         >
             <div className={styles.navColumn}>
                 {prevLab && (
-                    <Link href={`/lab/${prevLab.id}`} className={`${styles.navLink} ${styles.navLinkPrev}`} title={prevLab.name}>
+                    <Link href={`/lab/${prevLab.id}`} className={`${styles.navLink} ${styles.navLinkPrev}`} title={prevLab.name} data-tour="lab-nav-prev">
                         <span className={styles.navIcon}>←</span>
                         <span className={styles.navTitleText}>
                             <span className={styles.navDirection}>Previous Lab</span>
@@ -28,7 +28,7 @@ export default function LabNav({ prevLab, nextLab }) {
             
             <div className={`${styles.navColumn} ${styles.navColumnRight}`}>
                 {nextLab && (
-                    <Link href={`/lab/${nextLab.id}`} className={`${styles.navLink} ${styles.navLinkNext}`} title={nextLab.name}>
+                    <Link href={`/lab/${nextLab.id}`} className={`${styles.navLink} ${styles.navLinkNext}`} title={nextLab.name} data-tour="lab-nav-next">
                         <span className={styles.navTitleText}>
                             <span className={styles.navDirection}>Next Lab</span>
                             <span className={styles.navExpName}>{nextLab.name}</span>

@@ -234,31 +234,31 @@ export default function PlatformGuideModal({ isOpen, onClose }) {
             'getting-around': [
                 {
                     title: 'Master Lab Index',
-                    selector: '[class*="categoryGrid"]',
+                    selector: '[data-tour="labs-grid"]',
                     url: '/',
                     text: 'This is your central hub. All labs are organized into cards. Click any lab to explore its experiments.'
                 },
                 {
                     title: 'Cross-lab search',
-                    selector: '[class*="searchSection"]',
+                    selector: '[data-tour="search-section"]',
                     url: '/',
                     text: 'Need something specific? Use the global search to find experiments across all labs instantly.'
                 },
                 {
                     title: 'Sticky Sidebar',
-                    selector: '[class*="sidebar"]', // Target the sidebar container
+                    selector: '[data-tour="experiment-sidebar"]',
                     url: '/lab/digital-electronics/experiment/2',
                     text: 'Inside experiments, use this sticky sidebar to jump between sections like Theory, Procedure, or Observations instantly!'
                 },
                 {
                     title: 'Experiment Navigation',
-                    selectors: ['[class*="experimentNav"] [class*="navLinkPrev"]', '[class*="experimentNav"] [class*="navLinkNext"]'],
+                    selectors: ['[data-tour="nav-prev"]', '[data-tour="nav-next"]'],
                     url: '/lab/digital-electronics/experiment/2',
                     text: 'Finished your work? Use these shortcuts at the bottom to move forward through the experiment sequence.'
                 },
                 {
                     title: 'Lab Navigation',
-                    selectors: ['[class*="labNav"] [class*="navLinkPrev"]', '[class*="labNav"] [class*="navLinkNext"]'],
+                    selectors: ['[data-tour="lab-nav-prev"]', '[data-tour="lab-nav-next"]'],
                     url: '/lab/digital-electronics',
                     text: 'Switching courses? These buttons at the bottom of lab pages let you move between different course labs seamlessly.'
                 }
