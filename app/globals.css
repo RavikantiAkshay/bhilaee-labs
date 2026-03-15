@@ -110,6 +110,51 @@ html {
   margin: 0 auto;
 }
 
+/* Guide Teaser Flashcard - Stuck to top */
+.guide-teaser {
+  background: rgba(52, 152, 219, 0.08);
+  border-bottom: 1px solid var(--border-color);
+  color: var(--secondary-color);
+  padding: 0.5rem 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.guide-teaser-arrow {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--secondary-color);
+  display: inline-block;
+  animation: bounceUpRight 1.5s infinite;
+  line-height: 1;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceUpRight {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(4px, -4px);
+  }
+}
+
 /* Labs Grid */
 .labs-section {
   padding: 2rem 1.5rem;
